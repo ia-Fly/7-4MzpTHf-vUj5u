@@ -1,0 +1,117 @@
+{
+ "updated": "2026-10-29",
+ "accounts": {
+  "instagram": "situation.douteuse",
+  "tiktok": "situation.douteus",
+  "metricool_brand": 7631727,
+  "timezone": "Europe/Paris",
+  "vidiq_ig_platformAccountId": "29070592985935595"
+ },
+ "schedule": {
+  "post_time": "19:00",
+  "routine_time": "13:37",
+  "language": "en"
+ },
+ "counters": {
+  "day": 0
+ },
+ "followers": [
+  {
+   "date": "2026-10-29",
+   "instagram": 4,
+   "tiktok": 0
+  }
+ ],
+ "queue": [
+  {
+   "id": "omerta-ep2-en",
+   "format": "omerta",
+   "networks": [
+    "tiktok"
+   ],
+   "not_before": "2026-10-30",
+   "condition": "omerta-ep1-en publié sur TikTok depuis au moins 20 h (programmé le 29/10 à 19:00)",
+   "video": "queue/omerta-ep2-en/video.mp4",
+   "cover": "queue/omerta-ep2-en/cover.jpg",
+   "caption_tiktok": "This coffee is poisoned… and you're the one who made it ☕🩸 OMERTÀ · Episode 2 (you voted: you sit down). Do you drink it or confess everything? Comment DRINK or CONFESS 👇 the most voted choice becomes episode 3. AI-generated fiction. #fiction #mafia #story #choices #fyp"
+  },
+  {
+   "id": "fusion-planets-s10",
+   "format": "fusion",
+   "theme": "planets",
+   "seed": 10,
+   "networks": [
+    "instagram",
+    "tiktok"
+   ],
+   "not_before": "2026-10-30",
+   "condition": "aucune",
+   "video": "queue/fusion-planets-s10/video.mp4",
+   "cover": "queue/fusion-planets-s10/cover.jpg",
+   "caption_instagram": "Can it reach THE SUN? ☀️ Watch till the end 👀\nWhich theme should I do next? Comment it 👇\nAI-generated simulation.\n#satisfying #simulation #space #planets #fyp",
+   "first_comment_instagram": "Next theme? 🍉 fruits, 🔢 numbers… or yours? Comment 👇",
+   "caption_tiktok": "Can it reach THE SUN? ☀️ Watch till the end 👀 Which theme should I do next? Comment it 👇 AI-generated simulation. #satisfying #simulation #space #planets #fyp"
+  }
+ ],
+ "history": [
+  {
+   "date": "2026-10-25",
+   "network": "instagram",
+   "id": "le-zero-p1-fr",
+   "format": "fruit-drama",
+   "url": "https://www.instagram.com/reel/De603tLlLfq/"
+  },
+  {
+   "date": "2026-10-25",
+   "network": "instagram",
+   "id": "omerta-ep1-fr",
+   "format": "omerta",
+   "url": "https://www.instagram.com/reel/De7Tsq9D2cj/"
+  },
+  {
+   "date": "2026-10-29",
+   "network": "instagram",
+   "id": "omerta-ep2-en",
+   "format": "omerta",
+   "metricool_id": 409847672
+  },
+  {
+   "date": "2026-10-29",
+   "network": "tiktok",
+   "id": "omerta-ep1-en",
+   "format": "omerta",
+   "metricool_id": 409848140
+  }
+ ],
+ "votes": {
+  "omerta_ep1": {
+   "options": [
+    "SIT",
+    "RUN"
+   ],
+   "result": "SIT",
+   "source": "Matis, votes Instagram de l'ép. 1 FR"
+  },
+  "omerta_ep2": {
+   "options": [
+    "DRINK",
+    "CONFESS"
+   ],
+   "result": null,
+   "how": "Matis lit les commentaires (Instagram + TikTok) et donne le résultat à Claude ; Claude le note ici. Sans résultat, pas d'épisode 3."
+  }
+ },
+ "themes_used": {
+  "fusion": [
+   {
+    "theme": "planets",
+    "seed": 10,
+    "date": "2026-10-29",
+    "status": "en file"
+   }
+  ]
+ },
+ "seeds_used": [
+  10
+ ]
+}
