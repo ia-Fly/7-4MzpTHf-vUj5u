@@ -30,6 +30,15 @@ Procédure suivie chaque jour par la tâche planifiée « Vidéo du jour 19 h »
 4. Mets à jour le tableau de `STRATEGY.md` (une ligne par vidéo et par réseau) et la ligne « abonnés du jour ».
 
 ## 4. Décider
+### 4.0 Rotation des 5 projets (consigne de Matis du 29/10/2026 — passe avant tout le reste de ce §4)
+1. `state.json > projects.rotation` donne l'ordre (A…E) et `projects.next` le projet du jour. **Une seule vidéo neuve par jour**, celle du projet du jour, sur Instagram ET TikTok (si TikTok a un épisode de retard pour ce projet, TikTok prend l'élément de `queue` de ce projet et la vidéo neuve y entre à son tour).
+2. **Omertà** : si c'est son tour et que le vote de l'épisode précédent n'est pas dans `state.json > votes`, publie le projet suivant ; Omertà garde la priorité au prochain tour (`projects.omerta_pending = true`). Jamais de résultat inventé.
+3. Projet pas encore outillé (C, D, E au départ) : le construire ce jour-là (code dans `formats/<projet>/`, testé, contrôlé §6) ; si c'est impossible avant 18:30, publier le projet suivant prêt et noter pourquoi.
+4. Après publication : `episodes += 1` pour le projet, `projects.next` = projet suivant.
+5. **Bilan de cycle** : quand les 5 projets `active` ont `episodes >= 5` et ≥ 48 h de stats sur leur 5e épisode → classer (médiane des vues, % regardé, skip, commentaires/vues, abonnés gagnés), passer le dernier en `removed`, créer un nouveau projet (0 épisode) à sa place dans la rotation, écrire le bilan dans `STRATEGY.md`, `journal/` et le rapport. Recommencer à chaque cycle.
+6. « Jamais le même thème deux jours de suite » est garanti par la rotation (seule exception : 30/10, voulue par Matis).
+
+### 4.1 Choix à l'intérieur du projet du jour
 Pour chaque réseau sans post à 19:00 aujourd'hui :
 1. **File d'attente** (`state.json > queue`) : prends le premier élément prévu pour ce réseau dont `not_before` ≤ aujourd'hui et dont la condition (`condition`) est remplie.
 2. Sinon **production** selon `STRATEGY.md > Règle de choix` : 2 jours sur 3 on exploite le meilleur format/thème (médiane des vues sur ses 3 derniers posts du réseau, à durée de vie comparable), 1 jour sur 3 on explore (nouveau thème, nouveau format international, autre durée, autre accroche). Le jour est donné par `state.json > counters.day` (0, 1 = exploitation ; 2 = exploration).
@@ -49,7 +58,7 @@ python3 formats/fusion/fusion.py --theme planets --dur 48 --search 40 --base $BA
 - Idées d'amélioration du format : voir `STRATEGY.md > Pistes`.
 
 ### Épisode à voix (Omertà) — 1 à 2 h, seulement si le vote est connu
-Voir `formats/omerta/README.md` (voix piper + vérification Whisper, timeline, scène SVG, son, couverture). Références : épisodes 1 et 2 anglais.
+Voir `formats/omerta/README.md` (voix piper + vérification Whisper, timeline, scène SVG, son, couverture). Références : épisodes 1, 2 et 3 anglais ; **l'ép. 3 (26 s, choix à 19 s) est le modèle de durée**. Finition : `scripts/master_mux.py` (limiteur, -13,6 LUFS, mux, contrôle Whisper).
 
 ## 6. Contrôler (obligatoire)
 ```bash

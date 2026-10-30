@@ -1,0 +1,403 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Omerta ep3 EN</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .frame { background: #0F1013; }
+  .band { position: absolute; left: 0; right: 0; top: 470px; height: 960px;
+    background:
+      repeating-linear-gradient(0deg, rgba(232,229,219,0.045) 0 2px, transparent 2px 96px),
+      repeating-linear-gradient(90deg, rgba(232,229,219,0.045) 0 2px, transparent 2px 96px),
+      linear-gradient(180deg, rgba(35,36,40,0) 0%, #25262A 14%, #232428 78%, rgba(35,36,40,0) 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 80%, transparent 100%); }
+  .vig { position: absolute; inset: 0; background: radial-gradient(ellipse 760px 1100px at 50% 48%, transparent 55%, rgba(0,0,0,0.62) 100%); pointer-events: none; }
+  .mini { position: absolute; left: 76px; right: 76px; top: 192px; display: flex; justify-content: space-between; align-items: center; font-size: 24px; }
+  .mini .l { color: var(--graphite); display: flex; align-items: center; gap: 12px; }
+  .mini .rt { color: var(--papier); display: flex; align-items: center; gap: 14px; }
+  .mini .rt #clk { font-weight: 700; color: var(--papier); }
+  .mini .rt .pl { color: var(--graphite); }
+  .filet2 { position: absolute; left: 76px; right: 76px; top: 244px; height: 1.5px; background: rgba(232,229,219,0.14); }
+  #hud2 { position: absolute; left: 76px; right: 76px; top: 266px; display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JB Mono'; text-transform: uppercase; letter-spacing: 0.16em; font-size: 21px; color: var(--graphite); }
+  #hud2 .gauge { display: flex; align-items: center; gap: 7px; }
+  #hud2 .gauge .lab { margin-right: 12px; }
+  #hud2 .sg { width: 44px; height: 14px; border-radius: 2px; background: rgba(232,229,219,0.13); }
+  #hud2 .sg.on { background: #E8E5DB; }
+  #hud2 .sg.hot { background: #FF4B2B; box-shadow: 0 0 12px rgba(255,75,43,0.65); }
+  #hud2 .debtH { display: flex; align-items: baseline; gap: 14px; opacity: 0; }
+  #hud2 .debtH .v { color: #FF4B2B; font-weight: 700; font-size: 30px; letter-spacing: 0.06em; }
+  svg.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+  #fadeT { position: absolute; left: 0; right: 0; top: 0; height: 350px; background: linear-gradient(180deg, #0F1013 0px, #0F1013 262px, rgba(15,16,19,0) 350px); pointer-events: none; }
+  #fadeB { position: absolute; left: 0; right: 0; top: 1380px; height: 540px; background: linear-gradient(180deg, rgba(15,16,19,0) 0px, #0F1013 130px, #0F1013 540px); pointer-events: none; }
+  #rew { position: absolute; inset: 0; opacity: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(232,229,219,0.07) 0 3px, transparent 3px 9px); mix-blend-mode: screen; }
+  #rewChip { position: absolute; left: 0; right: 0; top: 640px; display: flex; justify-content: center; opacity: 0; }
+  #rewChip .in { background: rgba(15,17,20,0.92); border: 2px solid rgba(232,229,219,0.7); padding: 14px 28px 12px; font-family: 'JB Mono'; font-weight: 700; font-size: 34px; letter-spacing: 0.14em; color: var(--papier); }
+  #cap { position: absolute; left: 40px; right: 40px; top: 1168px; text-align: center; font-family: 'Barlow C'; font-weight: 800; font-size: 104px; line-height: 1;
+    color: var(--papier); text-transform: uppercase; letter-spacing: 0.01em; white-space: nowrap;
+    text-shadow: 0 5px 0 rgba(0,0,0,0.55), 0 0 28px rgba(0,0,0,0.75); transform-origin: 50% 60%; }
+  #cap .r { color: #FF4B2B; } #cap .g { color: #5EF5B4; }
+  #cap.boss { font-family: 'Anton'; font-weight: 400; font-size: 98px; letter-spacing: 0.02em; }
+  #cap span.w { display: inline-block; }
+  .card { position: absolute; left: 90px; right: 90px; opacity: 0; transform-origin: 50% 50%; }
+  .chip { display: flex; justify-content: center; }
+  .chip .in { background: rgba(15,17,20,0.92); padding: 16px 30px 14px; font-family: 'JB Mono'; font-weight: 700; font-size: 34px; letter-spacing: 0.14em; }
+  #vote { top: 372px; } #vote .in { border: 3px solid #FF4B2B; color: #FF4B2B; }
+  #cta { top: 372px; } #cta .in { border: 2px solid rgba(94,245,180,0.75); color: #5EF5B4; }
+  #comment { top: 372px; } #comment .in { border: 2px solid rgba(94,245,180,0.75); color: #5EF5B4; font-size: 32px; }
+  #rule { top: 372px; border: 3px solid #FF4B2B; background: rgba(15,16,19,0.95); }
+  #rule .hd { background: #FF4B2B; color: #0F1013; font-family: 'JB Mono'; font-weight: 700; font-size: 34px; letter-spacing: 0.22em; padding: 14px 28px 12px; }
+  #rule .tx { font-family: 'Anton'; font-size: 96px; line-height: 1.04; color: var(--papier); padding: 22px 30px 28px; text-align: left; }
+  #rule .tx .j { color: #FF4B2B; display: inline-block; transform-origin: 50% 60%; }
+  #next { top: 372px; border: 3px solid #FF4B2B; background: rgba(15,16,19,0.95); }
+  #next .hd { background: #FF4B2B; color: #0F1013; font-family: 'JB Mono'; font-weight: 700; font-size: 32px; letter-spacing: 0.2em; padding: 12px 26px 10px; display: flex; justify-content: space-between; }
+  #next .tx { font-family: 'Anton'; font-size: 72px; line-height: 1.04; color: var(--papier); padding: 16px 28px 8px; text-align: left; white-space: nowrap; }
+  #next .tx .g { color: #5EF5B4; }
+  #next .ft { font-family: 'JB Mono'; font-weight: 700; font-size: 25px; letter-spacing: 0.08em; line-height: 1.5; color: rgba(232,229,219,0.88); padding: 4px 28px 18px; }
+  #next .ft .g { color: #5EF5B4; }
+  #count { top: 372px; } #count .in { border: 3px solid #FF4B2B; color: #FF4B2B; font-size: 60px; padding: 14px 40px 10px; }
+  #debtH.paid .v { color: #5EF5B4; }
+</style></head>
+<body>
+<div class="frame">
+  <div class="band"></div>
+  <svg class="full" viewBox="0 0 1080 1920">
+    <defs>
+      <filter id="glS" x="-600%" y="-600%" width="1300%" height="1300%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="glW" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="blur8" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
+      <clipPath id="clipHeadM"><circle cx="470" cy="902" r="48"/></clipPath>
+      <clipPath id="clipHeadS"><circle cx="712" cy="962" r="46"/></clipPath>
+      <clipPath id="clipHeadP"><circle cx="948" cy="938" r="46"/></clipPath>
+      <clipPath id="clipWin"><rect x="548" y="728" width="164" height="204"/></clipPath>
+      <linearGradient id="wireG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8E5DB" stop-opacity="0"/><stop offset="0.55" stop-color="#E8E5DB" stop-opacity="0.6"/><stop offset="1" stop-color="#E8E5DB" stop-opacity="0.6"/></linearGradient>
+      <linearGradient id="coneG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8E5DB" stop-opacity="0.18"/><stop offset="100%" stop-color="#E8E5DB" stop-opacity="0.02"/></linearGradient>
+      <pattern id="awning" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="8" height="16" fill="#E8E5DB" fill-opacity="0.55"/><rect x="8" width="8" height="16" fill="#26282D"/></pattern>
+      <g id="mug">
+        <path d="M-15 -26 L15 -26 L13 0 L-13 0 Z" fill="#2E3035" stroke="#E8E5DB" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M14 -20 C 26 -20, 26 -7, 13 -7" fill="none" stroke="#E8E5DB" stroke-width="4"/>
+        <ellipse cx="0" cy="-26" rx="15" ry="3.5" fill="#1A1410" stroke="#E8E5DB" stroke-width="2"/>
+      </g>
+      <g id="skull">
+        <path d="M0 -14 C 10 -14, 14 -7, 14 -1 C 14 5, 10 7, 8 8 L8 13 L-8 13 L-8 8 C -10 7, -14 5, -14 -1 C -14 -7, -10 -14, 0 -14 Z" fill="#E8E5DB"/>
+        <circle cx="-5.5" cy="-1" r="3.6" fill="#0F1013"/><circle cx="5.5" cy="-1" r="3.6" fill="#0F1013"/>
+        <path d="M0 4 L-2 8 L2 8 Z" fill="#0F1013"/>
+      </g>
+    </defs>
+    <g id="cam">
+      <line x1="-700" y1="1310" x2="1500" y2="1310" stroke="#E8E5DB" stroke-opacity="0.18" stroke-width="3"/>
+      <!-- coin cuisine : comptoir, placard, cafetière -->
+      <g id="counter">
+        <rect x="-350" y="1126" width="360" height="184" fill="#24262A" stroke="#E8E5DB" stroke-width="5"/>
+        <line x1="-362" y1="1126" x2="22" y2="1126" stroke="#E8E5DB" stroke-width="7" stroke-linecap="round"/>
+        <line x1="-170" y1="1140" x2="-170" y2="1300" stroke="#E8E5DB" stroke-opacity="0.4" stroke-width="3"/>
+        <line x1="-300" y1="1170" x2="-220" y2="1170" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="4" stroke-linecap="round"/>
+        <line x1="-120" y1="1170" x2="-40" y2="1170" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g id="cupboard">
+        <rect x="-320" y="760" width="310" height="170" fill="#16171A" stroke="#E8E5DB" stroke-width="5"/>
+        <line x1="-316" y1="846" x2="-14" y2="846" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+        <rect x="-118" y="806" width="30" height="40" rx="5" fill="#2E3035" stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="2.5"/>
+        <rect x="-78" y="814" width="26" height="32" rx="5" fill="#2E3035" stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="2.5"/>
+        <g id="poisonBox">
+          <rect x="-292" y="782" width="74" height="64" rx="3" fill="#2A1512" stroke="#FF4B2B" stroke-width="3.5"/>
+          <use href="#skull" transform="translate(-255 806) scale(0.95)"/>
+          <text x="-255" y="838" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="10" letter-spacing="0.8" fill="#FF4B2B">RAT POISON</text>
+        </g>
+        <rect x="-118" y="886" width="34" height="44" rx="5" fill="#2E3035" stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="2.5"/>
+        <g id="doorL"><rect x="-320" y="760" width="155" height="170" fill="#2B2D32" stroke="#E8E5DB" stroke-width="5"/><circle cx="-180" cy="846" r="5" fill="#E8E5DB"/></g>
+        <g id="doorR"><rect x="-165" y="760" width="155" height="170" fill="#2B2D32" stroke="#E8E5DB" stroke-width="5"/><circle cx="-150" cy="846" r="5" fill="#E8E5DB"/></g>
+      </g>
+      <g id="moka">
+        <path d="M-292 1124 L-286 1092 L-252 1092 L-246 1124 Z" fill="#3A3D43" stroke="#E8E5DB" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M-288 1090 L-282 1060 L-256 1060 L-250 1090 Z" fill="#3A3D43" stroke="#E8E5DB" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M-286 1062 L-296 1052" stroke="#E8E5DB" stroke-width="4" stroke-linecap="round"/>
+        <path d="M-250 1068 C -236 1068, -236 1086, -250 1086" fill="none" stroke="#E8E5DB" stroke-width="4"/>
+        <g id="mokaSteam" transform="translate(-276 1040)" opacity="0" fill="none" stroke="#E8E5DB" stroke-width="2.5" stroke-linecap="round"></g>
+      </g>
+      <g id="cntCupA"><use href="#mug" transform="translate(-112 1124)"/><g id="cntCupAGlow" opacity="0"><path d="M-127 1098 L-97 1098 L-99 1124 L-125 1124 Z" fill="none" stroke="#FF4B2B" stroke-width="5" filter="url(#glW)"/></g></g>
+      <g id="cntCupB"><use href="#mug" transform="translate(-52 1124)"/></g>
+      <g id="pourBox" opacity="0">
+        <g id="pourBoxIn">
+          <rect x="-37" y="-32" width="74" height="64" rx="3" fill="#2A1512" stroke="#FF4B2B" stroke-width="3.5"/>
+          <use href="#skull" transform="translate(0 -8) scale(0.95)"/>
+        </g>
+      </g>
+      <g id="powder" fill="#FF4B2B"></g>
+      <!-- porte d'entrée + horloge -->
+      <g id="door">
+        <rect x="96" y="888" width="180" height="422" fill="#2B2D32" stroke="#E8E5DB" stroke-width="5"/>
+        <rect x="118" y="1080" width="136" height="200" fill="none" stroke="#E8E5DB" stroke-opacity="0.35" stroke-width="3"/>
+        <rect x="146" y="940" width="80" height="110" fill="#17181C" stroke="#E8E5DB" stroke-width="3.5"/>
+        <circle cx="250" cy="1112" r="8" fill="#E8E5DB"/>
+      </g>
+      <g id="clock">
+        <circle cx="186" cy="806" r="36" fill="#2A2C31" stroke="#E8E5DB" stroke-width="5"/>
+        <g stroke="#E8E5DB" stroke-width="3" stroke-linecap="round">
+          <line x1="186" y1="775" x2="186" y2="781"/><line x1="217" y1="806" x2="211" y2="806"/><line x1="186" y1="837" x2="186" y2="831"/><line x1="155" y1="806" x2="161" y2="806"/>
+        </g>
+        <line id="hourH" x1="186" y1="806" x2="204" y2="806" stroke="#E8E5DB" stroke-width="5" stroke-linecap="round"/>
+        <line id="minH" x1="186" y1="806" x2="186" y2="779" stroke="#FF4B2B" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="186" cy="806" r="4" fill="#E8E5DB"/>
+      </g>
+      <g id="photo">
+        <rect x="330" y="752" width="104" height="128" fill="#2A2C31" stroke="#E8E5DB" stroke-width="4"/>
+        <circle cx="382" cy="800" r="18" fill="#464A50" stroke="#E8E5DB" stroke-width="3"/>
+        <path d="M352 868 Q352 828 382 826 Q412 828 412 868 Z" fill="#464A50" stroke="#E8E5DB" stroke-width="3"/>
+        <polygon points="396,750 418,750 436,768 436,790" fill="#0B0C0E" stroke="#E8E5DB" stroke-width="2.5" stroke-linejoin="round"/>
+        <rect id="photoMourn" x="330" y="752" width="104" height="128" fill="none" stroke="#FF4B2B" stroke-width="5" opacity="0" filter="url(#glW)"/>
+      </g>
+      <!-- cuisine -->
+      <g id="kitchen">
+        <rect x="878.5" y="684" width="3" height="60" fill="url(#wireG)"/>
+        <polygon points="852,792 908,792 1040,1140 720,1140" fill="url(#coneG)"/>
+        <path d="M846 790 L914 790 L898 744 L862 744 Z" fill="#2A2C31" stroke="#E8E5DB" stroke-width="4"/>
+        <ellipse cx="880" cy="792" rx="22" ry="7" fill="#E8E5DB"/>
+        <g id="parrain">
+          <rect x="986" y="1010" width="20" height="300" rx="6" fill="#2E3035" stroke="#E8E5DB" stroke-width="4"/>
+          <rect x="900" y="980" width="102" height="170" rx="34" fill="#3A3D43" stroke="#E8E5DB" stroke-width="5"/>
+          <rect x="908" y="1146" width="40" height="160" rx="14" fill="#3A3D43" stroke="#E8E5DB" stroke-width="5"/>
+          <g id="pHead">
+            <circle cx="948" cy="938" r="46" fill="#2E3035"/>
+            <circle cx="972" cy="926" r="46" fill="#3F4248" clip-path="url(#clipHeadP)"/>
+            <circle cx="948" cy="938" r="46" fill="none" stroke="#E8E5DB" stroke-width="5"/>
+            <path id="smile" d="M914 956 Q928 968 942 954" fill="none" stroke="#E8E5DB" stroke-width="4" stroke-linecap="round" opacity="0"/>
+            <rect x="910" y="852" width="78" height="50" rx="12" fill="#26282D" stroke="#E8E5DB" stroke-width="5"/>
+            <line x1="882" y1="904" x2="1014" y2="904" stroke="#E8E5DB" stroke-width="7" stroke-linecap="round"/>
+          </g>
+          <rect x="836" y="1100" width="96" height="32" rx="16" fill="#3A3D43" stroke="#E8E5DB" stroke-width="5"/>
+        </g>
+        <line x1="740" y1="1134" x2="1020" y2="1134" stroke="#E8E5DB" stroke-width="6" stroke-linecap="round"/>
+        <line x1="770" y1="1136" x2="770" y2="1308" stroke="#E8E5DB" stroke-width="5"/>
+        <line x1="990" y1="1136" x2="990" y2="1308" stroke="#E8E5DB" stroke-width="5"/>
+        <g id="chair" fill="none" stroke="#E8E5DB" stroke-width="5" stroke-linecap="round" transform="translate(-46 0)">
+          <line x1="708" y1="1096" x2="708" y2="1206"/><line x1="708" y1="1206" x2="760" y2="1206"/>
+          <line x1="712" y1="1206" x2="712" y2="1308"/><line x1="756" y1="1206" x2="756" y2="1308"/>
+        </g>
+      </g>
+      <!-- fenêtre : la boulangerie brûlée -->
+      <g id="window">
+        <rect x="544" y="724" width="172" height="212" fill="#16181D" stroke="#E8E5DB" stroke-width="5"/>
+        <g clip-path="url(#clipWin)">
+          <g fill="#0E0F12" stroke="#E8E5DB" stroke-opacity="0.22" stroke-width="2"><rect x="550" y="800" width="30" height="140"/><rect x="684" y="790" width="30" height="150"/></g>
+          <rect x="582" y="842" width="100" height="96" fill="#1B1D22" stroke="#E8E5DB" stroke-opacity="0.45" stroke-width="2"/>
+          <rect x="576" y="830" width="112" height="16" fill="url(#awning)" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="1.5"/>
+          <rect x="576" y="812" width="112" height="126" fill="#08090A" opacity="0.72"/>
+          <path d="M598 862 C 592 850, 604 846, 598 832 M622 862 C 628 846, 616 842, 624 830 M652 862 C 646 848, 660 842, 652 828" stroke="#050505" stroke-width="7" stroke-linecap="round" fill="none"/>
+        </g>
+        <line x1="630" y1="724" x2="630" y2="790" stroke="#E8E5DB" stroke-width="4"/>
+        <line x1="544" y1="790" x2="716" y2="790" stroke="#E8E5DB" stroke-width="4"/>
+      </g>
+      <!-- lui, debout (au comptoir, tourné vers la gauche) -->
+      <g id="man" opacity="0">
+        <rect x="432" y="1146" width="34" height="160" rx="14" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/>
+        <rect x="474" y="1146" width="34" height="160" rx="14" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/>
+        <rect x="392" y="966" width="28" height="178" rx="14" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/>
+        <rect x="418" y="954" width="104" height="200" rx="32" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/>
+        <g id="armR"><rect x="520" y="966" width="28" height="178" rx="14" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/></g>
+        <circle cx="470" cy="902" r="48" fill="#2E3035"/>
+        <circle cx="494" cy="888" r="48" fill="#3F4248" clip-path="url(#clipHeadM)"/>
+        <circle cx="470" cy="902" r="48" fill="none" stroke="#E8E5DB" stroke-width="5"/>
+      </g>
+      <!-- lui, assis face au parrain -->
+      <g id="manSit">
+        <rect x="694" y="1172" width="104" height="32" rx="15" fill="#3A3D43" stroke="#E8E5DB" stroke-width="5"/>
+        <rect x="768" y="1192" width="30" height="114" rx="14" fill="#3A3D43" stroke="#E8E5DB" stroke-width="5"/>
+        <rect x="700" y="1180" width="112" height="32" rx="15" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/>
+        <rect x="782" y="1198" width="30" height="110" rx="14" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/>
+        <rect x="664" y="1010" width="92" height="190" rx="30" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/>
+        <rect x="726" y="1034" width="26" height="104" rx="13" fill="#3E4147" stroke="#E8E5DB" stroke-width="5" transform="rotate(-38 739 1040)"/>
+        <circle cx="712" cy="962" r="46" fill="#2E3035"/>
+        <circle cx="736" cy="948" r="46" fill="#3F4248" clip-path="url(#clipHeadS)"/>
+        <circle cx="712" cy="962" r="46" fill="none" stroke="#E8E5DB" stroke-width="5"/>
+        <g id="sweat" opacity="0"><path d="M748 930 C 744 940, 744 946, 748 948 C 752 946, 752 940, 748 930 Z" fill="#E8E5DB"/></g>
+      </g>
+      <!-- tasses sur la table -->
+      <g id="tCupA" opacity="0"><use href="#mug"/><path id="glowR" d="M-15 -26 L15 -26 L13 0 L-13 0 Z" fill="none" stroke="#FF4B2B" stroke-width="5" filter="url(#glW)"/><path id="glowG" d="M-15 -26 L15 -26 L13 0 L-13 0 Z" fill="none" stroke="#5EF5B4" stroke-width="5" filter="url(#glW)" opacity="0"/></g>
+      <g id="tCupB" opacity="0"><use href="#mug"/><g class="stm" fill="none" stroke="#E8E5DB" stroke-width="2.5" stroke-linecap="round"></g></g>
+      <!-- étiquettes -->
+      <g id="tagPoison" opacity="0">
+        <rect x="-300" y="712" width="140" height="40" fill="rgba(15,16,19,0.9)" stroke="#FF4B2B" stroke-width="2.5"/>
+        <text x="-230" y="739" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="20" letter-spacing="3" fill="#FF4B2B">POISON</text>
+      </g>
+      <g id="tagZero" opacity="0">
+        <rect x="586" y="846" width="252" height="40" fill="rgba(15,16,19,0.9)" stroke="#FF4B2B" stroke-width="2.5"/>
+        <text x="712" y="873" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="19" letter-spacing="2" fill="#FF4B2B">BALANCE: €0</text>
+      </g>
+      <g id="tagDrink" opacity="0">
+        <rect x="822" y="1040" width="136" height="38" fill="rgba(15,16,19,0.9)" stroke="#FF4B2B" stroke-width="2.5"/>
+        <text x="890" y="1066" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="19" letter-spacing="3" fill="#FF4B2B">DELIVER</text>
+      </g>
+      <g id="tagConf" opacity="0">
+        <rect x="560" y="1040" width="110" height="38" fill="rgba(15,16,19,0.9)" stroke="#5EF5B4" stroke-width="2.5"/>
+        <text x="615" y="1066" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="19" letter-spacing="3" fill="#5EF5B4">OPEN</text>
+      </g>
+      <g id="env" opacity="0">
+        <rect x="-36" y="-22" width="72" height="44" rx="3" fill="#D9D3C2" stroke="#E8E5DB" stroke-width="3"/>
+        <path d="M-36 -22 L0 4 L36 -22" fill="none" stroke="#8C8677" stroke-width="3" stroke-linejoin="round"/>
+        <circle id="seal" cx="0" cy="4" r="8" fill="#C8321E" stroke="#FF4B2B" stroke-width="2"/>
+      </g>
+      <g id="tagSugar" opacity="0">
+        <rect x="-62" y="-20" width="124" height="40" fill="rgba(15,16,19,0.9)" stroke="#5EF5B4" stroke-width="2.5"/>
+        <text x="0" y="8" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="20" letter-spacing="3" fill="#5EF5B4">SUGAR</text>
+      </g>
+      <g id="tagSealed" opacity="0">
+        <rect x="-70" y="-20" width="140" height="40" fill="rgba(15,16,19,0.9)" stroke="#FF4B2B" stroke-width="2.5"/>
+        <text x="0" y="8" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="19" letter-spacing="3" fill="#FF4B2B">NO NAME</text>
+      </g>
+      <g id="bubble" opacity="0">
+        <rect x="763" y="770" width="370" height="54" rx="27" fill="#16171A" stroke="#E8E5DB" stroke-width="3"/>
+        <path d="M928 818 L950 848 L956 818 Z" fill="#16171A" stroke="#E8E5DB" stroke-width="3" stroke-linejoin="round"/>
+        <rect x="926" y="814" width="32" height="9" fill="#16171A"/>
+        <text x="948" y="806" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="22" letter-spacing="2.5" fill="#E8E5DB">40,000. BY TOMORROW.</text>
+      </g>
+    </g>
+  </svg>
+  <div id="fadeT"></div><div id="fadeB"></div>
+  <div class="vig"></div>
+  <svg class="full" viewBox="0 0 1080 1920" style="pointer-events:none">
+    <defs><filter id="blur8b" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
+      <pattern id="awning2" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="8" height="16" fill="#E8E5DB" fill-opacity="0.55"/><rect x="8" width="8" height="16" fill="#26282D"/></pattern></defs>
+    <g id="inset" opacity="0">
+      <rect x="6" y="10" width="300" height="350" rx="4" fill="#000" opacity="0.45"/>
+      <rect x="0" y="0" width="300" height="350" rx="4" fill="#E8E5DB"/>
+      <rect x="14" y="14" width="272" height="256" fill="#0F1013"/>
+      <ellipse cx="150" cy="200" rx="110" ry="80" fill="#FF4B2B" opacity="0.5" filter="url(#blur8b)"/>
+      <rect x="62" y="150" width="176" height="120" fill="#1B1D22" stroke="#E8E5DB" stroke-opacity="0.45" stroke-width="2"/>
+      <rect x="54" y="134" width="192" height="20" fill="url(#awning2)"/>
+      <rect x="84" y="176" width="70" height="60" fill="#FF4B2B" opacity="0.85"/>
+      <circle cx="196" cy="196" r="13" fill="#0B0C0E" stroke="#E8E5DB" stroke-width="2"/>
+      <rect x="182" y="210" width="28" height="56" rx="10" fill="#0B0C0E" stroke="#E8E5DB" stroke-width="2"/>
+      <path d="M176 222 C 180 214, 179 208, 176 202 C 173 208, 172 214, 176 222 Z" fill="#FF4B2B"/>
+      <text x="30" y="40" font-family="JB Mono" font-weight="700" font-size="15" letter-spacing="2" fill="#E8E5DB" opacity="0.8">● REC</text>
+      <text x="272" y="258" text-anchor="end" font-family="JB Mono" font-weight="700" font-size="20" fill="#FF4B2B">3:00 AM</text>
+      <text x="150" y="318" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="22" letter-spacing="3" fill="#26282D">YOU · 3:00 AM</text>
+    </g>
+  </svg>
+  <div class="mini mono"><div class="l"><span class="dot"></span>OMERTÀ · EPISODE 3</div><div class="rt"><span id="clk">11:53 PM</span><span class="pl">· YOUR KITCHEN</span></div></div>
+  <div class="filet2"></div>
+  <div id="hud2">
+    <div class="gauge"><span class="lab">HEART RATE</span><span class="sg" id="g1"></span><span class="sg" id="g2"></span><span class="sg" id="g3"></span><span class="sg" id="g4"></span><span class="sg" id="g5"></span></div>
+    <div class="debtH" id="debtH"><span>DEBT</span><span class="v" id="debtV">€40,000</span></div>
+  </div>
+  <div id="vote" class="card chip"><div class="in">VOTE: DRINK</div></div>
+  <div id="count" class="card chip"><div class="in" id="countN">10</div></div>
+  <div id="cta" class="card chip"><div class="in">FOLLOW · YOU CHOOSE WHAT'S NEXT</div></div>
+  <div id="rule" class="card"><div class="hd">RULE #3</div><div class="tx">SILENCE<br>IS <span class="j" id="ruleJ">GOLDEN.</span></div></div>
+  <div id="comment" class="card chip"><div class="in">→ COMMENT: OPEN OR DELIVER</div></div>
+  <div id="next" class="card"><div class="hd"><span>EPISODE 4</span><span>MOST VOTED</span></div><div class="tx"><span class="g">FOLLOW</span> FOR WHAT'S NEXT.</div><div class="ft"><span class="g">→ COMMENT: OPEN OR DELIVER</span><br>→ SEND THIS TO SOMEONE WHO'D OPEN IT</div></div>
+  <div id="cap"></div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const eOut = x => 1 - Math.pow(1 - x, 3), eIO = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const spring = x => x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.exp(-6 * x) * Math.cos(10 * x);
+const lerp = (a, b, x) => a + (b - a) * x;
+const win = (t, a, b, fi = 0.1, fo = 0.1) => clamp(seg(t, a, a + fi)) * (1 - seg(t, b - fo, b));
+const pop = (t, a, d = 0.12) => 0.84 + 0.16 * spring(seg(t, a, a + d * 3));
+const step = (t, pts) => { let v = pts[0][1], k = pts[0][0]; for (const [ti, vi] of pts) if (t >= ti) { v = vi; k = ti; } return [v, k]; };
+let TL, EV, SH, CAPS;
+function shake(t) {
+  let x = 0, y = 0;
+  for (const [ti, amp] of [[0.05, 5], [EV.nothing, 3], [EV.sugar, 5], [EV.gone, 4], [EV.sealed, 3], [EV.next, 4]]) {
+    if (t >= ti && t < ti + 0.5) { const k = Math.exp(-(t - ti) * 9) * amp; x += k * Math.sin((t - ti) * 71); y += k * Math.cos((t - ti) * 57); }
+  }
+  // battements de cœur pendant le compte à rebours
+  const [c0, c1] = EV.count;
+  if (t > c0 && t < c1) { const ph = ((t - c0) * (1.6 + 1.4 * seg(t, c0, c1))) % 1; const k = Math.exp(-ph * 14) * 4; y += k; }
+  return [x, y];
+}
+let curCap = -1;
+function camAt(t) {
+  let si = 0; for (let i = 0; i < SH.length; i++) if (t >= SH[i][0]) si = i;
+  const s0 = SH[si], s1t = si + 1 < SH.length ? SH[si + 1][0] : EV.END, u = eIO(seg(t, s0[0], s1t)) * 0.85 + seg(t, s0[0], s1t) * 0.15;
+  return [lerp(s0[1], s0[4], u), lerp(s0[2], s0[5], u), lerp(s0[3], s0[6], u) * (1.045 - 0.045 * eOut(seg(t, s0[0], s0[0] + 0.3)))];
+}
+function render(t) {
+  let [fx, fy, s] = camAt(t);
+  const [L0, L1] = EV.loop;
+  if (t > L0) { const k = eIO(seg(t, L0, L1)); const [ex, ey, es] = camAt(L0); fx = lerp(ex, SH[0][1], k); fy = lerp(ey, SH[0][2], k); s = Math.exp(lerp(Math.log(es), Math.log(SH[0][3] * 1.045), k)); }
+  const CAMO = new URLSearchParams(location.search).get('cam');
+  if (CAMO) [fx, fy, s] = CAMO.split(',').map(Number);
+  const [kx, ky] = shake(t);
+  $('cam').setAttribute('transform', `translate(${(540 + kx).toFixed(2)} ${(900 + ky).toFixed(2)}) scale(${s.toFixed(4)}) translate(${(-fx).toFixed(2)} ${(-fy).toFixed(2)})`);
+  // ---------- décor fixe de l'épisode 3 ----------
+  $('man').setAttribute('opacity', 0); $('manSit').setAttribute('opacity', 1); $('manSit').setAttribute('transform', '');
+  $('cntCupA').setAttribute('opacity', 0); $('cntCupB').setAttribute('opacity', 0); $('pourBox').setAttribute('opacity', 0);
+  $('inset').setAttribute('opacity', 0); $('bubble').setAttribute('opacity', 0); $('tagPoison').setAttribute('opacity', 0); $('tagZero').setAttribute('opacity', 0);
+  $('photoMourn').setAttribute('opacity', 0); $('mokaSteam').setAttribute('opacity', 0);
+  $('sweat').setAttribute('opacity', t < EV.nothing + 0.6 ? 0.9 : 0);
+  $('sweat').setAttribute('transform', `translate(0 ${(((t * 0.8) % 1) * 18).toFixed(1)})`);
+  // ---------- tu bois : la tasse monte à la bouche puis revient sur la table ----------
+  const [d0, d1, d2] = EV.drink;
+  const back = eIO(seg(t, d1, d2));
+  const tilt = lerp(-62 - 14 * seg(t, d0, d1), 0, back);
+  const ax = lerp(774, 778, back), ay = lerp(986, 1132, back);
+  $('tCupA').setAttribute('opacity', 1);
+  $('tCupA').setAttribute('transform', `translate(${ax.toFixed(1)} ${ay.toFixed(1)}) rotate(${tilt.toFixed(1)})`);
+  $('tCupB').setAttribute('opacity', 1); $('tCupB').setAttribute('transform', 'translate(884 1132)');
+  document.querySelectorAll('#tCupB .stm')[0].innerHTML = '';
+  const sg = clamp(seg(t, EV.sugar, EV.sugar + 0.25));
+  $('glowR').setAttribute('opacity', (1 - sg).toFixed(3)); $('glowG').setAttribute('opacity', sg.toFixed(3));
+  $('tagSugar').setAttribute('opacity', win(t, EV.sugar, EV.cta[0] + 0.6, 0.08, 0.15));
+  $('tagSugar').setAttribute('transform', `translate(782 1062) scale(${pop(t, EV.sugar).toFixed(3)})`);
+  // ---------- le parrain : sourire, hochement ----------
+  const nod = Math.sin(clamp((t - EV.nod) / 0.5) * Math.PI * 2) * 7 * (t > EV.nod && t < EV.nod + 0.5 ? 1 : 0);
+  $('pHead').setAttribute('transform', `translate(0 ${nod.toFixed(2)})`);
+  $('smile').setAttribute('opacity', clamp(seg(t, EV.smile, EV.smile + 0.2)));
+  // ---------- l'enveloppe glisse vers toi ----------
+  const [e0, e1] = EV.env, ek = eOut(seg(t, e0, e1));
+  $('env').setAttribute('opacity', clamp(seg(t, e0 - 0.15, e0)));
+  $('env').setAttribute('transform', `translate(${lerp(930, 818, ek).toFixed(1)} 1110)`);
+  $('seal').setAttribute('transform', `translate(0 4) scale(${(t >= EV.sealed ? 0.8 + 0.5 * spring(seg(t, EV.sealed, EV.sealed + 0.36)) : 1).toFixed(3)}) translate(0 -4)`);
+  $('tagSealed').setAttribute('opacity', win(t, EV.noname, EV.open - 0.05, 0.08, 0.12));
+  $('tagSealed').setAttribute('transform', `translate(818 1064) scale(${pop(t, EV.noname).toFixed(3)})`);
+  const endFade = 1 - seg(t, EV.loop[0], EV.loop[0] + 0.25);
+  const oA = win(t, EV.open, EV.END + 1, 0.12, 0.1) * endFade, dA = win(t, EV.deliver, EV.END + 1, 0.12, 0.1) * endFade;
+  $('tagConf').setAttribute('opacity', oA); $('tagDrink').setAttribute('opacity', dA);
+  $('tagConf').setAttribute('transform', `translate(615 1059) scale(${(1.4 * pop(t, EV.open)).toFixed(3)}) translate(-615 -1059)`);
+  $('tagDrink').setAttribute('transform', `translate(890 1059) scale(${(1.4 * pop(t, EV.deliver)).toFixed(3)}) translate(-890 -1059)`);
+  // ---------- interface : horloge, rythme cardiaque, dette ----------
+  const [mm] = step(t, EV.clk); $('clk').textContent = `11:${String(mm).padStart(2, '0')} PM`;
+  const [gv, gk] = step(t, EV.gauge);
+  const blink = gv >= 5 ? (0.55 + 0.45 * Math.abs(Math.sin(t * 9))) : 1;
+  for (let i = 1; i <= 5; i++) {
+    const el = $('g' + i); el.className = 'sg' + (i <= gv ? (gv >= 4 ? ' hot' : ' on') : '');
+    el.style.opacity = i <= gv && gv >= 5 ? blink.toFixed(2) : 1;
+    el.style.transform = i === gv ? `scaleY(${(0.6 + 0.4 * spring(seg(t, gk, gk + 0.3))).toFixed(3)})` : 'none';
+  }
+  const paid = t >= EV.gone;
+  $('debtH').style.opacity = 1; $('debtH').className = 'debtH' + (paid ? ' paid' : '');
+  $('debtV').textContent = paid ? '€0' : '€40,000';
+  $('debtH').style.transform = `scale(${pop(t, paid ? EV.gone : -9).toFixed(3)})`;
+  // ---------- cartes ----------
+  $('vote').style.opacity = win(t, EV.vote[0], EV.vote[1], 0.06, 0.12); $('vote').style.transform = `scale(${pop(t, EV.vote[0]).toFixed(3)})`;
+  const [c0, c1] = EV.count, cn = Math.max(0, Math.ceil(10 * (1 - seg(t, c0, c1 - 0.15))));
+  $('count').style.opacity = win(t, c0, c1 + 0.35, 0.06, 0.15); $('countN').textContent = cn === 0 ? '0 …' : String(cn);
+  $('count').style.transform = `scale(${(0.92 + 0.08 * Math.exp(-((t - c0) * 2.6 % 1) * 6)).toFixed(3)})`;
+  $('cta').style.opacity = win(t, EV.cta[0] + 0.05, EV.cta[1], 0.08, 0.12); $('cta').style.transform = `scale(${pop(t, EV.cta[0] + 0.05).toFixed(3)})`;
+  $('rule').style.opacity = win(t, EV.rule[0], EV.rule[1], 0.07, 0.12); $('rule').style.transform = `scale(${pop(t, EV.rule[0]).toFixed(3)})`;
+  $('ruleJ').style.transform = `scale(${(t >= EV.like ? 0.86 + 0.14 * spring(seg(t, EV.like, EV.like + 0.36)) * 1.08 : 1).toFixed(3)})`;
+  $('comment').style.opacity = win(t, EV.comment, EV.next + 0.1, 0.08, 0.1).toFixed(3); $('comment').style.transform = `scale(${pop(t, EV.comment).toFixed(3)})`;
+  $('next').style.opacity = (clamp(seg(t, EV.next, EV.next + 0.08)) * endFade).toFixed(3); $('next').style.transform = `scale(${pop(t, EV.next).toFixed(3)})`;
+  // ---------- sous-titres (rouge *…*, menthe _…_) ----------
+  let ci = -1; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].t) ci = i;
+  const cap = $('cap');
+  if (ci !== curCap) {
+    curCap = ci;
+    if (ci >= 0) {
+      cap.className = CAPS[ci].boss ? 'boss' : '';
+      cap.innerHTML = '<span class="w" id="capIn">' + CAPS[ci].txt.replace(/\*([^*]+)\*/g, '<span class="r">$1</span>').replace(/_([^_]+)_/g, '<span class="g">$1</span>') + '</span>';
+      const w = $('capIn').offsetWidth; cap.dataset.fit = Math.min(1, 830 / Math.max(1, w)).toFixed(4);
+    } else { cap.innerHTML = ''; cap.dataset.fit = 1; }
+  }
+  if (ci >= 0) { const c = CAPS[ci]; cap.style.opacity = (clamp(seg(t, c.t, c.t + 0.05)) * endFade).toFixed(3); cap.style.transform = `scale(${(pop(t, c.t, 0.08) * parseFloat(cap.dataset.fit || 1)).toFixed(4)})`; }
+}
+window.render = render;
+fetch('tl_ep3en.json').then(r => r.json()).then(tl => {
+  TL = tl; EV = tl.ev; SH = tl.shots; CAPS = tl.caps;
+  document.fonts.ready.then(() => { render(0); window.__ready = true; });
+});
+</script>
+</body></html>

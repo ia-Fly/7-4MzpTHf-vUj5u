@@ -1,0 +1,26 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cover omerta ep3 EN</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .frame { background: #0F1013; }
+  #bg { position: absolute; left: 0; top: 150px; width: 1080px; height: 1920px; background: url('cover_ep3en_bg.png') center/cover; }
+  #shadeT { position: absolute; left: 0; right: 0; top: 0; height: 760px; background: linear-gradient(180deg, #0F1013 0%, #0F1013 52%, rgba(15,16,19,0) 100%); }
+  #shadeB { position: absolute; left: 0; right: 0; top: 1240px; height: 680px; background: linear-gradient(180deg, rgba(15,16,19,0) 0%, #0F1013 34%, #0F1013 100%); }
+  .serie { position: absolute; left: 0; right: 0; top: 292px; text-align: center; font-family: 'JB Mono'; font-weight: 700; font-size: 40px; letter-spacing: 0.34em; color: var(--papier); }
+  .serie .dot { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: #FF4B2B; margin-right: 18px; vertical-align: 4px; box-shadow: 0 0 18px #FF4B2B; }
+  .ep { position: absolute; left: 0; right: 0; top: 352px; text-align: center; font-family: 'Anton'; font-size: 212px; line-height: 1; color: var(--papier); letter-spacing: 0.01em; text-shadow: 0 6px 0 rgba(0,0,0,0.5); }
+  .ep .r { color: #FF4B2B; }
+  .sub { position: absolute; left: 0; right: 0; top: 1408px; text-align: center; font-family: 'Barlow C'; font-weight: 800; font-size: 150px; line-height: 1; color: var(--papier); text-transform: uppercase; letter-spacing: 0.01em; text-shadow: 0 5px 0 rgba(0,0,0,0.55); }
+  .bar { position: absolute; left: 430px; width: 220px; top: 1584px; height: 9px; background: #FF4B2B; }
+  .handle { position: absolute; left: 0; right: 0; top: 1626px; text-align: center; font-family: 'JB Mono'; font-size: 30px; letter-spacing: 0.12em; color: var(--graphite); }
+</style></head>
+<body><div class="frame">
+  <div id="bg"></div><div id="shadeT"></div><div id="shadeB"></div>
+  <div class="serie"><span class="dot"></span>OMERTÀ</div>
+  <div class="ep">EPISODE <span class="r">3</span></div>
+  <div class="sub">I drank it</div>
+  <div class="bar"></div>
+  <div class="handle">@situation.douteuse</div>
+</div>
+<script>document.fonts.ready.then(() => { window.__ready = true; window.render = () => {}; });</script>
+</body></html>

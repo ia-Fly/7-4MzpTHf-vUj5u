@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29",
+ "updated": "2026-10-30",
  "accounts": {
   "instagram": "situation.douteuse",
   "tiktok": "situation.douteus",
@@ -13,28 +13,21 @@
   "language": "en"
  },
  "counters": {
-  "day": 0
+  "day": 1
  },
  "followers": [
   {
    "date": "2026-10-29",
    "instagram": 4,
    "tiktok": 0
+  },
+  {
+   "date": "2026-10-30",
+   "instagram": 5,
+   "tiktok": 0
   }
  ],
  "queue": [
-  {
-   "id": "omerta-ep2-en",
-   "format": "omerta",
-   "networks": [
-    "tiktok"
-   ],
-   "not_before": "2026-10-30",
-   "condition": "omerta-ep1-en publié sur TikTok depuis au moins 20 h (programmé le 29/10 à 19:00)",
-   "video": "queue/omerta-ep2-en/video.mp4",
-   "cover": "queue/omerta-ep2-en/cover.jpg",
-   "caption_tiktok": "This coffee is poisoned… and you're the one who made it ☕🩸 OMERTÀ · Episode 2 (you voted: you sit down). Do you drink it or confess everything? Comment DRINK or CONFESS 👇 the most voted choice becomes episode 3. AI-generated fiction. #fiction #mafia #story #choices #fyp"
-  },
   {
    "id": "fusion-planets-s10",
    "format": "fusion",
@@ -44,13 +37,26 @@
     "instagram",
     "tiktok"
    ],
-   "not_before": "2026-10-30",
-   "condition": "aucune",
+   "not_before": "2026-10-31",
+   "condition": "tour du projet B (Fusion) dans la rotation : 31/10",
    "video": "queue/fusion-planets-s10/video.mp4",
    "cover": "queue/fusion-planets-s10/cover.jpg",
    "caption_instagram": "Can it reach THE SUN? ☀️ Watch till the end 👀\nWhich theme should I do next? Comment it 👇\nAI-generated simulation.\n#satisfying #simulation #space #planets #fyp",
    "first_comment_instagram": "Next theme? 🍉 fruits, 🔢 numbers… or yours? Comment 👇",
    "caption_tiktok": "Can it reach THE SUN? ☀️ Watch till the end 👀 Which theme should I do next? Comment it 👇 AI-generated simulation. #satisfying #simulation #space #planets #fyp"
+  },
+  {
+   "id": "omerta-ep3-en",
+   "format": "omerta",
+   "project": "A",
+   "networks": [
+    "tiktok"
+   ],
+   "not_before": "2026-11-04",
+   "condition": "prochain tour du projet A (Omertà) : TikTok a un épisode de retard ; ce jour-là Instagram reçoit l'ép. 4 si le vote de l'ép. 3 est noté",
+   "video": "queue/omerta-ep3-en/video.mp4",
+   "cover": "queue/omerta-ep3-en/cover.jpg",
+   "caption_tiktok": "OPEN or DELIVER? You drank the poisoned coffee… and nothing happened ☕✉️ OMERTÀ · Episode 3 (you voted: DRINK). Now the Godfather hands you a sealed envelope. Comment OPEN or DELIVER 👇 the most voted choice becomes episode 4. AI-generated fiction. #fiction #mafia #story #choices #fyp"
   }
  ],
  "history": [
@@ -81,6 +87,24 @@
    "id": "omerta-ep1-en",
    "format": "omerta",
    "metricool_id": 409848140
+  },
+  {
+   "date": "2026-10-30",
+   "network": "instagram",
+   "id": "omerta-ep3-en",
+   "format": "omerta",
+   "project": "A",
+   "duration_s": 25.9,
+   "choice_at_s": 19.1,
+   "metricool_id": 411203025
+  },
+  {
+   "date": "2026-10-30",
+   "network": "tiktok",
+   "id": "omerta-ep2-en",
+   "format": "omerta",
+   "project": "A",
+   "metricool_id": 411196660
   }
  ],
  "votes": {
@@ -97,8 +121,16 @@
     "DRINK",
     "CONFESS"
    ],
+   "result": "DRINK",
+   "source": "Matis, 29/10/2026"
+  },
+  "omerta_ep3": {
+   "options": [
+    "OPEN",
+    "DELIVER"
+   ],
    "result": null,
-   "how": "Matis lit les commentaires (Instagram + TikTok) et donne le résultat à Claude ; Claude le note ici. Sans résultat, pas d'épisode 3."
+   "how": "Matis lit les commentaires (Instagram + TikTok) et donne le résultat ; sans résultat, pas d'épisode 4."
   }
  },
  "themes_used": {
@@ -113,5 +145,83 @@
  },
  "seeds_used": [
   10
- ]
+ ],
+ "projects": {
+  "rule": "Consigne Matis 29/10/2026 : 5 projets en rotation, 1 vidéo/jour (IG + TikTok), bilan quand les 5 ont 5 épisodes et ≥48 h de stats sur le 5e ; on supprime le moins bon et on crée un nouveau projet à 0 épisode. Voir STRATEGY.md et RUNBOOK §4.0.",
+  "start": "2026-10-31",
+  "cycle": 1,
+  "rotation": [
+   "A",
+   "B",
+   "C",
+   "D",
+   "E"
+  ],
+  "next": "B",
+  "omerta_pending": false,
+  "list": {
+   "A": {
+    "name": "Omertà",
+    "format": "omerta",
+    "status": "active",
+    "episodes": 3,
+    "episodes_ids": [
+     "omerta-ep1-en",
+     "omerta-ep2-en",
+     "omerta-ep3-en"
+    ],
+    "stats": {
+     "ig_omerta-ep2-en": {
+      "views": 2928,
+      "watched_pct": 48.8,
+      "skip": 25.8,
+      "comments": 8,
+      "likes": 43,
+      "shares": 1
+     },
+     "tt_omerta-ep1-en": {
+      "views": 196,
+      "likes": 6,
+      "comments": 1,
+      "shares": 0
+     }
+    },
+    "note": "vote de l'ép. 3 (OPEN/DELIVER) requis pour l'ép. 4"
+   },
+   "B": {
+    "name": "Fusion",
+    "format": "fusion",
+    "status": "active",
+    "episodes": 0,
+    "stats": {},
+    "note": "planets s10 prêt dans la file"
+   },
+   "C": {
+    "name": "Escape",
+    "format": "escape",
+    "status": "active",
+    "episodes": 0,
+    "stats": {},
+    "note": "à construire le 01/11 : balle dans un anneau tournant avec brèche, chaque sortie = 2 balles, « WILL IT ESCAPE? »"
+   },
+   "D": {
+    "name": "Marble Race",
+    "format": "marble-race",
+    "status": "active",
+    "episodes": 0,
+    "stats": {},
+    "note": "à construire le 02/11 : course de billes de couleur, « Which color wins? Comment before the end »"
+   },
+   "E": {
+    "name": "Fruit Drama EN",
+    "format": "fruit-drama",
+    "status": "active",
+    "episodes": 0,
+    "stats": {},
+    "note": "à construire le 03/11 : mini-drame de fruits en anglais (suite du « Zéro », skip 28 %) ; voir le doc projet fiche-de-style-mini-drames-fruits"
+   }
+  },
+  "removed": [],
+  "cycle_reports": []
+ }
 }
