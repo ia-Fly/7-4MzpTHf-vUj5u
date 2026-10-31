@@ -154,9 +154,9 @@
     "OPEN",
     "DELIVER"
    ],
-   "result": null,
+   "result": "DELIVER",
    "how": "Matis lit les commentaires (Instagram + TikTok) et donne le résultat ; sans résultat, pas d'épisode 4.",
-   "note": "à donner par Matis avant le prochain tour d'Omertà (04/11) ; sinon on saute Omertà"
+   "source": "Matis, 31/10/2026 (commentaires de l'ép. 3)"
   }
  },
  "themes_used": {
@@ -230,7 +230,7 @@
       "avg_watch_s": 14.1
      }
     },
-    "note": "vote de l'ép. 3 (OPEN/DELIVER) requis pour l'ép. 4"
+    "note": "vote ép. 3 = DELIVER (Matis, 31/10) : ép. 4 « you deliver the envelope » à produire au prochain tour d'Omertà (04/11) pour Instagram ; TikTok prend l'ép. 3 de la file ce jour-là"
    },
    "B": {
     "name": "Fusion",

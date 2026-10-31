@@ -75,4 +75,4 @@ Abonnés : 29/10 → IG 4 · TikTok 0 ; 30/10 → IG 5 (+1) · TikTok 0 ; 31/10 
 - Rotation : Fusion 48 s (31/10) puis Escape 34 s (01/11) : comparer % regardé et skip entre une simulation de 48 s et une de 34 s (piste n°4 « durée »).
 
 ## Votes Omertà
-Voir `state.json > votes`. Ép. 1 → SIT (vote Instagram FR). Ép. 2 → DRINK (Matis, 29/10). Ép. 3 → OPEN ou DELIVER : résultat à donner par Matis avant le 04/11 (prochain tour d'Omertà).
+Voir `state.json > votes`. Ép. 1 → SIT (vote Instagram FR). Ép. 2 → DRINK (Matis, 29/10). Ép. 3 → DELIVER (Matis, 31/10). Ép. 4 = « tu livres l'enveloppe », produit au tour d'Omertà du 04/11 (choix vers 12-14 s, voir leçon du 31/10).
