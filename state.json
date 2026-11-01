@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31",
+ "updated": "2026-11-01",
  "accounts": {
   "instagram": "situation.douteuse",
   "tiktok": "situation.douteus",
@@ -13,7 +13,7 @@
   "language": "en"
  },
  "counters": {
-  "day": 2
+  "day": 0
  },
  "followers": [
   {
@@ -30,25 +30,30 @@
    "date": "2026-10-31",
    "instagram": 5,
    "tiktok": 0
+  },
+  {
+   "date": "2026-11-01",
+   "instagram": 6,
+   "tiktok": 0
   }
  ],
  "queue": [
   {
-   "id": "escape-s1123",
-   "format": "escape",
-   "project": "C",
-   "seed": 1123,
+   "id": "marble-s1139",
+   "format": "marble",
+   "project": "D",
+   "seed": 1139,
    "networks": [
     "instagram",
     "tiktok"
    ],
-   "not_before": "2026-11-01",
-   "condition": "tour du projet C (Escape) le 01/11 ; contrôlé le 31/10 (check_video VERDICT OK, planche et couverture regardées)",
-   "video": "queue/escape-s1123/video.mp4",
-   "cover": "queue/escape-s1123/cover.jpg",
-   "caption_instagram": "1 escape = 2 new balls… will the ring BREAK? 💥 Watch till the end 👀\nGuess how many balls it takes 👇\nAI-generated simulation.\n#satisfying #simulation #physics #oddlysatisfying #fyp",
-   "first_comment_instagram": "Your guess: how many balls to break it? 🔢 Next time: bigger ring? Comment 👇",
-   "caption_tiktok": "1 escape = 2 new balls… will the ring BREAK? 💥 Watch till the end 👀 Guess how many balls it takes 👇 AI-generated simulation. #satisfying #simulation #physics #oddlysatisfying #fyp"
+   "not_before": "2026-11-02",
+   "condition": "tour du projet D (Marble Race) le 02/11 ; contrôlé le 01/11 (check_video VERDICT OK, planche et couverture regardées)",
+   "video": "queue/marble-s1139/video.mp4",
+   "cover": "queue/marble-s1139/cover.jpg",
+   "caption_instagram": "Which color wins? 🔴🔵🟢🟡 Comment your pick BEFORE the end 👀\nPhoto finish incoming 🏁\nAI-generated simulation.\n#marblerace #satisfying #simulation #race #fyp",
+   "first_comment_instagram": "Which color did you pick? 🔴🔵🟢🟡 Comment it 👇 Next race: 8 marbles?",
+   "caption_tiktok": "Which color wins? 🔴🔵🟢🟡 Comment your pick BEFORE the end 👀 Photo finish incoming 🏁 AI-generated simulation. #marblerace #satisfying #simulation #race #fyp"
   },
   {
    "id": "omerta-ep3-en",
@@ -130,6 +135,26 @@
    "seed": 10,
    "project": "B",
    "metricool_id": 412121926
+  },
+  {
+   "date": "2026-11-01",
+   "network": "instagram",
+   "id": "escape-s1123",
+   "format": "escape",
+   "seed": 1123,
+   "project": "C",
+   "duration_s": 34,
+   "metricool_id": 412881485
+  },
+  {
+   "date": "2026-11-01",
+   "network": "tiktok",
+   "id": "escape-s1123",
+   "format": "escape",
+   "seed": 1123,
+   "project": "C",
+   "duration_s": 34,
+   "metricool_id": 412881496
   }
  ],
  "votes": {
@@ -172,7 +197,15 @@
    {
     "seed": 1123,
     "date": "2026-10-31",
-    "status": "en file (01/11)"
+    "status": "publié 01/11"
+   }
+  ],
+  "marble": [
+   {
+    "seed": 1139,
+    "date": "2026-11-01",
+    "status": "en file (02/11)",
+    "winner": "YELLOW"
    }
   ]
  },
@@ -191,7 +224,7 @@
    "D",
    "E"
   ],
-  "next": "C",
+  "next": "D",
   "omerta_pending": false,
   "list": {
    "A": {
@@ -206,7 +239,7 @@
     ],
     "stats": {
      "ig_omerta-ep2-en": {
-      "views": 3118,
+      "views": 3140,
       "watched_pct": 48.8,
       "skip": 26.3,
       "comments": 8,
@@ -220,10 +253,10 @@
       "shares": 0
      },
      "ig_omerta-ep3-en": {
-      "views": 1641,
+      "views": 1653,
       "watched_pct": 56.6,
       "skip": 24.1,
-      "comments": 5,
+      "comments": 6,
       "likes": 14,
       "shares": 0,
       "saves": 2,
@@ -237,7 +270,19 @@
     "format": "fusion",
     "status": "active",
     "episodes": 1,
-    "stats": {},
+    "stats": {
+     "ig_fusion-planets-s10": {
+      "views": 1698,
+      "watched_pct": 39.1,
+      "skip": 29.5,
+      "comments": 1,
+      "likes": 16,
+      "shares": 0,
+      "saves": 0,
+      "avg_watch_s": 18.8,
+      "age_h": 19
+     }
+    },
     "note": "ép. 1 planets s10 programmé 31/10 (IG+TikTok)",
     "episodes_ids": [
      "fusion-planets-s10"
@@ -247,17 +292,20 @@
     "name": "Escape",
     "format": "escape",
     "status": "active",
-    "episodes": 0,
+    "episodes": 1,
     "stats": {},
-    "note": "outillé le 31/10 : formats/escape/escape.py ; ép. 1 (graine 1123, 34 s, casse à 29,9 s) prêt dans la file pour le 01/11"
+    "note": "ép. 1 (graine 1123, 34 s) programmé 01/11 19:00 IG+TikTok",
+    "episodes_ids": [
+     "escape-s1123"
+    ]
    },
    "D": {
     "name": "Marble Race",
-    "format": "marble-race",
+    "format": "marble",
     "status": "active",
     "episodes": 0,
     "stats": {},
-    "note": "à construire le 02/11 : course de billes de couleur, « Which color wins? Comment before the end »"
+    "note": "outillé le 01/11 : formats/marble/marble.py (4 billes, picots, caméra-zoom sur le peloton, classement en direct, arrivée vers 88 %) ; ép. 1 (graine 1139, YELLOW gagne de 0,03 s) prêt dans la file pour le 02/11"
    },
    "E": {
     "name": "Fruit Drama EN",

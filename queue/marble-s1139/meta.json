@@ -1,0 +1,17 @@
+{
+ "format": "marble",
+ "seed": 1139,
+ "dur": 34.0,
+ "winner": "YELLOW",
+ "order": [
+  "YELLOW",
+  "RED",
+  "GREEN",
+  "BLUE"
+ ],
+ "finish_s": 29.9,
+ "lead_changes": 10,
+ "gap2_s": 0.03,
+ "lufs": -14.27,
+ "hook": "WHICH COLOR WINS? \u00b7 COMMENT BEFORE THE END"
+}

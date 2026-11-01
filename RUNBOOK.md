@@ -33,7 +33,7 @@ Procédure suivie chaque jour par la tâche planifiée « Vidéo du jour 19 h »
 ### 4.0 Rotation des 5 projets (consigne de Matis du 29/10/2026 — passe avant tout le reste de ce §4)
 1. `state.json > projects.rotation` donne l'ordre (A…E) et `projects.next` le projet du jour. **Une seule vidéo neuve par jour**, celle du projet du jour, sur Instagram ET TikTok (si TikTok a un épisode de retard pour ce projet, TikTok prend l'élément de `queue` de ce projet et la vidéo neuve y entre à son tour).
 2. **Omertà** : si c'est son tour et que le vote de l'épisode précédent n'est pas dans `state.json > votes`, publie le projet suivant ; Omertà garde la priorité au prochain tour (`projects.omerta_pending = true`). Jamais de résultat inventé.
-3. Projet pas encore outillé (D, E au 31/10 ; C Escape outillé le 31/10) : le construire ce jour-là (code dans `formats/<projet>/`, testé, contrôlé §6) ; si c'est impossible avant 18:30, publier le projet suivant prêt et noter pourquoi. **Bonne pratique (31/10)** : quand le temps le permet, outiller le projet du lendemain la veille et mettre son épisode 1 contrôlé dans `queue` (comme Escape le 31/10) ; le jour J n'a plus qu'à publier.
+3. Projet pas encore outillé (E au 01/11 ; C Escape outillé le 31/10, D Marble Race le 01/11) : le construire ce jour-là (code dans `formats/<projet>/`, testé, contrôlé §6) ; si c'est impossible avant 18:30, publier le projet suivant prêt et noter pourquoi. **Bonne pratique (31/10)** : quand le temps le permet, outiller le projet du lendemain la veille et mettre son épisode 1 contrôlé dans `queue` (comme Escape le 31/10) ; le jour J n'a plus qu'à publier.
 4. Après publication : `episodes += 1` pour le projet, `projects.next` = projet suivant.
 5. **Bilan de cycle** : quand les 5 projets `active` ont `episodes >= 5` et ≥ 48 h de stats sur leur 5e épisode → classer (médiane des vues, % regardé, skip, commentaires/vues, abonnés gagnés), passer le dernier en `removed`, créer un nouveau projet (0 épisode) à sa place dans la rotation, écrire le bilan dans `STRATEGY.md`, `journal/` et le rapport. Recommencer à chaque cycle.
 6. « Jamais le même thème deux jours de suite » est garanti par la rotation (seule exception : 30/10, voulue par Matis).
@@ -66,6 +66,15 @@ python3 formats/escape/escape.py --dur 34 --search 40 --base $BASE --out /home/c
 - `meta.broke_s` doit être entre 80 % et 92 % de la durée (la recherche ne garde que ces graines ; sinon changer `--base`). Aperçu : `--seed N --preview 1,15,30,33`.
 - Son : limiteur à gain lissé intégré (`limit()`), crête ≤ 0,84 après AAC (l'écrêtage carré donnait 1,00 au moment de la casse).
 - Légende : `1 escape = 2 new balls… will the ring BREAK? 💥 Watch till the end 👀` / `Guess how many balls it takes 👇` / `AI-generated simulation.` / `#satisfying #simulation #physics #oddlysatisfying #fyp`.
+
+### Format MARBLE RACE (projet D, sans paroles) — environ 2 min
+```bash
+cd /home/claude/studio
+D=$(date +%Y%m%d); BASE=$(( 10#${D:4:4} + 100 ))
+python3 formats/marble/marble.py --dur 34 --search 80 --base $BASE --out /home/claude/out/$D-marble
+```
+- La recherche ne garde que des courses valides : ≥ 4 changements de tête, dernier changement dans les 5 s avant l'arrivée, écart 1er-2e ≤ 0,8 s, peloton moyen < 1 100 px (sinon changer `--base`). Varier le vainqueur d'un épisode à l'autre (`--seed` parmi les graines valides affichées). Aperçu : `--seed N --preview 1,12,25,31,33`.
+- Légende : `Which color wins? 🔴🔵🟢🟡 Comment your pick BEFORE the end 👀` / `Photo finish incoming 🏁` / `AI-generated simulation.` / `#marblerace #satisfying #simulation #race #fyp` ; 1er commentaire : `Which color did you pick? 🔴🔵🟢🟡 Comment it 👇 Next race: 8 marbles?`.
 
 ### Épisode à voix (Omertà) — 1 à 2 h, seulement si le vote est connu
 Voir `formats/omerta/README.md` (voix piper + vérification Whisper, timeline, scène SVG, son, couverture). Références : épisodes 1, 2 et 3 anglais ; **l'ép. 3 (26 s, choix à 19 s) est le modèle de durée**. Finition : `scripts/master_mux.py` (limiteur, -13,6 LUFS, mux, contrôle Whisper).
