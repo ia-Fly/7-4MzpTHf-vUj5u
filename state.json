@@ -16,7 +16,7 @@
   "relaunched": "2026-11-05",
   "relaunch_note": "Matis, 05/11 à 23:27 : publier le pilote tout de suite, puis une vidéo ElevenLabs tous les 2 jours.",
   "routine_task": "trig_016wh2VWu5o5FXNrBXgUH9Wo",
-  "stats_task_note": "Tâche de stats toujours en pause (demande du 04/11, pas redemandée). Elle ne repart que si Matis le demande.",
+  "stats_task_note": "Tâche de stats toujours en pause (demande du 04/11, pas redemandée). Elle ne repart que si Matis le demande. Son texte dit encore « 19 h » : la modification a été refusée par le contrôle automatique le 05/11, à corriger à la relance.",
   "post_timezone": "America/New_York",
   "post_time_note": "Consigne de Matis du 05/11/2026 : 20:00 heure de Washington DC, soit 2:00 du matin à Paris le lendemain. tools/post_time.py donne l'heure à donner à Metricool."
  },
@@ -141,7 +141,8 @@
    "project": "B",
    "duration_s": 34,
    "metricool_id": 418308917,
-   "time": "23:40"
+   "time": "23:40",
+   "url": "https://www.instagram.com/reel/DfYIMNglJ9W/"
   },
   {
    "date": "2026-11-05",
@@ -151,7 +152,8 @@
    "project": "B",
    "duration_s": 34,
    "metricool_id": 418308935,
-   "time": "23:40"
+   "time": "23:40",
+   "url": "https://www.tiktok.com/@situation.douteus/video/7704821104392654113"
   }
  ],
  "votes": {
