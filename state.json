@@ -50,7 +50,7 @@
     "instagram",
     "tiktok"
    ],
-   "condition": "attendre que Matis valide le pilote et demande la relance",
+   "condition": "attendre que Matis valide le pilote et demande la relance", "note": "05/11, Matis : ne pas corriger le défaut de la photo de la mère. Si publication : la v1 telle quelle, S5.png d'origine.",
    "flow": "cuSYy0Hs63XrJf0fCN6Q",
    "rebuild": "formats/cine/episodes/caller-id-ep1 : relire les generation_id de production.md et de sound_library.json avec creative_get_generations (0 crédit), el_fetch, build.py",
    "caption_instagram": "3:17 a.m. Your own number is calling you.\nCALLER ID · Episode 1\nANSWER or IGNORE? Comment your choice 👇 The most voted becomes episode 2.\nAI-generated fiction.\n#thriller #fiction #story #choices #fyp",

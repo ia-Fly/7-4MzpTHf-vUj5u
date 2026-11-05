@@ -1,6 +1,6 @@
 # CALLER ID · Épisode 1 (pilote) — fiche de production
 
-Flow ElevenLabs : `cuSYy0Hs63XrJf0fCN6Q`. Crédits : 8 677 (dont 1 072 de tests d'images et 570 de prises de voix non retenues) ; même épisode sans tests : environ 6 300 (hors sons, désormais en banque).
+Flow ElevenLabs : `cuSYy0Hs63XrJf0fCN6Q`. Crédits : 9 195 (dont 1 072 de tests d'images, 570 de prises de voix non retenues et 518 de retouche non utilisée) ; même épisode sans tests : environ 6 300 (hors sons, désormais en banque).
 
 | Fichier | generation_id | Modèle |
 |---|---|---|
@@ -16,6 +16,8 @@ Flow ElevenLabs : `cuSYy0Hs63XrJf0fCN6Q`. Crédits : 8 677 (dont 1 072 de tests 
 | V4.mp4 | 1nnhO8xWRpaW6tT53IGC | veo-3.1-lite 4 s 1080p |
 | V10.mp4 | HMBlAmKK6KS51bOniEpv | veo-3.1-lite 4 s 1080p |
 | score, buzz, rain, breath, hangup, boom, riser, tick, whoosh, heart | voir `formats/cine/sound_library.json` | |
+
+Retouche de S5.png (generation `KX0YOMaX82wbTw1wZRdX`, gpt-image-2.5-sunburst, 518 crédits) : non utilisée, Matis a demandé le 05/11 de ne pas corriger ce défaut. Le montage garde S5.png d'origine.
 
 Texte du narrateur : `It's 3:17 a.m. Your phone is ringing. [pause] [slowly] The caller ID... is your own number. [pause] You pick up. [short pause] Someone's breathing. [long pause] It's your voice. [long pause] The line goes dead. [long pause] 3:21. [pause] Your phone lights up. [pause] [nervous] She never calls this late. [short pause] One ring left. [pause] [slowly] Do you answer... or let it ring?`
 
