@@ -1,5 +1,7 @@
 # Omertà — épisodes à voix (anglais)
 
+> **Ancienne chaîne (dessins SVG, voix piper).** Depuis le 05/11/2026, Omertà se produit au format CINE : `formats/cine/README.md`.
+
 Série à vote : chaque épisode finit sur un choix en 2 mots ; le choix le plus voté en commentaire devient l'épisode suivant.
 **Ne jamais produire un épisode sans résultat de vote noté dans `state.json > votes`.**
 

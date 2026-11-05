@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01",
+ "updated": "2026-11-05",
  "accounts": {
   "instagram": "situation.douteuse",
   "tiktok": "situation.douteus",
@@ -9,8 +9,12 @@
  },
  "schedule": {
   "post_time": "19:00",
-  "routine_time": "13:37",
-  "language": "en"
+  "language": "en",
+  "paused_since": "2026-11-04",
+  "paused_note": "Matis a mis les tâches en pause le 04/11/2026 ; relance seulement à sa demande.",
+  "cadence": "1 vidéo tous les 2 jours (jours impairs du mois), consigne de Matis du 05/11/2026",
+  "routine_time": "13:37 (jours impairs)",
+  "stats_time": "22:32 (jours pairs)"
  },
  "counters": {
   "day": 0
@@ -37,38 +41,7 @@
    "tiktok": 0
   }
  ],
- "queue": [
-  {
-   "id": "marble-s1139",
-   "format": "marble",
-   "project": "D",
-   "seed": 1139,
-   "networks": [
-    "instagram",
-    "tiktok"
-   ],
-   "not_before": "2026-11-02",
-   "condition": "tour du projet D (Marble Race) le 02/11 ; contrôlé le 01/11 (check_video VERDICT OK, planche et couverture regardées)",
-   "video": "queue/marble-s1139/video.mp4",
-   "cover": "queue/marble-s1139/cover.jpg",
-   "caption_instagram": "Which color wins? 🔴🔵🟢🟡 Comment your pick BEFORE the end 👀\nPhoto finish incoming 🏁\nAI-generated simulation.\n#marblerace #satisfying #simulation #race #fyp",
-   "first_comment_instagram": "Which color did you pick? 🔴🔵🟢🟡 Comment it 👇 Next race: 8 marbles?",
-   "caption_tiktok": "Which color wins? 🔴🔵🟢🟡 Comment your pick BEFORE the end 👀 Photo finish incoming 🏁 AI-generated simulation. #marblerace #satisfying #simulation #race #fyp"
-  },
-  {
-   "id": "omerta-ep3-en",
-   "format": "omerta",
-   "project": "A",
-   "networks": [
-    "tiktok"
-   ],
-   "not_before": "2026-11-04",
-   "condition": "prochain tour du projet A (Omertà) : TikTok a un épisode de retard ; ce jour-là Instagram reçoit l'ép. 4 si le vote de l'ép. 3 est noté",
-   "video": "queue/omerta-ep3-en/video.mp4",
-   "cover": "queue/omerta-ep3-en/cover.jpg",
-   "caption_tiktok": "OPEN or DELIVER? You drank the poisoned coffee… and nothing happened ☕✉️ OMERTÀ · Episode 3 (you voted: DRINK). Now the Godfather hands you a sealed envelope. Comment OPEN or DELIVER 👇 the most voted choice becomes episode 4. AI-generated fiction. #fiction #mafia #story #choices #fyp"
-  }
- ],
+ "queue": [],
  "history": [
   {
    "date": "2026-10-25",
@@ -214,9 +187,9 @@
   1123
  ],
  "projects": {
-  "rule": "Consigne Matis 29/10/2026 : 5 projets en rotation, 1 vidéo/jour (IG + TikTok), bilan quand les 5 ont 5 épisodes et ≥48 h de stats sur le 5e ; on supprime le moins bon et on crée un nouveau projet à 0 épisode. Voir STRATEGY.md et RUNBOOK §4.0.",
-  "start": "2026-10-31",
-  "cycle": 1,
+  "rule": "Consigne Matis 29/10/2026 : 5 projets en rotation, 1 vidéo à son tour (IG + TikTok), bilan quand les 5 ont 5 épisodes et ≥48 h de stats sur le 5e ; on supprime le moins bon et on crée un nouveau projet à 0 épisode. Voir STRATEGY.md et RUNBOOK §4.0. Depuis le 05/11/2026 : les 5 projets sont au format CINE (formats/cine/series/README.md).",
+  "start": "2026-11-05",
+  "cycle": 2,
   "rotation": [
    "A",
    "B",
@@ -224,12 +197,12 @@
    "D",
    "E"
   ],
-  "next": "D",
+  "next": "B",
   "omerta_pending": false,
   "list": {
    "A": {
     "name": "Omertà",
-    "format": "omerta",
+    "format": "cine",
     "status": "active",
     "episodes": 3,
     "episodes_ids": [
@@ -263,12 +236,46 @@
       "avg_watch_s": 14.1
      }
     },
-    "note": "vote ép. 3 = DELIVER (Matis, 31/10) : ép. 4 « you deliver the envelope » à produire au prochain tour d'Omertà (04/11) pour Instagram ; TikTok prend l'ép. 3 de la file ce jour-là"
+    "note": "Vote ép. 3 = DELIVER (Matis, 31/10). Ép. 4 à produire au format CINE : tu livres l'enveloppe. TikTok a un épisode de retard : l'ép. 3 de l'ancien style n'y sera pas publié, l'ép. 4 commence par un rappel de 2 s."
    },
    "B": {
+    "name": "CALLER ID",
+    "format": "cine",
+    "status": "active",
+    "episodes": 0,
+    "stats": {},
+    "note": "Pilote (ép. 1) monté le 05/11/2026, flow ElevenLabs cuSYy0Hs63XrJf0fCN6Q. À publier quand Matis relance."
+   },
+   "C": {
+    "name": "NIGHT DISPATCH",
+    "format": "cine",
+    "status": "active",
+    "episodes": 0,
+    "stats": {},
+    "note": "À lancer. Voir formats/cine/series/README.md"
+   },
+   "D": {
+    "name": "THE OFFER",
+    "format": "cine",
+    "status": "active",
+    "episodes": 0,
+    "stats": {},
+    "note": "À lancer. Voir formats/cine/series/README.md"
+   },
+   "E": {
+    "name": "COLD FILE",
+    "format": "cine",
+    "status": "active",
+    "episodes": 0,
+    "stats": {},
+    "note": "À lancer. Voir formats/cine/series/README.md"
+   }
+  },
+  "removed": [
+   {
+    "id": "B",
     "name": "Fusion",
     "format": "fusion",
-    "status": "active",
     "episodes": 1,
     "stats": {
      "ig_fusion-planets-s10": {
@@ -283,40 +290,87 @@
       "age_h": 19
      }
     },
-    "note": "ép. 1 planets s10 programmé 31/10 (IG+TikTok)",
-    "episodes_ids": [
-     "fusion-planets-s10"
-    ]
+    "removed": "2026-11-05",
+    "reason": "Consigne de Matis du 05/11/2026 : un truc de pro et pas pour les enfants. Hors bilan de cycle."
    },
-   "C": {
+   {
+    "id": "C",
     "name": "Escape",
     "format": "escape",
-    "status": "active",
     "episodes": 1,
     "stats": {},
-    "note": "ép. 1 (graine 1123, 34 s) programmé 01/11 19:00 IG+TikTok",
-    "episodes_ids": [
-     "escape-s1123"
-    ]
+    "removed": "2026-11-05",
+    "reason": "Consigne de Matis du 05/11/2026 : un truc de pro et pas pour les enfants. Hors bilan de cycle."
    },
-   "D": {
+   {
+    "id": "D",
     "name": "Marble Race",
     "format": "marble",
-    "status": "active",
     "episodes": 0,
     "stats": {},
-    "note": "outillé le 01/11 : formats/marble/marble.py (4 billes, picots, caméra-zoom sur le peloton, classement en direct, arrivée vers 88 %) ; ép. 1 (graine 1139, YELLOW gagne de 0,03 s) prêt dans la file pour le 02/11"
+    "removed": "2026-11-05",
+    "reason": "Consigne de Matis du 05/11/2026 : un truc de pro et pas pour les enfants. Hors bilan de cycle."
    },
-   "E": {
+   {
+    "id": "E",
     "name": "Fruit Drama EN",
     "format": "fruit-drama",
-    "status": "active",
     "episodes": 0,
     "stats": {},
-    "note": "à construire le 03/11 : mini-drame de fruits en anglais (suite du « Zéro », skip 28 %) ; voir le doc projet fiche-de-style-mini-drames-fruits"
+    "removed": "2026-11-05",
+    "reason": "Consigne de Matis du 05/11/2026 : un truc de pro et pas pour les enfants. Hors bilan de cycle."
    }
-  },
-  "removed": [],
+  ],
   "cycle_reports": []
+ },
+ "queue_retired": [
+  {
+   "id": "marble-s1139",
+   "format": "marble",
+   "project": "D",
+   "seed": 1139,
+   "networks": [
+    "instagram",
+    "tiktok"
+   ],
+   "not_before": "2026-11-02",
+   "condition": "tour du projet D (Marble Race) le 02/11 ; contrôlé le 01/11 (check_video VERDICT OK, planche et couverture regardées)",
+   "video": "queue/marble-s1139/video.mp4",
+   "cover": "queue/marble-s1139/cover.jpg",
+   "caption_instagram": "Which color wins? 🔴🔵🟢🟡 Comment your pick BEFORE the end 👀\nPhoto finish incoming 🏁\nAI-generated simulation.\n#marblerace #satisfying #simulation #race #fyp",
+   "first_comment_instagram": "Which color did you pick? 🔴🔵🟢🟡 Comment it 👇 Next race: 8 marbles?",
+   "caption_tiktok": "Which color wins? 🔴🔵🟢🟡 Comment your pick BEFORE the end 👀 Photo finish incoming 🏁 AI-generated simulation. #marblerace #satisfying #simulation #race #fyp"
+  },
+  {
+   "id": "omerta-ep3-en",
+   "format": "omerta",
+   "project": "A",
+   "networks": [
+    "tiktok"
+   ],
+   "not_before": "2026-11-04",
+   "condition": "prochain tour du projet A (Omertà) : TikTok a un épisode de retard ; ce jour-là Instagram reçoit l'ép. 4 si le vote de l'ép. 3 est noté",
+   "video": "queue/omerta-ep3-en/video.mp4",
+   "cover": "queue/omerta-ep3-en/cover.jpg",
+   "caption_tiktok": "OPEN or DELIVER? You drank the poisoned coffee… and nothing happened ☕✉️ OMERTÀ · Episode 3 (you voted: DRINK). Now the Godfather hands you a sealed envelope. Comment OPEN or DELIVER 👇 the most voted choice becomes episode 4. AI-generated fiction. #fiction #mafia #story #choices #fyp"
+  }
+ ],
+ "elevenlabs": {
+  "plan": "Creator",
+  "monthly_credits": 121000,
+  "access": "connecteur (pas de clé API)",
+  "recipe": "pro",
+  "recipes": {
+   "hybride": 3700,
+   "pro": 6300,
+   "plein_mouvement": 7900
+  },
+  "default_image_model": "bytedance-seedream-5-lite",
+  "default_video_model": "veo-3.1-lite-generate-001",
+  "default_voice_model": "eleven_v4",
+  "sounds": "formats/cine/sound_library.json",
+  "ledger": "elevenlabs/ledger.jsonl",
+  "pilot_flow": "cuSYy0Hs63XrJf0fCN6Q",
+  "recipe_choice": "Matis, 05/11/2026 : 1 tous les 2 jours, donc recette Pro (≈ 6 300 crédits, 4 plans animés)"
  }
 }

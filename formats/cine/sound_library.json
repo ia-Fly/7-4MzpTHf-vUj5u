@@ -1,0 +1,18 @@
+{
+ "note": "Banque de sons réutilisables (consigne de Matis du 05/11/2026) : avant de générer un son, chercher ici. Relire un son avec creative_get_generations(flow_id, generation_ids) : 0 crédit, lien signé neuf. Tout nouveau son généré est ajouté ici.",
+ "sfx": [
+  {"name": "buzz", "flow_id": "cuSYy0Hs63XrJf0fCN6Q", "generation_id": "nfUTZRPCT8srEc0VdYR8", "seconds": 6, "credits": 20.0, "loop": false, "tags": ["phone", "vibration", "bedroom"], "prompt": "Close-up of a smartphone vibrating on a wooden nightstand in a silent room, rhythmic buzzing pattern, rattling against the wood and a glass of water."},
+  {"name": "rain", "flow_id": "cuSYy0Hs63XrJf0fCN6Q", "generation_id": "N1ttjrxIzqbruno7tBPr", "seconds": 15, "credits": 50.0, "loop": true, "tags": ["ambience", "night", "indoor", "rain"], "prompt": "Steady rain on a bedroom window at night, heard from inside a quiet room, muffled distant city traffic, soft room tone."},
+  {"name": "breath", "flow_id": "cuSYy0Hs63XrJf0fCN6Q", "generation_id": "VnGRZf5e5vGncRpjJxhc", "seconds": 4, "credits": 13.3, "loop": false, "tags": ["phone", "breathing", "fear"], "prompt": "Slow nervous human breathing very close to a telephone microphone, heard through a phone line with faint static."},
+  {"name": "hangup", "flow_id": "cuSYy0Hs63XrJf0fCN6Q", "generation_id": "PPrzht2Qw3QCM5n0qQoJ", "seconds": 2.48, "credits": 8.3, "loop": false, "tags": ["phone", "disconnect"], "prompt": "Telephone line goes dead: one soft click followed by three short flat electronic beeps, then silence."},
+  {"name": "boom", "flow_id": "cuSYy0Hs63XrJf0fCN6Q", "generation_id": "dPOzavZmoODtuI2xKZEZ", "seconds": 4, "credits": 13.3, "loop": false, "tags": ["impact", "trailer", "sub"], "prompt": "Deep cinematic sub-bass impact, dark film trailer hit with a long low tail, no melody."},
+  {"name": "riser", "flow_id": "cuSYy0Hs63XrJf0fCN6Q", "generation_id": "sBvGOuMg8bnINPzD9yHv", "seconds": 4, "credits": 13.3, "loop": false, "tags": ["tension", "riser"], "prompt": "Dark cinematic tension riser, low strings and air building steadily for four seconds, then stopping dead."},
+  {"name": "tick", "flow_id": "cuSYy0Hs63XrJf0fCN6Q", "generation_id": "2ABupvKdD90elPgg1lp1", "seconds": 1, "credits": 3.3, "loop": false, "tags": ["clock", "click"], "prompt": "Single small dry mechanical click of a bedside digital alarm clock changing minute."},
+  {"name": "whoosh", "flow_id": "cuSYy0Hs63XrJf0fCN6Q", "generation_id": "SEKIeKbeFL38jkyk8sNc", "seconds": 1.2, "credits": 4.0, "loop": false, "tags": ["transition", "cut"], "prompt": "Soft low dark cinematic whoosh for a hard cut, airy, short."},
+  {"name": "heart", "flow_id": "cuSYy0Hs63XrJf0fCN6Q", "generation_id": "t8jN3ydUA8DmkiE4CLXn", "seconds": 8, "credits": 26.7, "loop": true, "tags": ["heartbeat", "tension"], "prompt": "Slow heavy human heartbeat, muffled and low, cinematic, felt more than heard."},
+  {"name": "door", "flow_id": "nYDNTsRgK9pyRIFDB1lA", "generation_id": "qC4BsIFnwqtDwvTUnstx", "seconds": 5, "credits": 16.7, "loop": false, "tags": ["door", "slam", "stairwell"], "prompt": "Heavy door slam in an empty stairwell, long concrete reverb."}
+ ],
+ "music": [
+  {"name": "score-tension", "flow_id": "cuSYy0Hs63XrJf0fCN6Q", "generation_id": "sqty9Uj1GzKtv1Ss1BG7", "seconds": 40, "credits": 599.9, "tags": ["thriller", "drone", "piano", "instrumental"], "prompt": "Minimal dark thriller underscore for a suspense short film. Sub-bass drone, sparse detuned felt piano notes, distant metallic textures, a slow pulse like a heartbeat that gradually tightens over the whole track. No melody hook, no drums, no vocals. Restrained, adult, cinematic, leaves plenty of room for a voice-over."}
+ ]
+}

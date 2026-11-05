@@ -1,0 +1,624 @@
+{
+ "id": "caller-id-ep1",
+ "series": "CALLER ID",
+ "episode": 1,
+ "lead": 0.05,
+ "duck_db": 8,
+ "voice_rms_db": -18.5,
+ "voices": {
+  "N": {
+   "file": "voice_n.mp3",
+   "words": "voice_n.words.json"
+  },
+  "P": {
+   "file": "voice_p_phone.mp3",
+   "words": "voice_p.words.json",
+   "phone": true
+  }
+ },
+ "lines": [
+  {
+   "id": "L1",
+   "voice": "N",
+   "text": "It's 3:17 a.m.",
+   "gap": 0.16,
+   "keywords": [
+    "3:17"
+   ]
+  },
+  {
+   "id": "L2",
+   "voice": "N",
+   "text": "Your phone is ringing.",
+   "gap": 0.28,
+   "keywords": [
+    "RINGING"
+   ]
+  },
+  {
+   "id": "L3",
+   "voice": "N",
+   "text": "The caller ID...",
+   "gap": 0.14
+  },
+  {
+   "id": "L4",
+   "voice": "N",
+   "text": "is your own number.",
+   "gap": 0.42,
+   "keywords": [
+    "OWN",
+    "NUMBER"
+   ],
+   "chunks": [
+    2,
+    2
+   ]
+  },
+  {
+   "id": "L5",
+   "voice": "N",
+   "text": "You pick up.",
+   "gap": 0.2
+  },
+  {
+   "id": "L6",
+   "voice": "N",
+   "text": "Someone's breathing.",
+   "gap": 0.75,
+   "keywords": [
+    "BREATHING"
+   ]
+  },
+  {
+   "id": "P1",
+   "voice": "P",
+   "text": "Don't hang up.",
+   "gap": 0.3
+  },
+  {
+   "id": "P2",
+   "voice": "P",
+   "text": "It's me.",
+   "gap": 0.26,
+   "keywords": [
+    "ME"
+   ]
+  },
+  {
+   "id": "P3",
+   "voice": "P",
+   "text": "It's you.",
+   "gap": 0.42,
+   "keywords": [
+    "YOU"
+   ]
+  },
+  {
+   "id": "L7",
+   "voice": "N",
+   "text": "It's your voice.",
+   "gap": 0.42,
+   "keywords": [
+    "VOICE"
+   ]
+  },
+  {
+   "id": "P4",
+   "voice": "P",
+   "text": "In four minutes, Mom's going to call.",
+   "gap": 0.22,
+   "keywords": [
+    "MOM'S",
+    "CALL"
+   ],
+   "chunks": [
+    3,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "P5",
+   "voice": "P",
+   "text": "Whatever you do...",
+   "gap": 0.12
+  },
+  {
+   "id": "P6",
+   "voice": "P",
+   "text": "do NOT pick up.",
+   "gap": 0.42,
+   "keywords": [
+    "NOT"
+   ],
+   "chunks": [
+    2,
+    2
+   ]
+  },
+  {
+   "id": "L8",
+   "voice": "N",
+   "text": "The line goes dead.",
+   "gap": 1.5,
+   "keywords": [
+    "DEAD"
+   ]
+  },
+  {
+   "id": "L9",
+   "voice": "N",
+   "text": "3:21.",
+   "gap": 0.42,
+   "keywords": [
+    "3:21"
+   ]
+  },
+  {
+   "id": "L10",
+   "voice": "N",
+   "text": "Your phone lights up.",
+   "gap": 0.32
+  },
+  {
+   "id": "L11",
+   "voice": "N",
+   "text": "She never calls this late.",
+   "gap": 0.26,
+   "keywords": [
+    "NEVER",
+    "LATE"
+   ]
+  },
+  {
+   "id": "L12",
+   "voice": "N",
+   "text": "One ring left.",
+   "gap": 0.3,
+   "keywords": [
+    "ONE"
+   ]
+  },
+  {
+   "id": "L13",
+   "voice": "N",
+   "text": "Do you answer...",
+   "gap": 0.1,
+   "keywords": [
+    "ANSWER"
+   ]
+  },
+  {
+   "id": "L14",
+   "voice": "N",
+   "text": "or let it ring?",
+   "gap": 0.1,
+   "keywords": [
+    "RING"
+   ]
+  }
+ ],
+ "hud": {
+  "left": "CALLER ID  |  EP. 1",
+  "clock": [
+   [
+    0,
+    "03:17 AM"
+   ],
+   [
+    "L9-1.5",
+    "03:18 AM"
+   ],
+   [
+    "L9-1.0",
+    "03:19 AM"
+   ],
+   [
+    "L9-0.5",
+    "03:20 AM"
+   ],
+   [
+    "L9",
+    "03:21 AM"
+   ]
+  ]
+ },
+ "shots": [
+  {
+   "id": "S1",
+   "start": 0,
+   "kind": "video",
+   "file": "V1.mp4",
+   "zoom": [
+    1.3,
+    1.4
+   ],
+   "shake": 0.7,
+   "screen": {
+    "quad": [
+     [
+      0.448,
+      0.5205
+     ],
+     [
+      0.767,
+      0.539
+     ],
+     [
+      0.455,
+      0.71
+     ],
+     [
+      0.0955,
+      0.667
+     ]
+    ],
+    "name": "Me"
+   },
+   "center": [
+    0.43,
+    0.615
+   ]
+  },
+  {
+   "id": "S2",
+   "start": "L3",
+   "kind": "phone",
+   "bg": "S1.png",
+   "ui": {
+    "type": "incoming",
+    "name": "Me",
+    "number": "+1 (555) 010-0147",
+    "vibrate": 1
+   }
+  },
+  {
+   "id": "S3",
+   "start": "L5",
+   "kind": "video",
+   "file": "V3.mp4",
+   "zoom": [
+    1.0,
+    1.05
+   ],
+   "shake": 0.5
+  },
+  {
+   "id": "S4",
+   "start": "P1",
+   "kind": "video",
+   "file": "V4.mp4",
+   "zoom": [
+    1.04,
+    1.14
+   ],
+   "center": [
+    0.5,
+    0.52
+   ],
+   "shake": 0.4
+  },
+  {
+   "id": "S5",
+   "start": "L7",
+   "kind": "phone",
+   "bg": "S3.png",
+   "ui": {
+    "type": "active",
+    "name": "Me",
+    "elapsed": 7
+   }
+  },
+  {
+   "id": "S6",
+   "start": "P4",
+   "kind": "still",
+   "file": "S5.png",
+   "move": "push_in",
+   "shake": 0.5
+  },
+  {
+   "id": "S7",
+   "start": "P5",
+   "kind": "video",
+   "file": "V4.mp4",
+   "offset": 1.6,
+   "zoom": [
+    1.18,
+    1.3
+   ],
+   "center": [
+    0.5,
+    0.52
+   ],
+   "shake": 0.5
+  },
+  {
+   "id": "S8",
+   "start": "L8-0.1",
+   "kind": "phone",
+   "bg": "S3.png",
+   "ui": {
+    "type": "ended",
+    "name": "Me",
+    "elapsed": 19
+   }
+  },
+  {
+   "id": "S9",
+   "start": "L9-1.55",
+   "kind": "led",
+   "seq": [
+    [
+     0,
+     "3:18"
+    ],
+    [
+     0.5,
+     "3:19"
+    ],
+    [
+     1.0,
+     "3:20"
+    ],
+    [
+     1.55,
+     "3:21"
+    ]
+   ],
+   "shake": 0.5
+  },
+  {
+   "id": "S10",
+   "start": "L10",
+   "kind": "still",
+   "file": "S1.png",
+   "shake": 0.8,
+   "screen": {
+    "quad": [
+     [
+      0.448,
+      0.5205
+     ],
+     [
+      0.767,
+      0.539
+     ],
+     [
+      0.455,
+      0.71
+     ],
+     [
+      0.0955,
+      0.667
+     ]
+    ],
+    "name": "Mom"
+   },
+   "zoom": [
+    1.34,
+    1.46
+   ],
+   "center": [
+    0.43,
+    0.62
+   ]
+  },
+  {
+   "id": "S11",
+   "start": "L11",
+   "kind": "phone",
+   "bg": "S1.png",
+   "ui": {
+    "type": "incoming",
+    "name": "Mom",
+    "number": "mobile",
+    "vibrate": 1,
+    "photo": "S5.png",
+    "crop": [
+     430,
+     1080,
+     480,
+     480
+    ]
+   }
+  },
+  {
+   "id": "S12",
+   "start": "L12",
+   "kind": "video",
+   "file": "V10.mp4",
+   "zoom": [
+    1.02,
+    1.1
+   ],
+   "shake": 0.6
+  },
+  {
+   "id": "S13",
+   "start": "L14.end+0.08",
+   "kind": "end",
+   "hold": 3.6,
+   "a": "ANSWER",
+   "b": "IGNORE",
+   "question": "WHAT DO YOU DO?",
+   "cta1": "COMMENT YOUR CHOICE",
+   "cta2": "MOST VOTED = EPISODE 2 · FOLLOW"
+  }
+ ],
+ "impacts": [
+  {
+   "at": "L4",
+   "kind": "punch",
+   "amp": 0.6
+  },
+  {
+   "at": "P1",
+   "kind": "shake",
+   "amp": 0.45
+  },
+  {
+   "at": "L7",
+   "kind": "punch",
+   "amp": 1
+  },
+  {
+   "at": "L8",
+   "kind": "shake",
+   "amp": 0.5
+  },
+  {
+   "at": "L9",
+   "kind": "flash",
+   "amp": 0.5
+  },
+  {
+   "at": "L9",
+   "kind": "shake",
+   "amp": 1.2
+  },
+  {
+   "at": "S11",
+   "kind": "punch",
+   "amp": 1
+  },
+  {
+   "at": "S13",
+   "kind": "shake",
+   "amp": 0.7
+  }
+ ],
+ "music": {
+  "file": "score.mp3",
+  "gain_db": -12,
+  "fade_out": 1.0
+ },
+ "sfx": [
+  {
+   "file": "rain.mp3",
+   "at": 0,
+   "until": "total",
+   "gain_db": -22,
+   "bed": true,
+   "fade_in": 0.05,
+   "fade_out": 0.8
+  },
+  {
+   "file": "buzz.mp3",
+   "at": 0,
+   "until": "L5",
+   "gain_db": -13,
+   "fade_out": 0.08
+  },
+  {
+   "file": "whoosh.mp3",
+   "at": "L3-0.12",
+   "gain_db": -20
+  },
+  {
+   "file": "boom.mp3",
+   "at": "L4",
+   "gain_db": -14,
+   "trim": 2.5,
+   "fade_out": 0.5
+  },
+  {
+   "file": "breath.mp3",
+   "at": "L5.end",
+   "gain_db": -15,
+   "fade_out": 0.3
+  },
+  {
+   "file": "boom.mp3",
+   "at": "L7",
+   "gain_db": -11,
+   "trim": 3,
+   "fade_out": 0.8
+  },
+  {
+   "file": "hangup.mp3",
+   "at": "L8-0.25",
+   "gain_db": -15
+  },
+  {
+   "file": "tick.mp3",
+   "at": "L9-1.05",
+   "gain_db": -13
+  },
+  {
+   "file": "tick.mp3",
+   "at": "L9-0.55",
+   "gain_db": -13
+  },
+  {
+   "file": "tick.mp3",
+   "at": "L9",
+   "gain_db": -13
+  },
+  {
+   "file": "boom.mp3",
+   "at": "L9",
+   "gain_db": -8,
+   "trim": 3.5,
+   "fade_out": 1
+  },
+  {
+   "file": "buzz.mp3",
+   "at": "L10-0.1",
+   "until": "S13",
+   "gain_db": -10,
+   "fade_out": 0.03
+  },
+  {
+   "file": "heart.mp3",
+   "at": "L11",
+   "until": "total",
+   "gain_db": -14,
+   "bed": true,
+   "fade_in": 0.4,
+   "fade_out": 0.5
+  },
+  {
+   "file": "riser.mp3",
+   "at": "S13-3.95",
+   "gain_db": -15
+  },
+  {
+   "file": "boom.mp3",
+   "at": "S13",
+   "gain_db": -9,
+   "trim": 3.5,
+   "fade_out": 1
+  }
+ ],
+ "cover": {
+  "file": "S1.png",
+  "zoom": 1.05,
+  "title": "CALLER ID",
+  "episode": "EPISODE 1",
+  "subtitle": "YOUR OWN NUMBER",
+  "y": 300,
+  "screen": {
+   "quad": [
+    [
+     0.448,
+     0.5205
+    ],
+    [
+     0.767,
+     0.539
+    ],
+    [
+     0.455,
+     0.71
+    ],
+    [
+     0.0955,
+     0.667
+    ]
+   ],
+   "name": "Me"
+  }
+ }
+}
