@@ -22,10 +22,12 @@ def asr(path):
     m = model(); p = f'{m}/base.en-'
     rec = sherpa_onnx.OfflineRecognizer.from_whisper(encoder=p + 'encoder.int8.onnx', decoder=p + 'decoder.int8.onnx', tokens=p + 'tokens.txt', num_threads=2)
     pcm = subprocess.run(['ffmpeg', '-v', 'error', '-i', path, '-f', 'f32le', '-ac', '1', '-ar', '16000', '-'], capture_output=True, check=True).stdout
-    x = np.frombuffer(pcm, np.float32); text = []
-    for i in range(0, len(x), 16000 * 25):                # Whisper travaille par tranches de 30 s au plus
-        s = rec.create_stream(); s.accept_waveform(16000, x[i:i + 16000 * 26]); rec.decode_stream(s); text.append(s.result.text)
-    return ' '.join(text)
+    x = np.frombuffer(pcm, np.float32); words = []
+    for i in range(0, len(x), 16000 * 25):                # Whisper travaille par tranches de 30 s au plus ; 1 s de recouvrement pour ne pas couper un mot
+        s = rec.create_stream(); s.accept_waveform(16000, x[i:i + 16000 * 26]); rec.decode_stream(s); new = s.result.text.split()
+        same = max((n for n in range(min(8, len(words), len(new)), 0, -1) if norm(' '.join(words[-n:])) == norm(' '.join(new[:n]))), default=0)   # mots répétés à la jonction
+        words += new[same:]
+    return ' '.join(words)
 
 
 def norm(t): return re.sub(r'[^A-Z0-9 ]', ' ', unicodedata.normalize('NFD', t.upper()).encode('ascii', 'ignore').decode()).split()

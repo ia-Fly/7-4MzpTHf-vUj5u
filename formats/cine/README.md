@@ -28,7 +28,7 @@ Toujours : `generate_audio: false` sur la vidéo (le son coûte très cher : Veo
 
 ## Chaîne d'un épisode (dans l'ordre, tout est dans le même flow)
 Charger d'un coup avec ToolSearch : `creative_create_flow, creative_add_flow_node, creative_run_flow_nodes, creative_get_flow_run_status, creative_get_generations, creative_add_flow_asset_node, creative_transcribe_audio`. Éviter `creative_get_flow_node_types` et les guides de modèles (très longs) : tout est ici.
-1. **Écrire** : script en anglais, `episode.json` (modèle : `episodes/caller-id-ep1/`). Série et voix : `series/`.
+1. **Écrire** : script en anglais, `episode.json` (modèle : `episodes/caller-id-ep1/`). Série et voix : `series/README.md`. Scripts déjà écrits pour les prochains tours : `series/scripts.md`.
 2. **Sons d'abord dans la banque** : `sound_library.json`. Un son manquant se génère puis s'ajoute à la banque (consigne de Matis : tout garder).
 3. **Voix** : `creative_add_flow_node` (node_type `tts`, model `eleven_v4`, voice_id de la série), un nœud par personnage ; tout le texte du personnage dans un seul nœud, avec des balises (`[whispers]`, `[slowly]`). **Mettre `[pause]` entre chaque réplique** : le monteur découpe la prise sur ces silences, puis règle lui-même le rythme avec `gap`.
    Lancer avec `creative_run_flow_nodes` et `generations_count: 1`.

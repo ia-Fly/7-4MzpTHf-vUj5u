@@ -19,7 +19,7 @@ Procédure suivie par la tâche planifiée « Vidéo tous les 2 jours 19 h ». C
 ## 1. Installer l'atelier (session neuve)
 1. Outil `add_repo` : owner `ia-Fly`, repo `7-4MzpTHf-vUj5u`, access `push`. Clone avec la commande indiquée dans `/home/claude/studio`, puis `git checkout studio`.
 2. `bash setup.sh`.
-3. Lis `STRATEGY.md`, `state.json`, `formats/cine/README.md`, `formats/cine/series/README.md` et le dernier fichier de `journal/`.
+3. Lis `STRATEGY.md`, `state.json`, `formats/cine/README.md`, `formats/cine/series/README.md`, `formats/cine/series/scripts.md` (scripts déjà écrits, à reprendre s'il y en a un pour ce tour) et le dernier fichier de `journal/`.
 4. **Deux vérifications avant de produire** :
    - le connecteur ElevenLabs est là : `ToolSearch` « select:mcp__ElevenLabs__creative_create_flow » ;
    - le téléchargement passe : `curl -sS -m 10 -o /dev/null -w "%{http_code}\n" https://elevenlabsusercontent.com/` (un code HTTP, même 403/404 du site, convient ; `000` et « CONNECT tunnel failed » = domaine non autorisé).
