@@ -10,11 +10,13 @@
  "schedule": {
   "post_time": "19:00",
   "language": "en",
-  "paused_since": "2026-11-04",
-  "paused_note": "Matis a mis les tâches en pause le 04/11/2026 ; relance seulement à sa demande.",
   "cadence": "1 vidéo tous les 2 jours (jours impairs du mois), consigne de Matis du 05/11/2026",
   "routine_time": "13:37 (jours impairs)",
-  "stats_time": "22:32 (jours pairs)"
+  "stats_time": "22:32 (jours pairs)",
+  "relaunched": "2026-11-05",
+  "relaunch_note": "Matis, 05/11 à 23:27 : publier le pilote tout de suite, puis une vidéo ElevenLabs tous les 2 jours.",
+  "routine_task": "trig_016wh2VWu5o5FXNrBXgUH9Wo",
+  "stats_task_note": "Tâche de stats toujours en pause (demande du 04/11, pas redemandée). Elle ne repart que si Matis le demande."
  },
  "counters": {
   "day": 0
@@ -41,23 +43,7 @@
    "tiktok": 0
   }
  ],
- "queue": [
-  {
-   "id": "caller-id-ep1",
-   "format": "cine",
-   "project": "B",
-   "networks": [
-    "instagram",
-    "tiktok"
-   ],
-   "condition": "attendre que Matis valide le pilote et demande la relance", "note": "05/11, Matis : ne pas corriger le défaut de la photo de la mère. Si publication : la v1 telle quelle, S5.png d'origine.",
-   "flow": "cuSYy0Hs63XrJf0fCN6Q",
-   "rebuild": "formats/cine/episodes/caller-id-ep1 : relire les generation_id de production.md et de sound_library.json avec creative_get_generations (0 crédit), el_fetch, build.py",
-   "caption_instagram": "3:17 a.m. Your own number is calling you.\nCALLER ID · Episode 1\nANSWER or IGNORE? Comment your choice 👇 The most voted becomes episode 2.\nAI-generated fiction.\n#thriller #fiction #story #choices #fyp",
-   "first_comment_instagram": "ANSWER or IGNORE? 👇 The most voted choice becomes episode 2.",
-   "caption_tiktok": "3:17 a.m. Your own number is calling you. CALLER ID · Episode 1. ANSWER or IGNORE? Comment your choice 👇 The most voted becomes episode 2. AI-generated fiction. #thriller #fiction #story #choices #fyp"
-  }
- ],
+ "queue": [],
  "history": [
   {
    "date": "2026-10-25",
@@ -144,6 +130,26 @@
    "project": "C",
    "duration_s": 34,
    "metricool_id": 412881496
+  },
+  {
+   "date": "2026-11-05",
+   "network": "instagram",
+   "id": "caller-id-ep1",
+   "format": "cine",
+   "project": "B",
+   "duration_s": 34,
+   "metricool_id": 418308917,
+   "time": "23:40"
+  },
+  {
+   "date": "2026-11-05",
+   "network": "tiktok",
+   "id": "caller-id-ep1",
+   "format": "cine",
+   "project": "B",
+   "duration_s": 34,
+   "metricool_id": 418308935,
+   "time": "23:40"
   }
  ],
  "votes": {
@@ -222,7 +228,7 @@
    "D",
    "E"
   ],
-  "next": "B",
+  "next": "C",
   "omerta_pending": false,
   "list": {
    "A": {
@@ -267,9 +273,12 @@
     "name": "CALLER ID",
     "format": "cine",
     "status": "active",
-    "episodes": 0,
+    "episodes": 1,
     "stats": {},
-    "note": "Pilote (ép. 1) monté le 05/11/2026, flow ElevenLabs cuSYy0Hs63XrJf0fCN6Q. À publier quand Matis relance."
+    "note": "Ép. 1 publié le 05/11/2026 à 23:40 (flow cuSYy0Hs63XrJf0fCN6Q), v1 sans retouche de la photo, à la demande de Matis. Vote ANSWER/IGNORE ouvert : pas d'ép. 2 sans résultat donné par Matis.",
+    "episodes_ids": [
+     "caller-id-ep1"
+    ]
    },
    "C": {
     "name": "NIGHT DISPATCH",

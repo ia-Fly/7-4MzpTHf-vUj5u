@@ -57,7 +57,7 @@ Pour chaque réseau sans post à 19:00 aujourd'hui :
 2. Sons : **banque d'abord** (`formats/cine/sound_library.json`, consigne de Matis) ; `creative_get_generations` donne un lien neuf gratuitement. Tout nouveau son généré entre dans la banque.
 3. Dans un flow nommé d'après l'épisode : voix (`eleven_v4`), filtre si besoin, temps mot par mot, images Seedream 5 Lite, regard sur chaque image, plans Veo 3.1 Lite. Toujours `generations_count: 1`. Ne jamais relancer pour réessayer sans avoir relu le statut.
 4. `python3 tools/el_fetch.py manifest.json /home/claude/out/<id>/assets` (remplit `elevenlabs/ledger.jsonl`).
-5. `python3 formats/cine/build.py formats/cine/episodes/<id>/episode.json /home/claude/out/<id>/assets /home/claude/out/<id>` : d'abord `--preview 0.5,5,12,20,28`, puis le rendu complet. Sortie : `video.mp4`, `cover.jpg`, `timeline.json`.
+5. `python3 formats/cine/build.py formats/cine/episodes/<id>/episode.json /home/claude/out/<id>/assets /home/claude/out/<id>` : d'abord `--preview 0.5,5,12,20,28`, puis le rendu complet. Sortie : `video.mp4`, `cover.jpg`, `timeline.json`. Le rendu complet d'un épisode de 34 s prend environ 7 min : lance-le avec `run_in_background` (un `nohup` peut être coupé à la fin de ta réponse).
 
 Les anciens scripts (`formats/fusion`, `escape`, `marble`, `omerta`) restent dans le dépôt pour mémoire : ne plus les utiliser pour publier.
 
@@ -66,6 +66,7 @@ Les anciens scripts (`formats/fusion`, `escape`, `marble`, `omerta`) restent dan
 python3 tools/check_video.py OUT/video.mp4 OUT/planche.jpg      # doit afficher VERDICT : OK
 python3 tools/asr_check.py OUT/video.mp4 "toutes les répliques"  # voix compréhensible dans le mix : viser ≥ 0,85
 ```
+Si `asr_check` répond « contrôle des voix indisponible » (code 2) : note-le dans le journal, ce n'est pas bloquant. Un score sous 0,85 est un vrai défaut.
 Puis **regarde** `planche.jpg` et `cover.jpg` avec Read : pas d'écran noir, sous-titres lisibles et pas sur l'objet du plan, mains et visages sans défaut, aucun texte déformé, rien d'interdit (voir les limites de `formats/cine/README.md`). Vérifie aussi que `timeline.json` dit la bonne durée (25 à 40 s) et un choix posé. Un défaut = corriger et remonter, pas publier ; si une image ou un plan généré est raté, en regénérer un seul.
 
 ## 7. Publier (Metricool, 19:00)

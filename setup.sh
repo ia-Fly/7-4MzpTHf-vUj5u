@@ -5,6 +5,8 @@
 set -e
 cd "$(dirname "$0")"
 pip install --break-system-packages -q opencv-python-headless pyloudnorm soundfile scipy numpy pillow 2>&1 | grep -v -i "warning" || true
+# contrôle des voix (tools/asr_check.py) : paquet précompilé seulement, sinon pip peut rester bloqué
+timeout 120 pip install --break-system-packages -q --only-binary=:all: sherpa-onnx 2>&1 | grep -v -i "warning" || true
 if [ "$1" = "--voices" ]; then
   pip install --break-system-packages -q pymunk skia-python pyworld phonemizer espeakng-loader onnxruntime onnx sherpa-onnx 2>&1 | grep -v -i "warning" || true
   export OMERTA_WORK="${OMERTA_WORK:-/home/claude/omerta-work}"

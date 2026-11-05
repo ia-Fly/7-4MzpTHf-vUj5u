@@ -34,5 +34,7 @@ def norm(t): return re.sub(r'[^A-Z0-9 ]', ' ', unicodedata.normalize('NFD', t.up
 
 
 if __name__ == '__main__':
-    heard = asr(sys.argv[1]); a, b = norm(sys.argv[2]), norm(heard); r = difflib.SequenceMatcher(None, a, b, autojunk=False).ratio()
+    try: heard = asr(sys.argv[1])
+    except (ImportError, OSError) as e: print(f'contrôle des voix indisponible : {e}'); sys.exit(2)   # outil ou modèle absent : à noter, pas bloquant
+    a, b = norm(sys.argv[2]), norm(heard); r = difflib.SequenceMatcher(None, a, b, autojunk=False).ratio()
     print(f'score {r:.2f} (viser ≥ 0,85)'); print('entendu :', heard); sys.exit(0 if r >= .85 else 1)

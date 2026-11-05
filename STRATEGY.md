@@ -22,7 +22,7 @@ Mis à jour par chaque passage de la tâche planifiée. Les chiffres viennent de
 
 ## Système des 5 projets (consigne de Matis du 29/10/2026, en vigueur à partir du 31/10)
 - 5 projets (séries/formats) tournent en même temps ; **une seule vidéo par passage (tous les 2 jours)**, à chaque fois le projet suivant de la rotation (A, B, C, D, E, A…). La vidéo va sur Instagram et TikTok (TikTok peut avoir un épisode de décalage via la file).
-- **Rotation depuis le 05/11/2026 (cycle 2) : A OMERTÀ · B CALLER ID · C NIGHT DISPATCH · D THE OFFER · E COLD FILE** (`formats/cine/series/README.md`). Prochain : B, épisode 1. Fusion, Escape, Marble Race et Fruit Drama sont sortis hors bilan de cycle, à la demande de Matis.
+- **Rotation depuis le 05/11/2026 (cycle 2) : A OMERTÀ · B CALLER ID · C NIGHT DISPATCH · D THE OFFER · E COLD FILE** (`formats/cine/series/README.md`). B ép. 1 publié le 05/11. Prochain : C NIGHT DISPATCH, épisode 1 (07/11). Fusion, Escape, Marble Race et Fruit Drama sont sortis hors bilan de cycle, à la demande de Matis.
 - **Bilan de cycle** quand les 5 projets en cours ont chacun 5 épisodes publiés et ≥ 48 h de stats sur leur 5e : comparer médiane des vues, % regardé, skip, commentaires/vues, abonnés gagnés (IG + TikTok). Supprimer le moins bon, garder les autres, créer un nouveau projet à 0 épisode à sa place (même rang dans la rotation), puis continuer. Chaque bilan est écrit ici (classement, projet supprimé, nouveau projet et pourquoi) et dans le rapport.
 - Omertà : si son tour arrive sans résultat du vote précédent dans `state.json > votes`, on publie le projet suivant et on revient à Omertà ensuite. Jamais de résultat inventé.
 - Compteur d'épisodes : `state.json > projects` (épisodes anglais publiés ; Omertà compte ses ép. 1 à 3 anglais).
