@@ -37,6 +37,7 @@ Charger d'un coup avec ToolSearch : `creative_create_flow, creative_add_flow_nod
 6. **Images** : nœuds `image-generation`, `bytedance-seedream-5-lite`, `{"aspect_ratio":"9:16","resolution":"2K"}`, `generations_count: 1`. **Regarder chaque image** avec `creative_get_generations` (aperçu gratuit) ; refaire si un visage, une main ou un objet cloche, avant d'animer.
 7. **Plans animés** : nœud `video-generation`, `veo-3.1-lite-generate-001`, `{"duration_secs":4,"aspect_ratio":"9:16","resolution":"1080p","generate_audio":false}`, `connect_from: [nœud image]`. Décrire le mouvement, pas la scène (« Locked-off camera. The water shivers… »).
 8. **Télécharger** : écrire `manifest.json` (nom, lien `content_url`, crédits), puis `python3 tools/el_fetch.py manifest.json ASSETS`. Le registre des crédits se remplit tout seul.
+   **Regarder chaque plan animé** : `python3 tools/clip_sheet.py planche_clips.jpg ASSETS/V*.mp4`, puis Read. Choisir ensuite `speed` et `offset` en conséquence, ou remplacer un passage raté par l'image fixe (pilote : l'œil restait fermé de 1,5 à 3,4 s).
 9. **Monter** : `python3 formats/cine/build.py episode.json ASSETS OUT --preview 0.5,5,12,20,28` pour vérifier, puis sans `--preview` (environ 4 min).
 10. **Contrôler** : `tools/check_video.py`, `tools/asr_check.py` (voix comprise dans le mix), regarder `planche.jpg` et `cover.jpg`, relire `timeline.json`.
 
@@ -58,6 +59,6 @@ Ton adulte : tension, menace, dilemmes, zones grises. Mais **jamais** : gore, sa
 ## Format de episode.json
 - `voices` : `{"N": {"file", "words", "phone": bool}}`.
 - `lines` : `{"id", "voice", "text", "gap", "keywords", "chunks", "pre", "gain_db"}` ; `text` sans balises, identique à ce qui est dit, découpé en répliques pour maîtriser le rythme (`gap` = silence après).
-- `shots` : `{"id", "start", "kind", ...}` ; `start` = `"L3"`, `"L3.end"`, `"L3+0.4"`, `"S2"` ou un nombre. `kind` : `video` (file, zoom, center, offset, screen), `still` (file, move ou zoom+center, screen), `phone` (bg, ui : `incoming`, `active`, `ended`), `led` (seq), `end` (a, b, question, cta1, cta2, hold).
+- `shots` : `{"id", "start", "kind", ...}` ; `start` = `"L3"`, `"L3.end"`, `"L3+0.4"`, `"S2"` ou un nombre. `kind` : `video` (file, zoom, center, offset, speed, screen), `still` (file, move ou zoom+center, screen), `phone` (bg, ui : `incoming`, `active`, `ended`), `led` (seq), `end` (a, b, question, cta1, cta2, hold).
 - `sfx` : `{"file", "at", "gain_db", "until", "trim", "fade_in", "fade_out", "bed"}` ; `bed: true` = baissé sous la voix.
 - `music`, `impacts` (`shake`, `punch`, `flash`), `hud` (bandeau et heure), `cover` (file, title, episode, subtitle, y, screen).

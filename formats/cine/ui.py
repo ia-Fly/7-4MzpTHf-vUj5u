@@ -254,5 +254,5 @@ def end_card(bg, a, b, question, cta1, cta2, t=0.0):
         d.rounded_rectangle([x, y, x + bw, y + bh], radius=30, fill=col + (int(40 + 40 * pulse),), outline=col + (int(255 * ease),), width=7)
         f = anton(112); bb = d.textbbox((0, 0), lab, font=f); d.text((W / 2 - (bb[2] - bb[0]) / 2 - bb[0], y + (bh - (bb[3] - bb[1])) / 2 - bb[1]), lab, font=f, fill=(255, 255, 255, int(255 * ease)))
     centered(d, W / 2, 1160, cta1, condensed(66), (255, 255, 255, int(255 * ease)))
-    centered(d, W / 2, 1240, cta2, mono(32, 600), (225, 228, 232, int(235 * ease)))
+    centered(d, W / 2, 1240, cta2, mono(37, 600), (232, 234, 238, int(245 * ease)))
     return over(frame, to_bgra(im))

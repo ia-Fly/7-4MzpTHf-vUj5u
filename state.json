@@ -41,7 +41,23 @@
    "tiktok": 0
   }
  ],
- "queue": [],
+ "queue": [
+  {
+   "id": "caller-id-ep1",
+   "format": "cine",
+   "project": "B",
+   "networks": [
+    "instagram",
+    "tiktok"
+   ],
+   "condition": "attendre que Matis valide le pilote et demande la relance",
+   "flow": "cuSYy0Hs63XrJf0fCN6Q",
+   "rebuild": "formats/cine/episodes/caller-id-ep1 : relire les generation_id de production.md et de sound_library.json avec creative_get_generations (0 crédit), el_fetch, build.py",
+   "caption_instagram": "3:17 a.m. Your own number is calling you.\nCALLER ID · Episode 1\nANSWER or IGNORE? Comment your choice 👇 The most voted becomes episode 2.\nAI-generated fiction.\n#thriller #fiction #story #choices #fyp",
+   "first_comment_instagram": "ANSWER or IGNORE? 👇 The most voted choice becomes episode 2.",
+   "caption_tiktok": "3:17 a.m. Your own number is calling you. CALLER ID · Episode 1. ANSWER or IGNORE? Comment your choice 👇 The most voted becomes episode 2. AI-generated fiction. #thriller #fiction #story #choices #fyp"
+  }
+ ],
  "history": [
   {
    "date": "2026-10-25",
@@ -154,7 +170,16 @@
    ],
    "result": "DELIVER",
    "how": "Matis lit les commentaires (Instagram + TikTok) et donne le résultat ; sans résultat, pas d'épisode 4.",
-   "source": "Matis, 31/10/2026 (commentaires de l'ép. 3)"
+   "source": "Matis, 31/10/2026 (commentaires de l'ép. 3)",
+   "note": "L'épisode 4 passe au format CINE."
+  },
+  "caller_id_ep1": {
+   "options": [
+    "ANSWER",
+    "IGNORE"
+   ],
+   "result": null,
+   "how": "Matis lit les commentaires (Instagram + TikTok) et donne le résultat ; sans résultat, pas d'épisode 2."
   }
  },
  "themes_used": {
