@@ -8,15 +8,17 @@
   "vidiq_ig_platformAccountId": "29070592985935595"
  },
  "schedule": {
-  "post_time": "19:00",
+  "post_time": "20:00",
   "language": "en",
   "cadence": "1 vidéo tous les 2 jours (jours impairs du mois), consigne de Matis du 05/11/2026",
-  "routine_time": "13:37 (jours impairs)",
+  "routine_time": "13:37 à Paris (jours impairs), vidéo programmée pour le soir même à Washington",
   "stats_time": "22:32 (jours pairs)",
   "relaunched": "2026-11-05",
   "relaunch_note": "Matis, 05/11 à 23:27 : publier le pilote tout de suite, puis une vidéo ElevenLabs tous les 2 jours.",
   "routine_task": "trig_016wh2VWu5o5FXNrBXgUH9Wo",
-  "stats_task_note": "Tâche de stats toujours en pause (demande du 04/11, pas redemandée). Elle ne repart que si Matis le demande."
+  "stats_task_note": "Tâche de stats toujours en pause (demande du 04/11, pas redemandée). Elle ne repart que si Matis le demande.",
+  "post_timezone": "America/New_York",
+  "post_time_note": "Consigne de Matis du 05/11/2026 : 20:00 heure de Washington DC, soit 2:00 du matin à Paris le lendemain. tools/post_time.py donne l'heure à donner à Metricool."
  },
  "counters": {
   "day": 0

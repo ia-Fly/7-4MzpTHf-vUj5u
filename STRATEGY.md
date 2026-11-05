@@ -20,6 +20,8 @@ Mis à jour par chaque passage de la tâche planifiée. Les chiffres viennent de
 - Tous les bruitages et musiques sont gardés et réutilisés (consigne de Matis, `formats/cine/sound_library.json`).
 - Les passages de la tâche planifiée du 03 et du 04/11 ont échoué : limite d'usage Claude atteinte. La production doit rester légère en appels d'outils (voir README CINE).
 
+- 05/11/2026 (Matis) : publication à 20:00 heure de Washington DC au lieu de 19:00 à Paris, à partir du 07/11. À surveiller : vues et skip des premières heures par rapport aux anciens reels.
+
 ## Système des 5 projets (consigne de Matis du 29/10/2026, en vigueur à partir du 31/10)
 - 5 projets (séries/formats) tournent en même temps ; **une seule vidéo par passage (tous les 2 jours)**, à chaque fois le projet suivant de la rotation (A, B, C, D, E, A…). La vidéo va sur Instagram et TikTok (TikTok peut avoir un épisode de décalage via la file).
 - **Rotation depuis le 05/11/2026 (cycle 2) : A OMERTÀ · B CALLER ID · C NIGHT DISPATCH · D THE OFFER · E COLD FILE** (`formats/cine/series/README.md`). B ép. 1 publié le 05/11. Prochain : C NIGHT DISPATCH, épisode 1 (07/11). Fusion, Escape, Marble Race et Fruit Drama sont sortis hors bilan de cycle, à la demande de Matis.

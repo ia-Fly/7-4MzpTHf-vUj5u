@@ -1,15 +1,15 @@
-# RUNBOOK — une vidéo tous les 2 jours à 19 h (@situation.douteuse)
+# RUNBOOK — une vidéo tous les 2 jours à 20 h, heure de Washington DC (@situation.douteuse)
 
-Procédure suivie par la tâche planifiée « Vidéo tous les 2 jours 19 h ». Ce fichier fait foi ; si tu l'améliores, garde-le exécutable de bout en bout par une session neuve.
+Procédure suivie par la tâche planifiée « Vidéo ElevenLabs tous les 2 jours 20 h Washington ». Ce fichier fait foi ; si tu l'améliores, garde-le exécutable de bout en bout par une session neuve.
 
 ## 0. Repères fixes
 | Quoi | Valeur |
 |---|---|
 | Objectif | 10 000 abonnés (Instagram + TikTok) |
-| Publication | **1 vidéo neuve tous les 2 jours** (consigne de Matis du 05/11/2026 ; jours impairs du mois), Instagram et TikTok, à **19:00 Europe/Paris** |
+| Publication | **1 vidéo neuve tous les 2 jours** (consigne de Matis du 05/11/2026 ; jours impairs du mois), Instagram et TikTok, à **20:00 heure de Washington DC** (`America/New_York`, consigne de Matis du 05/11/2026), soit 2:00 du matin à Paris le lendemain (1:00 quelques semaines par an). `python3 tools/post_time.py` donne l'heure exacte |
 | Instagram | @situation.douteuse (compte Créateur), publié en Reel |
 | TikTok | @situation.douteus, connecté à Metricool |
-| Metricool | brandId **7631727**, fuseau `Europe/Paris` |
+| Metricool | brandId **7631727**, marque réglée sur `Europe/Paris` : lui donner l'heure convertie par `tools/post_time.py` |
 | vidIQ | `vidiq_instagram_owner_insights`, platformAccountId **29070592985935595** (gratuit). Aucun autre outil vidIQ (payant). |
 | Dépôt | `ia-Fly/7-4MzpTHf-vUj5u` : branche `studio` = atelier + mémoire ; branche `media` = hébergement public temporaire des vidéos |
 | Langue publiée | anglais (textes à l'écran, voix, légendes) |
@@ -26,7 +26,7 @@ Procédure suivie par la tâche planifiée « Vidéo tous les 2 jours 19 h ». C
    Si l'un manque : ne génère rien, ne publie rien de neuf, et dis dans le rapport exactement ce que Matis doit régler. Ne contourne jamais un blocage réseau.
 
 ## 2. Ne jamais doubler
-- `getScheduledPosts` (brandId 7631727, d'aujourd'hui 00:00 à demain 00:00, `Europe/Paris`) : un réseau qui a déjà un post à 19:00 aujourd'hui est servi, on n'y touche pas.
+- `python3 tools/post_time.py` donne l'heure de publication et la fenêtre `window`. `getScheduledPosts` (brandId 7631727) sur cette fenêtre : un réseau qui y a déjà un post est servi, on n'y touche pas.
 - `state.json > history` : une vidéo (`id`) déjà publiée sur un réseau n'y repasse jamais.
 
 ## 3. Lire les stats (dans cet ordre)
@@ -39,13 +39,13 @@ Procédure suivie par la tâche planifiée « Vidéo tous les 2 jours 19 h ». C
 ### 4.0 Rotation des 5 projets (consigne de Matis du 29/10/2026 — passe avant tout le reste de ce §4)
 1. `state.json > projects.rotation` donne l'ordre (A…E) et `projects.next` le projet du jour. **Une seule vidéo neuve par passage (un passage tous les 2 jours)**, celle du projet du jour, sur Instagram ET TikTok (si TikTok a un épisode de retard pour ce projet, TikTok prend l'élément de `queue` de ce projet et la vidéo neuve y entre à son tour).
 2. **Omertà** : si c'est son tour et que le vote de l'épisode précédent n'est pas dans `state.json > votes`, publie le projet suivant ; Omertà garde la priorité au prochain tour (`projects.omerta_pending = true`). Jamais de résultat inventé.
-3. Les 5 projets sont décrits dans `formats/cine/series/README.md`. Écran, console ou dossier manquant pour une série : l'ajouter à `formats/cine/ui.py`, tester, puis produire ; si c'est impossible avant 18:30, publier le projet suivant et noter pourquoi.
+3. Les 5 projets sont décrits dans `formats/cine/series/README.md`. Écran, console ou dossier manquant pour une série : l'ajouter à `formats/cine/ui.py`, tester, puis produire ; si c'est impossible avant 18:30 à Paris, publier le projet suivant et noter pourquoi.
 4. Après publication : `episodes += 1` pour le projet, `projects.next` = projet suivant.
 5. **Bilan de cycle** : quand les 5 projets `active` ont `episodes >= 5` et ≥ 48 h de stats sur leur 5e épisode → classer (médiane des vues, % regardé, skip, commentaires/vues, abonnés gagnés), passer le dernier en `removed`, créer un nouveau projet (0 épisode) à sa place dans la rotation, écrire le bilan dans `STRATEGY.md`, `journal/` et le rapport. Recommencer à chaque cycle.
 6. « Jamais le même thème deux jours de suite » est garanti par la rotation (seule exception : 30/10, voulue par Matis).
 
 ### 4.1 Choix à l'intérieur du projet du jour
-Pour chaque réseau sans post à 19:00 aujourd'hui :
+Pour chaque réseau sans post prévu pour ce passage :
 1. **File d'attente** (`state.json > queue`) : prends le premier élément prévu pour ce réseau dont `not_before` ≤ aujourd'hui et dont la condition (`condition`) est remplie.
 2. Sinon **production** de l'épisode suivant du projet du jour (§5), en tenant compte de la dernière leçon de `STRATEGY.md`. **Budget** : `python3 tools/el_fetch.py --summary` ; suivre la recette de `state.json > elevenlabs.recipe`. Si le mois ne permet plus cette recette (crédits restants < recette × jours de production restants), passer à la recette moins chère ; sous 2 000 crédits, ne pas générer, publier ce qui est prêt dans `queue` et le signaler.
 3. Jamais le même thème deux jours de suite sur un réseau. Une même vidéo peut aller sur Instagram et TikTok le même jour.
@@ -69,14 +69,14 @@ python3 tools/asr_check.py OUT/video.mp4 "toutes les répliques"  # voix compré
 Si `asr_check` répond « contrôle des voix indisponible » (code 2) : note-le dans le journal, ce n'est pas bloquant. Un score sous 0,85 est un vrai défaut.
 Puis **regarde** `planche.jpg` et `cover.jpg` avec Read : pas d'écran noir, sous-titres lisibles et pas sur l'objet du plan, mains et visages sans défaut, aucun texte déformé, rien d'interdit (voir les limites de `formats/cine/README.md`). Vérifie aussi que `timeline.json` dit la bonne durée (25 à 40 s) et un choix posé. Un défaut = corriger et remonter, pas publier ; si une image ou un plan généré est raté, en regénérer un seul.
 
-## 7. Publier (Metricool, 19:00)
+## 7. Publier (Metricool, 20:00 à Washington DC)
 1. Renommer en noms uniques : `<date>-<id>.mp4`, `<date>-<id>-cover.jpg`.
 2. `python3 tools/media.py add FICHIER.mp4 FICHIER-cover.jpg` → affiche les liens `https://raw.githubusercontent.com/ia-Fly/7-4MzpTHf-vUj5u/media/...` (vérifiés 200). Exporte `MEDIA_COMMIT_TRAILER` si ta session impose des lignes d'attribution dans les commits.
-3. `createScheduledPost`, `blogId` 7631727, `date` = aujourd'hui 19:00 `+01:00`/`+02:00` selon l'heure d'été, `publicationDate` `{"dateTime": "AAAA-MM-JJT19:00:00", "timezone": "Europe/Paris"}`, `autoPublish` true.
+3. `createScheduledPost`, `blogId` 7631727, `date` et `publicationDate` = les valeurs données par `python3 tools/post_time.py`, `autoPublish` true.
    - **Instagram** : `providers [{"network":"instagram"}]`, `media [lien mp4]`, `videoThumbnailUrl` lien jpg, `text` = légende, `firstCommentText` = question de vote/commentaire, `instagramData {"type":"REEL","showReelOnFeed":true,"isAiGenerated":true}`.
    - **TikTok** : `providers [{"network":"tiktok"}]`, `text` = légende sur UNE ligne, `tiktokData {"title": <même légende une ligne> (OBLIGATOIRE), "privacyOption":"PUBLIC_TO_EVERYONE", "disableComment":false, "disableDuet":false, "disableStitch":false, "commercialContentThirdParty":false, "commercialContentOwnBrand":false, "autoAddMusic":false, "isAigc":true}`, `videoThumbnailUrl` lien jpg. Pas de premier commentaire.
 4. La réponse doit montrer `media` en `https://static.metricool.com/...` (copie faite) → `python3 tools/media.py rm <noms>`.
-5. Si 19:00 est déjà passé quand tu arrives ici : programme dans 15 minutes et note le retard.
+5. Si cette heure est déjà passée quand tu arrives ici : programme dans 15 minutes et note le retard.
 
 ### Légendes (anglais, ≤ 5 hashtags, toujours « AI-generated »)
 - Modèle CALLER ID, Instagram : `3:17 a.m. Your own number is calling you.` / `CALLER ID · Episode 1` / `ANSWER or IGNORE? Comment your choice 👇 The most voted becomes episode 2.` / `AI-generated fiction.` / `#thriller #fiction #story #choices #fyp` ; 1er commentaire : `ANSWER or IGNORE? 👇 The most voted choice becomes episode 2.`
@@ -88,7 +88,7 @@ Puis **regarde** `planche.jpg` et `cover.jpg` avec Read : pas d'écran noir, sou
 - `elevenlabs/ledger.jsonl` et `formats/cine/sound_library.json` : à jour (nouveaux sons compris).
 - `STRATEGY.md` : tableau de stats + une leçon datée (ce qui marche / ne marche pas, chiffres à l'appui) + la prochaine expérience.
 - `journal/AAAA-MM-JJ.md` : stats lues, décision et raison, production (flow, modèles, crédits, contrôle), liens Metricool, amélioration faite.
-- **Une amélioration concrète par jour** (code, thème, son, accroche, légende, règle), testée avant commit. Ne jamais changer l'heure de 19:00 ni la langue sans demande de Matis.
+- **Une amélioration concrète par jour** (code, thème, son, accroche, légende, règle), testée avant commit. Ne jamais changer l'heure de 20:00 à Washington DC ni la langue sans demande de Matis.
 - `git add -A && git commit && git push origin studio` (branche `studio` uniquement ; jamais de suppression de branche, jamais de réécriture d'historique).
 
 ## 9. Rapport final (français, moins de 150 mots)

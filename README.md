@@ -1,6 +1,6 @@
 # Atelier @situation.douteuse
 
-Branche `studio` : l'atelier qui fabrique et publie une vidéo par jour (19 h, Instagram + TikTok) et la mémoire de ce qui marche.
+Branche `studio` : l'atelier qui fabrique et publie une vidéo tous les 2 jours (20 h à Washington DC, Instagram + TikTok) et la mémoire de ce qui marche.
 La branche `media` sert seulement à héberger quelques minutes les vidéos à publier (Metricool lit des liens publics).
 
 | Fichier | Rôle |
