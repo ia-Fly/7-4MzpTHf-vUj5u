@@ -6,8 +6,8 @@ Voix de la bibliothèque ElevenLabs, à garder fixes par série.
 | | Série | Promesse | Moteur | Voix | Recette | Statut |
 |---|---|---|---|---|---|---|
 | A | **OMERTÀ** | Tu dois de l'argent à la mafia, et chaque choix t'enfonce | Vote, suite directe | Narrateur Ra McQueen `BC4NS8v47Nx7XkOSLEK7` · Parrain Obsidian `acrqYoDVmcpJemOxjC39` | Pro | Ép. 4 à faire : vote = DELIVER |
-| B | **CALLER ID** | À 3 h 17, ton propre numéro t'appelle | Vote, suite directe | Ra McQueen, même voix au téléphone (filtre) | Pro | Ép. 1 = pilote |
-| C | **NIGHT DISPATCH** | Tu réponds aux appels d'urgence de nuit ; ce soir, un appel n'est pas normal | Twist puis vote | Narrateur : Ra McQueen · appelants : voix à choisir, filtre téléphone | Hybride (console en code) | À lancer |
+| B | **CALLER ID** | À 3 h 17, ton propre numéro t'appelle | Vote, suite directe | Ra McQueen, même voix au téléphone (filtre) | Pro | Ép. 1 = pilote, vote ANSWER/IGNORE ouvert |
+| C | **NIGHT DISPATCH** | Tu réponds aux appels d'urgence de nuit ; ce soir, un appel n'est pas normal | Twist puis vote | Narrateur : Ra McQueen · appelante ép. 1 : Nora `1ykC5GeLM4dP82qkyo91`, filtre téléphone | Pro (console en code : `kind: console`) | Ép. 1 publié le 07/11, vote SEND/STAY ouvert |
 | D | **THE OFFER** | Un inconnu te fait une offre énorme, à une condition | Dilemme moral, résultat du vote le lendemain | Vendeur : Obsidian ou une voix calme et menaçante | Hybride, 20-25 s | À lancer |
 | E | **COLD FILE** | Une scène, trois suspects, un mensonge : qui ment ? | Énigme A/B/C, la solution est l'épisode suivant | Danny `0wg6fPA7PA9n5PKb8N2e` | Hybride (dossier en code) | À lancer |
 

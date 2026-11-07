@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05",
+ "updated": "2026-11-07",
  "accounts": {
   "instagram": "situation.douteuse",
   "tiktok": "situation.douteus",
@@ -43,6 +43,11 @@
    "date": "2026-11-01",
    "instagram": 6,
    "tiktok": 0
+  },
+  {
+   "date": "2026-11-07",
+   "instagram": 6,
+   "tiktok": 2
   }
  ],
  "queue": [],
@@ -154,6 +159,32 @@
    "metricool_id": 418308935,
    "time": "23:40",
    "url": "https://www.tiktok.com/@situation.douteus/video/7704821104392654113"
+  },
+  {
+   "date": "2026-11-07",
+   "network": "instagram",
+   "id": "night-dispatch-ep1",
+   "format": "cine",
+   "project": "C",
+   "duration_s": 36.6,
+   "choice_at_s": 29.9,
+   "credits": 6668,
+   "flow": "7YBtYvTDRYofL32t5y2R",
+   "metricool_id": 419919047,
+   "time": "20:00 America/New_York (02:00 Paris le 08/11)"
+  },
+  {
+   "date": "2026-11-07",
+   "network": "tiktok",
+   "id": "night-dispatch-ep1",
+   "format": "cine",
+   "project": "C",
+   "duration_s": 36.6,
+   "choice_at_s": 29.9,
+   "credits": 6668,
+   "flow": "7YBtYvTDRYofL32t5y2R",
+   "metricool_id": 419919061,
+   "time": "20:00 America/New_York (02:00 Paris le 08/11)"
   }
  ],
  "votes": {
@@ -187,6 +218,14 @@
    "options": [
     "ANSWER",
     "IGNORE"
+   ],
+   "result": null,
+   "how": "Matis lit les commentaires (Instagram + TikTok) et donne le résultat ; sans résultat, pas d'épisode 2."
+  },
+  "night_dispatch_ep1": {
+   "options": [
+    "SEND",
+    "STAY"
    ],
    "result": null,
    "how": "Matis lit les commentaires (Instagram + TikTok) et donne le résultat ; sans résultat, pas d'épisode 2."
@@ -232,7 +271,7 @@
    "D",
    "E"
   ],
-  "next": "C",
+  "next": "D",
   "omerta_pending": false,
   "list": {
    "A": {
@@ -278,7 +317,23 @@
     "format": "cine",
     "status": "active",
     "episodes": 1,
-    "stats": {},
+    "stats": {
+     "ig_caller-id-ep1": {
+      "views": 112,
+      "watched_pct": 23.5,
+      "skip": 68.6,
+      "comments": 1,
+      "likes": 1,
+      "avg_watch_s": 8.0,
+      "age_h": 38
+     },
+     "tt_caller-id-ep1": {
+      "views": 786,
+      "likes": 4,
+      "comments": 1,
+      "shares": 0
+     }
+    },
     "note": "Ép. 1 publié le 05/11/2026 à 23:40 (flow cuSYy0Hs63XrJf0fCN6Q), v1 sans retouche de la photo, à la demande de Matis. Vote ANSWER/IGNORE ouvert : pas d'ép. 2 sans résultat donné par Matis.",
     "episodes_ids": [
      "caller-id-ep1"
@@ -288,9 +343,12 @@
     "name": "NIGHT DISPATCH",
     "format": "cine",
     "status": "active",
-    "episodes": 0,
+    "episodes": 1,
     "stats": {},
-    "note": "À lancer. Voir formats/cine/series/README.md"
+    "note": "Ép. 1 programmé le 07/11 pour 20:00 à Washington (flow 7YBtYvTDRYofL32t5y2R). Ouverture en flash-forward (console rouge dès 0 s). Vote SEND/STAY ouvert : pas d'ép. 2 sans résultat donné par Matis. Voix appelante : Nora 1ykC5GeLM4dP82qkyo91 (filtre phone).",
+    "episodes_ids": [
+     "night-dispatch-ep1"
+    ]
    },
    "D": {
     "name": "THE OFFER",

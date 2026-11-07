@@ -59,6 +59,7 @@ Ton adulte : tension, menace, dilemmes, zones grises. Mais **jamais** : gore, sa
 ## Format de episode.json
 - `voices` : `{"N": {"file", "words", "phone": bool}}`.
 - `lines` : `{"id", "voice", "text", "gap", "keywords", "chunks", "pre", "gain_db"}` ; `text` sans balises, identique à ce qui est dit, découpé en répliques pour maîtriser le rythme (`gap` = silence après).
-- `shots` : `{"id", "start", "kind", ...}` ; `start` = `"L3"`, `"L3.end"`, `"L3+0.4"`, `"S2"` ou un nombre. `kind` : `video` (file, zoom, center, offset, speed, screen), `still` (file, move ou zoom+center, screen), `phone` (bg, ui : `incoming`, `active`, `ended`), `led` (seq), `end` (a, b, question, cta1, cta2, hold).
+- `shots` : `{"id", "start", "kind", ...}` ; `start` = `"L3"`, `"L3.end"`, `"L3+0.4"`, `"S2"` ou un nombre. `kind` : `video` (file, zoom, center, offset, speed, screen), `still` (file, move ou zoom+center, screen), `phone` (bg, ui : `incoming`, `active`, `ended`), `console` (bg, console : `elapsed`, `status`, `caller`, `line`, `typed` ou `type {text, at, cps}`, `alert {text, at}`, `y` — console d'appel de NIGHT DISPATCH, onde réactive à la voix), `led` (seq), `end` (a, b, question, cta1, cta2, hold).
+- `lines[].skip: true` : réplique présente dans la prise mais coupée au montage (le découpage reste juste). Ne jamais simplement retirer une réplique d'une prise : ses mots iraient dans la réplique voisine.
 - `sfx` : `{"file", "at", "gain_db", "until", "trim", "fade_in", "fade_out", "bed"}` ; `bed: true` = baissé sous la voix.
 - `music`, `impacts` (`shake`, `punch`, `flash`), `hud` (bandeau et heure), `cover` (file, title, episode, subtitle, y, screen).

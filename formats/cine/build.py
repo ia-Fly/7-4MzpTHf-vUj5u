@@ -92,6 +92,7 @@ class Timeline:
             self.tracks[v] = decode(os.path.join(assets, ep['voices'][v]['file']))
             found = align(lst, load_words(os.path.join(assets, ep['voices'][v]['words'])))
             self.src.update(segment_lines(self.tracks[v], lst, found))
+        ep['lines'] = [ln for ln in ep['lines'] if not ln.get('skip')]   # réplique coupée au montage : découpée dans la prise, jamais placée
         for ln in ep['lines']:
             s0, e0, wd = self.src[ln['id']]; start = t + float(ln.get('pre', 0)); a0 = max(0.0, s0 - .015); b0 = e0 + .06
             off = start - a0; d = b0 - a0
@@ -376,6 +377,20 @@ def render(ep, tl, assets, out_mp4, voice, preview=None):
             b = 1.0 if P['type'] != 'ended' else max(.25, 1 - p * .75)
             frame = ui.phone_on(bg_cache[key], scr, t=t, vibrate=float(P.get('vibrate', 0)), tilt=.012, scale=.97 + .03 * p + punch, brightness=b)
             frame = np.roll(frame, (int(dy * .4), int(dx * .4)), axis=(0, 1)); grain = .55
+        elif kind == 'console':
+            key = sh.get('bg')
+            if key not in bg_cache:
+                b = cv2.imread(os.path.join(assets, key)) if key else np.zeros((H, W, 3), np.uint8)
+                b = cv2.resize(b, (W, H), interpolation=cv2.INTER_AREA) if key else b; bg_cache[key] = (cv2.GaussianBlur(b, (0, 0), 22).astype(np.float32) * .42).astype(np.uint8)
+            C = sh.get('console', {}); typed = C.get('typed', '')
+            if C.get('type'):
+                ty = C['type']; t_on = tl.T(ty['at']); k = int(max(0.0, t - t_on) * float(ty.get('cps', 9))); typed = ty['text'][:k]
+            al = C.get('alert'); alert = None; alert_p = 0.0
+            if al and t >= tl.T(al['at']): alert = al['text']; alert_p = min(1.0, (t - tl.T(al['at'])) / .15)
+            env = line_env(voice, t) if C.get('live', True) else None
+            pan = ui.console_screen(float(C.get('elapsed', 0)) + lt, C.get('line', 'LINE 4'), C.get('status', 'ACTIVE CALL'), C.get('caller', 'UNKNOWN'), typed, True, alert, alert_p, env)
+            frame = bg_cache[key].copy(); z = 1.0 + .04 * p + punch; pw, ph = int(pan.shape[1] * z), int(pan.shape[0] * z)
+            pan = cv2.resize(pan, (pw, ph), interpolation=cv2.INTER_LINEAR); ui.over(frame, pan, (W - pw) // 2 + int(dx * .4), int(H * float(C.get('y', .16))) + int(dy * .4)); grain = .55
         elif kind == 'led':
             seq = [(float(a), v) for a, v in sh['seq']]; txt = next(v for a, v in reversed(seq) if a <= lt + 1e-6)
             ck = 'led' + txt
@@ -407,7 +422,7 @@ def render(ep, tl, assets, out_mp4, voice, preview=None):
                 act = max(0, sum(1 for a, b in g['times'] if a <= t + .02) - 1); key = (id(g), act)
                 if key not in cap_cache: cap_cache[key] = ui.caption_layer(g['words'], act, g['keys'], ui.ICE if g['phone'] else ui.SIGNAL)
                 c = cap_cache[key]; age = t - g['t0']; ui.over(frame, c, (W - c.shape[1]) // 2, int(H * .635) - (c.shape[0] // 2) + int(max(0, .08 - age) * 60))
-                if g['phone'] and kind != 'phone':
+                if g['phone'] and kind not in ('phone', 'console'):
                     w_ = ui.wave_layer(line_env(voice, t, 26)); ui.over(frame, w_, (W - w_.shape[1]) // 2, int(H * .635) - c.shape[0] // 2 - w_.shape[0] - 8)
         if proc is not None: proc.stdin.write(frame.tobytes())
         else: previews.append((fi, frame))

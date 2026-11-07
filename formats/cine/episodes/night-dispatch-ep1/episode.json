@@ -1,0 +1,555 @@
+{
+ "id": "night-dispatch-ep1",
+ "series": "NIGHT DISPATCH",
+ "episode": 1,
+ "lead": 0.05,
+ "duck_db": 8,
+ "voice_rms_db": -18.5,
+ "voices": {
+  "N": {
+   "file": "voice_n.mp3",
+   "words": "voice_n.words.json"
+  },
+  "C": {
+   "file": "voice_c_phone.mp3",
+   "words": "voice_c.words.json",
+   "phone": true
+  }
+ },
+ "lines": [
+  {
+   "id": "N1",
+   "voice": "N",
+   "text": "She just gave you your own address.",
+   "gap": 0.5,
+   "keywords": [
+    "OWN",
+    "ADDRESS"
+   ],
+   "chunks": [
+    3,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "N2",
+   "voice": "N",
+   "text": "Two minutes earlier.",
+   "gap": 0.25,
+   "keywords": [
+    "EARLIER"
+   ]
+  },
+  {
+   "id": "N3",
+   "voice": "N",
+   "text": "You answer emergency calls at night.",
+   "gap": 0.19999999999999998,
+   "keywords": [
+    "NIGHT"
+   ],
+   "chunks": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "N4",
+   "voice": "N",
+   "text": "2:40 a.m. Line four.",
+   "gap": 0.19999999999999998,
+   "keywords": [
+    "2:40",
+    "FOUR."
+   ],
+   "chunks": [
+    2,
+    2
+   ]
+  },
+  {
+   "id": "N5",
+   "voice": "N",
+   "text": "A woman is whispering.",
+   "gap": 0.35,
+   "keywords": [
+    "WHISPERING."
+   ]
+  },
+  {
+   "id": "C1",
+   "voice": "C",
+   "text": "Hi. I'd like to order a large pizza.",
+   "gap": 0.3,
+   "keywords": [
+    "PIZZA."
+   ],
+   "chunks": [
+    1,
+    3,
+    3
+   ],
+   "gain_db": 3
+  },
+  {
+   "id": "N6",
+   "voice": "N",
+   "text": "She wants to order a pizza.",
+   "gap": 0.2,
+   "skip": true
+  },
+  {
+   "id": "N7",
+   "voice": "N",
+   "text": "You almost hang up.",
+   "gap": 0.25,
+   "keywords": [
+    "HANG"
+   ],
+   "chunks": [
+    2,
+    2
+   ]
+  },
+  {
+   "id": "C2",
+   "voice": "C",
+   "text": "Please. Don't hang up.",
+   "gap": 0.24999999999999997,
+   "keywords": [
+    "PLEASE.",
+    "HANG"
+   ],
+   "chunks": [
+    1,
+    3
+   ],
+   "gain_db": 3
+  },
+  {
+   "id": "N8",
+   "voice": "N",
+   "text": "Then you hear it.",
+   "gap": 0.15
+  },
+  {
+   "id": "N9",
+   "voice": "N",
+   "text": "She's terrified.",
+   "gap": 0.19999999999999998,
+   "keywords": [
+    "TERRIFIED."
+   ]
+  },
+  {
+   "id": "N10",
+   "voice": "N",
+   "text": "You ask for her address.",
+   "gap": 0.25,
+   "keywords": [
+    "ADDRESS."
+   ],
+   "chunks": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "C3",
+   "voice": "C",
+   "text": "Forty-one Alder Road.",
+   "gap": 0.45,
+   "keywords": [
+    "ALDER",
+    "ROAD."
+   ],
+   "gain_db": 3
+  },
+  {
+   "id": "N11",
+   "voice": "N",
+   "text": "You know this address.",
+   "gap": 0.3,
+   "keywords": [
+    "KNOW"
+   ],
+   "chunks": [
+    2,
+    2
+   ]
+  },
+  {
+   "id": "N12",
+   "voice": "N",
+   "text": "It's your house.",
+   "gap": 0.25,
+   "keywords": [
+    "YOUR",
+    "HOUSE."
+   ]
+  },
+  {
+   "id": "N13",
+   "voice": "N",
+   "text": "You live alone.",
+   "gap": 0.45,
+   "keywords": [
+    "ALONE."
+   ]
+  },
+  {
+   "id": "C4",
+   "voice": "C",
+   "text": "He just came back upstairs.",
+   "gap": 0.5,
+   "keywords": [
+    "HE",
+    "UPSTAIRS."
+   ],
+   "chunks": [
+    2,
+    3
+   ],
+   "gain_db": 3
+  },
+  {
+   "id": "N14",
+   "voice": "N",
+   "text": "Do you send a patrol...",
+   "gap": 0.1,
+   "keywords": [
+    "PATROL..."
+   ],
+   "chunks": [
+    3,
+    2
+   ]
+  },
+  {
+   "id": "N15",
+   "voice": "N",
+   "text": "or stay on the line?",
+   "gap": 0.1,
+   "keywords": [
+    "STAY"
+   ],
+   "chunks": [
+    2,
+    3
+   ]
+  }
+ ],
+ "hud": {
+  "left": "NIGHT DISPATCH  |  EP. 1",
+  "clock": [
+   [
+    0,
+    "02:42 AM"
+   ],
+   [
+    "N2",
+    "02:40 AM"
+   ],
+   [
+    "N11",
+    "02:42 AM"
+   ]
+  ]
+ },
+ "shots": [
+  {
+   "id": "S1",
+   "start": 0,
+   "kind": "console",
+   "bg": "I1.png",
+   "console": {
+    "elapsed": 112,
+    "status": "ACTIVE CALL",
+    "typed": "41 ALDER RD",
+    "alert": {
+     "text": "MATCH: EMPLOYEE HOME ADDRESS",
+     "at": -0.2
+    }
+   }
+  },
+  {
+   "id": "S2",
+   "start": "N2-0.05",
+   "kind": "video",
+   "file": "V1.mp4",
+   "zoom": [
+    1.04,
+    1.14
+   ],
+   "shake": 0.4,
+   "fade_in": 0.0
+  },
+  {
+   "id": "S3",
+   "start": "N4",
+   "kind": "console",
+   "bg": "I1.png",
+   "console": {
+    "elapsed": 0,
+    "status": "INCOMING CALL",
+    "typed": ""
+   }
+  },
+  {
+   "id": "S4",
+   "start": "N5",
+   "kind": "still",
+   "file": "I3.png",
+   "move": "push_in",
+   "shake": 0.5
+  },
+  {
+   "id": "S5",
+   "start": "C1",
+   "kind": "console",
+   "bg": "I1.png",
+   "console": {
+    "elapsed": 4,
+    "status": "ACTIVE CALL",
+    "typed": ""
+   }
+  },
+  {
+   "id": "S6",
+   "start": "N7",
+   "kind": "video",
+   "file": "V2.mp4",
+   "zoom": [
+    1.02,
+    1.08
+   ],
+   "shake": 0.4
+  },
+  {
+   "id": "S7",
+   "start": "N8",
+   "kind": "still",
+   "file": "I3.png",
+   "zoom": [
+    1.25,
+    1.4
+   ],
+   "center": [
+    0.55,
+    0.45
+   ],
+   "shake": 0.7
+  },
+  {
+   "id": "S8",
+   "start": "N10",
+   "kind": "console",
+   "bg": "I1.png",
+   "console": {
+    "elapsed": 19,
+    "status": "ACTIVE CALL",
+    "type": {
+     "text": "41 ALDER RD",
+     "at": "C3+0.15",
+     "cps": 7
+    },
+    "alert": {
+     "text": "MATCH: EMPLOYEE HOME ADDRESS",
+     "at": "N11+0.55"
+    }
+   }
+  },
+  {
+   "id": "S9",
+   "start": "N12",
+   "kind": "video",
+   "file": "V4.mp4",
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "shake": 0.5
+  },
+  {
+   "id": "S10",
+   "start": "C4",
+   "kind": "video",
+   "file": "V5.mp4",
+   "zoom": [
+    1.0,
+    1.08
+   ],
+   "shake": 0.5,
+   "offset": 2.3,
+   "speed": 0.75
+  },
+  {
+   "id": "S11",
+   "start": "N14",
+   "kind": "still",
+   "file": "I5.png",
+   "zoom": [
+    1.1,
+    1.3
+   ],
+   "center": [
+    0.5,
+    0.35
+   ],
+   "shake": 0.6
+  },
+  {
+   "id": "S12",
+   "start": "N15.end+0.08",
+   "kind": "end",
+   "hold": 3.6,
+   "a": "SEND",
+   "b": "STAY",
+   "question": "WHAT DO YOU DO?",
+   "cta1": "COMMENT YOUR CHOICE",
+   "cta2": "MOST VOTED = EPISODE 2 \u00b7 FOLLOW"
+  }
+ ],
+ "impacts": [
+  {
+   "at": 0.05,
+   "kind": "punch",
+   "amp": 0.8
+  },
+  {
+   "at": "N2",
+   "kind": "flash",
+   "amp": 0.45
+  },
+  {
+   "at": "C1",
+   "kind": "shake",
+   "amp": 0.4
+  },
+  {
+   "at": "C2",
+   "kind": "punch",
+   "amp": 0.6
+  },
+  {
+   "at": "N11+0.55",
+   "kind": "punch",
+   "amp": 1
+  },
+  {
+   "at": "N11+0.55",
+   "kind": "flash",
+   "amp": 0.35
+  },
+  {
+   "at": "N12",
+   "kind": "shake",
+   "amp": 1.0
+  },
+  {
+   "at": "C4",
+   "kind": "punch",
+   "amp": 1
+  },
+  {
+   "at": "S12",
+   "kind": "shake",
+   "amp": 0.7
+  }
+ ],
+ "music": {
+  "file": "score.mp3",
+  "gain_db": -13,
+  "fade_out": 1.0
+ },
+ "sfx": [
+  {
+   "file": "callcenter.mp3",
+   "at": 0,
+   "until": "N12",
+   "gain_db": -20,
+   "bed": true,
+   "fade_in": 0.05,
+   "fade_out": 0.4
+  },
+  {
+   "file": "boom.mp3",
+   "at": 0.05,
+   "gain_db": -11,
+   "trim": 3,
+   "fade_out": 0.6
+  },
+  {
+   "file": "whoosh.mp3",
+   "at": "N2-0.15",
+   "gain_db": -16
+  },
+  {
+   "file": "breath.mp3",
+   "at": "C1-0.9",
+   "gain_db": -17,
+   "fade_out": 0.3,
+   "lo": 300,
+   "hi": 3400
+  },
+  {
+   "file": "typing.mp3",
+   "at": "N10+0.2",
+   "gain_db": -16,
+   "trim": 1.6,
+   "fade_out": 0.2
+  },
+  {
+   "file": "typing.mp3",
+   "at": "C3+0.15",
+   "gain_db": -15,
+   "trim": 1.6,
+   "fade_out": 0.1
+  },
+  {
+   "file": "boom.mp3",
+   "at": "N11+0.55",
+   "gain_db": -10,
+   "trim": 3,
+   "fade_out": 0.8
+  },
+  {
+   "file": "heart.mp3",
+   "at": "N11",
+   "until": "total",
+   "gain_db": -14,
+   "bed": true,
+   "fade_in": 0.4,
+   "fade_out": 0.5
+  },
+  {
+   "file": "boom.mp3",
+   "at": "C4",
+   "gain_db": -9,
+   "trim": 3.5,
+   "fade_out": 1
+  },
+  {
+   "file": "riser.mp3",
+   "at": "S12-3.95",
+   "gain_db": -15
+  },
+  {
+   "file": "boom.mp3",
+   "at": "S12",
+   "gain_db": -9,
+   "trim": 3.5,
+   "fade_out": 1
+  }
+ ],
+ "cover": {
+  "file": "I1.png",
+  "zoom": 1.05,
+  "title": "NIGHT DISPATCH",
+  "episode": "EPISODE 1",
+  "subtitle": "THE CALLER KNOWS YOUR ADDRESS",
+  "y": 300
+ }
+}

@@ -24,7 +24,7 @@ Mis à jour par chaque passage de la tâche planifiée. Les chiffres viennent de
 
 ## Système des 5 projets (consigne de Matis du 29/10/2026, en vigueur à partir du 31/10)
 - 5 projets (séries/formats) tournent en même temps ; **une seule vidéo par passage (tous les 2 jours)**, à chaque fois le projet suivant de la rotation (A, B, C, D, E, A…). La vidéo va sur Instagram et TikTok (TikTok peut avoir un épisode de décalage via la file).
-- **Rotation depuis le 05/11/2026 (cycle 2) : A OMERTÀ · B CALLER ID · C NIGHT DISPATCH · D THE OFFER · E COLD FILE** (`formats/cine/series/README.md`). B ép. 1 publié le 05/11. Prochain : C NIGHT DISPATCH, épisode 1 (07/11). Fusion, Escape, Marble Race et Fruit Drama sont sortis hors bilan de cycle, à la demande de Matis.
+- **Rotation depuis le 05/11/2026 (cycle 2) : A OMERTÀ · B CALLER ID · C NIGHT DISPATCH · D THE OFFER · E COLD FILE** (`formats/cine/series/README.md`). B ép. 1 publié le 05/11. C ép. 1 programmé le 07/11 (20:00 Washington). Prochain : D THE OFFER, épisode 1 (09/11). Fusion, Escape, Marble Race et Fruit Drama sont sortis hors bilan de cycle, à la demande de Matis.
 - **Bilan de cycle** quand les 5 projets en cours ont chacun 5 épisodes publiés et ≥ 48 h de stats sur leur 5e : comparer médiane des vues, % regardé, skip, commentaires/vues, abonnés gagnés (IG + TikTok). Supprimer le moins bon, garder les autres, créer un nouveau projet à 0 épisode à sa place (même rang dans la rotation), puis continuer. Chaque bilan est écrit ici (classement, projet supprimé, nouveau projet et pourquoi) et dans le rapport.
 - Omertà : si son tour arrive sans résultat du vote précédent dans `state.json > votes`, on publie le projet suivant et on revient à Omertà ensuite. Jamais de résultat inventé.
 - Compteur d'épisodes : `state.json > projects` (épisodes anglais publiés ; Omertà compte ses ép. 1 à 3 anglais).
@@ -54,12 +54,16 @@ Mis à jour par chaque passage de la tâche planifiée. Les chiffres viennent de
 | 30/10 | TikTok | omerta-ep2-en | Omertà (EN) | 44 s | 0 (Metricool, 01/11 — à confirmer) | | | 0 | 0 | 0 | |
 | 31/10 | IG | fusion-planets-s10 | Fusion / planets (proj. B ép. 1) | 48 s | 1 698 (19 h) | 18,8 s (39 %) | 29,5 % | 16 | 1 | 0 | 0 |
 | 31/10 | TikTok | fusion-planets-s10 | Fusion / planets (proj. B ép. 1) | 48 s | n.d. (pas encore dans Metricool) | | | | | | |
-| 01/11 | IG | escape-s1123 | Escape (proj. C ép. 1) | 34 s | à lire | | | | | | |
-| 01/11 | TikTok | escape-s1123 | Escape (proj. C ép. 1) | 34 s | à lire | | | | | | |
+| 01/11 | IG | escape-s1123 | Escape (proj. C ép. 1) | 34 s | 1 939 | 11,0 s (32 %) | 40 % | 9 | 1 | 0 | 0 |
+| 01/11 | TikTok | escape-s1123 | Escape (proj. C ép. 1) | 34 s | 286 | n.d. | n.d. | 2 | 0 | 0 | n.d. |
+| 05/11 | IG | caller-id-ep1 | CINE · CALLER ID ép. 1 | 34 s | 112 (38 h) | 8,0 s (23 %) | 69 % | 1 | 1 | 0 | 0 |
+| 05/11 | TikTok | caller-id-ep1 | CINE · CALLER ID ép. 1 | 34 s | 786 | n.d. | n.d. | 4 | 1 | 0 | n.d. |
+| 07/11 | IG + TikTok | night-dispatch-ep1 | CINE · NIGHT DISPATCH ép. 1 | 37 s | programmé 08/11 02:00 Paris | | | | | | |
 
-Abonnés : 29/10 → IG 4 · TikTok 0 ; 30/10 → IG 5 (+1) · TikTok 0 ; 31/10 → IG 5 (=) · TikTok 0 (=) ; 01/11 → IG 6 (+1) · TikTok 0 (=).
+Abonnés : 07/11 → IG 6 (= depuis 01/11) · TikTok 2 (+2 depuis 01/11, dont +1 le 05/11) ; 29/10 → IG 4 · TikTok 0 ; 30/10 → IG 5 (+1) · TikTok 0 ; 31/10 → IG 5 (=) · TikTok 0 (=) ; 01/11 → IG 6 (+1) · TikTok 0 (=).
 
 ## Leçons datées
+- 07/11 : CALLER ID ép. 1 (premier CINE), Instagram : 112 vues en 38 h, skip 69 % (pire score du compte, la moyenne est 25-40 %), 23 % regardé. TikTok : 786 vues (2e meilleur TikTok), +1 abonné le jour même. Instagram n'a presque pas distribué le reel : l'ouverture (réveil, téléphone sombre) ne dit rien en 1 s, et il a été publié à 23:40 à Paris hors créneau. → NIGHT DISPATCH ép. 1 ouvre en flash-forward : la console rouge « MATCH: EMPLOYEE HOME ADDRESS » et « She just gave you your own address » dès la 1re image (la recette d'Omertà ép. 2, skip 26 %). À comparer sur le skip Instagram.
 - 05/11 : pilote CALLER ID monté sur le format CINE. Coûts réels mesurés : plan Veo Lite 4 s 1080p sans son = 1 212 crédits, image Seedream 5 Lite 2K = 212, voix ≈ 1 crédit/caractère, bruitage 3,3/s, musique 15/s. La vidéo avec son généré coûte 3 fois plus : on la génère muette et on fait le son à part. Hypothèse à mesurer : des images réalistes et une vraie voix font baisser le skip sous 25 % et monter le % regardé au-dessus de 57 % (meilleur score : Omertà ép. 3).
 - 05/11 (technique) : les temps de transcription d'une voix générée sont approximatifs (faux sur « 3:17 ») : le monteur découpe donc sur les silences réels, et il faut un `[pause]` entre chaque réplique. Veo peut glisser un défaut au milieu d'un plan (œil fermé 2 s) : toujours regarder la planche des clips. Whisper comprend le mix du pilote à 0,95, voix chuchotée au téléphone comprise.
 - 01/11 : Fusion planets (48 s, ~19 h) : 1 698 vues (≈ Omertà ép. 3 au même âge), mais seulement 39 % regardé (18,8 s) et 1 commentaire (0,06 % des vues, 5× moins qu'Omertà). Skip 29,5 % (Omertà ép. 3 : 24 %). La simulation de 48 s retient moins qu'une fiction de 26 s ; les simulations suivantes passent à 34 s (Escape, Marble Race) pour tester la durée. +1 abonné IG (6). TikTok : toujours 0 abonné ; l'ép. 2 Omertà affiche 0 vue dans Metricool (donnée à reconfirmer demain).
@@ -76,6 +80,7 @@ Abonnés : 29/10 → IG 4 · TikTok 0 ; 30/10 → IG 5 (+1) · TikTok 0 ; 31/10 
 4. Accroche : montrer le choix dès 0 s en petit, dans le bandeau.
 
 ## Prochaine expérience
+- 07/11 → 09/11 : flash-forward dès 0 s (NIGHT DISPATCH ép. 1) contre ouverture lente (CALLER ID ép. 1, skip 69 %). Si le skip Instagram passe sous 35 %, toutes les séries ouvrent sur leur pire moment (règle d'écriture). Première publication à 20:00 à Washington : comparer aussi les vues des 24 premières heures.
 - Comparer les 5 séries sur leurs 5 premiers épisodes : skip, % regardé, commentaires/vues, abonnés gagnés. Hypothèse : les votes (CALLER ID, OMERTÀ) et l'énigme (COLD FILE) donnent plus de commentaires que le dilemme seul.
 
 ## Votes Omertà

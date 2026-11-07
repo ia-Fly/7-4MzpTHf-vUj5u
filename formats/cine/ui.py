@@ -256,3 +256,43 @@ def end_card(bg, a, b, question, cta1, cta2, t=0.0):
     centered(d, W / 2, 1160, cta1, condensed(66), (255, 255, 255, int(255 * ease)))
     centered(d, W / 2, 1240, cta2, mono(37, 600), (232, 234, 238, int(245 * ease)))
     return over(frame, to_bgra(im))
+
+
+# ---------- console d'appel (NIGHT DISPATCH) ----------
+def console_screen(elapsed, line='LINE 4', status='ACTIVE CALL', caller='UNKNOWN', typed='', cursor=True, alert=None, alert_p=1.0, env=None, w=920, h=770):
+    """Console fictive d'un centre d'appels de nuit, dessinée en code (aucun vrai service, aucun logo).
+    typed = texte déjà tapé dans le champ LOCATION ; alert = bandeau rouge (ex. « MATCH: EMPLOYEE HOME ADDRESS ») qui apparaît avec alert_p (0→1)."""
+    im = Image.new('RGBA', (w, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.rounded_rectangle([0, 0, w - 1, h - 1], radius=26, fill=(8, 14, 22, 228), outline=(70, 110, 140, 200), width=3)
+    f_s, f_m, f_b = mono(28, 600), mono(34, 600), mono(46, 700)
+    d.text((40, 34), 'NIGHT DISPATCH', font=f_s, fill=ICE + (230,))
+    m, s = divmod(int(elapsed), 60); tm = f'{m:02d}:{s:02d}'; bb = d.textbbox((0, 0), tm, font=f_m)
+    d.ellipse([w - 70 - (bb[2] - bb[0]) - 30, 44, w - 70 - (bb[2] - bb[0]) - 12, 62], fill=SIGNAL + (255,) if (elapsed % 1) < .55 else (110, 40, 30, 255))
+    d.text((w - 40 - (bb[2] - bb[0]), 30), tm, font=f_m, fill=(255, 255, 255, 235))
+    d.line([40, 96, w - 40, 96], fill=(70, 110, 140, 150), width=2)
+    rows = [('LINE', line), ('STATUS', status), ('CALLER', caller)]
+    y = 126
+    for k, v in rows:
+        d.text((40, y), k, font=f_s, fill=(140, 160, 175, 230)); d.text((280, y - 4), v, font=f_m, fill=(255, 255, 255, 240)); y += 62
+    # onde de la ligne
+    y += 10; n = 34; bw = 14; gap = (w - 80 - n * bw) / (n - 1); mid = y + 60
+    for i in range(n):
+        v = float(env[i % len(env)]) if env is not None else .05; hh = max(3, v * 54); x = 40 + i * (bw + gap)
+        d.rounded_rectangle([x, mid - hh, x + bw, mid + hh], radius=5, fill=ICE + (220,))
+    y = mid + 90
+    d.text((40, y), 'LOCATION', font=f_s, fill=(140, 160, 175, 230)); y += 46
+    box = [40, y, w - 40, y + 104]; hot = alert is not None and alert_p > 0
+    d.rounded_rectangle(box, radius=14, fill=(60, 10, 8, 235) if hot else (16, 26, 38, 240), outline=SIGNAL + (255,) if hot else (90, 130, 160, 220), width=3)
+    txt = typed + ('_' if cursor and (elapsed % .8) < .45 else '')
+    fb = f_b
+    d.text((66, y + 24), txt, font=fb, fill=SIGNAL + (255,) if hot else (255, 255, 255, 250))
+    y += 140
+    if hot:
+        a = int(255 * min(1.0, alert_p)); bh = 92; flick = 1.0 if (elapsed * 4) % 1 < .7 else .75
+        d.rounded_rectangle([40, y, w - 40, y + bh], radius=14, fill=(SIGNAL[0], SIGNAL[1], SIGNAL[2], int(a * flick)))
+        f = condensed(58); bb = d.textbbox((0, 0), alert, font=f)
+        while bb[2] - bb[0] > w - 120: f = condensed(f.size - 4); bb = d.textbbox((0, 0), alert, font=f)
+        d.text(((w - (bb[2] - bb[0])) / 2 - bb[0], y + (bh - (bb[3] - bb[1])) / 2 - bb[1]), alert, font=f, fill=(255, 255, 255, a))
+    sh = Image.new('RGBA', (w + 80, h + 80), (0, 0, 0, 0)); sd = ImageDraw.Draw(sh); sd.rounded_rectangle([40, 50, w + 40, h + 50], radius=30, fill=(0, 0, 0, 200))
+    sh = sh.filter(ImageFilter.GaussianBlur(22)); sh.alpha_composite(im, (40, 40))
+    return to_bgra(sh)
