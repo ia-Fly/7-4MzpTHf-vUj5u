@@ -79,7 +79,7 @@ def avatar(size, photo=None):
     return out.resize((size, size), Image.LANCZOS)
 
 
-def screen_incoming(sw, sh, name, number, label='Incoming call', photo=None, ring=0.0):
+def screen_incoming(sw, sh, name, number, label='Incoming call', photo=None, ring=0.0, decline='Decline', accept='Accept'):
     im = Image.new('RGBA', (sw, sh), (9, 12, 18, 255)); d = ImageDraw.Draw(im)
     for y in range(sh):
         v = y / sh; d.line([(0, y), (sw, y)], fill=(int(10 + 10 * (1 - v)), int(14 + 14 * (1 - v)), int(22 + 22 * (1 - v)), 255))
@@ -92,21 +92,72 @@ def screen_incoming(sw, sh, name, number, label='Incoming call', photo=None, rin
     centered(d, cx, int(sh * .41), name, inter(int(sw * .155), 600), (250, 250, 250, 255))
     if number: centered(d, cx, int(sh * .515), number, inter(int(sw * .052), 400), (160, 168, 180, 255))
     r = int(sw * .105); by = int(sh * .80)
-    for bx, col, down, lab in ((sw * .26, (232, 62, 54, 255), True, 'Decline'), (sw * .74, (52, 199, 89, 255), False, 'Accept')):
+    for bx, col, down, lab in ((sw * .26, (232, 62, 54, 255), True, decline), (sw * .74, (52, 199, 89, 255), False, accept)):
         d.ellipse([bx - r, by - r, bx + r, by + r], fill=col); handset(d, bx, by, r * .62, (255, 255, 255, 255), down)
         centered(d, bx, by + r + int(sh * .016), lab, inter(int(sw * .04), 500), (200, 205, 214, 255))
     return im
 
 
-def screen_ink(sw, sh, name, label='Incoming call', number=''):
+def screen_ink(sw, sh, name, label='Incoming call', number='', status='', battery=None):
     """Écran d'appel clair à coller sur un vrai téléphone filmé : l'écran reste lumineux, seule « l'encre » est ajoutée."""
     im = Image.new('RGBA', (sw, sh), (0, 0, 0, 0)); d = ImageDraw.Draw(im); cx = sw // 2; ink = (8, 16, 28, 245)
+    if status or battery is not None: _status_ink(d, sw, sh, status, battery)
     centered(d, cx, int(sh * .10), label, inter(int(sw * .075), 600), (20, 34, 52, 230))
     centered(d, cx, int(sh * .22), name, inter(int(sw * .27), 700), ink)
     if number: centered(d, cx, int(sh * .46), number, inter(int(sw * .07), 500), (20, 34, 52, 220))
     r = int(sw * .125); by = int(sh * .80)
     for bx, col, down in ((sw * .26, (214, 40, 36, 255), True), (sw * .74, (28, 168, 70, 255), False)):
         d.ellipse([bx - r, by - r, bx + r, by + r], fill=col); handset(d, bx, by, r * .62, (255, 255, 255, 255), down)
+    return to_bgra(im)
+
+
+def _status_ink(d, sw, sh, status, battery, time_txt='', ink=(8, 16, 28, 235)):
+    """Barre d'état en encre sombre (écran clair) : réseau à gauche, batterie à droite, rouge sous 5 %."""
+    f = inter(int(sw * .046), 600); y = int(sh * .028); x = int(sw * .075)
+    if time_txt: d.text((x, y), time_txt, font=f, fill=ink); x += d.textbbox((0, 0), time_txt, font=f)[2] + int(sw * .03)
+    if status: d.text((x, y), status, font=f, fill=ink)
+    if battery is not None:
+        low = battery <= 5; col = (214, 40, 36, 255) if low else ink; bw, bh = int(sw * .085), int(sh * .021); bx = sw - int(sw * .075) - bw; by = y + int(sh * .004)
+        txt = f'{battery} %'; tw = d.textbbox((0, 0), txt, font=f)[2]; d.text((bx - tw - int(sw * .02), y), txt, font=f, fill=col)
+        d.rounded_rectangle([bx, by, bx + bw, by + bh], radius=int(bh * .28), outline=col, width=max(2, int(sw * .006)))
+        d.rectangle([bx + bw, by + bh * .3, bx + bw + int(sw * .008), by + bh * .7], fill=col)
+        fw = max(2, int((bw - 8) * battery / 100)); d.rectangle([bx + 4, by + 4, bx + 4 + fw, by + bh - 4], fill=col)
+
+
+def ink_lock(sw, sh, time_txt, status='', battery=None, date='', notif=None):
+    """Écran verrouillé clair en encre sombre, à coller sur un vrai écran blanc. notif = (expéditeur, texte) : bannière de message."""
+    im = Image.new('RGBA', (sw, sh), (0, 0, 0, 0)); d = ImageDraw.Draw(im); cx = sw // 2; ink = (8, 16, 28, 240)
+    _status_ink(d, sw, sh, status, battery)
+    if date: centered(d, cx, int(sh * .12), date, inter(int(sw * .06), 600), (20, 34, 52, 220))
+    centered(d, cx, int(sh * .15), time_txt, inter(int(sw * .27), 700), ink)
+    if notif:
+        x0, y0, x1, y1 = int(sw * .05), int(sh * .46), int(sw * .95), int(sh * .60)
+        d.rounded_rectangle([x0, y0, x1, y1], radius=int(sw * .06), fill=(226, 230, 236, 245))
+        d.text((x0 + int(sw * .05), y0 + int(sh * .018)), notif[0], font=inter(int(sw * .058), 700), fill=ink)
+        d.text((x1 - int(sw * .22), y0 + int(sh * .02)), 'maint.', font=inter(int(sw * .046), 500), fill=(60, 70, 84, 230))
+        d.text((x0 + int(sw * .05), y0 + int(sh * .068)), notif[1], font=inter(int(sw * .052), 500), fill=(30, 40, 54, 235))
+    return to_bgra(im)
+
+
+def ink_sms(sw, sh, sender, lines, status='', battery=None, time_txt=''):
+    """Conversation SMS claire en encre sombre : en-tête de l'expéditeur, une bulle grise par ligne déjà reçue."""
+    im = Image.new('RGBA', (sw, sh), (0, 0, 0, 0)); d = ImageDraw.Draw(im); cx = sw // 2; ink = (8, 16, 28, 240)
+    _status_ink(d, sw, sh, status, battery, time_txt)
+    r = int(sw * .085); ay = int(sh * .075); d.ellipse([cx - r, ay, cx + r, ay + 2 * r], fill=(150, 156, 166, 255))
+    d.ellipse([cx - r * .36, ay + r * .38, cx + r * .36, ay + r * 1.1], fill=(235, 238, 242, 255)); d.pieslice([cx - r * .7, ay + r * 1.15, cx + r * .7, ay + r * 2.4], 180, 360, fill=(235, 238, 242, 255))
+    centered(d, cx, ay + 2 * r + int(sh * .012), sender, inter(int(sw * .06), 700), ink)
+    d.line([int(sw * .05), int(sh * .215), int(sw * .95), int(sh * .215)], fill=(160, 166, 176, 200), width=2)
+    f = inter(int(sw * .066), 500); y = int(sh * .245); maxw = int(sw * .70)
+    for ln in lines:
+        words = ln.split(); rows = []; cur = ''
+        for w_ in words:
+            t = (cur + ' ' + w_).strip()
+            if d.textbbox((0, 0), t, font=f)[2] > maxw and cur: rows.append(cur); cur = w_
+            else: cur = t
+        rows.append(cur); lh = int(f.size * 1.28); bh = lh * len(rows) + int(sh * .026); bw = max(d.textbbox((0, 0), r_, font=f)[2] for r_ in rows) + int(sw * .09)
+        d.rounded_rectangle([int(sw * .05), y, int(sw * .05) + bw, y + bh], radius=int(sw * .055), fill=(228, 230, 235, 250))
+        for k, r_ in enumerate(rows): d.text((int(sw * .05) + int(sw * .045), y + int(sh * .013) + k * lh), r_, font=f, fill=ink)
+        y += bh + int(sh * .018)
     return to_bgra(im)
 
 
@@ -220,12 +271,17 @@ def caption_layer(words, active, keywords=(), accent=SIGNAL, size=98, max_w=860,
     return to_bgra(im)
 
 
-def hud_layer(left, right, blink=True, line_open=False):
-    """Bandeau du haut, repère visible jusqu'à la fin (zone 10-14 % de la hauteur)."""
+def hud_layer(left, right, blink=True, line_open=False, battery=None):
+    """Bandeau du haut, repère visible jusqu'à la fin (zone 10-14 % de la hauteur). battery = % affiché avec une pile (rouge sous 5 %)."""
     im = Image.new('RGBA', (W, 90), (0, 0, 0, 0)); d = ImageDraw.Draw(im); f = mono(32, 600); y = 22; x = 78
     d.ellipse([x, y + 10, x + 18, y + 28], fill=(SIGNAL + (255,)) if blink else (120, 40, 30, 255)); x += 34
-    d.text((x, y), left, font=f, fill=(255, 255, 255, 225)); b = d.textbbox((0, 0), right, font=f)
-    d.text((W - 110 - (b[2] - b[0]), y), right, font=f, fill=(ICE + (235,)) if line_open else (255, 255, 255, 225))
+    d.text((x, y), left, font=f, fill=(255, 255, 255, 225)); b = d.textbbox((0, 0), right, font=f); xr = W - 110
+    if battery is not None:
+        col = SIGNAL + (255,) if battery <= 5 else (255, 255, 255, 225); bw, bh = 46, 22; bx = xr - bw; by = y + 8
+        d.rounded_rectangle([bx, by, bx + bw, by + bh], radius=5, outline=col, width=3); d.rectangle([bx + bw, by + 7, bx + bw + 5, by + bh - 7], fill=col)
+        d.rectangle([bx + 5, by + 5, bx + 5 + max(2, int((bw - 10) * battery / 100)), by + bh - 5], fill=col)
+        bt = f'{battery}%'; tb = d.textbbox((0, 0), bt, font=f); d.text((bx - 12 - (tb[2] - tb[0]), y), bt, font=f, fill=col); xr = bx - 12 - (tb[2] - tb[0]) - 30
+    d.text((xr - (b[2] - b[0]), y), right, font=f, fill=(ICE + (235,)) if line_open else (255, 255, 255, 225))
     sh = im.filter(ImageFilter.GaussianBlur(5)); base = Image.new('RGBA', (W, 90), (0, 0, 0, 0))
     a = np.array(sh); a[:, :, :3] = 0; a[:, :, 3] = np.clip(a[:, :, 3].astype(np.int32) * 2, 0, 255); base = Image.fromarray(a, 'RGBA')
     base.alpha_composite(im); return to_bgra(base)
@@ -242,14 +298,14 @@ def wave_layer(env, label='ON THE LINE'):
     return to_bgra(im)
 
 
-def end_card(bg, a, b, question, cta1, cta2, t=0.0):
-    """Le choix en 2 mots : deux boutons, l'appel au vote et l'abonnement."""
+def end_card(bg, a, b, question, cta1, cta2, t=0.0, swap=False):
+    """Le choix en 2 mots : deux boutons, l'appel au vote et l'abonnement. swap : 1er bouton rouge, 2e vert."""
     frame = (bg.astype(np.float32) * .34).astype(np.uint8)
     p = min(1.0, t / .22); ease = 1 - (1 - p) ** 3
     im = Image.new('RGBA', (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
     centered(d, W / 2, 468, question, condensed(92), (255, 255, 255, int(255 * ease)))
     bw, bh, by = 780, 210, 640; x = (W - bw) / 2
-    for i, (lab, col) in enumerate(((a, MINT), (b, SIGNAL))):
+    for i, (lab, col) in enumerate(((a, SIGNAL), (b, MINT)) if swap else ((a, MINT), (b, SIGNAL))):
         pulse = .5 + .5 * math.sin(t * 5.2 + i * math.pi); y = by + i * (bh + 44) + (1 - ease) * 40
         d.rounded_rectangle([x, y, x + bw, y + bh], radius=30, fill=col + (int(40 + 40 * pulse),), outline=col + (int(255 * ease),), width=7)
         f = anton(112); bb = d.textbbox((0, 0), lab, font=f); d.text((W / 2 - (bb[2] - bb[0]) / 2 - bb[0], y + (bh - (bb[3] - bb[1])) / 2 - bb[1]), lab, font=f, fill=(255, 255, 255, int(255 * ease)))

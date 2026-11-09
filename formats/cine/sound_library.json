@@ -165,6 +165,70 @@
     "office"
    ],
    "prompt": "Fast nervous typing on a computer keyboard, close-up, crisp key clicks, quiet office, stops abruptly."
+  },
+  {
+   "name": "knock",
+   "flow_id": "svWwFUy11l9jmpeQIqYZ",
+   "generation_id": "8WDnCeed0NEmZggASL68",
+   "seconds": 4,
+   "credits": 13.3,
+   "loop": false,
+   "tags": [
+    "door",
+    "knock",
+    "apartment",
+    "night"
+   ],
+   "prompt": null,
+   "desc": "Coups frappés à une porte d'appartement, deux paires (fichier : coups à 1,66 / 1,85 / 2,62 / 2,83 s). offset 1,5 + trim 0,55 = une paire ; offset 2,45 + trim 0,6 = l'autre. BLACK-OUT nuit 1."
+  },
+  {
+   "name": "powerdown",
+   "flow_id": "svWwFUy11l9jmpeQIqYZ",
+   "generation_id": "6qHQmyrbgAlgvla81RZI",
+   "seconds": 4,
+   "credits": 13.3,
+   "loop": false,
+   "tags": [
+    "blackout",
+    "power",
+    "city",
+    "hum"
+   ],
+   "prompt": null,
+   "desc": "Coupure de courant : bourdonnement électrique qui s'éteint d'un coup (pic à 0,25 s, puis silence). BLACK-OUT nuit 1."
+  },
+  {
+   "name": "shout",
+   "flow_id": "svWwFUy11l9jmpeQIqYZ",
+   "generation_id": "Pv3QaisVuTKXsPNMftTB",
+   "seconds": 3,
+   "credits": 10.0,
+   "loop": false,
+   "tags": [
+    "street",
+    "scream",
+    "distant",
+    "night"
+   ],
+   "prompt": null,
+   "desc": "Quelqu'un crie un prénom au loin dans la rue, sous la pluie (sans mot compréhensible). BLACK-OUT nuit 1."
+  },
+  {
+   "name": "handle",
+   "flow_id": "svWwFUy11l9jmpeQIqYZ",
+   "generation_id": "efsPt0UsqJtXeblFgVVk",
+   "seconds": 4,
+   "credits": 13.3,
+   "loop": false,
+   "tags": [
+    "door",
+    "handle",
+    "lock",
+    "rattle"
+   ],
+   "prompt": null,
+   "desc": "Poignée de porte qu'on essaie de tourner, verrou qui résiste. BLACK-OUT nuit 1."
   }
  ],
  "music": [

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07",
+ "updated": "2026-11-09",
  "accounts": {
   "instagram": "situation.douteuse",
   "tiktok": "situation.douteus",
@@ -8,17 +8,18 @@
   "vidiq_ig_platformAccountId": "29070592985935595"
  },
  "schedule": {
-  "post_time": "20:00",
-  "language": "en",
+  "post_time": "19:00",
+  "language": "fr",
   "cadence": "1 vidéo tous les 2 jours (jours impairs du mois), consigne de Matis du 05/11/2026",
-  "routine_time": "13:37 à Paris (jours impairs), vidéo programmée pour le soir même à Washington",
+  "routine_time": "13:37 à Paris (jours impairs), épisode publié le soir même à 19:00 (Paris)",
   "stats_time": "22:32 (jours pairs)",
   "relaunched": "2026-11-05",
   "relaunch_note": "Matis, 05/11 à 23:27 : publier le pilote tout de suite, puis une vidéo ElevenLabs tous les 2 jours.",
   "routine_task": "trig_016wh2VWu5o5FXNrBXgUH9Wo",
   "stats_task_note": "Tâche de stats toujours en pause (demande du 04/11, pas redemandée). Elle ne repart que si Matis le demande. Son texte dit encore « 19 h » : la modification a été refusée par le contrôle automatique le 05/11, à corriger à la relance.",
-  "post_timezone": "America/New_York",
-  "post_time_note": "Consigne de Matis du 05/11/2026 : 20:00 heure de Washington DC, soit 2:00 du matin à Paris le lendemain. tools/post_time.py donne l'heure à donner à Metricool."
+  "post_timezone": "Europe/Paris",
+  "post_time_note": "Matis, 09/11/2026 : retour au français et à 19:00 (Paris) pour viser le public français ; l'heure de Washington (05/11) est abandonnée. tools/post_time.py lit cette heure.",
+  "decision_0911": "Matis, 09/11/2026 : tout en français, une seule série suivie (BLACK-OUT, fiction à choix « survie chez toi »), 1 épisode tous les 2 jours à 19:00. THE OFFER (anglais) ne part pas."
  },
  "counters": {
   "day": 0
@@ -229,6 +230,14 @@
    ],
    "result": null,
    "how": "Matis lit les commentaires (Instagram + TikTok) et donne le résultat ; sans résultat, pas d'épisode 2."
+  },
+  "blackout_n1": {
+   "options": [
+    "1 · OUVRIR",
+    "2 · DÉCROCHER"
+   ],
+   "result": null,
+   "how": "Matis lit les commentaires (Instagram + TikTok) et donne le résultat. Sans résultat noté au moment de produire la nuit 2 : version « deux chemins » de formats/cine/series/scripts.md, qui ne prétend rien sur le vote."
   }
  },
  "themes_used": {
@@ -261,23 +270,19 @@
   1123
  ],
  "projects": {
-  "rule": "Consigne Matis 29/10/2026 : 5 projets en rotation, 1 vidéo à son tour (IG + TikTok), bilan quand les 5 ont 5 épisodes et ≥48 h de stats sur le 5e ; on supprime le moins bon et on crée un nouveau projet à 0 épisode. Voir STRATEGY.md et RUNBOOK §4.0. Depuis le 05/11/2026 : les 5 projets sont au format CINE (formats/cine/series/README.md).",
+  "rule": "Depuis le 09/11/2026 (Matis) : une seule série suivie, en français, BLACK-OUT (projet F). Un épisode tous les 2 jours, qui commence par la suite du choix voté. Les séries anglaises A à E sont archivées. Ancienne règle des 5 projets (29/10) : remplacée.",
   "start": "2026-11-05",
   "cycle": 2,
   "rotation": [
-   "A",
-   "B",
-   "C",
-   "D",
-   "E"
+   "F"
   ],
-  "next": "D",
+  "next": "F",
   "omerta_pending": false,
   "list": {
    "A": {
     "name": "Omertà",
     "format": "cine",
-    "status": "active",
+    "status": "archivée (anglais, 09/11/2026)",
     "episodes": 3,
     "episodes_ids": [
      "omerta-ep1-en",
@@ -315,7 +320,7 @@
    "B": {
     "name": "CALLER ID",
     "format": "cine",
-    "status": "active",
+    "status": "archivée (anglais, 09/11/2026)",
     "episodes": 1,
     "stats": {
      "ig_caller-id-ep1": {
@@ -342,7 +347,7 @@
    "C": {
     "name": "NIGHT DISPATCH",
     "format": "cine",
-    "status": "active",
+    "status": "archivée (anglais, 09/11/2026)",
     "episodes": 1,
     "stats": {},
     "note": "Ép. 1 programmé le 07/11 pour 20:00 à Washington (flow 7YBtYvTDRYofL32t5y2R). Ouverture en flash-forward (console rouge dès 0 s). Vote SEND/STAY ouvert : pas d'ép. 2 sans résultat donné par Matis. Voix appelante : Nora 1ykC5GeLM4dP82qkyo91 (filtre phone).",
@@ -353,7 +358,7 @@
    "D": {
     "name": "THE OFFER",
     "format": "cine",
-    "status": "active",
+    "status": "archivée (anglais, 09/11/2026)",
     "episodes": 0,
     "stats": {},
     "note": "À lancer. Voir formats/cine/series/README.md"
@@ -361,10 +366,20 @@
    "E": {
     "name": "COLD FILE",
     "format": "cine",
-    "status": "active",
+    "status": "archivée (anglais, 09/11/2026)",
     "episodes": 0,
     "stats": {},
     "note": "À lancer. Voir formats/cine/series/README.md"
+   },
+   "F": {
+    "name": "BLACK-OUT",
+    "format": "cine",
+    "lang": "fr",
+    "status": "active",
+    "episodes": 0,
+    "episodes_ids": [],
+    "flow": "svWwFUy11l9jmpeQIqYZ",
+    "note": "Nuit 1 produite le 09/11/2026 (flow svWwFUy11l9jmpeQIqYZ). Bible et images réutilisables : formats/cine/series/README.md ; suites écrites : formats/cine/series/scripts.md."
    }
   },
   "removed": [
@@ -467,6 +482,11 @@
   "sounds": "formats/cine/sound_library.json",
   "ledger": "elevenlabs/ledger.jsonl",
   "pilot_flow": "cuSYy0Hs63XrJf0fCN6Q",
-  "recipe_choice": "Matis, 05/11/2026 : 1 tous les 2 jours, donc recette Pro (≈ 6 300 crédits, 4 plans animés)"
+  "recipe_choice": "Matis, 05/11/2026 : 1 tous les 2 jours, donc recette Pro (≈ 6 300 crédits, 4 plans animés)",
+  "series_voices": {
+   "narrateur": "French John 5DD3eZMBEVRcWAmpxded (choisi par Matis le 09/11)",
+   "mere": "Isabelle 1cNpTcbDy2UA0duXppd5 (validée par Matis le 09/11)",
+   "language_code": "fr"
+  }
  }
 }

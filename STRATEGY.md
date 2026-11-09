@@ -6,7 +6,8 @@ Mis à jour par chaque passage de la tâche planifiée. Les chiffres viennent de
 - 10 000 abonnés au total. Point de départ le 29/10/2026 : Instagram 4 abonnés, TikTok 0 (compte neuf).
 - Problème n°1 mesuré : l'abonnement (environ 1 abonné pour 1 100 vues sur Instagram).
 - Depuis le 29/10 : tout est publié en anglais pour viser un public international.
-- **Changement de cap du 05/11/2026 (Matis) :** compte ElevenLabs Creator ; il veut « un truc de pro et pas pour les enfants », et la meilleure qualité possible. Fini les simulations de billes et de fruits, les dessins et les voix de synthèse gratuites. Tout passe au format CINE (`formats/cine/README.md`) : thriller adulte, photoréaliste, voix et son ElevenLabs. Les tâches planifiées sont en pause depuis le 04/11, à la demande de Matis.
+- **Changement de cap du 05/11/2026 (Matis) :** compte ElevenLabs Creator ; il veut « un truc de pro et pas pour les enfants », et la meilleure qualité possible. Fini les simulations de billes et de fruits, les dessins et les voix de synthèse gratuites. Tout passe au format CINE (`formats/cine/README.md`) : thriller adulte, photoréaliste, voix et son ElevenLabs.
+- **Changement de cap du 09/11/2026 (Matis) : retour au public français.** Les vues Instagram se sont effondrées pendant l'essai en anglais publié la nuit (heure de Paris). Décisions de Matis : tout en français (Instagram et TikTok), publication à **19:00 (Paris)**, **une seule série suivie : BLACK-OUT** (fiction à choix « survie chez toi », `formats/cine/series/README.md`), un épisode tous les 2 jours qui commence par le choix le plus voté. Le système des 5 projets et l'heure de Washington sont abandonnés ; THE OFFER ne sort pas.
 
 ## Formats
 | Format | Statut | Promesse | Notes |
@@ -20,9 +21,15 @@ Mis à jour par chaque passage de la tâche planifiée. Les chiffres viennent de
 - Tous les bruitages et musiques sont gardés et réutilisés (consigne de Matis, `formats/cine/sound_library.json`).
 - Les passages de la tâche planifiée du 03 et du 04/11 ont échoué : limite d'usage Claude atteinte. La production doit rester légère en appels d'outils (voir README CINE).
 
-- 05/11/2026 (Matis) : publication à 20:00 heure de Washington DC au lieu de 19:00 à Paris, à partir du 07/11. À surveiller : vues et skip des premières heures par rapport aux anciens reels.
+- 05/11/2026 (Matis) : publication à 20:00 heure de Washington DC au lieu de 19:00 à Paris, à partir du 07/11. **Remplacé le 09/11 par 19:00 (Paris).**
+- BLACK-OUT nuit 1 (09/11) : ≈ 9 000 crédits avec les essais de voix et un plan raté (VA) ; les nuits suivantes réutilisent images, plans et sons de la série.
 
-## Système des 5 projets (consigne de Matis du 29/10/2026, en vigueur à partir du 31/10)
+## Série unique BLACK-OUT (depuis le 09/11/2026)
+- Une nuit tous les 2 jours (jours impairs), 19:00 Paris, Instagram + TikTok, en français. 45 à 70 s. Fin sur un choix 1 / 2 en commentaire ; la nuit suivante commence par sa conséquence.
+- Le résultat du vote vient de Matis (aucun outil ne lit les commentaires Instagram). Sans résultat : version « deux chemins », qui ne prétend rien sur le vote.
+- Suites déjà écrites : `formats/cine/series/scripts.md` ; continuité (heure, batterie, ce qui s'est passé) : `formats/cine/series/README.md`.
+
+## Système des 5 projets (29/10 → 08/11/2026, arrêté le 09/11 : archive)
 - 5 projets (séries/formats) tournent en même temps ; **une seule vidéo par passage (tous les 2 jours)**, à chaque fois le projet suivant de la rotation (A, B, C, D, E, A…). La vidéo va sur Instagram et TikTok (TikTok peut avoir un épisode de décalage via la file).
 - **Rotation depuis le 05/11/2026 (cycle 2) : A OMERTÀ · B CALLER ID · C NIGHT DISPATCH · D THE OFFER · E COLD FILE** (`formats/cine/series/README.md`). B ép. 1 publié le 05/11. C ép. 1 programmé le 07/11 (20:00 Washington). Prochain : D THE OFFER, épisode 1 (09/11). Fusion, Escape, Marble Race et Fruit Drama sont sortis hors bilan de cycle, à la demande de Matis.
 - **Bilan de cycle** quand les 5 projets en cours ont chacun 5 épisodes publiés et ≥ 48 h de stats sur leur 5e : comparer médiane des vues, % regardé, skip, commentaires/vues, abonnés gagnés (IG + TikTok). Supprimer le moins bon, garder les autres, créer un nouveau projet à 0 épisode à sa place (même rang dans la rotation), puis continuer. Chaque bilan est écrit ici (classement, projet supprimé, nouveau projet et pourquoi) et dans le rapport.
@@ -31,9 +38,9 @@ Mis à jour par chaque passage de la tâche planifiée. Les chiffres viennent de
 - État au 05/11 : A Omertà 3 ép. (l'ép. 4 passe au nouveau style) · B, C, D, E : 0.
 
 ## Règle de choix (voir RUNBOOK §4)
-1. La rotation des 5 projets passe avant tout. File d'attente d'abord (`state.json > queue`), sinon épisode suivant du projet du jour.
+1. Le vote de la nuit précédente passe avant tout (résultat donné par Matis). File d'attente d'abord (`state.json > queue`), sinon nuit suivante de BLACK-OUT.
 2. Jamais une vidéo deux fois sur le même réseau.
-3. Quand une vidéo dépasse 3× la médiane du compte, faire passer sa série en priorité au tour suivant.
+3. Ne changer ni l'heure, ni la langue, ni la série sans demande de Matis.
 
 ## Règles de montage (issues des comptes de référence)
 - 0–1 s : mouvement et son fort ; jamais d'écran noir ni de titre seul.
@@ -56,13 +63,16 @@ Mis à jour par chaque passage de la tâche planifiée. Les chiffres viennent de
 | 31/10 | TikTok | fusion-planets-s10 | Fusion / planets (proj. B ép. 1) | 48 s | n.d. (pas encore dans Metricool) | | | | | | |
 | 01/11 | IG | escape-s1123 | Escape (proj. C ép. 1) | 34 s | 1 939 | 11,0 s (32 %) | 40 % | 9 | 1 | 0 | 0 |
 | 01/11 | TikTok | escape-s1123 | Escape (proj. C ép. 1) | 34 s | 286 | n.d. | n.d. | 2 | 0 | 0 | n.d. |
-| 05/11 | IG | caller-id-ep1 | CINE · CALLER ID ép. 1 | 34 s | 112 (38 h) | 8,0 s (23 %) | 69 % | 1 | 1 | 0 | 0 |
+| 05/11 | IG | caller-id-ep1 | CINE · CALLER ID ép. 1 (EN, 23:42 Paris) | 34 s | 113 (09/11) | 8,2 s (24 %) | 68 % | 1 | 1 | 0 | 0 |
 | 05/11 | TikTok | caller-id-ep1 | CINE · CALLER ID ép. 1 | 34 s | 786 | n.d. | n.d. | 4 | 1 | 0 | n.d. |
-| 07/11 | IG + TikTok | night-dispatch-ep1 | CINE · NIGHT DISPATCH ép. 1 | 37 s | programmé 08/11 02:00 Paris | | | | | | |
+| 08/11 | IG | night-dispatch-ep1 | CINE · NIGHT DISPATCH ép. 1 (EN, 02:03 Paris) | 36 s | 149 (09/11) | 7,8 s (22 %) | 52 % | 0 | 2 | 0 | 0 |
+| 08/11 | TikTok | night-dispatch-ep1 | CINE · NIGHT DISPATCH ép. 1 | 36 s | n.d. (pas relu le 09/11) | | | | | | |
+| 09/11 | IG + TikTok | blackout-n1 | CINE · BLACK-OUT nuit 1 (FR, 19:00 Paris) | 57 s | à relire | | | | | | |
 
-Abonnés : 07/11 → IG 6 (= depuis 01/11) · TikTok 2 (+2 depuis 01/11, dont +1 le 05/11) ; 29/10 → IG 4 · TikTok 0 ; 30/10 → IG 5 (+1) · TikTok 0 ; 31/10 → IG 5 (=) · TikTok 0 (=) ; 01/11 → IG 6 (+1) · TikTok 0 (=).
+Abonnés : 09/11 → IG 6 (=) ; 07/11 → IG 6 (= depuis 01/11) · TikTok 2 (+2 depuis 01/11, dont +1 le 05/11) ; 29/10 → IG 4 · TikTok 0 ; 30/10 → IG 5 (+1) · TikTok 0 ; 31/10 → IG 5 (=) · TikTok 0 (=) ; 01/11 → IG 6 (+1) · TikTok 0 (=).
 
 ## Leçons datées
+- 09/11 : **l'anglais publié la nuit a fait chuter Instagram d'environ 15 fois.** Les 6 reels d'avant (25/10 → 01/11, publiés vers 14:00 ou 19:00 à Paris) font 700 à 3 231 vues ; les deux CINE en anglais publiés à 23:42 et 02:03 (Paris) font 113 et 149 vues, avec un skip de 68 % et 52 % (25 à 42 % avant) et 22-24 % regardé. Les reels en français ont 2 à 3 fois plus de likes par vue (Omertà FR : 74 likes / 2 915 vues ; Le Zéro : 34 / 1 587 ; Omertà ép. 2 EN : 44 / 3 231 ; ép. 3 EN : 14 / 1 669). Le compte (6 abonnés, audience française) n'a pas de public anglais à qui montrer ces reels. TikTok n'a pas chuté (CALLER ID : 786 vues). → Décision de Matis : français, 19:00 Paris, une seule série (BLACK-OUT). Contrôle technique du jour : les coups frappés couvraient « frappe » dans la 1re réplique (Whisper entendait « fera pas ») ; coups placés avant et après la réplique et effets baissés sous la voix (`fx_duck_db`) → la 1re phrase est comprise.
 - 07/11 : CALLER ID ép. 1 (premier CINE), Instagram : 112 vues en 38 h, skip 69 % (pire score du compte, la moyenne est 25-40 %), 23 % regardé. TikTok : 786 vues (2e meilleur TikTok), +1 abonné le jour même. Instagram n'a presque pas distribué le reel : l'ouverture (réveil, téléphone sombre) ne dit rien en 1 s, et il a été publié à 23:40 à Paris hors créneau. → NIGHT DISPATCH ép. 1 ouvre en flash-forward : la console rouge « MATCH: EMPLOYEE HOME ADDRESS » et « She just gave you your own address » dès la 1re image (la recette d'Omertà ép. 2, skip 26 %). À comparer sur le skip Instagram.
 - 05/11 : pilote CALLER ID monté sur le format CINE. Coûts réels mesurés : plan Veo Lite 4 s 1080p sans son = 1 212 crédits, image Seedream 5 Lite 2K = 212, voix ≈ 1 crédit/caractère, bruitage 3,3/s, musique 15/s. La vidéo avec son généré coûte 3 fois plus : on la génère muette et on fait le son à part. Hypothèse à mesurer : des images réalistes et une vraie voix font baisser le skip sous 25 % et monter le % regardé au-dessus de 57 % (meilleur score : Omertà ép. 3).
 - 05/11 (technique) : les temps de transcription d'une voix générée sont approximatifs (faux sur « 3:17 ») : le monteur découpe donc sur les silences réels, et il faut un `[pause]` entre chaque réplique. Veo peut glisser un défaut au milieu d'un plan (œil fermé 2 s) : toujours regarder la planche des clips. Whisper comprend le mix du pilote à 0,95, voix chuchotée au téléphone comprise.
@@ -80,8 +90,8 @@ Abonnés : 07/11 → IG 6 (= depuis 01/11) · TikTok 2 (+2 depuis 01/11, dont +1
 4. Accroche : montrer le choix dès 0 s en petit, dans le bandeau.
 
 ## Prochaine expérience
-- 07/11 → 09/11 : flash-forward dès 0 s (NIGHT DISPATCH ép. 1) contre ouverture lente (CALLER ID ép. 1, skip 69 %). Si le skip Instagram passe sous 35 %, toutes les séries ouvrent sur leur pire moment (règle d'écriture). Première publication à 20:00 à Washington : comparer aussi les vues des 24 premières heures.
-- Comparer les 5 séries sur leurs 5 premiers épisodes : skip, % regardé, commentaires/vues, abonnés gagnés. Hypothèse : les votes (CALLER ID, OMERTÀ) et l'énigme (COLD FILE) donnent plus de commentaires que le dilemme seul.
+- 09/11 → 13/11 : BLACK-OUT nuits 1 à 3, en français à 19:00 (Paris). Hypothèse : retour à plus de 1 500 vues Instagram par reel (niveau d'avant le 05/11) et skip sous 40 %, avec une fiction plus longue (57 s) que les épisodes anglais (34-36 s). À mesurer après 24 h et 48 h : vues, skip, % regardé, commentaires (le vote 1 / 2), abonnés gagnés.
+- Si le % regardé de la nuit 1 reste sous 30 % : raccourcir les nuits suivantes vers 45 s et poser le choix plus tôt.
 
 ## Votes Omertà
 Voir `state.json > votes`. Ép. 1 → SIT (vote Instagram FR). Ép. 2 → DRINK (Matis, 29/10). Ép. 3 → DELIVER (Matis, 31/10). Ép. 4 = « tu livres l'enveloppe », produit au tour d'Omertà du 04/11 (choix vers 12-14 s, voir leçon du 31/10).

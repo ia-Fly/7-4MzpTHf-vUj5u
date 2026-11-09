@@ -2,7 +2,7 @@
     python3 formats/cine/build.py EPISODE.json ASSETS_DIR OUT_DIR [--preview 1,8,15] [--audio-only]
 Sortie : OUT_DIR/video.mp4 (1080×1920, 30 i/s, -14 LUFS), cover.jpg, timeline.json.
 Voir formats/cine/README.md pour le format du fichier EPISODE.json."""
-import argparse, difflib, json, math, os, re, subprocess, sys
+import argparse, difflib, json, math, os, re, subprocess, sys, unicodedata
 import numpy as np, cv2, soundfile as sf, pyloudnorm as pyln
 from PIL import Image, ImageDraw
 from scipy.ndimage import maximum_filter1d
@@ -14,7 +14,7 @@ W, H, FPS, SR = ui.W, ui.H, 30, 48000
 
 
 # ---------- temps ----------
-def norm(w): return re.sub(r'[^a-z0-9]', '', w.lower())
+def norm(w): return re.sub(r'[^a-z0-9]', '', unicodedata.normalize('NFD', w.lower()).encode('ascii', 'ignore').decode())   # accents ignorés (« mère » = « mere »)
 
 
 def load_words(path):
@@ -174,11 +174,13 @@ def mix(ep, tl, assets, out_wav):
     tracks = tl.tracks
     target = ep.get('voice_rms_db', -19.0); phone_env = {}
     for ln in ep['lines']:
-        L = tl.lines[ln['id']]; c = tracks[ln['voice']][int(L['s0'] * SR):int(L['s1'] * SR)]; c = fades(bandpass(c, lo=70).astype(np.float32))
+        L = tl.lines[ln['id']]; vv = ep['voices'][ln['voice']]; c = tracks[ln['voice']][int(L['s0'] * SR):int(L['s1'] * SR)]
+        c = fades(bandpass(c, lo=max(70, float(vv.get('lo', 70))), hi=vv.get('hi')).astype(np.float32))   # lo/hi par voix : voix étouffée derrière une porte
         g = np.clip(target - 20 * math.log10(rms(c)), -6, 30) + float(ln.get('gain_db', 0)); place(voice, c, L['t0'], db(g))
         if ep['voices'][ln['voice']].get('phone'): place(phone, c, L['t0'], db(g))
     for s in ep.get('sfx', []):
         c = decode(os.path.join(assets, s['file'])); t0 = tl.T(s['at'])
+        if 'offset' in s: c = c[int(float(s['offset']) * SR):]                       # saute le début muet du fichier
         c = c * (db(-20) / rms(c)) if s.get('bed') else c * (.7 / max(float(np.abs(c).max()), 1e-6))
         if 'until' in s:
             dur = tl.T(s['until']) - t0; k = int(dur * SR); c = np.tile(c, (k // len(c) + 1, 1))[:k]
@@ -188,10 +190,13 @@ def mix(ep, tl, assets, out_wav):
         place(beds if s.get('bed') else fx, c, t0, db(float(s.get('gain_db', -12))))
     if ep.get('music'):
         m = ep['music']; c = decode(os.path.join(assets, m['file'])); t0 = tl.T(m.get('at', 0)); ofs = int(float(m.get('offset', 0)) * SR); c = c[ofs:]; c = c * (db(-20) / rms(c))
-        k = int((tl.total - t0) * SR)
-        if len(c) < k: c = np.tile(c, (k // len(c) + 1, 1))
+        k = int((tl.total - t0) * SR); xf = int(1.5 * SR); out = c.copy()
+        while len(out) < k and len(c) > 2 * xf:                                         # boucle avec fondu enchaîné de 1,5 s, sans raccord audible
+            r = np.linspace(0, 1, xf, dtype=np.float32)[:, None]; out[-xf:] = out[-xf:] * (1 - r) + c[:xf] * r; out = np.concatenate([out, c[xf:]])
+        c = out
         c = fades(c[:k], .4, float(m.get('fade_out', 1.2))); place(beds, c, t0, db(float(m.get('gain_db', -18))))
-    env = envelope(voice); env = env / max(env.max(), 1e-6); duck = db(-float(ep.get('duck_db', 7)) * np.clip(env * 3, 0, 1))
+    env = envelope(voice); env = env / max(env.max(), 1e-6); g = np.clip(env * 3, 0, 1); duck = db(-float(ep.get('duck_db', 7)) * g)
+    fx = fx * db(-float(ep.get('fx_duck_db', 0)) * g)[:, None]         # fx_duck_db : les effets (coups, explosions) passent aussi sous la voix, pour que chaque mot reste compris
     x = voice + beds * duck[:, None] + fx
     on = envelope(voice) > .02; bal = dict(voice_db=round(20 * math.log10(rms(voice[on]) + 1e-9), 1), beds_under_voice_db=round(20 * math.log10(rms((beds * duck[:, None])[on]) + 1e-9), 1), fx_peak_db=round(20 * math.log10(float(np.abs(fx).max()) + 1e-9), 1))
     meter = pyln.Meter(SR)
@@ -291,18 +296,45 @@ def glue_screen(src, spec, t):
             for i in range(4):
                 d = ((pts - q[i]) ** 2).sum(1); near = pts[np.argsort(d)[:max(3, len(pts) // 40)]]; cand = near.mean(0)
                 if np.linalg.norm(cand - q[i]) < w * .05: q[i] = cand
-    ink = spec.get('_ink')
-    if ink is None:
-        ink = spec['_ink'] = ui.screen_ink(600, 1240, spec['name'], spec.get('label', 'Incoming call'), spec.get('number', ''))
-    sh, sw = ink.shape[:2]; M = cv2.getPerspectiveTransform(np.float32([[0, 0], [sw, 0], [sw, sh], [0, sh]]), q.astype(np.float32))
+    st = screen_state(spec, t); key = json.dumps(st, sort_keys=True, default=str); cache = spec.setdefault('_cache', {})
+    if key not in cache: cache[key] = make_ink(st)
+    ink = cache[key]; sh, sw = ink.shape[:2]; M = cv2.getPerspectiveTransform(np.float32([[0, 0], [sw, 0], [sw, sh], [0, sh]]), q.astype(np.float32))
     wr = cv2.warpPerspective(ink, M, (w, h), flags=cv2.INTER_LINEAR, borderValue=(0, 0, 0, 0))
     return ui.over(src, wr)
+
+
+def screen_state(spec, t):
+    """État d'un écran collé à l'instant t : champs de base, puis les étapes déjà atteintes (steps), puis les lignes de SMS déjà reçues."""
+    st = {k: v for k, v in spec.items() if not k.startswith('_') and k not in ('quad', 'refine', 'steps')}
+    for at, upd in spec.get('_steps', []):
+        if t >= at - 1e-6: st.update(upd)
+    if st.get('lines') and isinstance(st['lines'][0], list): st['lines'] = [x for a, x in st['lines'] if t >= a - 1e-6]
+    return st
+
+
+def make_ink(st):
+    """Encre de l'écran selon son type : incoming (appel, défaut), lock (écran verrouillé), sms (conversation)."""
+    typ = st.get('type', 'incoming')
+    if typ == 'lock': return ui.ink_lock(600, 1240, st.get('time', ''), st.get('status', ''), st.get('battery'), st.get('date', ''), tuple(st['notif']) if st.get('notif') else None)
+    if typ == 'sms': return ui.ink_sms(600, 1240, st.get('sender', ''), st.get('lines', []), st.get('status', ''), st.get('battery'), st.get('time', ''))
+    return ui.screen_ink(600, 1240, st['name'], st.get('label', 'Incoming call'), st.get('number', ''), st.get('status', ''), st.get('battery'))
+
+
+def resolve_screens(ep, tl):
+    """Traduit les repères de temps des écrans (étapes, lignes de SMS) en secondes."""
+    specs = [sh['screen'] for sh in ep['shots'] if sh.get('screen')] + ([ep['cover']['screen']] if ep.get('cover', {}).get('screen') else [])
+    for sp in specs:
+        sp['_steps'] = [(tl.T(a), upd) for a, upd in sp.get('steps', [])]
+        if sp.get('lines') and isinstance(sp['lines'][0], list): sp['lines'] = [[tl.T(a), x] for a, x in sp['lines']]
 
 
 def caption_groups(ep, tl):
     groups = []
     for ln in ep['lines']:
-        L = tl.lines[ln['id']]; ws = L['words']; keys = tuple(k.upper() for k in ln.get('keywords', [])); phone = ep['voices'][ln['voice']].get('phone', False)
+        L = tl.lines[ln['id']]; ws = L['words']; vv = ep['voices'][ln['voice']]; phone = vv.get('phone', False)
+        keys = tuple(k.upper() for k in ln.get('keywords', []))
+        if vv.get('caption_all'): keys = tuple(w.strip(".,?!…'’").upper() for w in ln['text'].split())   # toute la réplique en couleur (2e voix)
+        color = tuple(vv['caption_color']) if vv.get('caption_color') else ui.ICE if phone else ui.SIGNAL
         i = 0; chunks = ln.get('chunks')
         if chunks:
             sizes = chunks
@@ -313,14 +345,14 @@ def caption_groups(ep, tl):
                 if cur == 3 or re.search(r'[.?!,…]$', w) or next_gap > .28 or k + 1 == len(ws): sizes.append(cur); cur = 0
         for s in sizes:
             part = ws[i:i + s]; i += s
-            groups.append(dict(words=[p[0].upper() for p in part], times=[(p[1], p[2]) for p in part], t0=part[0][1], t1=part[-1][2], keys=keys, phone=phone))
+            groups.append(dict(words=[p[0].upper() for p in part], times=[(p[1], p[2]) for p in part], t0=part[0][1], t1=part[-1][2], keys=keys, phone=phone, color=color))
     for a, b in zip(groups, groups[1:]): a['t1'] = max(a['t1'], min(b['t0'], a['t1'] + .55))
     groups[-1]['t1'] += .3
     return groups
 
 
 def render(ep, tl, assets, out_mp4, voice, preview=None):
-    groups = caption_groups(ep, tl); hud = ep.get('hud', {}); clocks = [(tl.T(r), v) for r, v in hud.get('clock', [])]
+    groups = caption_groups(ep, tl); hud = ep.get('hud', {}); clocks = [(tl.T(r), v) for r, v in hud.get('clock', [])]; bats = [(tl.T(r), v) for r, v in hud.get('battery', [])]
     nframes = int(round(tl.total * FPS)); cap_cache = {}; hud_cache = {}; shots = ep['shots']; cur = None; clip = None; img = None; bg_cache = {}
     impacts = [dict(t=tl.T(e['at']), kind=e.get('kind', 'shake'), amp=float(e.get('amp', 1))) for e in ep.get('impacts', [])]
     proc = None
@@ -336,7 +368,7 @@ def render(ep, tl, assets, out_mp4, voice, preview=None):
         if sh is not cur:
             cur = sh; clip = None; img = None; local0 = sh['t0']; slot = sh['t1'] - sh['t0']
             if sh['kind'] == 'video': clip = Clip(os.path.join(assets, sh['file']), float(sh.get('offset', 0)), slot, sh.get('speed'))
-            if sh.get('file') and sh['kind'] in ('still', 'ui_on_still'): img = cv2.imread(os.path.join(assets, sh['file']))
+            if sh.get('file') and sh['kind'] in ('still', 'ui_on_still'): img = img0 = cv2.imread(os.path.join(assets, sh['file']))
         lt = t - sh['t0']; p = lt / max(1e-3, sh['t1'] - sh['t0'])
         if wanted is not None and fi not in wanted:
             if clip is not None: clip.at(lt)
@@ -355,7 +387,9 @@ def render(ep, tl, assets, out_mp4, voice, preview=None):
             if sh.get('screen'): src = glue_screen(src.copy(), sh['screen'], t)
             z0, z1 = sh.get('zoom', [1.02, 1.06]); frame = warp(src, z0 + (z1 - z0) * p + punch, *sh.get('center', [.5, .5]), dx, dy, rot)
         elif kind == 'still':
-            if sh.get('screen') and not sh.get('_glued'): img = glue_screen(img, sh['screen'], t); sh['_glued'] = True
+            if sh.get('screen'):                                       # écran recollé seulement quand son contenu change (SMS reçu, heure, batterie…)
+                k = json.dumps(screen_state(sh['screen'], t), sort_keys=True, default=str)
+                if k != sh.get('_glued'): img = glue_screen(img0.copy(), sh['screen'], t); sh['_glued'] = k
             if sh.get('zoom'): z = sh['zoom'][0] + (sh['zoom'][1] - sh['zoom'][0]) * p; cx, cy = sh.get('center', [.5, .5])
             else: z, cx, cy = MOVES[sh.get('move', 'push_in')](p)
             frame = warp(img, z + punch, cx, cy, dx, dy, rot)
@@ -370,7 +404,7 @@ def render(ep, tl, assets, out_mp4, voice, preview=None):
             if P['type'] == 'incoming':
                 photo = cv2.imread(os.path.join(assets, P['photo'])) if P.get('photo') else None
                 if photo is not None and 'crop' in P: x, y, w_, h_ = P['crop']; photo = photo[y:y + h_, x:x + w_]
-                scr = ui.screen_incoming(sw, sh_, P['name'], P.get('number', ''), P.get('label', 'Incoming call'), photo, ring)
+                scr = ui.screen_incoming(sw, sh_, P['name'], P.get('number', ''), P.get('label', 'Incoming call'), photo, ring, P.get('decline', 'Decline'), P.get('accept', 'Accept'))
             else:
                 env = line_env(voice, t) if P['type'] == 'active' else None
                 scr = ui.screen_active(sw, sh_, P['name'], float(P.get('elapsed', 0)) + lt, env, ended=P['type'] == 'ended')
@@ -397,7 +431,7 @@ def render(ep, tl, assets, out_mp4, voice, preview=None):
             if ck not in bg_cache: bg_cache[ck] = ui.led_clock(txt)
             frame = warp(bg_cache[ck], 1.02 + .05 * p + punch, .5, .5, dx * .5, dy * .5, rot); grade = False; grain = .8
         elif kind == 'end':
-            frame = ui.end_card(last_plain, sh['a'], sh['b'], sh.get('question', 'WHAT DO YOU DO?'), sh['cta1'], sh['cta2'], lt); grade = False; grain = .5
+            frame = ui.end_card(last_plain, sh['a'], sh['b'], sh.get('question', 'WHAT DO YOU DO?'), sh['cta1'], sh['cta2'], lt, bool(sh.get('swap'))); grade = False; grain = .5
         else:
             raise SystemExit(f'type de plan inconnu : {kind}')
         if kind != 'end': last_plain = cv2.GaussianBlur(frame, (0, 0), 12)
@@ -412,16 +446,18 @@ def render(ep, tl, assets, out_mp4, voice, preview=None):
         if hud and kind != 'end':
             clock = next((v for a, v in reversed(clocks) if a <= t + 1e-6), '')
             phone_now = any(g['phone'] and g['t0'] - .05 <= t <= g['t1'] for g in groups); blink = (t % 1.0) < .55
-            k = (hud.get('left', ''), clock, blink, phone_now)
-            if k not in hud_cache: hud_cache[k] = ui.hud_layer(hud.get('left', ''), clock, blink, phone_now)
+            bat = next((v for a, v in reversed(bats) if a <= t + 1e-6), None)
+            k = (hud.get('left', ''), clock, blink, phone_now, bat)
+            if k not in hud_cache: hud_cache[k] = ui.hud_layer(hud.get('left', ''), clock, blink, phone_now, bat)
             ui.over(frame, hud_cache[k], 0, int(H * .098))
         # sous-titres + onde de la voix au téléphone
         if kind != 'end':
             g = next((g for g in groups if g['t0'] - .03 <= t < g['t1']), None)
             if g:
                 act = max(0, sum(1 for a, b in g['times'] if a <= t + .02) - 1); key = (id(g), act)
-                if key not in cap_cache: cap_cache[key] = ui.caption_layer(g['words'], act, g['keys'], ui.ICE if g['phone'] else ui.SIGNAL)
-                c = cap_cache[key]; age = t - g['t0']; ui.over(frame, c, (W - c.shape[1]) // 2, int(H * .635) - (c.shape[0] // 2) + int(max(0, .08 - age) * 60))
+                if key not in cap_cache: cap_cache[key] = ui.caption_layer(g['words'], act, g['keys'], g['color'])
+                c = cap_cache[key]; age = t - g['t0']; cy = float(sh.get('cap_y', .635))                 # cap_y : sous-titres plus bas quand un écran clair occupe le centre
+                ui.over(frame, c, (W - c.shape[1]) // 2, int(H * cy) - (c.shape[0] // 2) + int(max(0, .08 - age) * 60))
                 if g['phone'] and kind not in ('phone', 'console'):
                     w_ = ui.wave_layer(line_env(voice, t, 26)); ui.over(frame, w_, (W - w_.shape[1]) // 2, int(H * .635) - c.shape[0] // 2 - w_.shape[0] - 8)
         if proc is not None: proc.stdin.write(frame.tobytes())
@@ -449,7 +485,7 @@ def make_cover(ep, assets, out):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('episode'); ap.add_argument('assets'); ap.add_argument('out'); ap.add_argument('--preview'); ap.add_argument('--audio-only', action='store_true')
-    a = ap.parse_args(); ep = json.load(open(a.episode)); os.makedirs(a.out, exist_ok=True); tl = Timeline(ep, a.assets)
+    a = ap.parse_args(); ep = json.load(open(a.episode)); os.makedirs(a.out, exist_ok=True); tl = Timeline(ep, a.assets); resolve_screens(ep, tl)
     wav = os.path.join(a.out, 'mix.wav'); stats, voice = mix(ep, tl, a.assets, wav)
     report = dict(total=round(tl.total, 2), audio=stats, lines={k: [round(v['t0'], 2), round(v['t1'], 2)] for k, v in tl.lines.items()},
                   shots=[dict(id=s['id'], kind=s['kind'], t0=round(s['t0'], 2), t1=round(s['t1'], 2)) for s in ep['shots']])
