@@ -229,6 +229,104 @@
    ],
    "prompt": null,
    "desc": "Poignée de porte qu'on essaie de tourner, verrou qui résiste. BLACK-OUT nuit 1."
+  },
+  {
+   "name": "coins",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "SdOA3WQbUB33H008lSBk",
+   "seconds": 2,
+   "credits": 16.7,
+   "loop": false,
+   "tags": [
+    "toon",
+    "fromagistan"
+   ],
+   "prompt": null,
+   "desc": "Caisse enregistreuse puis pièces dans un coffre (FROMAGISTAN)."
+  },
+  {
+   "name": "spell-fail",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "HKlkQB8FwBiUXPeeRBf2",
+   "seconds": 0.5,
+   "credits": 16.7,
+   "loop": false,
+   "tags": [
+    "toon",
+    "fromagistan"
+   ],
+   "prompt": null,
+   "desc": "Petit « pouf » de sort raté (court) (FROMAGISTAN)."
+  },
+  {
+   "name": "spell-ok",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "RDvI77x2V0lrwMqswwYa",
+   "seconds": 2,
+   "credits": 16.7,
+   "loop": false,
+   "tags": [
+    "toon",
+    "fromagistan"
+   ],
+   "prompt": null,
+   "desc": "Sort réussi : carillon scintillant (FROMAGISTAN)."
+  },
+  {
+   "name": "fail-horn",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "r6Yq78QYLCDAZhhBL7wN",
+   "seconds": 2,
+   "credits": 16.7,
+   "loop": false,
+   "tags": [
+    "toon",
+    "fromagistan"
+   ],
+   "prompt": null,
+   "desc": "Trombone triste d'échec (FROMAGISTAN)."
+  },
+  {
+   "name": "win-fanfare",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "fakI1FeVsy8oaTiQTfia",
+   "seconds": 2,
+   "credits": 16.7,
+   "loop": false,
+   "tags": [
+    "toon",
+    "fromagistan"
+   ],
+   "prompt": null,
+   "desc": "Fanfare de victoire avec petite foule (FROMAGISTAN)."
+  },
+  {
+   "name": "news-jingle",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "ROv3nkp1xs1OdR3jf7eP",
+   "seconds": 1,
+   "credits": 16.7,
+   "loop": false,
+   "tags": [
+    "toon",
+    "fromagistan"
+   ],
+   "prompt": null,
+   "desc": "Jingle de flash info (court) (FROMAGISTAN)."
+  },
+  {
+   "name": "pigeon",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "QzjJrYgs0zpRjImYQ49n",
+   "seconds": 3,
+   "credits": 16.7,
+   "loop": false,
+   "tags": [
+    "toon",
+    "fromagistan"
+   ],
+   "prompt": null,
+   "desc": "Pigeon qui roucoule deux fois (FROMAGISTAN)."
   }
  ],
  "music": [
@@ -245,6 +343,15 @@
     "instrumental"
    ],
    "prompt": "Minimal dark thriller underscore for a suspense short film. Sub-bass drone, sparse detuned felt piano notes, distant metallic textures, a slow pulse like a heartbeat that gradually tightens over the whole track. No melody hook, no drums, no vocals. Restrained, adult, cinematic, leaves plenty of room for a voice-over."
+  },
+  {
+   "name": "theme-fromagistan",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "YGZxsgSlEjvIiAq1ieZe",
+   "seconds": 30,
+   "credits": 450,
+   "loop": true,
+   "desc": "Thème joyeux de jeu mobile : ukulélé, pizzicati, marimba (FROMAGISTAN)."
   }
  ]
 }

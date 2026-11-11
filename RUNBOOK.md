@@ -1,5 +1,7 @@
 # RUNBOOK — un épisode de BLACK-OUT tous les 2 jours à 19 h, heure de Paris (@situation.douteuse)
 
+
+> **Depuis le 11/11/2026 : série FROMAGISTAN, format TOON.** `formats/toon/README.md` remplace ici tout ce qui parle de BLACK-OUT, du format CINE, des voix et du vote (sections 0, 4 et 5). Installation, doublons, stats, contrôle, publication, mémoire et rapport restent valables.
 Procédure suivie par la tâche planifiée « Épisode BLACK-OUT tous les 2 jours 19 h (Paris) ». Ce fichier fait foi ; si tu l'améliores, garde-le exécutable de bout en bout par une session neuve.
 
 ## 0. Repères fixes

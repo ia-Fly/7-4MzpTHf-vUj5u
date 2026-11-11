@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09",
+ "updated": "2026-11-11",
  "accounts": {
   "instagram": "situation.douteuse",
   "tiktok": "situation.douteus",
@@ -19,7 +19,8 @@
   "stats_task_note": "Tâche de stats toujours en pause (demande du 04/11, pas redemandée). Elle ne repart que si Matis le demande. Son texte dit encore « 19 h » : la modification a été refusée par le contrôle automatique le 05/11, à corriger à la relance.",
   "post_timezone": "Europe/Paris",
   "post_time_note": "Matis, 09/11/2026 : retour au français et à 19:00 (Paris) pour viser le public français ; l'heure de Washington (05/11) est abandonnée. tools/post_time.py lit cette heure.",
-  "decision_0911": "Matis, 09/11/2026 : tout en français, une seule série suivie (BLACK-OUT, fiction à choix « survie chez toi »), 1 épisode tous les 2 jours à 19:00. THE OFFER (anglais) ne part pas."
+  "decision_0911": "Matis, 09/11/2026 : tout en français, une seule série suivie (BLACK-OUT, fiction à choix « survie chez toi »), 1 épisode tous les 2 jours à 19:00. THE OFFER (anglais) ne part pas.",
+  "decision_1111": "Matis, 11/11/2026 : BLACK-OUT abandonné (nuit 1 jamais publiée). Série unique FROMAGISTAN (format toon, formats/toon/README.md), un épisode tous les 2 jours à 19:00 (Paris), en français. Pas de validation préalable demandée."
  },
  "counters": {
   "day": 0
@@ -238,6 +239,16 @@
    ],
    "result": null,
    "how": "Matis lit les commentaires (Instagram + TikTok) et donne le résultat. Sans résultat noté au moment de produire la nuit 2 : version « deux chemins » de formats/cine/series/scripts.md, qui ne prétend rien sur le vote."
+  },
+  "fromagistan_ep1": {
+   "options": [
+    "1 · RÉPARER LE TOIT (400 écus)",
+    "2 · MARCHÉ AUX FROMAGES (150 écus)",
+    "3 · INVITER LA REINE (0 écu)"
+   ],
+   "result": null,
+   "top_comment": null,
+   "how": "Capture d'écran de Matis, ou TikTok via vidiq_tiktok_video_comments. Jamais deviné."
   }
  },
  "themes_used": {
@@ -270,13 +281,13 @@
   1123
  ],
  "projects": {
-  "rule": "Depuis le 09/11/2026 (Matis) : une seule série suivie, en français, BLACK-OUT (projet F). Un épisode tous les 2 jours, qui commence par la suite du choix voté. Les séries anglaises A à E sont archivées. Ancienne règle des 5 projets (29/10) : remplacée.",
+  "rule": "Depuis le 11/11/2026 (Matis) : une seule série, FROMAGISTAN (projet G), format toon. Voir formats/toon/README.md.",
   "start": "2026-11-05",
   "cycle": 2,
   "rotation": [
-   "F"
+   "G"
   ],
-  "next": "F",
+  "next": "G",
   "omerta_pending": false,
   "list": {
    "A": {
@@ -375,11 +386,19 @@
     "name": "BLACK-OUT",
     "format": "cine",
     "lang": "fr",
-    "status": "active",
+    "status": "abandonnée le 11/11/2026 (jamais publiée)",
     "episodes": 0,
     "episodes_ids": [],
     "flow": "svWwFUy11l9jmpeQIqYZ",
     "note": "Nuit 1 produite le 09/11/2026 (flow svWwFUy11l9jmpeQIqYZ). Bible et images réutilisables : formats/cine/series/README.md ; suites écrites : formats/cine/series/scripts.md."
+   },
+   "G": {
+    "name": "FROMAGISTAN",
+    "format": "toon",
+    "lang": "fr",
+    "status": "active",
+    "episodes": 0,
+    "flow": "lVEnH7dvj0Qcr2g2eiaE"
    }
   },
   "removed": [
@@ -484,9 +503,26 @@
   "pilot_flow": "cuSYy0Hs63XrJf0fCN6Q",
   "recipe_choice": "Matis, 05/11/2026 : 1 tous les 2 jours, donc recette Pro (≈ 6 300 crédits, 4 plans animés)",
   "series_voices": {
-   "narrateur": "French John 5DD3eZMBEVRcWAmpxded (choisi par Matis le 09/11)",
-   "mere": "Isabelle 1cNpTcbDy2UA0duXppd5 (validée par Matis le 09/11)",
+   "narrateur": "Hugo – Punchy French Creator 3Tp5mYhT9wrfnry9pzvV (Président Barbichu, 1re personne)",
    "language_code": "fr"
   }
+ },
+ "fromagistan": {
+  "episode": 1,
+  "citoyens": 0,
+  "budget": 0,
+  "popularite": 50,
+  "magie": 0,
+  "relations": {
+   "beurrelie": 50,
+   "ketchup": 50,
+   "tofu": 50,
+   "raclette": 50
+  },
+  "lieux": [],
+  "mysteres": [
+   "porte fermée à clé dans la cave du palais"
+  ],
+  "regles": "abonné=+1 citoyen ; like=+2 écus ; partage=+3 popularité ; enregistrement=+1 magie ; chiffres réels de l'épisode précédent (Instagram + TikTok)"
  }
 }
