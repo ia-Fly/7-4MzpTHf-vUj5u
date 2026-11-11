@@ -545,6 +545,6 @@
   "mysteres": [
    "porte fermée à clé dans la cave du palais"
   ],
-  "regles": "abonné=+1 citoyen ; like=+2 écus ; partage=+3 popularité ; enregistrement=+1 magie ; chiffres réels de l'épisode précédent (Instagram + TikTok)"
+  "regles": "Tout est additionné sur les deux réseaux (Instagram + TikTok), une seule vidéo : abonnés=citoyens ; like=+2 écus ; partage=+3 popularité ; enregistrement=+1 magie ; votes additionnés ; chiffres réels de l'épisode précédent."
  }
 }

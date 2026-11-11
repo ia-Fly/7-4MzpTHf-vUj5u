@@ -70,11 +70,30 @@ def card(p, x, y, w, h, text, bg, fg=(255, 255, 255), size=58, k=1.0, sub=None):
     if sub: p.text(x, y + h * .26, sub, font(int(size * .62 * k)), fg)
 
 
-def render(frame, total, out_dir, audio):
+def compose(frame, t, cam=None):
+    """Une image finale : le monde (dessiné puis cadré par la caméra) + l'interface (cartes, bandeau, sous-titres) posée par-dessus, hors caméra."""
+    world = Image.new('RGBA', (W * SS, H * SS)); ui = Image.new('RGBA', (W * SS, H * SS), (0, 0, 0, 0)); frame(t, Pen(world), world, Pen(ui))
+    if cam: world = rig.camera(world, *cam(t))
+    return Image.alpha_composite(world.convert('RGBA'), ui).resize((W, H), Image.LANCZOS).convert('RGB')
+
+
+def shot_cam(shots, T, order, face_y=800):
+    """Caméra par plans : shots = {réplique: (zoom, x, y, scène)} ; le point (x, y) est amené vers le haut-milieu de l'écran.
+    Coupe franche entre deux scènes, glissé de 0,4 s dans une même scène, petit zoom d'attaque, lente avancée et léger balancement gauche-droite."""
+    keys = [k for k in order if k in shots]
+    def cam(t):
+        i = max([n for n, k in enumerate(keys) if T[k] <= t] or [0]); z, x, y, sc = shots[keys[i]]; t0 = T[keys[i]]
+        if i and shots[keys[i - 1]][3] == sc:
+            pz, px, py, _ = shots[keys[i - 1]]; k = ease((t - t0) / .4); z, x, y = pz + (z - pz) * k, px + (x - px) * k, py + (y - py) * k
+        u = t - t0; z = z * (1 + .05 * math.exp(-u * 5) + .012 * min(u, 4)); x += 16 * math.sin(t * 1.15) / z; y += 7 * math.sin(t * .8 + 1) / z
+        return z, x, y + (H / 2 - face_y) / z
+    return cam
+
+
+def render(frame, total, out_dir, audio, cam=None):
     os.makedirs(out_dir, exist_ok=True); silent = os.path.join(out_dir, 'silent.mp4')
     ff = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{W}x{H}', '-r', str(FPS), '-i', '-', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '19', '-pix_fmt', 'yuv420p', silent], stdin=subprocess.PIPE)
-    for i in range(int(total * FPS)):
-        img = Image.new('RGBA', (W * SS, H * SS)); frame(i / FPS, Pen(img), img); ff.stdin.write(img.resize((W, H), Image.LANCZOS).convert('RGB').tobytes())
+    for i in range(int(total * FPS)): ff.stdin.write(compose(frame, i / FPS, cam).tobytes())
     ff.stdin.close(); ff.wait()
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', silent, '-i', audio, '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', os.path.join(out_dir, 'video.mp4')], check=True); os.remove(silent)
 
@@ -84,5 +103,5 @@ def mix(voice, music, sfx, total, out, music_db=-21, lead=0.0):
     cmd = ['ffmpeg', '-v', 'error', '-y', '-i', voice, '-stream_loop', '-1', '-i', music]; fc = [f'[0:a]adelay={int(lead * 1000)}:all=1,volume=1.0[v]', f'[1:a]volume={music_db}dB,atrim=0:{total:.3f},afade=t=out:st={total - 1.2:.3f}:d=1.2[m]']; tags = ['[v]', '[m]']
     for k, (f, t, db, dur) in enumerate(sfx):
         cmd += ['-i', f]; fc.append(f'[{k + 2}:a]atrim=0:{dur},afade=t=out:st={max(0, dur - .12):.3f}:d=0.12,volume={db}dB,adelay={int(t * 1000)}:all=1[s{k}]'); tags.append(f'[s{k}]')
-    fc.append(''.join(tags) + f'amix=inputs={len(tags)}:normalize=0:duration=longest,atrim=0:{total:.3f},loudnorm=I=-14:TP=-1.5:LRA=11[o]')
+    fc.append(''.join(tags) + f'amix=inputs={len(tags)}:normalize=0:duration=longest,atrim=0:{total:.3f},loudnorm=I=-13:TP=-1.5:LRA=11[o]')
     subprocess.run(cmd + ['-filter_complex', ';'.join(fc), '-map', '[o]', '-ar', '48000', '-ac', '2', out], check=True)
