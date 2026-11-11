@@ -187,6 +187,28 @@
    "flow": "7YBtYvTDRYofL32t5y2R",
    "metricool_id": 419919061,
    "time": "20:00 America/New_York (02:00 Paris le 08/11)"
+  },
+  {
+   "date": "2026-11-13",
+   "network": "instagram",
+   "id": "fromagistan-ep1",
+   "format": "toon",
+   "series": "FROMAGISTAN",
+   "credits": 1933,
+   "flow": "lVEnH7dvj0Qcr2g2eiaE",
+   "metricool": 424992263,
+   "time": "19:00 Europe/Paris"
+  },
+  {
+   "date": "2026-11-13",
+   "network": "tiktok",
+   "id": "fromagistan-ep1",
+   "format": "toon",
+   "series": "FROMAGISTAN",
+   "credits": 1933,
+   "flow": "lVEnH7dvj0Qcr2g2eiaE",
+   "metricool": 424992283,
+   "time": "19:00 Europe/Paris"
   }
  ],
  "votes": {
@@ -397,7 +419,7 @@
     "format": "toon",
     "lang": "fr",
     "status": "active",
-    "episodes": 0,
+    "episodes": 1,
     "flow": "lVEnH7dvj0Qcr2g2eiaE"
    }
   },
