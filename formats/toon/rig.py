@@ -136,7 +136,7 @@ def barbichu(p, x, g, s, t, action='idle', talk=False):
     p.rect(x - r * 1.1, hy - r * .62, x + r * 1.1, hy - r * .34, V2, r=r * .14); p.rect(x - r * 1.1, hy - r * .62, x + r * 1.1, hy - r * .52, sh(V2, 1.15), r=r * .1); p.rect(x - r * .16, hy - r * .64, x + r * .16, hy - r * .32, Y, r=r * .04); p.rect(x - r * .09, hy - r * .57, x + r * .09, hy - r * .39, V2, r=r * .03)
     p.circ(*tip, r * .21, (240, 242, 248)); p.circ(tip[0] - r * .05, tip[1] - r * .05, r * .15, (255, 255, 255))
     for sx, sy in ((-.45, -.9), (.2, -1.3), (-.1, -1.55)): p.star(x + sx * r, hy + sy * r, r * .1, Y)
-    return dict(head=(x, hy, r), rh=rh)
+    return dict(head=(x, hy, r), rh=rh, staff=(cx + 6 * s, cy - 20 * s), beard=(x, hy + r * 1.1))
 
 
 def pigeon(p, x, g, s, t, action='idle', talk=False):

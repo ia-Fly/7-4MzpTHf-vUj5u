@@ -4,7 +4,7 @@ ASSETS : voice.mp3, words.json, theme.mp3 et les bruitages. Sert de modèle aux 
 import math, os, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PIL import Image
-import rig, engine
+import rig, engine, fx
 from rig import W, H, SS, Pen, font, banner, gauge
 from engine import pop, ease, card
 
@@ -39,26 +39,35 @@ def desk(p):
     p.rect(560, 1330, W + 40, 1900, (170, 115, 70), r=24); p.rect(540, 1300, W + 40, 1360, (200, 140, 90), r=18)
 
 
-def night_room(p, lit):
-    a = ease(lit); mixc = lambda c0, c1: tuple(int(c0[i] + (c1[i] - c0[i]) * a) for i in range(3))
-    p.rect(0, 0, W, H, mixc((38, 32, 66), (150, 110, 90))); p.rect(0, 1560, W, H, mixc((26, 22, 48), (110, 78, 62)))
-    p.rect(640, 380, 980, 800, mixc((60, 70, 130), (90, 100, 160)), r=170); p.circ(860, 520, 54, (250, 240, 200)); p.circ(884, 506, 46, mixc((60, 70, 130), (90, 100, 160)))
-    for k in range(3): p.rect(80 + k * 150, 300, 130 + k * 150, 1560, mixc((48, 42, 80), (175, 135, 110)), r=12)
+def night_room(p):
+    """Salon du palais la nuit : murs, boiseries, fenêtre à la lune, tapis, cadre au mur. Les couleurs restent celles du jour : c'est fx.darken et la lumière des flammes qui font la nuit."""
+    p.rect(0, 0, W, H, (196, 150, 120)); p.rect(0, 1100, W, 1560, (170, 120, 92)); p.rect(0, 1090, W, 1112, (150, 104, 78))
+    for k in range(6): p.rect(30 + k * 180, 1140, 170 + k * 180, 1520, (184, 134, 104), r=10)
+    p.rect(640, 380, 980, 800, (150, 180, 230), r=170); p.rect(650, 390, 970, 790, (120, 150, 210), r=160); p.circ(860, 520, 54, (255, 250, 225)); p.circ(884, 506, 46, (120, 150, 210))
+    p.rect(800, 380, 820, 800, (150, 104, 78)); p.rect(640, 580, 980, 598, (150, 104, 78))
+    p.rect(150, 420, 430, 760, (150, 104, 78), r=8); p.rect(170, 440, 410, 740, (120, 150, 120), r=4); p.circ(290, 560, 70, (230, 200, 120))
+    p.rect(0, 1560, W, H, (120, 82, 62)); p.ell(540, 1720, 520, 120, (150, 50, 60)); p.ell(540, 1720, 440, 90, (176, 70, 72))
 
 
 def halo(p, x, y, r, col, n=5):
     for k in range(n, 0, -1): p.circ(x, y, r * k / n, tuple(int(c * (1 - .12 * k) + 20 * k) for c in col))
 
 
-def cellar(p, t):
-    p.rect(0, 0, W, H, (28, 26, 44))
+def cellar(p, t, img):
+    p.rect(0, 0, W, H, (92, 86, 120))
     for r in range(9):
-        for c in range(5): p.rect(c * 240 - (120 if r % 2 else 0) + 6, r * 200 + 6, c * 240 - (120 if r % 2 else 0) + 234, r * 200 + 194, (40, 38, 62), r=14)
-    p.rect(0, 1560, W, H, (20, 18, 34)); g = .5 + .5 * math.sin(t * 5)
-    halo(p, 540, 1130, 420 + 40 * g, (70, 60, 40), 6)
+        for c in range(5): p.rect(c * 240 - (120 if r % 2 else 0) + 6, r * 200 + 6, c * 240 - (120 if r % 2 else 0) + 234, r * 200 + 194, (112, 106, 142), r=14)
+    p.rect(0, 1560, W, H, (70, 64, 90)); p.rect(300, 690, 780, 1560, (88, 78, 100), r=230)
     p.rect(330, 720, 750, 1560, (110, 72, 44), r=200); p.rect(360, 760, 720, 1560, (135, 90, 56), r=180)
     for k in range(3): p.rect(330, 900 + k * 230, 750, 930 + k * 230, (70, 70, 84))
-    p.circ(540, 1150, 46, (60, 45, 30)); p.circ(540, 1140, 22, (255, 225, 110)); p.poly([(528, 1150), (552, 1150), (562, 1196), (518, 1196)], (255, 225, 110))
+    p.circ(540, 1150, 46, (60, 45, 30)); p.ell(540, 1150, 16, 18, (255, 236, 150)); p.poly([(532, 1156), (548, 1156), (556, 1196), (524, 1196)], (255, 236, 150))
+    fx.darken(img, .82); g = .8 + .2 * math.sin(t * 5)
+    fx.glow(img, 540, 1170, 140, (255, 200, 80), .9 * g, falloff=1.3); fx.glow(img, 540, 1565, 420, (190, 140, 50), .7 * g, ry=50); fx.glow(img, 540, 1300, 720, (90, 70, 30), .5 * g)
+    for i in range(10):                                                  # poussière dorée dans la lumière
+        life = (t * .25 + i * .37) % 1; fx.glow(img, 440 + (i * 53) % 220 + 30 * math.sin(t + i), 1560 - life * 600, 10, (255, 220, 140), .9 * math.sin(life * math.pi))
+
+
+def candle(img, p, x, y, t, a): fx.candle(img, p, x, y, t, a)
 
 
 def top(u):
@@ -88,18 +97,35 @@ def frame(t, T, p, img, caps, bgs, u):
         rules = (('L7', '1 ABONNÉ', '= 1 CITOYEN', (70, 190, 120)), ('L8', '1 LIKE', '= +2 ÉCUS', (235, 80, 100)), ('L9', '1 PARTAGE', '= +3 POPULARITÉ', (60, 140, 235)), ('L10', '1 ENREGISTREMENT', '= +1 MAGIE', (240, 160, 40)))
         for i, (lid, a, b, col) in enumerate(rules): card(u, 540, 520 + i * 215, 900, 180, a, col, size=76, k=pop(t, L(lid) + .1), sub=b)
     elif t < L('L15'):                                                   # premier chantier : la lumière
-        lit = (t - L('L14') - .9) / .5; night_room(p, lit); cy = 1080
-        if t < L('L12'): card(u, 540, 330, 880, 150, 'CHANTIER 1 : LA LUMIÈRE', Y, (60, 40, 20), size=70, k=pop(t, L('L11') + .2))
-        on_pigeon = L('L12') + .8 <= t < L('L14'); pg = (810, 1620)
-        if lit > 0: halo(p, 560, 1440, 300 + 10 * math.sin(t * 9), (255, 190, 90))
-        if on_pigeon: halo(p, pg[0], pg[1] - 250, 330 + 14 * math.sin(t * 12), (255, 215, 90))
-        rig.pigeon(p, pg[0], pg[1], .9, t, 'idle', talk=on_pigeon)
+        t_cast = [L('L12') + .45, L('L13') + .55, L('L14') + .55]; lit = ease((t - L('L14') - .9) / .6)
+        night_room(p); pg = (810, 1620); on_pigeon = L('L12') + .8 <= t < L('L14')
+        fx.darken(img, .78 - .38 * lit)                                     # nuit, puis la bougie réchauffe la pièce
+        fx.glow(img, 810, 590, 520, (40, 60, 110), .45)                      # clair de lune par la fenêtre
+        if on_pigeon:
+            k = ease((t - L('L12') - .8) / .3) * (.9 + .1 * math.sin(t * 17)); fx.glow(img, pg[0], pg[1] - 200, 760, (150, 120, 40), .55 * k, falloff=1.4); fx.glow(img, pg[0], pg[1] + 10, 260, (120, 90, 30), .5 * k, ry=60)
         b = rig.barbichu(p, 300, 1650, 1.05, t, 'wave' if t < L('L14') + .9 else 'cheer', talk=True); hx, hy, r = b['head']
-        if L('L13') + .9 <= t < L('L14') + .9:
-            for i in range(5):
-                fx = hx - r * .5 + i * r * .25; fh = r * (.7 + .35 * abs(math.sin(t * 14 + i * 1.7))); p.poly([(fx - r * .18, hy + r * 1.2), (fx + r * .18, hy + r * 1.2), (fx, hy + r * 1.2 - fh)], (255, 120, 40)); p.poly([(fx - r * .09, hy + r * 1.2), (fx + r * .09, hy + r * 1.2), (fx, hy + r * 1.2 - fh * .55)], Y)
-        if lit > 0:
-            p.rect(536, 1460, 584, 1620, (250, 240, 215), r=8); p.poly([(542, 1460), (578, 1460), (560, 1390 - 12 * abs(math.sin(t * 11)))], (255, 170, 50)); p.circ(560, 1448, 12, Y)
+        rig.pigeon(p, pg[0], pg[1], .9, t, 'idle', talk=on_pigeon)
+        if on_pigeon:
+            k = ease((t - L('L12') - .8) / .3); fx.glow(img, pg[0], pg[1] - 170, 230, (200, 170, 70), .75 * k, falloff=1.2)   # le pigeon brille de l'intérieur
+            fx.sparkles(img, pg[0], pg[1] - 200, (t - L('L12') - .8) % 1.0 + L('L12') + .8, L('L12') + .8, r=200, n=10, dur=1.0)
+        candle_x, candle_y = 560, 1440
+        tgt = [(pg[0], pg[1] - 170), (hx, hy + r * 1.1), (candle_x, candle_y - 20)]
+        for tc, tg in zip(t_cast, tgt): fx.bolt(img, b['staff'], tg, t, tc - .35); fx.sparkles(img, *tg, t, tc, r=170, seed=tc)
+        for tc in t_cast: fx.flash(img, t, tc, col=(255, 220, 170), a=.18)
+        if t >= L('L13') + 1.0:                                              # barbe roussie jusqu'à la fin de la scène
+            c = min(1, (t - L('L13') - 1.0) / 1.2); dk = tuple(int(255 - (255 - v) * c) for v in (70, 60, 62))
+            p.poly([(hx - r * .34, hy + r * 1.36), (hx + r * .34, hy + r * 1.36), (hx + r * .12, hy + r * 1.9), (hx, hy + r * 2.3), (hx - r * .14, hy + r * 1.85)], dk)
+            for j, (dx, dy) in enumerate(((-.5, 1.2), (.4, 1.25), (-.15, 1.4), (.2, 1.5))): p.circ(hx + dx * r, hy + dy * r, r * .12, tuple(int(255 - (255 - v) * c) for v in (110, 100, 104)))
+            if t < L('L14') + 2.5: fx.glow(img, hx + r * .1, hy + r * 1.6, 26, (255, 120, 40), .7 * (.6 + .4 * math.sin(t * 9)))   # une braise qui reste
+        bx, by = b['beard']; burn = L('L13') + .55 <= t < L('L14') + .9
+        if burn:
+            k = min(1, (t - L('L13') - .55) / .3) * (1 if t < L('L14') + .6 else max(0, (L('L14') + .9 - t) / .3))
+            fx.fire(img, bx, by + r * 1.05, r * 1.1, r * 1.45, t, k, seed=2, n=6, smoke=False)
+            fx.glow(img, hx, hy + r * .2, r * 1.3, (120, 60, 20), .35 * k, falloff=1.4)            # la flamme éclaire le visage
+        if lit > 0 or t >= L('L14') + .55: candle(img, p, candle_x, candle_y, t, max(.05, lit))
+        if L('L14') + .9 <= t < L('L14') + 1.6:                             # une fumée s'échappe de la barbe éteinte
+            q = (t - L('L14') - .9) / .7; fx.glow(img, bx, by + r * .6 - 120 * q, 120 + 80 * q, (60, 60, 64), .5 * (1 - q))
+        if t < L('L12'): card(u, 540, 330, 880, 150, 'CHANTIER 1 : LA LUMIÈRE', Y, (60, 40, 20), size=70, k=pop(t, L('L11') + .2))
         for lid, d, lab, col in (('L12', .8, 'PIGEON : ALLUMÉ', (230, 70, 90)), ('L13', .9, 'BARBE : ALLUMÉE', (230, 70, 90)), ('L14', .9, 'LUMIÈRE : 1 BOUGIE', (70, 190, 120))):
             nxt = {'L12': 'L13', 'L13': 'L14', 'L14': 'L15'}[lid]
             if L(lid) + d <= t < L(nxt): card(u, 540, 330, 820, 150, lab, col, size=74, k=pop(t, L(lid) + d))
@@ -117,7 +143,7 @@ def frame(t, T, p, img, caps, bgs, u):
         rig.barbichu(p, 330, 1650, 1.05, t, 'cheer' if done else 'talk', talk=True)
         if done: rig.citizen(p, 800, 1650, .9 * pop(t, L('L21') + .8), t, (230, 80, 80), 'cheer')
     else:                                                                # le mystère de la cave
-        cellar(p, t); k = pop(t, L('L22') + 1.9, .4)
+        cellar(p, t, img); k = pop(t, L('L22') + 1.9, .4)
         if k: u.text(540, 520, '?', font(int(380 * k)), Y)
         card(u, 540, 1700, 820, 130, 'ÉPISODE 2 : LA PORTE DE LA CAVE', DARK, size=50, k=pop(t, L('L22') + 2.4))
     top(u); engine.draw_caption(u, caps, t, 1500)
