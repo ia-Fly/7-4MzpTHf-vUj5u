@@ -3,6 +3,71 @@
 Consigne de Matis (11/11/2026) : BLACK-OUT est abandonné. Une seule série : **FROMAGISTAN**, un jeu en dessin où le public gouverne. Un épisode tous les 2 jours, 19:00 (Paris), Instagram + TikTok, en français. **Ce fichier remplace les sections 0 (série, voix, format), 4 et 5 du RUNBOOK** ; le reste du RUNBOOK (installation, doublons, stats, contrôle, publication, mémoire, rapport) s'applique tel quel.
 Bible complète (pitch, règles du jeu, pays voisins) : doc du projet `claude/bible-fromagistan.md`, résumée ici.
 
+## ⚠️ NOUVEAU FORMAT ET NOUVELLE DA (Matis, 14/11/2026 — fait foi, remplace « Style », « Effets », « Caméra », « Squelette » et « Fabriquer » plus bas)
+Tant que Matis n'a pas dit non, chaque épisode reprend ce format. Modèle de montage : `formats/toon/ep2/ep2.py` (+ `cover.py`).
+
+### Format
+- Images et plans générés avec **ElevenLabs** (flow `lVEnH7dvj0Qcr2g2eiaE`) ; en code seulement l'interface (jauges, bandeaux, compteurs, sous-titres, bulles de noms, nom de qui parle), le montage, et le dessin en dernier recours.
+- **Images** : `bytedance-seedream-5-lite` (≈ 212 crédits), planches de référence branchées en `connect_from` (`creative_add_flow_asset_node`), 1 image par plan, nœud créé avec `model_parameters {"aspect_ratio":"9:16","resolution":"2K"}` puis `creative_run_flow_nodes` (generations_count 1). Jamais `gemini-3-pro-image`.
+- **Vidéo** : plans clés animés image → vidéo, `veo-3.1-lite-generate-001`, `{"duration_secs":4,"aspect_ratio":"9:16","resolution":"720p","generate_audio":false}` ≈ 727 crédits ; regarder chaque plan (`tools/clip_sheet.py`) et couper les passages ratés. Les autres plans = images avec mouvement de caméra. Images vidéo gardées en uint8 dans le monteur (7 Go de RAM).
+- **Musique** : node music ElevenLabs, une piste par ambiance, réutilisée (thème `YGZxsgSlEjvIiAq1ieZe`, tension `sqty9Uj1GzKtv1Ss1BG7` flow `cuSYy0Hs63XrJf0fCN6Q`, Guimauvie `MRV9sFyVk7z7nJGtbsaP` + `KEwAgJYynEbtXREeBkDA`). **Bruitages** : banque `formats/cine/sound_library.json` d'abord, sinon node sfx `eleven_text_to_sound_v2`.
+- **Une voix par personne** (`eleven_v4`, une prise) ; chaque personne de l'histoire dit au moins une petite phrase ; le nom de qui parle s'affiche au-dessus des sous-titres.
+- **Rythme posé** : voix à vitesse normale, respirations de 0,4 à 1 s entre répliques (plus après une révélation), chaque personnage présenté (qui, pourquoi ce rôle). **Durée 2 à 3 min** (Reel ≤ 3 min ; `tools/check_video.py` accepte jusqu'à 180 s).
+- **Intrigues** : au moins 2 fils mystérieux ouverts, un nouvel indice par épisode, fin sur une question.
+- **Budget** : ≈ 6 500 crédits par épisode (121 000 par mois pour ~15 épisodes). Estimer avant de générer ; réduire d'abord les plans animés, puis les images. Chaque dépense dans `elevenlabs/ledger.jsonl`.
+- Pas de rubrique fixe « demandes des commentaires ».
+
+### Bulle de nom (Reels)
+Chaque personnage joué par une vraie personne a, dès sa première apparition, une petite boule lumineuse (≈ 40 px, cœur blanc-or, halo, 4 étincelles en orbite, « pop » à l'apparition, flotte de 4 à 6 px) au-dessus de la tête, avec « @pseudo » (Montserrat ExtraBold 34 px, blanc contour or) sur une pastille noire translucide aux bords dorés. OR pour les gentils, ROUGE (#FF2A2A, pastille bordeaux) pour Guimauvie. Hors des 10 % du haut, des 25 % du bas et de la colonne de boutons. Code : fonction `bubble` de `ep2/ep2.py`. Citoyens anonymes et personnages inventés : pas de bulle.
+
+### DA (permanente)
+Dessin 2D, grosses têtes rondes, rendu des planches : halo et rim light autour des personnages, contrastes forts, vignettage, particules / étincelles, éclairage dramatique. **Ce n'est pas « la nuit »** : jour, nuit, aube, crépuscule selon l'histoire ; de jour, ciel lumineux mais contrasté (soleil doré, ombres franches, halos gardés).
+- Gentils (Fromagistan) : violet royal `#4B1E8C` `#7A3FD1`, or et jaune fromage `#FFC400` `#FFE066` (halos, magie, titres) ; de nuit fonds `#0B0B0D` `#141826`. Lunettes de Barbichu qui brillent en or.
+- Méchants (Guimauvie, Doudou Dictador) : `#0B0B0D` `#1A1A1F` `#B3001B` `#6E0A14` `#FF2A2A`, de jour comme de nuit. Or = gentils, rouge = méchants. Dark mais jamais effrayant, rien de gore, pas de sang.
+- Rival au monocle : lueur gris-vert. Reine de Beurrélie : lueur ivoire-dorée.
+- Interface : panneaux noirs translucides, bords et chiffres or (rouge pour Guimauvie).
+
+### Planches de référence (flow `lVEnH7dvj0Qcr2g2eiaE`, relire avec `creative_get_generations`, 0 crédit)
+| Quoi | Principale | Variantes |
+|---|---|---|
+| Président Barbichu (réf. DA) | `hXaP3xaDm6TBqjv9Kbsi` | `zssQvD5WGR3ZIEJFPyap`, `9IygikbYFKVS3r4PRFPJ` |
+| Pigeon, rival, reporter, citoyen type | `4qaAGKnBlqcwXiQaSSJF` | `MJKvknvcVDZjoVD3biCQ`, `TJnBfyfxfEhItVIAGXpm`, `p0luVGCQEZIwwMOQf0OA` |
+| Reine de Beurrélie | `DKVHfZuF1G2e7cGXHuWb` | `DTQiOiNXrn1h2NtsTk28`, `Tg0oVBYBokOvp8aKOGUI`, `5XAiFJyrwXO2w5jbAiL9` |
+| Kxpl (@justnaxt) | `eqST47ay8kJRx1qRgI8L` | `vVP4Uwy8TJ0AbIsJ9pAi` |
+| Comptable Esteban (@esteban_gi19) | `17DnL0zA4WwHGXlswFZW` | `p2BZKfQHHUNhG8rs6R1d`, `5qHc2heohbBgJtMLZj9r` |
+| Docteur (@nat_gbz) | `1hxEKYtBS4pDbDSI2shj` | `Yg87Kn6O0iT93SjnXq7c` |
+| Garde royale | `oC1Cka8Yin97YQB0piAM` | `a87EugwoanbqdDWtyHxr` |
+| Capitaine de la Garde montée (@elo_zht, visière fermée, 3 étoiles) | `iHPA1wHMXMKNZhqr4rN2` | `DMJGViDbyjCwtYDreJt9` ; vertical ép. 2 `DcGhjL9qzEaRVOuhZbud` |
+| Doudou Dictador | `WhsnClrHnKVRGyH60KyA` | `cYeB0myTNtI57ltDwytr`, `zG7WB2OZw28ISpphmXVc`, `Zygc04VNFeYcKlyWoJ26` |
+| Château de Guimauvie | `imMXroDhPyxJIi3ZKEX5` | `sxIVea96ju0Q1RgZHdS8` ; scène verticale ép. 2 `F7m1l6TZ7cv1s9H7HzUx` |
+| Sbires-oursons + chèvre noire (sans brassards rouges) | `FQeMnCPGnc6tWat2ubiP` | chèvre `vDSJ2bPfvZWAQOXWzEXF` ; espion sous le carrosse `R3OeCqZn2I6unAm9ojZD` |
+| Place du Fromagistan (nuit) | `0dYDZKjnzlFO8bnmb61K` | `5rCtfiG1GScmu5glxadu`, `lQFdEFF8pxI47wWLOgmi`, `yDcA8yoFQPaZXRwCFIGR` |
+| Marché aux fromages (jour) | `xsbcbdgfQpEIV2zCjNa7` | `FELlr7L6pKLKJV7LucEn` |
+| Bureau présidentiel | `0IueMHSZGLdxXpbbcpZ5` | `8g80jdjLEpYB5hVpJ4OT` |
+| Circuit du Grand Prix | `RJQLTXBcoGEnCbYivqr3` | `El5PSY8aFkgc4AX56lWs` |
+| Porte de la cave | `1by4TRMxqJh8SW4B0npt` | |
+| Réserve royale de fromages | `nrNWFIRWo9mTWPny4UNh` | |
+
+### Rôles et voix (tenus aussi dans `state.json > roles` et `voix`)
+| Qui | Rôle | Voix |
+|---|---|---|
+| — | Président Barbichu / narrateur | Hugo `3Tp5mYhT9wrfnry9pzvV` |
+| — | Reine de Beurrélie | Morgane `ZYOBieLaunTiQrTrvNQq` |
+| doudou dictador (TikTok) | Doudou Dictador, roi de Guimauvie | Gronk `30ndZrqtoeQllE13MnID` |
+| @justnaxt | Kxpl, marchand officiel du royaume | Jean-Patrick `Hs8dAyliGDIYLwC3jaSJ` |
+| @esteban_gi19 | Esteban, Comptable royal (garde les écus des likes) | Bastien `69ujSsYIBOGW4duCBBSW` |
+| @nat_gbz | Docteur | Paul `RAFNgKBJ8SavtpwF6uUV` |
+| @elo_zht | Capitaine de la Garde montée (3 étoiles) | Emilio `FmOMKTYDTzzmpxukR0kC` |
+| @pancakemiam450 | a fait inviter la Reine | |
+| @matska_prv | bar à cocktails | |
+| @naelmomo8 | Grand Prix | |
+| Kets4eki, E_kling (TikTok) | citoyens | |
+Nouveau personnage = nouvelle voix française choisie avec `creative_list_voices`, notée ici et dans `state.json`.
+Identifier les personnes : Instagram `@pseudo` dans la légende et le 1er commentaire (+ `carouselTags` pour un carrousel) ; TikTok pseudo sans @ (sauf comptes TikTok connus).
+
+### Règle du comptable (Matis, 14/11/2026, permanente)
+Vote sur l'ARGENT (budget, dépense, taxe, commerce, chantier payant) : le vote de @esteban_gi19 vaut 30 % ; les autres se partagent 70 %. À l'écran : boulier doré, « VOTE DU COMPTABLE : 30 % ». S'il n'a pas voté, vote normal.
+
 ## La série
 - **Pitch** : un vieux mage, le Président Barbichu, est devenu président du Fromagistan par erreur. Pays en ruine, magie qui rate. Il raconte à la 1re personne.
 - **Personnages** (dessinés en code, `rig.py`) : Barbichu, le pigeon conseiller (blasé), le rival au monocle, la reporter de « Fromagistan Info », les citoyens. Tous inventés. **Jamais de caricature ressemblante ni de nom déformé d'une personne réelle** ; pas de personnage protégé.
@@ -37,3 +102,4 @@ Bible complète (pitch, règles du jeu, pays voisins) : doc du projet `claude/bi
 | Épisode | Publié | Ce qui s'est passé | Vote ouvert |
 |---|---|---|---|
 | 1 | 13/11/2026 | Barbichu devient président par erreur ; 0 citoyen, 0 écu, palais sans toit ; lumière rallumée à la bougie ; une porte fermée à clé dans la cave | 1 réparer le toit (400 écus) · 2 marché aux fromages (150) · 3 inviter la reine (0) |
+| 2 | 15/11/2026 | Nouveau format (2 min 40). Bilan ép. 1 : 155 likes = 310 écus, 21 commentaires, 5 partages, 6 enregistrements, 52 citoyens (IG 42 + TikTok 10). Toit réparé (vote d'argent : comptable 30 % + Kets4eki 35 % contre justnaxt 35 % pour le marché). Kxpl marchand officiel, sa loi en vote ; cabinet du Docteur ; Garde royale et Garde montée (Capitaine @elo_zht) ; bar sans alcool ; circuit du Grand Prix, grille vide ; marché aux fromages proposé, pas construit. Visite de la Reine : elle signe beurre contre fromage si on LIKE et REPUBLIE (Beurrélie 50/100). Guimauvie de Doudou Dictador (3 habitants + 1 chèvre, rivalité 10/100). **Mystères ouverts** : espion-ourson sous le carrosse ; 3 meules volées (touffe de peluche noire, petites empreintes) ; la porte de la cave a frappé 3 coups | 1 loi de Kxpl (100) · 2 marché aux fromages (150) · 3 mur anti-guimauve (200) — vote d'argent, comptable 30 % |

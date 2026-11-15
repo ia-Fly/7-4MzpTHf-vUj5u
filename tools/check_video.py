@@ -1,9 +1,11 @@
 """Contrôle qualité d'une vidéo avant publication : format, durée, son (LUFS, crête, 1re seconde), planche d'images.
-usage: python3 tools/check_video.py VIDEO.mp4 [SORTIE_planche.jpg]
+usage: python3 tools/check_video.py VIDEO.mp4 [SORTIE_planche.jpg]   (durée acceptée : 5 à 180 s)
 Affiche un verdict OK / À CORRIGER. Regarde ensuite la planche avec l'outil Read (images à 0 s, 10 %, ..., fin)."""
 import json, os, subprocess, sys, tempfile
 import numpy as np, soundfile as sf, pyloudnorm as pyln
 from PIL import Image
+
+MAXDUR = 180.0   # Reel jusqu'à 3 min (Matis, 14/11/2026 : épisodes de 2 à 3 min)
 
 
 def probe(v):
@@ -18,7 +20,7 @@ def main():
     has_a = any(s['codec_type'] == 'audio' for s in info['streams'])
     problems = []
     if (vs['width'], vs['height']) != (1080, 1920): problems.append(f"format {vs['width']}x{vs['height']} (attendu 1080x1920)")
-    if not 5 <= dur <= 90: problems.append(f'durée {dur:.1f} s hors 5–90 s')
+    if not 5 <= dur <= MAXDUR: problems.append(f'durée {dur:.1f} s hors 5–{MAXDUR:.0f} s')
     if not has_a: problems.append('pas de piste son')
     lufs = peak = first = None
     if has_a:

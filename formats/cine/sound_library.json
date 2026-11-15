@@ -327,6 +327,118 @@
    ],
    "prompt": null,
    "desc": "Pigeon qui roucoule deux fois (FROMAGISTAN)."
+  },
+  {
+   "name": "horse",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "aXWvW8IuUIRrHSvczGgF",
+   "seconds": 3,
+   "loop": false,
+   "tags": [
+    "horse",
+    "fanfare",
+    "fromagistan"
+   ],
+   "prompt": "cheval qui hennit",
+   "added": "2026-11-15"
+  },
+  {
+   "name": "car",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "9y1NoatejTvU7wqBl0Hq",
+   "seconds": 11,
+   "loop": false,
+   "tags": [
+    "race",
+    "car",
+    "fromagistan"
+   ],
+   "prompt": "petite voiture de course",
+   "added": "2026-11-15"
+  },
+  {
+   "name": "cheer",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "zTUhhe0OHNk6FMc6P1cW",
+   "seconds": 1,
+   "loop": false,
+   "tags": [
+    "crowd",
+    "cheer",
+    "fromagistan"
+   ],
+   "prompt": "foule qui acclame",
+   "added": "2026-11-15"
+  },
+  {
+   "name": "guimauvie-amb1",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "MRV9sFyVk7z7nJGtbsaP",
+   "seconds": 5,
+   "loop": true,
+   "tags": [
+    "ambience",
+    "dark",
+    "guimauvie"
+   ],
+   "prompt": "ambiance sombre de Guimauvie",
+   "added": "2026-11-15"
+  },
+  {
+   "name": "guimauvie-amb2",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "KEwAgJYynEbtXREeBkDA",
+   "seconds": 5,
+   "loop": true,
+   "tags": [
+    "ambience",
+    "dark",
+    "guimauvie"
+   ],
+   "prompt": "ambiance sombre de Guimauvie (variante)",
+   "added": "2026-11-15"
+  },
+  {
+   "name": "guimauvie-sting1",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "C2XahgW7501oVvOCcbMK",
+   "seconds": 5,
+   "loop": false,
+   "tags": [
+    "sting",
+    "villain",
+    "guimauvie"
+   ],
+   "prompt": "sting dramatique du méchant",
+   "added": "2026-11-15"
+  },
+  {
+   "name": "guimauvie-sting2",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "gLA6Trrmbn5pRsinyacu",
+   "seconds": 5,
+   "loop": false,
+   "tags": [
+    "sting",
+    "villain",
+    "guimauvie"
+   ],
+   "prompt": "sting dramatique du méchant (variante)",
+   "added": "2026-11-15"
+  },
+  {
+   "name": "goat",
+   "flow_id": "lVEnH7dvj0Qcr2g2eiaE",
+   "generation_id": "GfzXNd1mt5QDxsalbVn3",
+   "seconds": 5,
+   "loop": false,
+   "tags": [
+    "goat",
+    "guimauvie",
+    "comic"
+   ],
+   "prompt": "chèvre noire blasée qui bêle",
+   "added": "2026-11-15"
   }
  ],
  "music": [

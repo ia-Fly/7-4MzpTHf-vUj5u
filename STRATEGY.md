@@ -67,11 +67,15 @@ Mis à jour par chaque passage de la tâche planifiée. Les chiffres viennent de
 | 05/11 | TikTok | caller-id-ep1 | CINE · CALLER ID ép. 1 | 34 s | 786 | n.d. | n.d. | 4 | 1 | 0 | n.d. |
 | 08/11 | IG | night-dispatch-ep1 | CINE · NIGHT DISPATCH ép. 1 (EN, 02:03 Paris) | 36 s | 149 (09/11) | 7,8 s (22 %) | 52 % | 0 | 2 | 0 | 0 |
 | 08/11 | TikTok | night-dispatch-ep1 | CINE · NIGHT DISPATCH ép. 1 | 36 s | n.d. (pas relu le 09/11) | | | | | | |
-| 09/11 | IG + TikTok | blackout-n1 | CINE · BLACK-OUT nuit 1 (FR, 19:00 Paris) | 57 s | à relire | | | | | | |
+| 09/11 | IG + TikTok | blackout-n1 | CINE · BLACK-OUT nuit 1 — jamais publiée (série arrêtée le 11/11) | | | | | | | | |
+| 13/11 | IG | fromagistan-ep1 | TOON · FROMAGISTAN ép. 1 (19:00 Paris) | 52 s | 1 551 (15/11) | 15,2 s (29 %) | 35,7 % | 125 | 18 | 4 | 6 |
+| 13/11 | TikTok | fromagistan-ep1 | TOON · FROMAGISTAN ép. 1 | 52 s | 715 (15/11) | n.d. | n.d. | 30 | 3 | 1 | n.d. |
+| 15/11 | IG + TikTok | fromagistan-ep2 | FROMAGISTAN ép. 2, nouveau format ElevenLabs (19:00 Paris) | 160 s | à relire | | | | | | |
 
 Abonnés : 09/11 → IG 6 (=) ; 07/11 → IG 6 (= depuis 01/11) · TikTok 2 (+2 depuis 01/11, dont +1 le 05/11) ; 29/10 → IG 4 · TikTok 0 ; 30/10 → IG 5 (+1) · TikTok 0 ; 31/10 → IG 5 (=) · TikTok 0 (=) ; 01/11 → IG 6 (+1) · TikTok 0 (=).
 
 ## Leçons datées
+- 15/11 : **FROMAGISTAN ép. 1 = meilleur engagement du compte.** Instagram 1 551 vues, 125 likes (8 % des vues, contre 1 à 3 % avant), 18 commentaires (1,2 %), 4 partages, 6 enregistrements ; TikTok 715 vues, 30 likes, 3 com. Abonnés : Instagram 42 (6 le 09/11), TikTok 10 (+8 le 13/11) → 52 citoyens. Le jeu (citer les pseudos, donner des rôles) fait commenter. Point faible : 29 % regardé et 35,7 % de skip. → ép. 2 en nouveau format (images ElevenLabs, une voix par personne, 2 min 40, mystères). À mesurer : % regardé sur 160 s (temps moyen > 30 s ?), commentaires de vote, abonnés gagnés.
 - 09/11 : **l'anglais publié la nuit a fait chuter Instagram d'environ 15 fois.** Les 6 reels d'avant (25/10 → 01/11, publiés vers 14:00 ou 19:00 à Paris) font 700 à 3 231 vues ; les deux CINE en anglais publiés à 23:42 et 02:03 (Paris) font 113 et 149 vues, avec un skip de 68 % et 52 % (25 à 42 % avant) et 22-24 % regardé. Les reels en français ont 2 à 3 fois plus de likes par vue (Omertà FR : 74 likes / 2 915 vues ; Le Zéro : 34 / 1 587 ; Omertà ép. 2 EN : 44 / 3 231 ; ép. 3 EN : 14 / 1 669). Le compte (6 abonnés, audience française) n'a pas de public anglais à qui montrer ces reels. TikTok n'a pas chuté (CALLER ID : 786 vues). → Décision de Matis : français, 19:00 Paris, une seule série (BLACK-OUT). Contrôle technique du jour : les coups frappés couvraient « frappe » dans la 1re réplique (Whisper entendait « fera pas ») ; coups placés avant et après la réplique et effets baissés sous la voix (`fx_duck_db`) → la 1re phrase est comprise.
 - 07/11 : CALLER ID ép. 1 (premier CINE), Instagram : 112 vues en 38 h, skip 69 % (pire score du compte, la moyenne est 25-40 %), 23 % regardé. TikTok : 786 vues (2e meilleur TikTok), +1 abonné le jour même. Instagram n'a presque pas distribué le reel : l'ouverture (réveil, téléphone sombre) ne dit rien en 1 s, et il a été publié à 23:40 à Paris hors créneau. → NIGHT DISPATCH ép. 1 ouvre en flash-forward : la console rouge « MATCH: EMPLOYEE HOME ADDRESS » et « She just gave you your own address » dès la 1re image (la recette d'Omertà ép. 2, skip 26 %). À comparer sur le skip Instagram.
 - 05/11 : pilote CALLER ID monté sur le format CINE. Coûts réels mesurés : plan Veo Lite 4 s 1080p sans son = 1 212 crédits, image Seedream 5 Lite 2K = 212, voix ≈ 1 crédit/caractère, bruitage 3,3/s, musique 15/s. La vidéo avec son généré coûte 3 fois plus : on la génère muette et on fait le son à part. Hypothèse à mesurer : des images réalistes et une vraie voix font baisser le skip sous 25 % et monter le % regardé au-dessus de 57 % (meilleur score : Omertà ép. 3).
@@ -90,6 +94,7 @@ Abonnés : 09/11 → IG 6 (=) ; 07/11 → IG 6 (= depuis 01/11) · TikTok 2 (+2 
 4. Accroche : montrer le choix dès 0 s en petit, dans le bandeau.
 
 ## Prochaine expérience
+- 15/11 → 19/11 : FROMAGISTAN ép. 2 et 3 au nouveau format (2 à 3 min). Hypothèse : le temps moyen regardé double (> 30 s) et les commentaires restent au-dessus de 1 % des vues grâce aux rôles et aux mystères. Si le % regardé tombe sous 15 %, resserrer vers 2 min et poser le cliffhanger plus tôt.
 - 09/11 → 13/11 : BLACK-OUT nuits 1 à 3, en français à 19:00 (Paris). Hypothèse : retour à plus de 1 500 vues Instagram par reel (niveau d'avant le 05/11) et skip sous 40 %, avec une fiction plus longue (57 s) que les épisodes anglais (34-36 s). À mesurer après 24 h et 48 h : vues, skip, % regardé, commentaires (le vote 1 / 2), abonnés gagnés.
 - Si le % regardé de la nuit 1 reste sous 30 % : raccourcir les nuits suivantes vers 45 s et poser le choix plus tôt.
 
