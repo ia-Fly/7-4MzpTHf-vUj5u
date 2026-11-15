@@ -21,6 +21,7 @@ Procédure suivie par la tâche planifiée « Épisode BLACK-OUT tous les 2 jour
 | Format | **CINE** (`formats/cine/README.md`) : photoréaliste, adulte, voix ElevenLabs |
 
 ## 1. Installer l'atelier (session neuve)
+> Push refusé (403) ? Vérifier le compte : `gh api user --jq .login` et `gh api repos/ia-Fly/7-4mzpthf-vuj5u --jq .permissions.push`. Le 15/11/2026 la session tournait avec **Chau777** (lecture seule) ; Matis l'a ajouté en collaborateur Write. Si `push` vaut false : le dire à Matis (ajouter le compte en Write), ne rien contourner.
 1. Outil `add_repo` : owner `ia-Fly`, repo `7-4MzpTHf-vUj5u`, access `push`. Clone avec la commande indiquée dans `/home/claude/studio`, puis `git checkout studio`.
 2. `bash setup.sh`.
 3. Lis `STRATEGY.md`, `state.json`, `formats/cine/README.md`, `formats/cine/series/README.md`, `formats/cine/series/scripts.md` (suites déjà écrites pour chaque choix) et le dernier fichier de `journal/`.

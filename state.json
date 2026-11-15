@@ -52,18 +52,7 @@
    "tiktok": 2
   }
  ],
- "queue": [
-  {
-   "id": "fromagistan-ep2",
-   "networks": [
-    "instagram",
-    "tiktok"
-   ],
-   "not_before": "2026-11-15",
-   "condition": "push GitHub rétabli (branche media) ; re-monter avec python3 formats/toon/ep2/ep2.py ASSETS OUT (assets listés dans le journal du 15/11) ; si déjà publié à la main par Matis, retirer",
-   "captions": "journal/2026-11-15.md"
-  }
- ],
+ "queue": [],
  "history": [
   {
    "date": "2026-10-25",
@@ -222,6 +211,34 @@
    "metricool": 425321343,
    "time": "19:00 Europe/Paris",
    "note": "v2 du 12/11 : dessins détaillés, plans serrés, effets intégrés"
+  },
+  {
+   "date": "2026-11-15",
+   "network": "instagram",
+   "id": "fromagistan-ep2",
+   "format": "toon-elevenlabs",
+   "series": "FROMAGISTAN",
+   "duration_s": 160.0,
+   "credits": 0,
+   "credits_note": "≈ 7 240 dépensés depuis le chat le 14/11 + 2 voix le 15/11",
+   "flow": "lVEnH7dvj0Qcr2g2eiaE",
+   "metricool": 429013306,
+   "time": "18:00 Europe/Paris (demande de Matis, 15/11)",
+   "note": "v4"
+  },
+  {
+   "date": "2026-11-15",
+   "network": "tiktok",
+   "id": "fromagistan-ep2",
+   "format": "toon-elevenlabs",
+   "series": "FROMAGISTAN",
+   "duration_s": 160.0,
+   "credits": 0,
+   "credits_note": "≈ 7 240 dépensés depuis le chat le 14/11 + 2 voix le 15/11",
+   "flow": "lVEnH7dvj0Qcr2g2eiaE",
+   "metricool": 429013337,
+   "time": "18:00 Europe/Paris (demande de Matis, 15/11)",
+   "note": "v4"
   }
  ],
  "votes": {
@@ -619,7 +636,7 @@
   "mysteres_regle": "Ép. 3 : un nouvel indice pour chacun, sans tout révéler ; au moins 2 fils ouverts et une question finale.",
   "format": "nouveau format (14/11/2026) : images et plans ElevenLabs + interface, bulles et noms en code, une voix par personne, rythme posé, intrigues, 2 à 3 min ; monteur formats/toon/ep2/ep2.py",
   "regles_comptable": "Vote sur l'ARGENT : le vote du Comptable royal (@esteban_gi19) vaut 30 % ; les autres se partagent 70 %. Sans vote du comptable : vote normal. Afficher « VOTE DU COMPTABLE : 30 % » (boulier doré).",
-  "ep2_statut": "15/11/2026 : monté (160 s, VERDICT OK, -12,7 LUFS) mais NON PUBLIÉ : la session n'a pas pu pousser la vidéo sur la branche media (git push refusé, HTTP 403 : pas de droit d'écriture GitHub pour cette session). Vidéo et couverture envoyées à Matis dans la session. À publier par Matis ou au prochain passage (re-monter avec formats/toon/ep2/ep2.py, 0 crédit)."
+  "ep2_statut": "Publié le 15/11/2026 à 18:00 (Paris) à la demande de Matis : Instagram 429013306, TikTok 429013337. Le blocage du matin venait du compte GitHub de la session (Chau777, lecture seule) ; Matis a ajouté Chau777 en collaborateur Write le 15/11."
  },
  "roles": {
   "@justnaxt": "Kxpl, marchand officiel du royaume (voix Jean-Patrick Hs8dAyliGDIYLwC3jaSJ)",
