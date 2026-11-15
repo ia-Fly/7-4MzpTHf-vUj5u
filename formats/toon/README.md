@@ -16,6 +16,8 @@ Tant que Matis n'a pas dit non, chaque épisode reprend ce format. Modèle de mo
 - **Intrigues** : au moins 2 fils mystérieux ouverts, un nouvel indice par épisode, fin sur une question.
 - **Budget** : ≈ 6 500 crédits par épisode (121 000 par mois pour ~15 épisodes). Estimer avant de générer ; réduire d'abord les plans animés, puis les images. Chaque dépense dans `elevenlabs/ledger.jsonl`.
 - Pas de rubrique fixe « demandes des commentaires ».
+- **Bilan d'abord (Matis, 15/11/2026, permanent)** : après l'intro, bilan rapide de l'épisode précédent avec les vrais chiffres (likes → écus, commentaires, partages → popularité, enregistrements → magie, abonnés → citoyens), compteurs animés, puis action directe. Présentations de personnages en une phrase.
+- **Bruitages (Matis, 15/11/2026)** : jamais deux en même temps, jamais sur une réplique (logique du monteur ep2).
 
 ### Bulle de nom (Reels)
 Chaque personnage joué par une vraie personne a, dès sa première apparition, une petite boule lumineuse (≈ 40 px, cœur blanc-or, halo, 4 étincelles en orbite, « pop » à l'apparition, flotte de 4 à 6 px) au-dessus de la tête, avec « @pseudo » (Montserrat ExtraBold 34 px, blanc contour or) sur une pastille noire translucide aux bords dorés. OR pour les gentils, ROUGE (#FF2A2A, pastille bordeaux) pour Guimauvie. Hors des 10 % du haut, des 25 % du bas et de la colonne de boutons. Code : fonction `bubble` de `ep2/ep2.py`. Citoyens anonymes et personnages inventés : pas de bulle.
