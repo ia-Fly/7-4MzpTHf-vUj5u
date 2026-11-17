@@ -35,7 +35,8 @@ def summary():
     if os.path.exists(LEDGER):
         for l in open(LEDGER):
             r = json.loads(l)
-            if r['date'].startswith(now): tot += r['credits']; by[r['episode']] = by.get(r['episode'], 0) + r['credits']
+            c = r.get('credits') or 0   # crédits inconnus (null) = 0, sans planter
+            if r['date'].startswith(now): tot += c; by[r['episode']] = by.get(r['episode'], 0) + c
     print(json.dumps(dict(month=now, spent=round(tot), monthly=MONTHLY, left=round(MONTHLY - tot), by_episode={k: round(v) for k, v in by.items()})))
 
 

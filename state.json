@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15",
+ "updated": "2026-11-17",
  "accounts": {
   "instagram": "situation.douteuse",
   "tiktok": "situation.douteus",
@@ -50,6 +50,12 @@
    "date": "2026-11-07",
    "instagram": 6,
    "tiktok": 2
+  },
+  {
+   "date": "2026-11-17",
+   "instagram": 41,
+   "tiktok": 10,
+   "source": "vidIQ followersCount (IG) ; TikTok = Metricool TKEV07, dernière valeur (14/11)"
   }
  ],
  "queue": [],
@@ -239,6 +245,30 @@
    "metricool": 429013337,
    "time": "18:00 Europe/Paris (demande de Matis, 15/11)",
    "note": "v4"
+  },
+  {
+   "date": "2026-11-17",
+   "network": "instagram",
+   "id": "fromagistan-ep3",
+   "format": "toon-elevenlabs-1min",
+   "series": "FROMAGISTAN",
+   "duration_s": 69.4,
+   "credits": 2604,
+   "flow": "lVEnH7dvj0Qcr2g2eiaE",
+   "metricool": 431412982,
+   "time": "19:00 Europe/Paris"
+  },
+  {
+   "date": "2026-11-17",
+   "network": "tiktok",
+   "id": "fromagistan-ep3",
+   "format": "toon-elevenlabs-1min",
+   "series": "FROMAGISTAN",
+   "duration_s": 69.4,
+   "credits": 2604,
+   "flow": "lVEnH7dvj0Qcr2g2eiaE",
+   "metricool": 431413017,
+   "time": "19:00 Europe/Paris"
   }
  ],
  "votes": {
@@ -310,12 +340,26 @@
     "2 · MARCHÉ AUX FROMAGES (150 écus)",
     "3 · MUR ANTI-GUIMAUVE (200 écus)"
    ],
+   "result": "3 · MUR ANTI-GUIMAUVE",
+   "top_comment": "@esteban_gi19 et @justnaxt (2 likes chacun) : avance d'écus pour la loi de Kxpl ; écurie « First » + Kxpl ministre des commerces et des cultures",
+   "argent": true,
+   "regle": "vote d'argent : comptable @esteban_gi19 = 30 %",
+   "aussi": "condition de la Reine (likes + republications de l'ép. 2) ; écuries du Grand Prix (nom + couleur en commentaire) ; théories sur les meules et la cave",
+   "how": "Capture d'écran de Matis (Instagram) + TikTok via vidiq_tiktok_video_comments. Jamais deviné.",
+   "detail": "Vote d'argent. Instagram (capture de Matis, 17/11 9 h 17) : @esteban_gi19 (comptable, 30 %) = 3 ; @justnaxt = 3 ; @alice._.glt31 = 3 → 3 à 100 %. TikTok : 0 commentaire sur l'ép. 2 (profil public vidIQ, 17/11). Budget 310 + 32 = 342 ; mur −200 ; avance d'Esteban : loi de Kxpl −100 ; reste 42.",
+   "source": "Matis, capture du 17/11/2026 + vidiq_tiktok_profile_videos"
+  },
+  "fromagistan_ep3": {
+   "options": [
+    "1 · KXPL MINISTRE DES COMMERCES ET DES CULTURES (0 écu)",
+    "2 · MARCHÉ AUX FROMAGES (150 écus, coffre : 42)",
+    "3 · LA GARDE FOUILLE LA CAVE (30 écus)"
+   ],
    "result": null,
    "top_comment": null,
    "argent": true,
    "regle": "vote d'argent : comptable @esteban_gi19 = 30 %",
-   "aussi": "condition de la Reine (likes + republications de l'ép. 2) ; écuries du Grand Prix (nom + couleur en commentaire) ; théories sur les meules et la cave",
-   "how": "Capture d'écran de Matis (Instagram) + TikTok via vidiq_tiktok_video_comments. Jamais deviné."
+   "how": "Capture de Matis (Instagram) + vidiq_tiktok_comment_list / vidiq_instagram_comment_list. Jamais deviné."
   }
  },
  "themes_used": {
@@ -575,13 +619,13 @@
   }
  },
  "fromagistan": {
-  "episode": 2,
-  "citoyens": 52,
-  "budget": 310,
-  "popularite": 65,
-  "magie": 6,
+  "episode": 3,
+  "citoyens": 51,
+  "budget": 42,
+  "popularite": 86,
+  "magie": 7,
   "relations": {
-   "beurrelie": 50,
+   "beurrelie": 60,
    "ketchup": 50,
    "tofu": 50,
    "raclette": 50,
@@ -589,18 +633,19 @@
   },
   "lieux": [
    "palais (toit réparé, ép. 2)",
+   "mur anti-guimauve le long de la rivière (ép. 3)",
    "cabinet médical (@nat_gbz)",
    "bar à cocktails sans alcool (@matska_prv)",
-   "circuit du Grand Prix autour du château (@naelmomo8, grille vide : écuries à inscrire)",
+   "circuit du Grand Prix (@naelmomo8) : 1re écurie inscrite = « First » de Kxpl (@justnaxt)",
    "Garde royale + Garde montée (@elo_zht)"
   ],
   "mysteres": [
-   "espion-ourson de Doudou caché sous le carrosse de la Reine (« mon espion est déjà dans ton château »)",
-   "3 meules volées dans la réserve royale (indice : touffe de peluche noire, petites empreintes de pattes)",
-   "la porte fermée à clé de la cave a frappé trois coups"
+   "3 meules volées + espion-ourson : ép. 3, sous le mur, une piste de petites empreintes de peluche noire SORT de la porte fermée à clé de la cave → le voleur serait dans le château (question finale)",
+   "la porte fermée à clé de la cave : a frappé 3 coups (ép. 2), puis encore 3 coups (ép. 3) ; lueur rouge sous la porte",
+   "l'espion-ourson de Doudou sous le carrosse de la Reine (« mon espion est déjà dans ton château ») : pas encore revu"
   ],
   "regles": "Tout est additionné sur les deux réseaux (Instagram + TikTok), une seule vidéo : abonnés=citoyens ; like=+2 écus ; partage=+3 popularité ; enregistrement=+1 magie ; votes additionnés ; chiffres réels de l'épisode précédent.",
-  "citoyens_detail": "Instagram 42 + TikTok 10 (lus le 15/11/2026)",
+  "citoyens_detail": "Instagram 41 (17/11) + TikTok 10 (dernière valeur Metricool, 14/11)",
   "stats_ep1": {
    "instagram": {
     "vues": 1551,
@@ -627,19 +672,48 @@
    "jeu": "155 likes = +310 écus ; 5 partages = +15 popularité ; 6 enregistrements = +6 magie ; abonnés 42 + 10 = 52 citoyens"
   },
   "en_projet": [
-   "marché aux fromages (proposé, pas construit, 150 écus)",
-   "loi de Kxpl : chaque aliment dit d'où il vient (en vote, 100 écus)",
-   "mur anti-guimauve (200 écus)"
+   "Kxpl ministre des commerces et des cultures (en vote, 0 écu)",
+   "marché aux fromages (en vote, 150 écus, il en manque 108)",
+   "la Garde fouille la cave (en vote, 30 écus)"
   ],
-  "reine": "Visite de la Reine de Beurrélie (loi citoyenne de @pancakemiam450). Elle signe l'accord beurre contre fromage si les citoyens LIKENT et REPUBLIENT la vidéo de l'ép. 2. Résultat à donner à l'ép. 3 avec les vrais chiffres (likes et republications de l'ép. 2).",
+  "reine": "Ép. 3 : condition annoncée = 5 partages de l'ép. 2 ; réel = 7 partages (et 16 likes, « c'est maigre ») → accord beurre contre fromage signé, Beurrélie 60/100.",
   "guimauvie": "Royaume de Guimauvie, fondé par Doudou Dictador (TikTok « doudou dictador ») après avoir été refusé comme président : 3 habitants (sbires-oursons) + 1 chèvre. Rivalité 10/100. Il menace de saboter le Grand Prix et de voler la Reine.",
   "mysteres_regle": "Ép. 3 : un nouvel indice pour chacun, sans tout révéler ; au moins 2 fils ouverts et une question finale.",
-  "format": "nouveau format (14/11/2026) : images et plans ElevenLabs + interface, bulles et noms en code, une voix par personne, rythme posé, intrigues, 2 à 3 min ; monteur formats/toon/ep2/ep2.py",
+  "format": "ép. 3 (17/11) : format 1 min (Matis) ; 9 répliques, une prise par réplique ; monteur formats/toon/ep3/ep3.py",
   "regles_comptable": "Vote sur l'ARGENT : le vote du Comptable royal (@esteban_gi19) vaut 30 % ; les autres se partagent 70 %. Sans vote du comptable : vote normal. Afficher « VOTE DU COMPTABLE : 30 % » (boulier doré).",
-  "ep2_statut": "Publié le 15/11/2026 à 18:00 (Paris) à la demande de Matis : Instagram 429013306, TikTok 429013337. Le blocage du matin venait du compte GitHub de la session (Chau777, lecture seule) ; Matis a ajouté Chau777 en collaborateur Write le 15/11."
+  "stats_ep2": {
+   "instagram": {
+    "vues": 215,
+    "likes": 8,
+    "commentaires": 6,
+    "partages": 7,
+    "enregistrements": 1,
+    "regarde_pct": 9.6,
+    "temps_moyen_s": 15.4,
+    "skip": 58.5
+   },
+   "tiktok": {
+    "vues": 561,
+    "likes": 8,
+    "commentaires": 0,
+    "partages": 0,
+    "enregistrements": 0
+   },
+   "total": {
+    "likes": 16,
+    "commentaires": 6,
+    "partages": 7,
+    "enregistrements": 1
+   },
+   "lu_le": "2026-11-17",
+   "jeu": "16 likes = +32 écus ; 7 partages = +21 popularité ; 1 enregistrement = +1 magie ; 51 citoyens (−1)"
+  },
+  "lois": [
+   "loi de Kxpl (ép. 3) : chaque aliment dit d'où il vient — payée par l'avance d'Esteban (100 écus)"
+  ]
  },
  "roles": {
-  "@justnaxt": "Kxpl, marchand officiel du royaume (voix Jean-Patrick Hs8dAyliGDIYLwC3jaSJ)",
+  "@justnaxt": "Kxpl, marchand officiel du royaume ; écurie de course « First » (1re inscrite au Grand Prix) ; candidat ministre des commerces et des cultures (vote ép. 3) (voix Jean-Patrick Hs8dAyliGDIYLwC3jaSJ)",
   "@esteban_gi19": "Esteban, Comptable royal, garde les écus des likes ; son vote vaut 30 % sur l'argent (voix Bastien 69ujSsYIBOGW4duCBBSW)",
   "@nat_gbz": "Docteur, cabinet médical (voix Paul RAFNgKBJ8SavtpwF6uUV)",
   "@elo_zht": "Capitaine de la Garde montée, 3 étoiles (voix Emilio FmOMKTYDTzzmpxukR0kC)",
@@ -648,7 +722,8 @@
   "@naelmomo8": "Grand Prix de Formule 1 autour du château",
   "doudou dictador (TikTok)": "Doudou Dictador, roi de Guimauvie (voix Gronk 30ndZrqtoeQllE13MnID)",
   "Kets4eki (TikTok)": "citoyen (a voté le toit, 35 %)",
-  "E_kling (TikTok)": "citoyen"
+  "E_kling (TikTok)": "citoyen",
+  "@alice._.glt31": "citoyenne (Instagram), a voté le mur (ép. 2)"
  },
  "voix": {
   "Barbichu / narrateur": "Hugo 3Tp5mYhT9wrfnry9pzvV",
