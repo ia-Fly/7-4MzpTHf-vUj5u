@@ -359,7 +359,13 @@
    "top_comment": null,
    "argent": true,
    "regle": "vote d'argent : comptable @esteban_gi19 = 30 %",
-   "how": "Capture de Matis (Instagram) + vidiq_tiktok_comment_list / vidiq_instagram_comment_list. Jamais deviné."
+   "how": "Capture de Matis (Instagram) + vidiq_tiktok_comment_list / vidiq_instagram_comment_list. Jamais deviné.",
+   "partial_capture_matis_18_11": "Capture Instagram de Matis (18/11 13:50) : @esteban_gi19 (1 like) vote 1 (Kxpl ministre des cultures) ET 3 (fouille de la cave) + postule directeur d'écurie, écurie « Rootshield » en bleu ; @justnaxt (1 like) vote 3 (la Garde fouille la cave)."
+  },
+  "fromagistan_special_18_11": {
+   "type": "attaques",
+   "how": "Commentaires Instagram + TikTok du Reel spécial du 18/11 : PERSONNAGE + ATTAQUE. Les attaques les plus likées frappent à l'ép. 4 (vrais likes, jamais inventés).",
+   "result": null
   }
  },
  "themes_used": {
@@ -640,9 +646,9 @@
    "Garde royale + Garde montée (@elo_zht)"
   ],
   "mysteres": [
-   "3 meules volées + espion-ourson : ép. 3, sous le mur, une piste de petites empreintes de peluche noire SORT de la porte fermée à clé de la cave → le voleur serait dans le château (question finale)",
-   "la porte fermée à clé de la cave : a frappé 3 coups (ép. 2), puis encore 3 coups (ép. 3) ; lueur rouge sous la porte",
-   "l'espion-ourson de Doudou sous le carrosse de la Reine (« mon espion est déjà dans ton château ») : pas encore revu"
+   "l'espion-ourson de Doudou sous le carrosse de la Reine (« mon espion est déjà dans ton château ») : pas encore revu",
+   "bataille de la cave en cours contre l'armée de guimauves et la Guimauve géante de Doudou (ép. 4 : la résoudre avec les attaques les plus likées)",
+   "l'espion-ourson de Doudou est toujours au château"
   ],
   "regles": "Tout est additionné sur les deux réseaux (Instagram + TikTok), une seule vidéo : abonnés=citoyens ; like=+2 écus ; partage=+3 popularité ; enregistrement=+1 magie ; votes additionnés ; chiffres réels de l'épisode précédent.",
   "citoyens_detail": "Instagram 41 (17/11) + TikTok 10 (dernière valeur Metricool, 14/11)",
@@ -710,7 +716,8 @@
   },
   "lois": [
    "loi de Kxpl (ép. 3) : chaque aliment dit d'où il vient — payée par l'avance d'Esteban (100 écus)"
-  ]
+  ],
+  "special_18_11": "Épisode spécial publié le 18/11 à 17:00 (demande urgente de Matis) : la Garde fouille la cave → elle est pleine de guimauves et d'oursons de Doudou Dictador ; les voleurs de meules = l'armée de Doudou (mystère résolu). Bataille manga : Capitaine @elo_zht « Charge des 3 étoiles », Kxpl @justnaxt « Tempête des épices du monde », Esteban @esteban_gi19 « Boulier foudroyant », contre-attaque de Doudou « Guimauve géante » ; Barbichu « Fondue céleste » et Docteur @nat_gbz « Soin express » disponibles. La bataille N'EST PAS finie : le public propose des attaques en commentaire."
  },
  "roles": {
   "@justnaxt": "Kxpl, marchand officiel du royaume ; écurie de course « First » (1re inscrite au Grand Prix) ; candidat ministre des commerces et des cultures (vote ép. 3) (voix Jean-Patrick Hs8dAyliGDIYLwC3jaSJ)",
