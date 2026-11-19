@@ -72,7 +72,10 @@ Mis à jour par chaque passage de la tâche planifiée. Les chiffres viennent de
 | 13/11 | TikTok | fromagistan-ep1 | TOON · FROMAGISTAN ép. 1 | 52 s | 715 (15/11) | n.d. | n.d. | 30 | 3 | 1 | n.d. |
 | 15/11 | IG | fromagistan-ep2 | FROMAGISTAN ép. 2, format ElevenLabs 2 min 40 (18:00 Paris) | 160 s | 215 (17/11) | 15,4 s (9,6 %) | 58,5 % | 8 | 6 | 7 | 1 |
 | 15/11 | TikTok | fromagistan-ep2 | FROMAGISTAN ép. 2 | 160 s | 561 (17/11) | n.d. | n.d. | 8 | 0 | 0 | 0 |
-| 17/11 | IG + TikTok | fromagistan-ep3 | FROMAGISTAN ép. 3, format 1 min (19:00 Paris) | 69 s | à relire | | | | | | |
+| 17/11 | IG | fromagistan-ep3 | FROMAGISTAN ép. 3, format 1 min (19:00 Paris) | 69 s | 140 (19/11) | 8,6 s (12,5 %) | 61,9 % | 4 | 3 | 0 | 0 |
+| 17/11 | TikTok | fromagistan-ep3 | FROMAGISTAN ép. 3 | 69 s | 695 (19/11) | n.d. | n.d. | 10 | 0 | 0 | 0 |
+| 18/11 | IG | fromagistan-special-cave | Spécial bataille manga (17:00 Paris) | 43 s | 73 (19/11) | 10,1 s (23,4 %) | 55,6 % | 1 | 4 | 0 | 0 |
+| 18/11 | TikTok | fromagistan-special-cave | Spécial bataille manga | 44 s | 632 (19/11) | n.d. | n.d. | 5 | 1 | 1 | 0 |
 
 Abonnés : 17/11 → IG 41 (−1 depuis le 15/11) · TikTok 10 (dernière valeur Metricool, 14/11) = 51 citoyens ; 15/11 → IG 42 · TikTok 10 ; 09/11 → IG 6 (=) ; 07/11 → IG 6 (= depuis 01/11) · TikTok 2 (+2 depuis 01/11, dont +1 le 05/11) ; 29/10 → IG 4 · TikTok 0 ; 30/10 → IG 5 (+1) · TikTok 0 ; 31/10 → IG 5 (=) · TikTok 0 (=) ; 01/11 → IG 6 (+1) · TikTok 0 (=).
 
@@ -89,6 +92,8 @@ Abonnés : 17/11 → IG 41 (−1 depuis le 15/11) · TikTok 10 (dernière valeur
 - 30/10 : Omertà ép. 2 EN (44 s, ouverture en flash-forward « This coffee is poisoned ») : skip 26 % contre 41 % pour l'ép. 1 FR, et 8 commentaires (0,27 % des vues). Mais 49 % regardé seulement : la moitié part vers 20 s. → ép. 3 raccourci à 26 s, choix posé à 19 s, CTA « follow » affiché sans être dit.
 - 30/10 : TikTok démarre lentement (ép. 1 EN : 196 vues, 0 abonné). Instagram : 5 abonnés (+1).
 - 29/10 : référence @cool_games_heel (fusion) : 22 posts, 1 602 abonnés ; une fusion de patates a fait environ 972 000 vues. Le format fusion est lancé chez nous.
+
+- 19/11 : le format 1 min ne relance pas Instagram (ép. 3 : 140 vues, 12,5 % regardé, skip 62 % ; spécial 43 s : 73 vues, 23 % regardé). TikTok reste stable (~630-700 vues). Le skip > 55 % dit que les 3 premières secondes ne retiennent pas : l'ép. 1 (35,7 % de skip, 1 551 vues) ouvrait sur une phrase-choc à la 1re personne (« Je suis devenu président… par erreur »). Prochaine expérience : ouvrir chaque épisode sur une phrase-choc de Barbichu face caméra, AVANT le bilan, et une couverture avec un seul gros mot.
 
 ## Pistes (idées à tester, de la plus prometteuse à la moins)
 1. Voix signature : concevoir une voix propre au compte (`creative_design_voice`) au lieu d'une voix de bibliothèque partagée.

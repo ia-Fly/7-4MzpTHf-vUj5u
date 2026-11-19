@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17",
+ "updated": "2026-11-19",
  "accounts": {
   "instagram": "situation.douteuse",
   "tiktok": "situation.douteus",
@@ -56,6 +56,12 @@
    "instagram": 41,
    "tiktok": 10,
    "source": "vidIQ followersCount (IG) ; TikTok = Metricool TKEV07, dernière valeur (14/11)"
+  },
+  {
+   "date": "2026-11-19",
+   "instagram": 41,
+   "tiktok": 12,
+   "source": "vidIQ followersCount (IG) ; TikTok Metricool TKEV07 (dernière valeur, 16/11)"
   }
  ],
  "queue": [],
@@ -256,7 +262,8 @@
    "credits": 2604,
    "flow": "lVEnH7dvj0Qcr2g2eiaE",
    "metricool": 431412982,
-   "time": "19:00 Europe/Paris"
+   "time": "19:00 Europe/Paris",
+   "url": "https://www.instagram.com/reel/Df2iaFtCv3W/"
   },
   {
    "date": "2026-11-17",
@@ -268,7 +275,35 @@
    "credits": 2604,
    "flow": "lVEnH7dvj0Qcr2g2eiaE",
    "metricool": 431413017,
-   "time": "19:00 Europe/Paris"
+   "time": "19:00 Europe/Paris",
+   "url": "https://www.tiktok.com/@situation.douteus/video/7709203678690872609"
+  },
+  {
+   "date": "2026-11-18",
+   "network": "instagram",
+   "id": "fromagistan-special-cave",
+   "format": "toon-elevenlabs",
+   "series": "FROMAGISTAN",
+   "duration_s": 44,
+   "credits": 4700,
+   "flow": "lVEnH7dvj0Qcr2g2eiaE",
+   "metricool": 432803290,
+   "time": "17:00 Europe/Paris",
+   "url": "https://www.instagram.com/reel/Df45oZ_EUl2/",
+   "note": "fait dans le chat (demande de Matis)"
+  },
+  {
+   "date": "2026-11-18",
+   "network": "tiktok",
+   "id": "fromagistan-special-cave",
+   "format": "toon-elevenlabs",
+   "series": "FROMAGISTAN",
+   "duration_s": 44,
+   "credits": 4700,
+   "flow": "lVEnH7dvj0Qcr2g2eiaE",
+   "metricool": 432803354,
+   "time": "17:00 Europe/Paris",
+   "url": "https://www.tiktok.com/@situation.douteus/video/7709544223560731936"
   }
  ],
  "votes": {
@@ -365,7 +400,8 @@
   "fromagistan_special_18_11": {
    "type": "attaques",
    "how": "Commentaires Instagram + TikTok du Reel spécial du 18/11 : PERSONNAGE + ATTAQUE. Les attaques les plus likées frappent à l'ép. 4 (vrais likes, jamais inventés).",
-   "result": null
+   "result": null,
+   "note_19_11": "Commentaires non lus le 19/11 : crédits vidIQ épuisés (IG 4 commentaires, TikTok 1, d'après les compteurs). Attendre une capture de Matis."
   }
  },
  "themes_used": {
@@ -717,7 +753,55 @@
   "lois": [
    "loi de Kxpl (ép. 3) : chaque aliment dit d'où il vient — payée par l'avance d'Esteban (100 écus)"
   ],
-  "special_18_11": "Épisode spécial publié le 18/11 à 17:00 (demande urgente de Matis) : la Garde fouille la cave → elle est pleine de guimauves et d'oursons de Doudou Dictador ; les voleurs de meules = l'armée de Doudou (mystère résolu). Bataille manga : Capitaine @elo_zht « Charge des 3 étoiles », Kxpl @justnaxt « Tempête des épices du monde », Esteban @esteban_gi19 « Boulier foudroyant », contre-attaque de Doudou « Guimauve géante » ; Barbichu « Fondue céleste » et Docteur @nat_gbz « Soin express » disponibles. La bataille N'EST PAS finie : le public propose des attaques en commentaire."
+  "special_18_11": "Épisode spécial publié le 18/11 à 17:00 (demande urgente de Matis) : la Garde fouille la cave → elle est pleine de guimauves et d'oursons de Doudou Dictador ; les voleurs de meules = l'armée de Doudou (mystère résolu). Bataille manga : Capitaine @elo_zht « Charge des 3 étoiles », Kxpl @justnaxt « Tempête des épices du monde », Esteban @esteban_gi19 « Boulier foudroyant », contre-attaque de Doudou « Guimauve géante » ; Barbichu « Fondue céleste » et Docteur @nat_gbz « Soin express » disponibles. La bataille N'EST PAS finie : le public propose des attaques en commentaire.",
+  "stats_ep3": {
+   "instagram": {
+    "vues": 140,
+    "likes": 4,
+    "commentaires": 3,
+    "partages": 0,
+    "enregistrements": 0,
+    "regarde_pct": 12.5,
+    "temps_moyen_s": 8.6,
+    "skip": 61.9
+   },
+   "tiktok": {
+    "vues": 695,
+    "likes": 10,
+    "commentaires": 0,
+    "partages": 0,
+    "enregistrements": 0
+   },
+   "total": {
+    "likes": 14,
+    "commentaires": 3,
+    "partages": 0,
+    "enregistrements": 0
+   },
+   "lu_le": "2026-11-19",
+   "jeu": "14 likes = +28 écus (à créditer à l'ép. 4) ; 53 citoyens (IG 41 + TikTok 12)"
+  },
+  "stats_special_18_11": {
+   "instagram": {
+    "vues": 73,
+    "likes": 1,
+    "commentaires": 4,
+    "partages": 0,
+    "enregistrements": 0,
+    "regarde_pct": 23.4
+   },
+   "tiktok": {
+    "vues": 632,
+    "likes": 5,
+    "commentaires": 1,
+    "partages": 1
+   },
+   "lu_le": "2026-11-19",
+   "jeu": "6 likes = +12 écus ; 1 partage = +3 popularité (à créditer à l'ép. 4)"
+  },
+  "ep4": {
+   "statut": "NON PUBLIÉ le 19/11 : connecteur ElevenLabs à reconnecter + crédits vidIQ épuisés (commentaires illisibles). Script prêt : formats/toon/ep4/script.md (doc projet claude/fromagistan-ep4-script.md). Le prochain passage le fabrique en priorité (avant toute autre chose) dès que ElevenLabs est là et que les attaques sont connues."
+  }
  },
  "roles": {
   "@justnaxt": "Kxpl, marchand officiel du royaume ; écurie de course « First » (1re inscrite au Grand Prix) ; candidat ministre des commerces et des cultures (vote ép. 3) (voix Jean-Patrick Hs8dAyliGDIYLwC3jaSJ)",

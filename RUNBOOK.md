@@ -29,6 +29,8 @@ Procédure suivie par la tâche planifiée « Épisode BLACK-OUT tous les 2 jour
    - le connecteur ElevenLabs est là : `ToolSearch` « select:mcp__ElevenLabs__creative_create_flow » ;
    - le téléchargement passe : `curl -sS -m 10 -o /dev/null -w "%{http_code}\n" https://elevenlabsusercontent.com/` (un code HTTP, même 403/404 du site, convient ; `000` et « CONNECT tunnel failed » = domaine non autorisé).
    Si l'un manque : ne génère rien, ne publie rien de neuf, et dis dans le rapport exactement ce que Matis doit régler. Ne contourne jamais un blocage réseau.
+   - **Alerte tôt (19/11/2026)** : si ElevenLabs manque (outils `creative_*` introuvables, ou connecteur « needs_reconnect » dans `ListConnectors`), envoie la notification à Matis **dès cette vérification** (pas en fin de passage) : il a encore le temps de reconnecter et de lancer l'épisode depuis le chat avant 19:00. Fais quand même les étapes gratuites (doublons, stats, état) et écris le script prêt à fabriquer dans `formats/toon/ep<N>/script.md` + doc projet `claude/fromagistan-ep<N>-script.md`.
+   - Crédits vidIQ : `vidiq_balance` (gratuit) **avant** tout outil vidIQ payant. Sans crédit, n'appelle pas `vidiq_tiktok_profile_videos` (5 crédits) : les stats TikTok viennent de Metricool, et les commentaires d'une capture de Matis.
 
 ## 2. Ne jamais doubler
 - `python3 tools/post_time.py` donne l'heure de publication et la fenêtre `window`. `getScheduledPosts` (brandId 7631727) sur cette fenêtre : un réseau qui y a déjà un post est servi, on n'y touche pas.
