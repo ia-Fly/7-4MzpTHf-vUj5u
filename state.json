@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19",
+ "updated": "2026-11-21",
  "accounts": {
   "instagram": "situation.douteuse",
   "tiktok": "situation.douteus",
@@ -62,6 +62,12 @@
    "instagram": 41,
    "tiktok": 12,
    "source": "vidIQ followersCount (IG) ; TikTok Metricool TKEV07 (dernière valeur, 16/11)"
+  },
+  {
+   "date": "2026-11-21",
+   "instagram": 42,
+   "tiktok": 13,
+   "source": "vidIQ followersCount (IG) ; TikTok Metricool TKEV07 (dernière valeur, 19/11)"
   }
  ],
  "queue": [],
@@ -304,6 +310,30 @@
    "metricool": 432803354,
    "time": "17:00 Europe/Paris",
    "url": "https://www.tiktok.com/@situation.douteus/video/7709544223560731936"
+  },
+  {
+   "date": "2026-11-21",
+   "network": "instagram",
+   "id": "fromagistan-ep4",
+   "format": "toon-elevenlabs-anti-decrochage",
+   "series": "FROMAGISTAN",
+   "duration_s": 48.9,
+   "credits": 2175,
+   "flow": "x6xdsbzCDw113q2iTovj (compte ElevenLabs gratuit)",
+   "metricool": 436651473,
+   "time": "19:00 Europe/Paris"
+  },
+  {
+   "date": "2026-11-21",
+   "network": "tiktok",
+   "id": "fromagistan-ep4",
+   "format": "toon-elevenlabs-anti-decrochage",
+   "series": "FROMAGISTAN",
+   "duration_s": 48.9,
+   "credits": 2175,
+   "flow": "x6xdsbzCDw113q2iTovj (compte ElevenLabs gratuit)",
+   "metricool": 436651491,
+   "time": "19:00 Europe/Paris"
   }
  ],
  "votes": {
@@ -395,13 +425,28 @@
    "argent": true,
    "regle": "vote d'argent : comptable @esteban_gi19 = 30 %",
    "how": "Capture de Matis (Instagram) + vidiq_tiktok_comment_list / vidiq_instagram_comment_list. Jamais deviné.",
-   "partial_capture_matis_18_11": "Capture Instagram de Matis (18/11 13:50) : @esteban_gi19 (1 like) vote 1 (Kxpl ministre des cultures) ET 3 (fouille de la cave) + postule directeur d'écurie, écurie « Rootshield » en bleu ; @justnaxt (1 like) vote 3 (la Garde fouille la cave)."
+   "partial_capture_matis_18_11": "Capture Instagram de Matis (18/11 13:50) : @esteban_gi19 (1 like) vote 1 (Kxpl ministre des cultures) ET 3 (fouille de la cave) + postule directeur d'écurie, écurie « Rootshield » en bleu ; @justnaxt (1 like) vote 3 (la Garde fouille la cave).",
+   "note_21_11": "Seul @esteban_gi19 a voté (1 + 3) ; la fouille (3) a eu lieu dans le spécial ; le 1 (Kxpl ministre) est revoté à l'ép. 4."
   },
   "fromagistan_special_18_11": {
    "type": "attaques",
    "how": "Commentaires Instagram + TikTok du Reel spécial du 18/11 : PERSONNAGE + ATTAQUE. Les attaques les plus likées frappent à l'ép. 4 (vrais likes, jamais inventés).",
+   "result": "@justnaxt : Kxpl, Tempête des épices (2 likes, le plus liké) → attaque gagnante ; bonus @esteban_gi19 taxe sur le revenu (0 like), @nat_gbz Serment mortel (0 like)",
+   "note_19_11": "Commentaires non lus le 19/11 : crédits vidIQ épuisés (IG 4 commentaires, TikTok 1, d'après les compteurs). Attendre une capture de Matis.",
+   "source": "Matis, capture Instagram du 19/11 à 23:52 (consigne F de la tâche)",
+   "tiktok": "non lu (vidIQ : 0 crédit le 21/11)"
+  },
+  "fromagistan_ep4": {
+   "options": [
+    "1 · KXPL MINISTRE DES COMMERCES ET DES CULTURES (0 écu)",
+    "2 · MARCHÉ AUX FROMAGES (150 écus, coffre 84)",
+    "3 · PIÈGE À ESPION (30 écus)"
+   ],
    "result": null,
-   "note_19_11": "Commentaires non lus le 19/11 : crédits vidIQ épuisés (IG 4 commentaires, TikTok 1, d'après les compteurs). Attendre une capture de Matis."
+   "top_comment": null,
+   "argent": true,
+   "regle": "vote d'argent : comptable @esteban_gi19 = 30 %",
+   "how": "Capture de Matis (Instagram) + vidiq_*_comment_list si crédits (vidIQ se recharge le 25/11). Jamais deviné."
   }
  },
  "themes_used": {
@@ -658,13 +703,14 @@
   "series_voices": {
    "narrateur": "Hugo – Punchy French Creator 3Tp5mYhT9wrfnry9pzvV (Président Barbichu, 1re personne)",
    "language_code": "fr"
-  }
+  },
+  "alerte_21_11": "Le 21/11 le connecteur ElevenLabs pointait vers un compte GRATUIT vide (10 000 crédits/mois, pas de vidéo, 3 images/jour, voix « creator » refusées comme Jean-Patrick, flow de la série lVEnH7dvj0Qcr2g2eiaE inaccessible). Vérifier account_get_usage (tier) au début de chaque passage."
  },
  "fromagistan": {
-  "episode": 3,
-  "citoyens": 51,
-  "budget": 42,
-  "popularite": 86,
+  "episode": 4,
+  "citoyens": 55,
+  "budget": 84,
+  "popularite": 89,
   "magie": 7,
   "relations": {
    "beurrelie": 60,
@@ -682,12 +728,12 @@
    "Garde royale + Garde montée (@elo_zht)"
   ],
   "mysteres": [
-   "l'espion-ourson de Doudou sous le carrosse de la Reine (« mon espion est déjà dans ton château ») : pas encore revu",
-   "bataille de la cave en cours contre l'armée de guimauves et la Guimauve géante de Doudou (ép. 4 : la résoudre avec les attaques les plus likées)",
-   "l'espion-ourson de Doudou est toujours au château"
+   "qui a ouvert la cave à Doudou ? (question de l'ép. 4)",
+   "le badge d'ourson porte la marque du carrosse de la Reine de Beurrélie : l'espion venait-il du carrosse ? la Reine est-elle complice ?",
+   "Doudou s'est enfui : « Je reviendrai… au Grand Prix ! »"
   ],
   "regles": "Tout est additionné sur les deux réseaux (Instagram + TikTok), une seule vidéo : abonnés=citoyens ; like=+2 écus ; partage=+3 popularité ; enregistrement=+1 magie ; votes additionnés ; chiffres réels de l'épisode précédent.",
-  "citoyens_detail": "Instagram 41 (17/11) + TikTok 10 (dernière valeur Metricool, 14/11)",
+  "citoyens_detail": "Instagram 42 (vidIQ 21/11) + TikTok 13 (Metricool 19/11)",
   "stats_ep1": {
    "instagram": {
     "vues": 1551,
@@ -779,7 +825,19 @@
     "enregistrements": 0
    },
    "lu_le": "2026-11-19",
-   "jeu": "14 likes = +28 écus (à créditer à l'ép. 4) ; 53 citoyens (IG 41 + TikTok 12)"
+   "jeu": "14 likes = +28 écus (à créditer à l'ép. 4) ; 53 citoyens (IG 41 + TikTok 12)",
+   "relu_le_21_11": {
+    "instagram": {
+     "vues": 141,
+     "likes": 4,
+     "regarde_pct": 12.3,
+     "skip": 62.2
+    },
+    "tiktok": {
+     "vues": 695,
+     "likes": 10
+    }
+   }
   },
   "stats_special_18_11": {
    "instagram": {
@@ -797,11 +855,35 @@
     "partages": 1
    },
    "lu_le": "2026-11-19",
-   "jeu": "6 likes = +12 écus ; 1 partage = +3 popularité (à créditer à l'ép. 4)"
+   "jeu": "6 likes = +12 écus ; 1 partage = +3 popularité (à créditer à l'ép. 4)",
+   "relu_le_21_11": {
+    "instagram": {
+     "vues": 81,
+     "likes": 2,
+     "commentaires": 4,
+     "regarde_pct": 23.6,
+     "skip": 54.8
+    },
+    "tiktok": {
+     "vues": 636,
+     "likes": 5,
+     "commentaires": 1,
+     "partages": 1
+    }
+   }
   },
   "ep4": {
-   "statut": "NON PUBLIÉ le 19/11 : connecteur ElevenLabs à reconnecter + crédits vidIQ épuisés (commentaires illisibles). Script prêt : formats/toon/ep4/script.md (doc projet claude/fromagistan-ep4-script.md). Le prochain passage le fabrique en priorité (avant toute autre chose) dès que ElevenLabs est là et que les attaques sont connues."
-  }
+   "statut": "programmé le 21/11 à 19:00 (IG 436651473, TikTok 436651491)",
+   "duree_s": 48.9,
+   "attaque_gagnante": "@justnaxt, Tempête des épices (2 likes, capture Instagram de Matis 19/11 23:52)",
+   "bonus": [
+    "@esteban_gi19 taxe sur le revenu (0 like)",
+    "@nat_gbz Serment mortel (0 like)"
+   ],
+   "indice": "badge d'ourson avec la marque du carrosse de la Reine",
+   "note": "compte ElevenLabs gratuit : pas de Veo (mouvement en code), Kxpl dit par Barbichu (voix Jean-Patrick refusée)"
+  },
+  "jeu_ep4": "crédité à l'ép. 4 : likes ép. 3 + spécial = IG 4+2, TikTok 10+5 = 21 likes = +42 écus (coffre 42 → 84) ; 1 partage TikTok (spécial) = +3 popularité (86 → 89) ; 55 citoyens"
  },
  "roles": {
   "@justnaxt": "Kxpl, marchand officiel du royaume ; écurie de course « First » (1re inscrite au Grand Prix) ; candidat ministre des commerces et des cultures (vote ép. 3) (voix Jean-Patrick Hs8dAyliGDIYLwC3jaSJ)",
@@ -811,7 +893,7 @@
   "@pancakemiam450": "a fait inviter la Reine (loi citoyenne ép. 1)",
   "@matska_prv": "bar à cocktails sans alcool",
   "@naelmomo8": "Grand Prix de Formule 1 autour du château",
-  "doudou dictador (TikTok)": "Doudou Dictador, roi de Guimauvie (voix Gronk 30ndZrqtoeQllE13MnID)",
+  "doudou dictador (TikTok)": "Doudou Dictador, roi de Guimauvie (voix Gronk Pu9MMuPx0BqjFaVxHf8W)",
   "Kets4eki (TikTok)": "citoyen (a voté le toit, 35 %)",
   "E_kling (TikTok)": "citoyen",
   "@alice._.glt31": "citoyenne (Instagram), a voté le mur (ép. 2)"
@@ -819,7 +901,7 @@
  "voix": {
   "Barbichu / narrateur": "Hugo 3Tp5mYhT9wrfnry9pzvV",
   "Reine de Beurrélie": "Morgane ZYOBieLaunTiQrTrvNQq",
-  "Doudou Dictador": "Gronk 30ndZrqtoeQllE13MnID",
+  "Doudou Dictador": "Gronk Pu9MMuPx0BqjFaVxHf8W (ancien 30ndZrqtoeQllE13MnID désactivé)",
   "Kxpl (@justnaxt)": "Jean-Patrick Hs8dAyliGDIYLwC3jaSJ",
   "Comptable Esteban (@esteban_gi19)": "Bastien 69ujSsYIBOGW4duCBBSW",
   "Docteur (@nat_gbz)": "Paul RAFNgKBJ8SavtpwF6uUV",

@@ -439,6 +439,96 @@
    ],
    "prompt": "chèvre noire blasée qui bêle",
    "added": "2026-11-15"
+  },
+  {
+   "name": "swirl",
+   "flow_id": "x6xdsbzCDw113q2iTovj",
+   "generation_id": "n6ibYlMxNUvUOXhu0SJ3",
+   "seconds": 2.5,
+   "credits": 8,
+   "loop": false,
+   "tags": [
+    "tourbillon",
+    "magie",
+    "attaque"
+   ],
+   "prompt": "Magical whooshing wind tornado swirl with sparkling crackles, rising, cartoon anime attack",
+   "account": "compte ElevenLabs gratuit (21/11)"
+  },
+  {
+   "name": "impact-manga",
+   "flow_id": "x6xdsbzCDw113q2iTovj",
+   "generation_id": "ZfnhVR6VbdkCIiC5uJQG",
+   "seconds": 1.5,
+   "credits": 5,
+   "loop": false,
+   "tags": [
+    "impact",
+    "manga",
+    "coupe"
+   ],
+   "prompt": "Punchy anime impact hit with whoosh, deep boom and sparkle tail",
+   "account": "compte ElevenLabs gratuit (21/11)"
+  },
+  {
+   "name": "guimauve-fond",
+   "flow_id": "x6xdsbzCDw113q2iTovj",
+   "generation_id": "fzdYkv5BDh8EIvWzTgLQ",
+   "seconds": 2,
+   "credits": 7,
+   "loop": false,
+   "tags": [
+    "guimauve",
+    "goo",
+    "cartoon"
+   ],
+   "prompt": "Cartoon gooey squishy melting sound, sticky marshmallow collapsing with a sad deflating wobble",
+   "account": "compte ElevenLabs gratuit (21/11)"
+  },
+  {
+   "name": "pieces-or",
+   "flow_id": "x6xdsbzCDw113q2iTovj",
+   "generation_id": "g2qmeo1SuJ7PtdOm0Ch6",
+   "seconds": 1.5,
+   "credits": 5,
+   "loop": false,
+   "tags": [
+    "pièces",
+    "écus",
+    "bilan"
+   ],
+   "prompt": "Shower of gold coins clinking and pouring, cheerful game reward",
+   "account": "compte ElevenLabs gratuit (21/11)"
+  },
+  {
+   "name": "sceau-magique",
+   "flow_id": "x6xdsbzCDw113q2iTovj",
+   "generation_id": "Ey5YEF8VLcE9q23URtBw",
+   "seconds": 2,
+   "credits": 7,
+   "loop": false,
+   "tags": [
+    "magie",
+    "bouclier",
+    "sort"
+   ],
+   "prompt": "Bright magical shield spell activation, shimmering chime burst with a soft whoosh",
+   "account": "compte ElevenLabs gratuit (21/11)"
+  },
+  {
+   "name": "mystere-indice",
+   "flow_id": "x6xdsbzCDw113q2iTovj",
+   "generation_id": "szySmbSEe31luNRwhViB",
+   "seconds": 2.5,
+   "credits": 8,
+   "loop": false,
+   "tags": [
+    "mystère",
+    "indice",
+    "révélation"
+   ],
+   "prompt": "Mysterious suspense sting, low string swell and a single glockenspiel note, cartoon detective reveal",
+   "account": "compte ElevenLabs gratuit (21/11)"
   }
  ],
  "music": [
@@ -464,6 +554,20 @@
    "credits": 450,
    "loop": true,
    "desc": "Thème joyeux de jeu mobile : ukulélé, pizzicati, marimba (FROMAGISTAN)."
+  },
+  {
+   "name": "bataille-ep4",
+   "flow_id": "x6xdsbzCDw113q2iTovj",
+   "generation_id": "zSqW0bMdKKwIPAfOUgP5",
+   "seconds": 50,
+   "credits": 750,
+   "tags": [
+    "bataille",
+    "orchestral",
+    "instrumental",
+    "FROMAGISTAN"
+   ],
+   "account": "compte ElevenLabs gratuit (21/11)"
   }
  ]
 }
