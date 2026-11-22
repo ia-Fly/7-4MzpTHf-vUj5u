@@ -1,0 +1,326 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Fun fact 01 — le mépris</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .frame { background: #0F1013; }
+  .band { position: absolute; left: 0; right: 0; top: 430px; height: 1000px;
+    background:
+      repeating-linear-gradient(0deg, rgba(232,229,219,0.045) 0 2px, transparent 2px 96px),
+      repeating-linear-gradient(90deg, rgba(232,229,219,0.045) 0 2px, transparent 2px 96px),
+      linear-gradient(180deg, rgba(35,36,40,0) 0%, #25262A 14%, #232428 78%, rgba(35,36,40,0) 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 80%, transparent 100%); }
+  .vig { position: absolute; inset: 0; background: radial-gradient(ellipse 760px 1100px at 50% 46%, transparent 55%, rgba(0,0,0,0.62) 100%); pointer-events: none; }
+  .mini { position: absolute; left: 76px; right: 76px; top: 192px; display: flex; justify-content: space-between; align-items: center; font-size: 24px; }
+  .mini .l { color: var(--graphite); display: flex; align-items: center; gap: 12px; }
+  .mini .rt { color: var(--papier); font-weight: 700; }
+  .filet2 { position: absolute; left: 76px; right: 76px; top: 244px; height: 1.5px; background: rgba(232,229,219,0.14); }
+  #hud2 { position: absolute; left: 76px; right: 76px; top: 266px; display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JB Mono'; text-transform: uppercase; letter-spacing: 0.16em; font-size: 21px; color: var(--graphite); }
+  #hud2 .gauge { display: flex; align-items: center; gap: 7px; }
+  #hud2 .gauge .lab { margin-right: 12px; }
+  #hud2 .sg { width: 44px; height: 14px; border-radius: 2px; background: rgba(232,229,219,0.13); }
+  #hud2 .sg.on { background: #E8E5DB; }
+  #hud2 .sg.hot { background: #FF4B2B; box-shadow: 0 0 12px rgba(255,75,43,0.65); }
+  #hud2 .sg.mint { background: #5EF5B4; box-shadow: 0 0 12px rgba(94,245,180,0.55); }
+  #hud2 #state { font-weight: 700; color: var(--papier); }
+  svg.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+  #fadeT { position: absolute; left: 0; right: 0; top: 0; height: 350px; background: linear-gradient(180deg, #0F1013 0px, #0F1013 300px, rgba(15,16,19,0) 350px); pointer-events: none; }
+  #fadeB { position: absolute; left: 0; right: 0; top: 1300px; height: 620px; background: linear-gradient(180deg, rgba(15,16,19,0) 0px, #0F1013 120px, #0F1013 620px); pointer-events: none; }
+  #cap { position: absolute; left: 40px; right: 40px; top: 1330px; text-align: center; font-family: 'Barlow C'; font-weight: 800; font-size: 112px; line-height: 1;
+    color: var(--papier); text-transform: uppercase; letter-spacing: 0.01em; white-space: nowrap;
+    text-shadow: 0 5px 0 rgba(0,0,0,0.55), 0 0 28px rgba(0,0,0,0.75); transform-origin: 50% 60%; }
+  #cap .r { color: #FF4B2B; } #cap .g { color: #5EF5B4; }
+  #cap span.w { display: inline-block; }
+  .card { position: absolute; left: 90px; right: 90px; opacity: 0; transform-origin: 50% 50%; }
+  #rule { top: 400px; border: 3px solid #FF4B2B; background: rgba(15,16,19,0.95); }
+  #rule .hd { background: #FF4B2B; color: #0F1013; font-family: 'JB Mono'; font-weight: 700; font-size: 34px; letter-spacing: 0.22em; padding: 14px 28px 12px; }
+  #rule .tx { font-family: 'Anton'; font-size: 132px; line-height: 1.04; color: var(--papier); padding: 18px 30px 26px; text-align: left; }
+  #rule .tx .j { color: #FF4B2B; display: inline-block; transform-origin: 30% 60%; }
+  #hidden { top: 400px; border: 3px solid #FF4B2B; background: rgba(15,16,19,0.95); }
+  #hidden .hd { background: #FF4B2B; color: #0F1013; font-family: 'JB Mono'; font-weight: 700; font-size: 32px; letter-spacing: 0.2em; padding: 12px 26px 10px; }
+  #hidden .tx { font-family: 'Anton'; font-size: 92px; line-height: 1.06; color: var(--papier); padding: 16px 28px 22px; }
+  #hidden .tx .j { color: #FF4B2B; }
+  #anti { top: 400px; display: flex; justify-content: center; }
+  #anti .in { background: rgba(15,17,20,0.92); border: 3px solid rgba(94,245,180,0.85); color: #5EF5B4; padding: 16px 30px 14px; font-family: 'JB Mono'; font-weight: 700; font-size: 40px; letter-spacing: 0.14em; }
+  #study { top: 380px; border: 2px solid rgba(232,229,219,0.5); background: rgba(15,16,19,0.94); }
+  #study .hd { display: flex; justify-content: space-between; font-family: 'JB Mono'; font-weight: 700; font-size: 26px; letter-spacing: 0.16em; color: var(--graphite); padding: 16px 24px 10px; border-bottom: 1.5px solid rgba(232,229,219,0.18); }
+  #study .hd b { color: var(--papier); }
+  #study svg { display: block; width: 100%; height: 560px; }
+  #study .ft { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 24px 18px; font-family: 'JB Mono'; font-size: 24px; letter-spacing: 0.14em; color: var(--graphite); }
+  #study .ft .v { font-weight: 700; font-size: 64px; color: #FF4B2B; letter-spacing: 0.04em; }
+</style></head>
+<body>
+<div class="frame">
+  <div class="band"></div>
+  <svg class="full" viewBox="0 0 1080 1920">
+    <defs>
+      <filter id="glW" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <clipPath id="clipA"><circle cx="0" cy="0" r="62"/></clipPath>
+      <clipPath id="clipB"><circle cx="0" cy="0" r="58"/></clipPath>
+      <linearGradient id="coneG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8E5DB" stop-opacity="0.16"/><stop offset="100%" stop-color="#E8E5DB" stop-opacity="0.01"/></linearGradient>
+      <linearGradient id="wireG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8E5DB" stop-opacity="0"/><stop offset="1" stop-color="#E8E5DB" stop-opacity="0.6"/></linearGradient>
+      <path id="heartP" d="M0 34 C -40 6, -64 -14, -64 -38 C -64 -60, -46 -74, -28 -74 C -14 -74, -4 -66, 0 -56 C 4 -66, 14 -74, 28 -74 C 46 -74, 64 -60, 64 -38 C 64 -14, 40 6, 0 34 Z"/>
+      <clipPath id="hL"><path d="M-80 -90 L4 -90 L-10 -52 L8 -24 L-8 2 L4 40 L-80 40 Z"/></clipPath>
+      <clipPath id="hR"><path d="M80 -90 L4 -90 L-10 -52 L8 -24 L-8 2 L4 40 L80 40 Z"/></clipPath>
+    </defs>
+    <g id="cam">
+      <line x1="-700" y1="1240" x2="1800" y2="1240" stroke="#E8E5DB" stroke-opacity="0.18" stroke-width="3"/>
+      <!-- lampe -->
+      <rect x="538.5" y="420" width="3" height="120" fill="url(#wireG)"/>
+      <polygon points="508,580 572,580 760,1240 320,1240" fill="url(#coneG)"/>
+      <path d="M500 578 L580 578 L562 532 L518 532 Z" fill="#2A2C31" stroke="#E8E5DB" stroke-width="4"/>
+      <ellipse cx="540" cy="580" rx="26" ry="7" fill="#E8E5DB"/>
+      <!-- cadre au mur -->
+      <g opacity="0.8">
+        <rect x="150" y="640" width="120" height="150" fill="#1B1C20" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="4"/>
+        <path d="M168 772 L200 720 L222 750 L236 732 L252 772 Z" fill="none" stroke="#E8E5DB" stroke-opacity="0.45" stroke-width="3" stroke-linejoin="round"/>
+        <rect x="830" y="660" width="100" height="100" fill="#1B1C20" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="4"/>
+        <circle cx="880" cy="710" r="26" fill="none" stroke="#E8E5DB" stroke-opacity="0.45" stroke-width="3"/>
+      </g>
+      <!-- canapé (arrière) -->
+      <rect x="200" y="960" width="680" height="150" rx="34" fill="#202125" stroke="#E8E5DB" stroke-width="5"/>
+      <!-- personne A (gauche) -->
+      <g id="A">
+        <g id="Abody">
+          <rect x="318" y="930" width="164" height="220" rx="56" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/>
+          <rect x="300" y="990" width="40" height="150" rx="18" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/>
+          <g id="Ahead" transform="translate(400 848)">
+            <circle r="62" fill="#2E3035"/>
+            <circle cx="22" cy="-16" r="62" fill="#3F4248" clip-path="url(#clipA)"/>
+            <circle r="62" fill="none" stroke="#E8E5DB" stroke-width="5"/>
+            <!-- yeux -->
+            <g id="Aeyes">
+              <ellipse cx="2" cy="-6" rx="13" ry="15" fill="#E8E5DB"/><ellipse cx="38" cy="-6" rx="13" ry="15" fill="#E8E5DB"/>
+              <circle id="Ap1" cx="8" cy="-4" r="6.5" fill="#0F1013"/><circle id="Ap2" cx="44" cy="-4" r="6.5" fill="#0F1013"/>
+              <path id="Alid" d="" fill="#3F4248"/>
+            </g>
+            <ellipse id="AeyeGlow" cx="20" cy="-6" rx="46" ry="26" fill="none" stroke="#FF4B2B" stroke-width="5" opacity="0" filter="url(#glW)"/>
+            <path id="Amouth" d="M6 30 Q 22 36 38 30" fill="none" stroke="#E8E5DB" stroke-width="4.5" stroke-linecap="round"/>
+          </g>
+        </g>
+      </g>
+      <!-- personne B (droite) -->
+      <g id="B">
+        <g id="Bbody">
+          <rect x="604" y="944" width="156" height="206" rx="54" fill="#34373D" stroke="#E8E5DB" stroke-width="5"/>
+          <rect x="740" y="996" width="38" height="146" rx="18" fill="#34373D" stroke="#E8E5DB" stroke-width="5"/>
+          <g id="Bhead" transform="translate(682 868)">
+            <circle r="58" fill="#2E3035"/>
+            <circle cx="-20" cy="-14" r="58" fill="#3A3D43" clip-path="url(#clipB)"/>
+            <circle r="58" fill="none" stroke="#E8E5DB" stroke-width="5"/>
+            <path d="M-58 -10 C -60 -64, 52 -74, 58 -8 C 40 -40, -30 -44, -58 -10 Z" fill="#26282D" stroke="#E8E5DB" stroke-width="4"/>
+            <circle cx="-34" cy="0" r="6.5" fill="#E8E5DB"/><circle cx="-6" cy="0" r="6.5" fill="#E8E5DB"/>
+            <path id="Bmouth" d="M-36 30 Q -20 34 -4 30" fill="none" stroke="#E8E5DB" stroke-width="4.5" stroke-linecap="round"/>
+          </g>
+        </g>
+      </g>
+      <!-- canapé (assise + accoudoirs) -->
+      <rect x="180" y="1100" width="720" height="86" rx="22" fill="#2A2C31" stroke="#E8E5DB" stroke-width="5"/>
+      <rect x="160" y="1010" width="70" height="176" rx="26" fill="#2A2C31" stroke="#E8E5DB" stroke-width="5"/>
+      <rect x="850" y="1010" width="70" height="176" rx="26" fill="#2A2C31" stroke="#E8E5DB" stroke-width="5"/>
+      <line x1="220" y1="1186" x2="220" y2="1240" stroke="#E8E5DB" stroke-width="5"/><line x1="860" y1="1186" x2="860" y2="1240" stroke="#E8E5DB" stroke-width="5"/>
+      <!-- cœur entre eux -->
+      <g id="heart" transform="translate(541 730)">
+        <g id="hGlow" opacity="0"><use href="#heartP" fill="none" stroke="#5EF5B4" stroke-width="7" filter="url(#glW)"/></g>
+        <g id="hLeft" clip-path="url(#hL)"><use href="#heartP" fill="#2A1512" stroke="#FF4B2B" stroke-width="5" stroke-linejoin="round"/></g>
+        <g id="hRight" clip-path="url(#hR)"><use href="#heartP" fill="#2A1512" stroke="#FF4B2B" stroke-width="5" stroke-linejoin="round"/></g>
+        <path id="hCrack" d="M4 -64 L-10 -52 L8 -24 L-8 2 L4 30" fill="none" stroke="#0F1013" stroke-width="6" stroke-linejoin="round" opacity="0"/>
+      </g>
+      <g id="sparks"></g>
+      <!-- bulles -->
+      <g id="bub1" opacity="0">
+        <path d="M190 640 L610 640 Q 632 640 632 662 L632 732 Q 632 754 610 754 L 422 754 L 410 790 L 396 754 L 190 754 Q 168 754 168 732 L 168 662 Q 168 640 190 640 Z" fill="#16171A" stroke="#FF4B2B" stroke-width="4"/>
+        <text x="400" y="716" text-anchor="middle" font-family="Barlow C" font-weight="800" font-size="56" fill="#E8E5DB">« BRAVO, GÉNIAL. »</text>
+      </g>
+      <g id="bub2" opacity="0">
+        <path d="M242 640 L558 640 Q 580 640 580 662 L580 732 Q 580 754 558 754 L 422 754 L 410 790 L 396 754 L 242 754 Q 220 754 220 732 L 220 662 Q 220 640 242 640 Z" fill="#16171A" stroke="#FF4B2B" stroke-width="4"/>
+        <text x="400" y="718" text-anchor="middle" font-family="Barlow C" font-weight="800" font-size="62" letter-spacing="4" fill="#FF4B2B">HA. HA. HA.</text>
+      </g>
+      <g id="bub3" opacity="0">
+        <path d="M622 640 L838 640 Q 860 640 860 662 L860 732 Q 860 754 838 754 L 692 754 L 680 790 L 666 754 L 622 754 Q 600 754 600 732 L 600 662 Q 600 640 622 640 Z" fill="#0E1F18" stroke="#5EF5B4" stroke-width="4"/>
+        <text x="730" y="720" text-anchor="middle" font-family="Barlow C" font-weight="800" font-size="70" letter-spacing="3" fill="#5EF5B4">MERCI.</text>
+      </g>
+      <!-- étiquettes -->
+      <g id="tagEyes" opacity="0">
+        <rect x="252" y="690" width="296" height="58" fill="rgba(6,8,10,0.75)" stroke="#FF4B2B" stroke-width="3"/>
+        <text x="270" y="728" font-family="JB Mono" font-weight="700" font-size="26" letter-spacing="2" fill="#FF4B2B">YEUX AU CIEL</text>
+      </g>
+    </g>
+  </svg>
+  <div id="fadeT"></div><div id="fadeB"></div><div class="vig"></div>
+  <div class="mini mono"><div class="l"><span class="dot"></span>LE SAVIEZ-VOUS ?</div><div class="rt">COUPLE · N°01</div></div>
+  <div class="filet2"></div>
+  <div id="hud2"><div class="gauge"><span class="lab">RISQUE DE RUPTURE</span><span class="sg" id="g1"></span><span class="sg" id="g2"></span><span class="sg" id="g3"></span><span class="sg" id="g4"></span><span class="sg" id="g5"></span></div><div id="state">STABLE</div></div>
+  <div id="rule" class="card"><div class="hd">PRÉDICTEUR N°1</div><div class="tx">LE <span class="j" id="ruleJ">MÉPRIS.</span></div></div>
+  <div id="study" class="card">
+    <div class="hd"><span><b>JOHN GOTTMAN</b> · PSYCHOLOGUE</span><span>UNIV. WASHINGTON</span></div>
+    <svg viewBox="0 0 900 560" id="grid"></svg>
+    <div class="ft"><span>COUPLES OBSERVÉS · <b style="color:#E8E5DB">DES MILLIERS</b></span><span class="v" id="yrs">0 ANS</span></div>
+  </div>
+  <div id="hidden" class="card"><div class="hd">MESSAGE CACHÉ</div><div class="tx">« <span class="j">JE VAUX MIEUX</span><br><span class="j">QUE TOI.</span> »</div></div>
+  <div id="anti" class="card"><div class="in">→ L'ANTIDOTE</div></div>
+  <div id="cheat" class="card" style="top:400px;display:flex;justify-content:center">
+    <svg width="420" height="520" viewBox="0 0 420 520">
+      <rect x="70" y="20" width="280" height="480" rx="40" fill="#16171A" stroke="#E8E5DB" stroke-width="6"/>
+      <rect x="170" y="44" width="80" height="14" rx="7" fill="#2E3035"/>
+      <rect x="100" y="110" width="200" height="70" rx="22" fill="#2E3035" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+      <rect x="130" y="210" width="190" height="70" rx="22" fill="#2E3035" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+      <g transform="translate(205 400) scale(0.9)"><use href="#heartP" fill="#2A1512" stroke="#FF4B2B" stroke-width="5"/></g>
+      <g id="xMark" opacity="0"><line x1="40" y1="60" x2="380" y2="470" stroke="#FF4B2B" stroke-width="26" stroke-linecap="round"/><line x1="380" y1="60" x2="40" y2="470" stroke="#FF4B2B" stroke-width="26" stroke-linecap="round"/></g>
+    </svg>
+  </div>
+  <div id="cap"></div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const eOut = x => 1 - Math.pow(1 - x, 3), eIO = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const spring = x => x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.exp(-6 * x) * Math.cos(10 * x);
+const lerp = (a, b, x) => a + (b - a) * x;
+const win = (t, a, b, fi = 0.1, fo = 0.1) => clamp(seg(t, a, a + fi)) * (1 - seg(t, b - fo, b));
+const pop = (t, a, d = 0.12) => 0.84 + 0.16 * spring(seg(t, a, a + d * 3));
+const DUR = 28.9;
+// phrases de la voix (début, fin, texte ; « | » = coupe de sous-titre ; *rouge* ; _menthe_)
+const S = [
+ [0.00, 2.75, "Le signe|numéro un|qu'un couple|va se *séparer*…"],
+ [3.21, 4.34, "ce n'est pas|la *tromperie*."],
+ [4.84, 5.66, "c'est le *mépris*."],
+ [6.34, 10.46, "le psychologue|John Gottman|a observé|des *milliers*|de couples|pendant *40 ans*."],
+ [10.89, 12.57, "et le mépris,|ça ressemble|à ça :"],
+ [13.11, 14.25, "lever les yeux|*au ciel*."],
+ [14.86, 15.67, "le *sarcasme*."],
+ [16.07, 16.97, "les petites|*moqueries*."],
+ [17.43, 19.59, "parce que|derrière,|le message,|c'est :"],
+ [19.90, 20.90, "« je vaux|*mieux que toi* »"],
+ [21.47, 22.08, "l'antidote ?"],
+ [22.47, 23.26, "dire _merci_."],
+ [23.59, 24.67, "même pour|des petits trucs."],
+ [25.21, 27.42, "alors|la prochaine fois|que tu lèves|les yeux *au ciel*…"],
+ [27.73, 28.35, "souviens-toi :"]];
+const CAPS = [];
+for (const [a, b, txt] of S) {
+  const parts = txt.split('|'), tot = parts.reduce((s, p) => s + p.length, 0); let acc = 0;
+  for (const p of parts) { CAPS.push({ t: a + (b - a) * acc / tot - 0.04, txt: p }); acc += p.length; }
+}
+const EV = { crack: 2.05, cheat: [3.21, 4.75], x: 3.85, rule: [4.84, 6.25], study: [6.34, 10.7], push: 11.2, roll: [13.35, 14.6], bub1: [14.86, 15.95], bub2: [16.07, 17.25],
+  grow: [17.6, 21.3], hidden: [19.9, 21.25], anti: [21.47, 22.35], merci: 22.55, roll2: [26.55, 27.75] };
+// plans caméra [t, fx, fy, s, fx2, fy2, s2] (le dernier finit sur le cadrage du début → boucle)
+const SH = [
+ [0, 540, 930, 1.25, 540, 915, 1.32],
+ [3.21, 540, 930, 1.18, 540, 930, 1.18],
+ [6.34, 540, 930, 1.18, 540, 930, 1.18],
+ [10.89, 540, 925, 1.25, 420, 850, 1.75],
+ [12.2, 420, 850, 1.75, 420, 845, 1.85],
+ [17.43, 540, 930, 1.25, 540, 925, 1.3],
+ [22.47, 560, 900, 1.38, 560, 900, 1.45],
+ [25.21, 540, 915, 1.38, 540, 930, 1.25]];
+const GA = [[0, 1], [2.05, 2], [5.0, 4], [13.4, 5], [22.6, 1]];
+function camAt(t) {
+  let si = 0; for (let i = 0; i < SH.length; i++) if (t >= SH[i][0]) si = i;
+  const s0 = SH[si], s1t = si + 1 < SH.length ? SH[si + 1][0] : DUR - 0.5;
+  const u = si === 3 ? eIO(seg(t, EV.push, s1t)) : eIO(seg(t, s0[0], s1t)) * 0.85 + seg(t, s0[0], s1t) * 0.15;
+  return [lerp(s0[1], s0[4], u), lerp(s0[2], s0[5], u), lerp(s0[3], s0[6], u)];
+}
+function shake(t) {
+  let x = 0, y = 0;
+  for (const [ti, amp] of [[EV.crack, 8], [EV.x, 6], [EV.rule[0] + 0.05, 7], [EV.hidden[0] + 0.05, 5]]) {
+    if (t >= ti && t < ti + 0.5) { const k = Math.exp(-(t - ti) * 9) * amp; x += k * Math.sin((t - ti) * 71); y += k * Math.cos((t - ti) * 57); }
+  }
+  return [x, y];
+}
+// grille des couples (étude)
+(function () {
+  let s = '';
+  for (let r = 0; r < 5; r++) for (let c = 0; c < 8; c++) {
+    const i = r * 8 + c, x = 70 + c * 108, y = 70 + r * 106;
+    s += `<g id="cp${i}" opacity="0" transform="translate(${x} ${y})"><circle cx="-16" cy="0" r="17" fill="#2E3035" stroke="#E8E5DB" stroke-width="3.5"/><circle cx="16" cy="2" r="15" fill="#2E3035" stroke="#E8E5DB" stroke-width="3.5"/><path d="M-34 40 Q -16 20 0 40 Q 16 22 32 40" fill="none" stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="3.5" stroke-linecap="round"/></g>`;
+  }
+  $('grid').innerHTML = s;
+})();
+function rollAmt(t) {  // 0 = regard normal, 1 = yeux au ciel
+  let k = 0;
+  for (const [a, b] of [EV.roll, EV.roll2]) k = Math.max(k, eOut(seg(t, a, a + 0.35)) * (1 - eIO(seg(t, b - 0.4, b))));
+  return k;
+}
+let curCap = -1;
+function render(t) {
+  let [fx, fy, s] = camAt(t);
+  const [kx, ky] = shake(t);
+  $('cam').setAttribute('transform', `translate(${(540 + kx).toFixed(2)} ${(900 + ky).toFixed(2)}) scale(${s.toFixed(4)}) translate(${(-fx).toFixed(2)} ${(-fy).toFixed(2)})`);
+  // respiration légère
+  const br = Math.sin(t * 2.2) * 2.5, br2 = Math.sin(t * 2.0 + 1.3) * 2.5;
+  // A grandit / B rapetisse (« je vaux mieux que toi »)
+  const g = eOut(seg(t, EV.grow[0], EV.grow[0] + 0.5)) * (1 - eIO(seg(t, EV.grow[1] - 0.5, EV.grow[1])));
+  $('Abody').setAttribute('transform', `translate(400 1150) scale(${(1 + 0.22 * g).toFixed(4)}) translate(-400 -1150) translate(0 ${br.toFixed(2)})`);
+  $('Bbody').setAttribute('transform', `translate(682 1150) scale(${(1 - 0.16 * g).toFixed(4)}) translate(-682 -1150) translate(0 ${br2.toFixed(2)})`);
+  // yeux de A
+  const rl = rollAmt(t);
+  $('Ap1').setAttribute('cy', (-4 - 11 * rl).toFixed(2)); $('Ap2').setAttribute('cy', (-4 - 11 * rl).toFixed(2));
+  $('Ap1').setAttribute('cx', (8 - 4 * rl).toFixed(2)); $('Ap2').setAttribute('cx', (44 - 4 * rl).toFixed(2));
+  const lid = 10 * rl;
+  $('Alid').setAttribute('d', false ? `M-13 -6 Q 2 ${(-22 + lid * 0.2).toFixed(1)} 17 -6 L17 ${(-6 + lid).toFixed(1)} Q 2 ${(4 + lid).toFixed(1)} -13 ${(-6 + lid).toFixed(1)} Z M23 -6 Q 38 ${(-22 + lid * 0.2).toFixed(1)} 53 -6 L53 ${(-6 + lid).toFixed(1)} Q 38 ${(4 + lid).toFixed(1)} 23 ${(-6 + lid).toFixed(1)} Z` : '');
+  $('Alid').setAttribute('transform', 'translate(0 0)');
+  $('AeyeGlow').setAttribute('opacity', (rl * (0.75 + 0.25 * Math.sin(t * 9))).toFixed(3));
+  const tilt = rl * -7;
+  $('Ahead').setAttribute('transform', `translate(400 848) rotate(${tilt.toFixed(2)})`);
+  // bouche : sourire narquois pendant sarcasme / moqueries / message caché
+  const smirk = Math.max(win(t, EV.bub1[0], EV.hidden[1], 0.15, 0.25), 0);
+  $('Amouth').setAttribute('d', `M6 ${(30 + 2 * smirk).toFixed(1)} Q 22 ${(36 - 2 * smirk).toFixed(1)} 38 ${(30 - 12 * smirk).toFixed(1)}`);
+  const sad = win(t, EV.crack, EV.merci + 0.3, 0.3, 0.3), joy = win(t, EV.merci, 25.6, 0.2, 0.5);
+  $('Bmouth').setAttribute('d', `M-36 ${(30 + 4 * sad).toFixed(1)} Q -20 ${(34 - 8 * sad + 8 * joy).toFixed(1)} -4 ${(30 + 4 * sad).toFixed(1)}`);
+  // cœur : se fend, s'écarte, se ressoude au « merci »
+  const split = eOut(seg(t, EV.crack, EV.crack + 0.45)) * (1 - eIO(seg(t, EV.merci, EV.merci + 0.55)));
+  const crackO = t >= EV.crack - 0.02 && t < EV.merci + 0.6 ? 1 : 0;
+  const beat = 1 + 0.05 * Math.max(0, Math.sin(t * 7.5)) * (split < 0.05 ? 1 : 0);
+  $('heart').setAttribute('transform', `translate(541 ${(730 + 6 * Math.sin(t * 1.6)).toFixed(2)}) scale(${(beat * (t > EV.merci ? pop(t, EV.merci + 0.45) * 1.0 + 0.0 : 1)).toFixed(4)})`);
+  $('hLeft').setAttribute('transform', `translate(${(-30 * split).toFixed(2)} ${(10 * split).toFixed(2)}) rotate(${(-14 * split).toFixed(2)} 0 30)`);
+  $('hRight').setAttribute('transform', `translate(${(30 * split).toFixed(2)} ${(10 * split).toFixed(2)}) rotate(${(14 * split).toFixed(2)} 0 30)`);
+  $('hCrack').setAttribute('opacity', (crackO * (1 - split) * 0.9).toFixed(3));
+  $('hGlow').setAttribute('opacity', win(t, EV.merci + 0.4, 25.4, 0.2, 0.6).toFixed(3));
+  // étincelles menthe au merci
+  let sp = '';
+  if (t > EV.merci + 0.4 && t < EV.merci + 2.4) for (let i = 0; i < 10; i++) {
+    const k = clamp((t - EV.merci - 0.4) / 2), a = i / 10 * Math.PI * 2 + 0.3, r = 90 + 140 * eOut(k);
+    sp += `<circle cx="${(541 + Math.cos(a) * r).toFixed(1)}" cy="${(700 + Math.sin(a) * r * 0.8 - 60 * k).toFixed(1)}" r="${(7 * (1 - k)).toFixed(2)}" fill="#5EF5B4"/>`;
+  }
+  $('sparks').innerHTML = sp;
+  // bulles et étiquette
+  for (const [id, [a, b], cx, cy] of [['bub1', EV.bub1, 410, 790], ['bub2', EV.bub2, 410, 790], ['bub3', [EV.merci, 24.9], 688, 790]]) {
+    $(id).setAttribute('opacity', win(t, a, b, 0.08, 0.15).toFixed(3));
+    $(id).setAttribute('transform', `translate(${cx} ${cy}) scale(${pop(t, a).toFixed(3)}) translate(${-cx} ${-cy})`);
+  }
+  $('tagEyes').setAttribute('opacity', win(t, EV.roll[0] + 0.2, EV.roll[1], 0.08, 0.15).toFixed(3));
+  $('tagEyes').setAttribute('transform', `translate(400 720) scale(${pop(t, EV.roll[0] + 0.2).toFixed(3)}) translate(-400 -720)`);
+  // cartes
+  const card = (id, a, b, fi = 0.07, fo = 0.12) => { $(id).style.opacity = win(t, a, b, fi, fo).toFixed(3); $(id).style.transform = `scale(${pop(t, a).toFixed(3)})`; };
+  card('cheat', EV.cheat[0], EV.cheat[1]); $('xMark').setAttribute('opacity', t >= EV.x ? 1 : 0);
+  $('xMark').setAttribute('transform', `translate(210 265) scale(${(t >= EV.x ? 1.25 - 0.25 * spring(seg(t, EV.x, EV.x + 0.3)) : 1).toFixed(3)}) translate(-210 -265)`);
+  card('rule', EV.rule[0], EV.rule[1]);
+  $('ruleJ').style.transform = `scale(${(0.86 + 0.14 * spring(seg(t, EV.rule[0] + 0.25, EV.rule[0] + 0.6))).toFixed(3)})`;
+  card('study', EV.study[0], EV.study[1]);
+  for (let i = 0; i < 40; i++) { const ti = EV.study[0] + 0.35 + i * 0.07; $('cp' + i).setAttribute('opacity', (t >= ti ? clamp((t - ti) / 0.1) : 0).toFixed(2)); }
+  $('yrs').textContent = Math.round(40 * eOut(seg(t, 8.6, 9.9))) + ' ANS';
+  card('hidden', EV.hidden[0], EV.hidden[1]);
+  card('anti', EV.anti[0], EV.anti[1]);
+  // jauge
+  let gv = 1; for (const [ti, v] of GA) if (t >= ti) gv = v;
+  const mint = t >= 22.6 && t < 25.2; if (t >= 25.2) gv = 1;
+  for (let i = 1; i <= 5; i++) { const el = $('g' + i); el.className = 'sg' + (i <= gv ? (mint ? ' mint' : gv >= 4 ? ' hot' : ' on') : ''); el.style.opacity = gv >= 5 && i <= gv ? (0.55 + 0.45 * Math.abs(Math.sin(t * 6))).toFixed(2) : 1; }
+  $('state').textContent = mint ? 'RÉPARÉ' : gv >= 5 ? 'CRITIQUE' : gv >= 2 ? 'FISSURE' : 'STABLE';
+  $('state').style.color = mint ? '#5EF5B4' : gv >= 2 ? '#FF4B2B' : '#E8E5DB';
+  // sous-titres
+  let ci = 0; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].t) ci = i;
+  const cap = $('cap');
+  if (ci !== curCap) {
+    curCap = ci;
+    cap.innerHTML = '<span class="w" id="capIn">' + CAPS[ci].txt.replace(/\*([^*]+)\*/g, '<span class="r">$1</span>').replace(/_([^_]+)_/g, '<span class="g">$1</span>') + '</span>';
+    const w = $('capIn').offsetWidth; cap.dataset.fit = Math.min(1, 900 / Math.max(1, w)).toFixed(4);
+  }
+  const c = CAPS[ci], t0 = Math.max(0, c.t);
+  cap.style.opacity = 1; cap.style.transform = `scale(${(pop(t, t0, 0.08) * parseFloat(cap.dataset.fit || 1)).toFixed(4)})`;
+}
+window.render = render;
+document.fonts.ready.then(() => { render(0); window.__ready = true; });
+</script>
+</body></html>

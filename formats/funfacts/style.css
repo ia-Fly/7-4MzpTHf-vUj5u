@@ -1,0 +1,46 @@
+@font-face { font-family: 'Anton'; src: url('fonts/Anton-Regular.ttf'); }
+@font-face { font-family: 'Barlow C'; src: url('fonts/BarlowCondensed-ExtraBold.ttf'); font-weight: 800; }
+@font-face { font-family: 'Barlow C'; src: url('fonts/BarlowCondensed-Bold.ttf'); font-weight: 700; }
+@font-face { font-family: 'JB Mono'; src: url('fonts/JetBrainsMono-VF.ttf'); font-weight: 100 800; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-VF.ttf'); font-weight: 100 900; }
+:root {
+  --nuit: #06080A; --ardoise: #232428; --bord: #0F1013; --carte: #16171A; --aplat: #464A50;
+  --graphite: #94959A; --papier: #E8E5DB; --halo-signal: #2A0E0B; --halo-menthe: #0E1F18;
+  --signal: #FF4B2B; --menthe: #5EF5B4;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--nuit); color: var(--papier); }
+.frame { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+.mono { font-family: 'JB Mono', monospace; text-transform: uppercase; letter-spacing: 0.18em; }
+.cond { font-family: 'Barlow C', sans-serif; font-weight: 800; text-transform: uppercase; }
+.anton { font-family: 'Anton', sans-serif; text-transform: uppercase; }
+.inter { font-family: 'Inter', sans-serif; }
+/* K01 en-tete */
+.hud { position: absolute; left: 76px; right: 76px; top: 192px; }
+.hud .row { display: flex; justify-content: space-between; align-items: flex-start; }
+.hud .serie { font-size: 24px; color: var(--graphite); display: flex; align-items: center; gap: 12px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; background: var(--menthe); box-shadow: 0 0 14px var(--menthe); display: inline-block; }
+.hud .sujet { font-size: 50px; line-height: 1; margin-top: 10px; letter-spacing: 0.01em; }
+.hud .compteur { text-align: right; }
+.hud .compteur .val { font-family: 'JB Mono'; font-weight: 600; font-size: 58px; line-height: 1; letter-spacing: 0.02em; }
+.hud .compteur .leg { font-size: 22px; color: var(--graphite); margin-top: 8px; }
+.hud .compteur .leg b { color: var(--papier); font-weight: 600; }
+.hud .filet { height: 1.5px; background: rgba(232,229,219,0.25); margin-top: 22px; }
+/* K02 chapitres */
+.chap { display: flex; justify-content: space-between; margin-top: 16px; font-size: 21px; }
+.chap .items span { margin-right: 26px; color: rgba(148,149,154,0.45); }
+.chap .items span.on { color: var(--papier); font-weight: 700; }
+.chap .statut { color: var(--graphite); }
+.chap .statut.ok { color: var(--menthe); }
+/* K03 etiquette */
+.etq { position: absolute; display: inline-flex; align-items: baseline; gap: 16px; padding: 14px 20px; border: 2px solid var(--menthe); background: rgba(6,8,10,0.55); }
+.etq .pre { font-family: 'JB Mono'; font-size: 22px; letter-spacing: 0.18em; color: var(--papier); opacity: 0.85; }
+.etq .val { font-family: 'JB Mono'; font-weight: 700; font-size: 32px; letter-spacing: 0.06em; color: var(--menthe); }
+.etq.signal { border-color: var(--signal); } .etq.signal .val { color: var(--signal); }
+.etq.papier { border-color: var(--papier); } .etq.papier .val { color: var(--papier); }
+/* K04 repere */
+.rep { position: absolute; font-family: 'Barlow C'; font-weight: 800; font-size: 40px; color: var(--menthe); text-transform: uppercase; letter-spacing: 0.02em; text-shadow: 0 0 18px rgba(94,245,180,0.35); }
+.rep.papier { color: var(--papier); text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+/* sous-titre V1 */
+.st1 { position: absolute; left: 0; right: 0; top: 1172px; text-align: center; font-family: 'Barlow C'; font-weight: 800; font-size: 84px; line-height: 1.02; text-transform: uppercase; color: var(--papier); text-shadow: 0 4px 18px rgba(0,0,0,0.75), 0 0 2px rgba(0,0,0,0.9); }
+.st1 .m { color: var(--menthe); } .st1 .s { color: var(--signal); }
