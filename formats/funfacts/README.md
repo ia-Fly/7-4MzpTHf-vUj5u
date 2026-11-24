@@ -27,3 +27,4 @@ Jauge HUD (« RISQUE… ») qui revient à l'état du début avant la fin.
 | N° | Date | Sujet | Source |
 |---|---|---|---|
 | 01 | 22/11/2026 | Le mépris, 1er prédicteur de rupture (Gottman) | gottman.com/blog/the-four-horsemen-contempt |
+| 02 | 24/11/2026 | Moins de 6 h de sommeil = 4,2× plus de risques d'attraper un rhume (Prather, Sleep 2015) | cmu.edu/news/stories/archives/2015/august/sleep-and-sickness.html |
