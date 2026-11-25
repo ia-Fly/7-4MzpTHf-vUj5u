@@ -1,0 +1,334 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Fun fact 03 — le liquide déjà retiré</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .frame { background: #0F1013; }
+  .band { position: absolute; left: 0; right: 0; top: 430px; height: 1000px;
+    background:
+      repeating-linear-gradient(0deg, rgba(232,229,219,0.045) 0 2px, transparent 2px 96px),
+      repeating-linear-gradient(90deg, rgba(232,229,219,0.045) 0 2px, transparent 2px 96px),
+      linear-gradient(180deg, rgba(35,36,40,0) 0%, #25262A 14%, #232428 78%, rgba(35,36,40,0) 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 80%, transparent 100%); }
+  .vig { position: absolute; inset: 0; background: radial-gradient(ellipse 760px 1100px at 50% 46%, transparent 55%, rgba(0,0,0,0.62) 100%); pointer-events: none; }
+  .mini { position: absolute; left: 76px; right: 76px; top: 192px; display: flex; justify-content: space-between; align-items: center; font-size: 24px; }
+  .mini .l { color: var(--graphite); display: flex; align-items: center; gap: 12px; }
+  .mini .rt { color: var(--papier); font-weight: 700; }
+  .filet2 { position: absolute; left: 76px; right: 76px; top: 244px; height: 1.5px; background: rgba(232,229,219,0.14); }
+  #hud2 { position: absolute; left: 76px; right: 76px; top: 266px; display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JB Mono'; text-transform: uppercase; letter-spacing: 0.16em; font-size: 21px; color: var(--graphite); }
+  #hud2 .gauge { display: flex; align-items: center; gap: 7px; }
+  #hud2 .gauge .lab { margin-right: 12px; }
+  #hud2 .sg { width: 44px; height: 14px; border-radius: 2px; background: rgba(232,229,219,0.13); }
+  #hud2 .sg.on { background: #E8E5DB; }
+  #hud2 .sg.hot { background: #FF4B2B; box-shadow: 0 0 12px rgba(255,75,43,0.65); }
+  #hud2 .sg.mint { background: #5EF5B4; box-shadow: 0 0 12px rgba(94,245,180,0.55); }
+  #hud2 #state { font-weight: 700; color: var(--papier); }
+  svg.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+  #fadeT { position: absolute; left: 0; right: 0; top: 0; height: 350px; background: linear-gradient(180deg, #0F1013 0px, #0F1013 300px, rgba(15,16,19,0) 350px); pointer-events: none; }
+  #fadeB { position: absolute; left: 0; right: 0; top: 1300px; height: 620px; background: linear-gradient(180deg, rgba(15,16,19,0) 0px, #0F1013 120px, #0F1013 620px); pointer-events: none; }
+  #cap { position: absolute; left: 40px; right: 40px; top: 1330px; text-align: center; font-family: 'Barlow C'; font-weight: 800; font-size: 112px; line-height: 1;
+    color: var(--papier); text-transform: uppercase; letter-spacing: 0.01em; white-space: nowrap;
+    text-shadow: 0 5px 0 rgba(0,0,0,0.55), 0 0 28px rgba(0,0,0,0.75); transform-origin: 50% 60%; }
+  #cap .r { color: #FF4B2B; } #cap .g { color: #5EF5B4; }
+  #cap span.w { display: inline-block; }
+  .card { position: absolute; left: 90px; right: 90px; opacity: 0; transform-origin: 50% 50%; }
+  #study { top: 380px; border: 2px solid rgba(232,229,219,0.5); background: #0F1013; }
+  #study .hd { display: flex; justify-content: space-between; font-family: 'JB Mono'; font-weight: 700; font-size: 26px; letter-spacing: 0.16em; color: var(--graphite); padding: 16px 24px 10px; border-bottom: 1.5px solid rgba(232,229,219,0.18); }
+  #study .hd b { color: var(--papier); }
+  #study svg, #study2 svg { display: block; width: 100%; height: 640px; }
+  #study2 { top: 380px; border: 2px solid rgba(232,229,219,0.5); background: #0F1013; }
+  #study2 .hd { display: flex; justify-content: space-between; font-family: 'JB Mono'; font-weight: 700; font-size: 26px; letter-spacing: 0.16em; color: var(--graphite); padding: 16px 24px 10px; border-bottom: 1.5px solid rgba(232,229,219,0.18); }
+  #study2 .hd b { color: var(--papier); }
+  #anti { top: 400px; display: flex; justify-content: center; }
+  #anti .in { background: rgba(15,17,20,0.92); border: 3px solid rgba(94,245,180,0.85); color: #5EF5B4; padding: 16px 30px 14px; font-family: 'JB Mono'; font-weight: 700; font-size: 40px; letter-spacing: 0.14em; }
+  #why { top: 400px; display: flex; justify-content: center; }
+  #why .in { background: rgba(15,17,20,0.92); border: 3px solid rgba(232,229,219,0.7); color: #E8E5DB; padding: 16px 30px 14px; font-family: 'JB Mono'; font-weight: 700; font-size: 40px; letter-spacing: 0.14em; }
+</style></head>
+<body>
+<div class="frame">
+  <div class="band"></div>
+  <svg class="full" viewBox="0 0 1080 1920">
+    <defs>
+      <filter id="glW" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <clipPath id="clipA"><circle cx="0" cy="0" r="66"/></clipPath>
+      <linearGradient id="coneG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8E5DB" stop-opacity="0.16"/><stop offset="100%" stop-color="#E8E5DB" stop-opacity="0.01"/></linearGradient>
+      <linearGradient id="wireG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8E5DB" stop-opacity="0"/><stop offset="1" stop-color="#E8E5DB" stop-opacity="0.6"/></linearGradient>
+      <g id="bill"><rect x="-46" y="-24" width="92" height="48" rx="5" fill="#16241D" stroke="#5EF5B4" stroke-width="4"/><circle r="12" fill="none" stroke="#5EF5B4" stroke-width="3.5"/><text y="7" text-anchor="middle" font-family="Barlow C" font-weight="800" font-size="20" fill="#5EF5B4">€</text></g>
+      <g id="ccard"><rect x="-58" y="-37" width="116" height="74" rx="9" fill="#24262B" stroke="#E8E5DB" stroke-width="4.5"/><rect x="-40" y="-16" width="24" height="18" rx="3" fill="none" stroke="#E8E5DB" stroke-width="3"/><line x1="-40" y1="20" x2="30" y2="20" stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="4" stroke-linecap="round"/><path d="M26 -14 q8 8 0 16 M34 -18 q12 12 0 24" fill="none" stroke="#E8E5DB" stroke-width="3" stroke-linecap="round"/></g>
+    </defs>
+    <g id="cam">
+      <line x1="-700" y1="1240" x2="1800" y2="1240" stroke="#E8E5DB" stroke-opacity="0.18" stroke-width="3"/>
+      <!-- lampe -->
+      <rect x="538.5" y="420" width="3" height="120" fill="url(#wireG)"/>
+      <polygon points="508,580 572,580 760,1240 320,1240" fill="url(#coneG)"/>
+      <path d="M500 578 L580 578 L562 532 L518 532 Z" fill="#2A2C31" stroke="#E8E5DB" stroke-width="4"/>
+      <ellipse cx="540" cy="580" rx="26" ry="7" fill="#E8E5DB"/>
+      <!-- étagère au fond -->
+      <g opacity="0.75">
+        <line x1="120" y1="700" x2="330" y2="700" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="4"/>
+        <rect x="140" y="640" width="40" height="60" fill="#1B1C20" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+        <rect x="195" y="655" width="50" height="45" fill="#1B1C20" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+        <circle cx="285" cy="676" r="22" fill="#1B1C20" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+        <line x1="760" y1="720" x2="960" y2="720" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="4"/>
+        <rect x="780" y="660" width="60" height="60" fill="#1B1C20" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+        <rect x="855" y="630" width="36" height="90" fill="#1B1C20" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+        <rect x="905" y="675" width="40" height="45" fill="#1B1C20" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+      </g>
+      <!-- personnage -->
+      <g id="P">
+        <rect x="290" y="960" width="180" height="280" rx="60" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/>
+        <g id="Phead" transform="translate(380 880)">
+          <circle r="66" fill="#2E3035"/>
+          <circle cx="22" cy="-16" r="66" fill="#3F4248" clip-path="url(#clipA)"/>
+          <circle r="66" fill="none" stroke="#E8E5DB" stroke-width="5"/>
+          <path d="M-66 -12 C -66 -70, 60 -82, 66 -14 C 40 -46, -26 -50, -66 -12 Z" fill="#26282D" stroke="#E8E5DB" stroke-width="4"/>
+          <g id="Peyes"><ellipse id="Pe1" cx="10" cy="0" rx="7" ry="7" fill="#E8E5DB"/><ellipse id="Pe2" cx="42" cy="0" rx="7" ry="7" fill="#E8E5DB"/></g>
+          <path id="Pbrow" d="" fill="none" stroke="#E8E5DB" stroke-width="4" stroke-linecap="round"/>
+          <path id="Pmouth" d="M12 34 Q 28 40 44 34" fill="none" stroke="#E8E5DB" stroke-width="4.5" stroke-linecap="round"/>
+        </g>
+        <!-- bras + main -->
+        <path id="Parm" d="" fill="none" stroke="#E8E5DB" stroke-width="30" stroke-linecap="round"/>
+        <path id="ParmIn" d="" fill="none" stroke="#3E4147" stroke-width="20" stroke-linecap="round"/>
+        <g id="hand"><circle r="20" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/></g>
+        <g id="handCard"><use href="#ccard"/></g>
+        <g id="handBills" opacity="0"><use href="#bill" transform="rotate(-12) translate(-6 -10)"/><use href="#bill" transform="rotate(6) translate(4 4)"/></g>
+      </g>
+      <!-- comptoir -->
+      <rect x="140" y="1080" width="800" height="160" rx="12" fill="#2A2C31" stroke="#E8E5DB" stroke-width="5"/>
+      <line x1="140" y1="1120" x2="940" y2="1120" stroke="#E8E5DB" stroke-opacity="0.3" stroke-width="3"/>
+      <!-- téléphone : appli bancaire -->
+      <g id="tpe" transform="translate(720 990)">
+        <rect x="-78" y="-150" width="156" height="250" rx="24" fill="#1A1B1F" stroke="#E8E5DB" stroke-width="5"/>
+        <rect x="-62" y="-130" width="124" height="196" rx="8" fill="#0E1012" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+        <text x="0" y="-102" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="16" letter-spacing="2" fill="#9A9890">MON COMPTE</text>
+        <text id="tpeAmt" x="0" y="-62" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="28" fill="#E8E5DB">390,00€</text>
+        <line x1="-50" y1="-40" x2="50" y2="-40" stroke="#E8E5DB" stroke-opacity="0.25" stroke-width="2"/>
+        <text id="txLine" x="0" y="-12" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="17" fill="#FF4B2B" opacity="0">RETRAIT −50€</text>
+        <line id="txStrike" x1="-56" y1="-18" x2="56" y2="-18" stroke="#9A9890" stroke-width="3" opacity="0"/>
+        <circle cx="0" cy="84" r="8" fill="none" stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="3"/>
+        <circle id="beep" r="60" cx="0" cy="-60" fill="none" stroke="#FF4B2B" stroke-width="5" opacity="0"/>
+      </g>
+      <!-- portefeuille sur le comptoir -->
+      <g id="wallet" transform="translate(300 1065)" opacity="0">
+        <rect x="-70" y="-38" width="140" height="76" rx="12" fill="#2B2216" stroke="#E8E5DB" stroke-width="5"/>
+        <path d="M-70 -10 L70 -10" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+      </g>
+      <g id="flyBills"></g>
+      <!-- jauge de douleur au-dessus de la tête -->
+      <g id="pain" opacity="0" transform="translate(380 720)">
+        <rect x="-130" y="-34" width="260" height="68" rx="8" fill="rgba(6,8,10,0.85)" stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="3"/>
+        <text x="-114" y="-8" font-family="JB Mono" font-weight="700" font-size="18" letter-spacing="2" fill="#E8E5DB">OÙ SONT MES 50€ ?</text>
+        <rect x="-114" y="6" width="228" height="16" rx="3" fill="rgba(232,229,219,0.15)"/>
+        <rect id="painBar" x="-114" y="6" width="0" height="16" rx="3" fill="#FF4B2B"/>
+      </g>
+      <!-- ticket de caisse -->
+      <g id="env" opacity="0" transform="translate(540 1000)">
+        <path d="M-110 -150 H110 V130 l-18 14 l-18 -14 l-18 14 l-18 -14 l-18 14 l-18 -14 l-18 14 l-18 -14 l-18 14 l-18 -14 l-18 14 l-20 -14 Z" fill="#10201A" stroke="#5EF5B4" stroke-width="5" stroke-linejoin="round"/>
+        <text x="0" y="-104" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="28" letter-spacing="4" fill="#5EF5B4">TICKET</text>
+        <g id="envBills" font-family="JB Mono" font-weight="700" font-size="20" fill="#5EF5B4">
+          <text x="-86" y="-50">CAFÉ</text><text x="86" y="-50" text-anchor="end">2,50</text>
+          <text x="-86" y="-10">SNACK</text><text x="86" y="-10" text-anchor="end">4,90</text>
+          <text x="-86" y="30">CINÉ</text><text x="86" y="30" text-anchor="end">11,00</text>
+          <line x1="-86" y1="52" x2="86" y2="52" stroke="#5EF5B4" stroke-width="2"/>
+          <text x="-86" y="90">RESTE</text><text x="86" y="90" text-anchor="end">31,60</text>
+        </g>
+      </g>
+      <g id="sparks"></g>
+      <!-- étiquette « +0 douleur » -->
+      <g id="tagNo" opacity="0">
+        <rect x="560" y="820" width="290" height="58" fill="rgba(6,8,10,0.8)" stroke="#FF4B2B" stroke-width="3"/>
+        <text x="578" y="858" font-family="JB Mono" font-weight="700" font-size="25" letter-spacing="2" fill="#FF4B2B">DÉJÀ DÉPENSÉ</text>
+      </g>
+    </g>
+  </svg>
+  <div id="fadeT"></div><div id="fadeB"></div><div class="vig"></div>
+  <div class="mini mono"><div class="l"><span class="dot"></span>LE SAVIEZ-VOUS ?</div><div class="rt">ARGENT · N°03</div></div>
+  <div class="filet2"></div>
+  <div id="hud2"><div class="gauge"><span class="lab">ARGENT SUIVI</span><span class="sg" id="g1"></span><span class="sg" id="g2"></span><span class="sg" id="g3"></span><span class="sg" id="g4"></span><span class="sg" id="g5"></span></div><div id="state">SUIVI</div></div>
+  <div id="study" class="card">
+    <div class="hd"><span><b>BARCLAYS</b> · SONDAGE ROYAUME-UNI</span><span>« ATMNESIA »</span></div>
+    <svg viewBox="0 0 900 640" id="studySvg"></svg>
+  </div>
+  <div id="study2" class="card">
+    <div class="hd"><span><b>RAGHUBIR &amp; SRIVASTAVA</b> · ÉTUDE</span><span>2009</span></div>
+    <svg viewBox="0 0 900 640">
+      <line x1="60" y1="520" x2="840" y2="520" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+      <rect id="barCoin" x="150" y="520" width="200" height="0" fill="#FF4B2B"/>
+      <text id="valCoin" x="250" y="500" text-anchor="middle" font-family="Anton" font-size="64" fill="#FF4B2B">0 %</text>
+      <rect id="barBill" x="550" y="520" width="200" height="0" fill="#E8E5DB" opacity="0.85"/>
+      <text id="valBill" x="650" y="500" text-anchor="middle" font-family="Anton" font-size="64" fill="#E8E5DB">0 %</text>
+      <g id="coins" transform="translate(250 575)">
+        <circle cx="-54" r="18" fill="#2B2216" stroke="#E8E5DB" stroke-width="4"/><circle cx="-18" r="18" fill="#2B2216" stroke="#E8E5DB" stroke-width="4"/>
+        <circle cx="18" r="18" fill="#2B2216" stroke="#E8E5DB" stroke-width="4"/><circle cx="54" r="18" fill="#2B2216" stroke="#E8E5DB" stroke-width="4"/>
+      </g>
+      <use href="#bill" transform="translate(650 575) scale(0.9)"/>
+      <text x="250" y="130" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="24" letter-spacing="3" fill="#9A9890">4 PIÈCES</text>
+      <text x="650" y="130" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="24" letter-spacing="3" fill="#9A9890">1 BILLET</text>
+      <text x="450" y="80" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="22" letter-spacing="2" fill="#E8E5DB">ONT ACHETÉ DES BONBONS</text>
+    </svg>
+  </div>
+  <div id="why" class="card"><div class="in">RÉSULTAT :</div></div>
+  <div id="anti" class="card"><div class="in">→ L'ASTUCE</div></div>
+  <div id="cap"></div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const eOut = x => 1 - Math.pow(1 - x, 3), eIO = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const spring = x => x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.exp(-6 * x) * Math.cos(10 * x);
+const lerp = (a, b, x) => a + (b - a) * x;
+const win = (t, a, b, fi = 0.1, fo = 0.1) => clamp(seg(t, a, a + fi)) * (1 - seg(t, b - fo, b));
+const pop = (t, a, d = 0.12) => 0.84 + 0.16 * spring(seg(t, a, a + d * 3));
+const DUR = 28.0;
+const S = [
+ [0.02, 1.94, "les billets|que tu as|déjà *retirés*…"],
+ [2.24, 4.61, "ton cerveau|les range dans|l'argent|*déjà dépensé*."],
+ [4.98, 7.76, "ils ne sont plus|sur ton compte,|alors tu ne les|*comptes plus*."],
+ [8.17, 8.80, "résultat :"],
+ [9.04, 12.58, "*6 Britanniques*|*sur 10*|ne savent pas|où est passé|leur dernier retrait."],
+ [13.03, 14.03, "et plus c'est petit,"],
+ [14.23, 15.16, "plus ça part *vite* :"],
+ [15.48, 19.31, "avec 4 pièces,|*63 %*|des étudiants|s'achètent|des bonbons."],
+ [19.69, 20.52, "avec un seul billet ?"],
+ [20.87, 21.55, "26 %."],
+ [22.35, 23.03, "l'astuce :"],
+ [23.30, 24.42, "garde|tes _tickets_."],
+ [24.75, 26.29, "et la prochaine fois|que tu *retires*…"],
+ [26.61, 27.22, "souviens-toi :"]];
+const CAPS = [];
+for (const [a, b, txt] of S) {
+  const parts = txt.split('|'), tot = parts.reduce((s, p) => s + p.length, 0); let acc = 0;
+  for (const p of parts) { CAPS.push({ t: Math.max(0, a + (b - a) * acc / tot - 0.04), txt: p }); acc += p.length; }
+}
+const EV = { grab: 0.2, tag: [2.4, 4.7], tx: 5.0, strike: 6.4, why: [8.17, 8.95], study: [9.04, 12.9], heads: 9.3, q: 10.8,
+  study2: [13.03, 21.9], coin: 15.6, bill: 20.0, anti: [22.35, 23.2], env: [23.30, 24.6], back: 24.75 };
+const SH = [
+ [0, 540, 930, 1.25, 520, 920, 1.32],
+ [2.24, 470, 900, 1.45, 470, 900, 1.5],
+ [4.98, 640, 940, 1.5, 680, 950, 1.6],
+ [8.17, 540, 930, 1.2, 540, 930, 1.2],
+ [22.35, 540, 930, 1.3, 540, 960, 1.38],
+ [24.75, 520, 920, 1.32, 540, 930, 1.25]];
+const GA = [[0, 5], [1.4, 4], [3.0, 3], [6.4, 2], [10.8, 1], [23.3, 5]];
+function camAt(t) {
+  let si = 0; for (let i = 0; i < SH.length; i++) if (t >= SH[i][0]) si = i;
+  const s0 = SH[si], s1t = si + 1 < SH.length ? SH[si + 1][0] : DUR - 0.5;
+  const u = eIO(seg(t, s0[0], s1t)) * 0.85 + seg(t, s0[0], s1t) * 0.15;
+  return [lerp(s0[1], s0[4], u), lerp(s0[2], s0[5], u), lerp(s0[3], s0[6], u)];
+}
+function shake(t) {
+  let x = 0, y = 0;
+  for (const [ti, amp] of [[EV.tag[0] + 0.1, 6], [EV.coin + 0.9, 6]]) {
+    if (t >= ti && t < ti + 0.5) { const k = Math.exp(-(t - ti) * 9) * amp; x += k * Math.sin((t - ti) * 71); y += k * Math.cos((t - ti) * 57); }
+  }
+  return [x, y];
+}
+const REST = [470, 1010], UP = [500, 900];
+// la main lève les billets fraîchement retirés, puis les range ; au bouclage la main est vide (comme au début)
+function cashHeld(t) { return eOut(seg(t, 0.3, 0.8)) * (1 - eIO(seg(t, 7.6, 8.1))) + eOut(seg(t, 25.1, 25.5)) * (1 - eIO(seg(t, 27.0, 27.6))); }
+function handPos(t) {
+  const k = eIO(seg(t, 0.25, 0.8)) * (1 - eIO(seg(t, 2.0, 2.6))) + eIO(seg(t, 25.0, 25.5)) * (1 - eIO(seg(t, 27.0, 27.7)));
+  return [[lerp(REST[0], UP[0], k), lerp(REST[1], UP[1], k)], k];
+}
+let curCap = -1;
+function render(t) {
+  let [fx, fy, s] = camAt(t);
+  const [kx, ky] = shake(t);
+  $('cam').setAttribute('transform', `translate(${(540 + kx).toFixed(2)} ${(900 + ky).toFixed(2)}) scale(${s.toFixed(4)}) translate(${(-fx).toFixed(2)} ${(-fy).toFixed(2)})`);
+  const br = Math.sin(t * 2.2) * 2.5;
+  $('Phead').setAttribute('transform', `translate(380 ${(880 + br).toFixed(2)})`);
+  const [[hx, hy], reach] = handPos(t);
+  const sx = 455, sy = 1000 + br;
+  const ex = (sx + hx) / 2 + 10, ey = Math.max(sy, hy) + 40;
+  const d = `M${sx} ${sy.toFixed(1)} Q ${ex.toFixed(1)} ${ey.toFixed(1)} ${hx.toFixed(1)} ${hy.toFixed(1)}`;
+  $('Parm').setAttribute('d', d); $('ParmIn').setAttribute('d', d);
+  $('hand').setAttribute('transform', `translate(${hx.toFixed(1)} ${hy.toFixed(1)})`);
+  $('handCard').setAttribute('opacity', 0);
+  const held = cashHeld(t);
+  $('handBills').setAttribute('transform', `translate(${(hx + 4).toFixed(1)} ${(hy - 34).toFixed(1)}) rotate(${(-6 + 10 * reach).toFixed(1)}) scale(${(0.8 + 0.4 * reach).toFixed(3)})`);
+  $('handBills').setAttribute('opacity', held.toFixed(3));
+  // billets qui tombent du distributeur au début (et à la relance)
+  let fb = '';
+  for (const f0 of [0.0, 24.8]) if (t > f0 && t < f0 + 0.9) for (let i = 0; i < 3; i++) {
+    const k = clamp((t - f0 - i * 0.1) / 0.6); if (k <= 0) continue;
+    const x = lerp(520 + i * 20, UP[0], eIO(k)), y = lerp(560, UP[1] - 34, eIO(k));
+    fb += `<use href="#bill" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(-30 + i * 20 + k * 25).toFixed(1)})" opacity="${(1 - seg(t, f0 + 0.55, f0 + 0.8)).toFixed(2)}"/>`;
+  }
+  // billets qui s'envolent (dépensés sans compter) pendant le sondage → déjà cachés par la carte ; ici à 7.6 la main range
+  $('flyBills').innerHTML = fb;
+  $('wallet').setAttribute('opacity', win(t, 6.9, 8.4, 0.2, 0.3).toFixed(3));
+  // visage : à l'aise, puis perplexe (« où sont mes 50 € ? »)
+  const lost = win(t, 21.9, 22.5, 0.01, 0.01) * 0;
+  const conf = 0;
+  $('Pmouth').setAttribute('d', `M12 34 Q 28 40 44 34`);
+  $('Pbrow').setAttribute('d', '');
+  $('pain').setAttribute('opacity', 0);
+  // étiquette « déjà dépensé » sur les billets
+  $('tagNo').setAttribute('opacity', win(t, EV.tag[0], EV.tag[1], 0.08, 0.2).toFixed(3));
+  $('tagNo').setAttribute('transform', `translate(-310 -80) translate(560 820) scale(${pop(t, EV.tag[0]).toFixed(3)}) translate(-560 -820)`);
+  // téléphone : solde déjà débité, la ligne « retrait » s'efface
+  $('tpeAmt').textContent = '390,00€';
+  $('tpeAmt').setAttribute('fill', '#E8E5DB');
+  $('txLine').setAttribute('opacity', (win(t, EV.tx, 8.3, 0.15, 0.3) * (1 - 0.6 * seg(t, EV.strike, EV.strike + 0.3))).toFixed(3));
+  $('txStrike').setAttribute('opacity', win(t, EV.strike, 8.3, 0.1, 0.3).toFixed(3));
+  $('txStrike').setAttribute('x2', (-56 + 112 * eOut(seg(t, EV.strike, EV.strike + 0.35))).toFixed(1));
+  let bp = 0, br2 = 60;
+  for (const ti of [EV.tx]) if (t >= ti && t < ti + 0.6) { const k = (t - ti) / 0.6; bp = 1 - k; br2 = 60 + 70 * k; }
+  $('beep').setAttribute('opacity', bp.toFixed(3)); $('beep').setAttribute('r', br2.toFixed(1));
+  // ticket de caisse (astuce)
+  const envO = win(t, EV.env[0], EV.env[1] + 0.2, 0.15, 0.35);
+  $('env').setAttribute('opacity', envO.toFixed(3));
+  $('env').setAttribute('transform', `translate(540 ${(1000 - 30 * eOut(seg(t, EV.env[0], EV.env[0] + 0.4))).toFixed(1)}) scale(${pop(t, EV.env[0]).toFixed(3)})`);
+  $('envBills').setAttribute('opacity', eOut(seg(t, EV.env[0] + 0.3, EV.env[0] + 0.8)).toFixed(3));
+  $('P').setAttribute('opacity', (1 - 0.75 * envO).toFixed(3));
+  $('tpe').setAttribute('opacity', (1 - 0.75 * envO).toFixed(3));
+  let sp = '';
+  if (t > EV.env[0] + 0.6 && t < EV.env[0] + 2.1) for (let i = 0; i < 10; i++) {
+    const k = clamp((t - EV.env[0] - 0.6) / 1.5), a = i / 10 * Math.PI * 2 + 0.3, r = 120 + 140 * eOut(k);
+    sp += `<circle cx="${(540 + Math.cos(a) * r).toFixed(1)}" cy="${(970 + Math.sin(a) * r * 0.7 - 50 * k).toFixed(1)}" r="${(7 * (1 - k)).toFixed(2)}" fill="#5EF5B4"/>`;
+  }
+  $('sparks').innerHTML = sp;
+  const card = (id, a, b, fi = 0.08, fo = 0.15) => { $(id).style.opacity = win(t, a, b, fi, fo).toFixed(3); $(id).style.transform = `scale(${pop(t, a).toFixed(3)})`; };
+  // carte sondage : 10 silhouettes, 6 deviennent « ? »
+  card('study', EV.study[0], EV.study[1]);
+  let g = '';
+  for (let i = 0; i < 10; i++) {
+    const c = i % 5, r = Math.floor(i / 5), x = 130 + c * 160, y = 170 + r * 230;
+    const on = clamp((t - EV.heads - i * 0.08) / 0.12);
+    const red = i < 6 ? eOut(seg(t, EV.q + i * 0.12, EV.q + i * 0.12 + 0.2)) : 0;
+    const col = red > 0.5 ? '#FF4B2B' : '#E8E5DB';
+    g += `<g opacity="${on.toFixed(2)}" transform="translate(${x} ${y})"><circle cy="-20" r="34" fill="#2E3035" stroke="${col}" stroke-width="5"/><path d="M-50 90 Q-50 30 0 30 Q50 30 50 90 Z" fill="#2E3035" stroke="${col}" stroke-width="5"/>` +
+      (red > 0 ? `<text y="-6" text-anchor="middle" font-family="Anton" font-size="${(44 * (0.6 + 0.4 * spring(red))).toFixed(1)}" fill="#FF4B2B">?</text>` : '') + `</g>`;
+  }
+  g += `<text x="450" y="620" text-anchor="middle" font-family="Anton" font-size="56" fill="#FF4B2B" opacity="${eOut(seg(t, EV.q + 0.8, EV.q + 1.1)).toFixed(2)}">6 SUR 10 : AUCUNE IDÉE</text>`;
+  $('studySvg').innerHTML = g;
+  // carte dénomination
+  card('study2', EV.study2[0], EV.study2[1]);
+  const H = 280 / 70;
+  const hC = eOut(seg(t, EV.coin, EV.coin + 1.0)), hB = eOut(seg(t, EV.bill + 0.9, EV.bill + 1.6));
+  $('barCoin').setAttribute('y', (520 - 63 * H * hC).toFixed(1)); $('barCoin').setAttribute('height', (63 * H * hC).toFixed(1));
+  $('valCoin').setAttribute('y', (500 - 63 * H * hC).toFixed(1)); $('valCoin').textContent = Math.round(63 * hC) + ' %';
+  $('barBill').setAttribute('y', (520 - 26 * H * hB).toFixed(1)); $('barBill').setAttribute('height', (26 * H * hB).toFixed(1));
+  $('valBill').setAttribute('y', (500 - 26 * H * hB).toFixed(1)); $('valBill').textContent = Math.round(26 * hB) + ' %';
+  card('why', EV.why[0], EV.why[1]);
+  card('anti', EV.anti[0], EV.anti[1]);
+  let gv = 5; for (const [ti, v] of GA) if (t >= ti) gv = v;
+  const mint = t >= 23.3 && t < 24.75;
+  for (let i = 1; i <= 5; i++) { const el = $('g' + i); el.className = 'sg' + (i <= gv ? (mint ? ' mint' : gv <= 2 ? ' hot' : ' on') : ''); el.style.opacity = gv <= 1 && i <= gv ? (0.55 + 0.45 * Math.abs(Math.sin(t * 6))).toFixed(2) : 1; }
+  $('state').textContent = mint ? 'SOUS CONTRÔLE' : gv <= 1 ? 'PERDU DE VUE' : gv <= 3 ? 'EN BAISSE' : 'SUIVI';
+  $('state').style.color = mint ? '#5EF5B4' : gv <= 3 ? '#FF4B2B' : '#E8E5DB';
+  let ci = 0; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].t) ci = i;
+  const cap = $('cap');
+  if (ci !== curCap) {
+    curCap = ci;
+    cap.innerHTML = '<span class="w" id="capIn">' + CAPS[ci].txt.replace(/\*([^*]+)\*/g, '<span class="r">$1</span>').replace(/_([^_]+)_/g, '<span class="g">$1</span>') + '</span>';
+    const w = $('capIn').offsetWidth; cap.dataset.fit = Math.min(1, 900 / Math.max(1, w)).toFixed(4);
+  }
+  const c = CAPS[ci], t0 = Math.max(0, c.t);
+  cap.style.opacity = 1; cap.style.transform = `scale(${(pop(t, t0, 0.08) * parseFloat(cap.dataset.fit || 1)).toFixed(4)})`;
+}
+window.render = render;
+document.fonts.ready.then(() => { render(0); window.__ready = true; });
+</script>
+</body></html>
