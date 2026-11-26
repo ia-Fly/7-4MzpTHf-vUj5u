@@ -1,0 +1,307 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Fun fact 04 — l'effet du témoin</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .frame { background: #0F1013; }
+  .band { position: absolute; left: 0; right: 0; top: 430px; height: 1000px;
+    background:
+      repeating-linear-gradient(0deg, rgba(232,229,219,0.045) 0 2px, transparent 2px 96px),
+      repeating-linear-gradient(90deg, rgba(232,229,219,0.045) 0 2px, transparent 2px 96px),
+      linear-gradient(180deg, rgba(35,36,40,0) 0%, #25262A 14%, #232428 78%, rgba(35,36,40,0) 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 80%, transparent 100%); }
+  .vig { position: absolute; inset: 0; background: radial-gradient(ellipse 760px 1100px at 50% 46%, transparent 55%, rgba(0,0,0,0.62) 100%); pointer-events: none; }
+  .mini { position: absolute; left: 76px; right: 76px; top: 192px; display: flex; justify-content: space-between; align-items: center; font-size: 24px; }
+  .mini .l { color: var(--graphite); display: flex; align-items: center; gap: 12px; }
+  .mini .rt { color: var(--papier); font-weight: 700; }
+  .filet2 { position: absolute; left: 76px; right: 76px; top: 244px; height: 1.5px; background: rgba(232,229,219,0.14); }
+  #hud2 { position: absolute; left: 76px; right: 76px; top: 266px; display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JB Mono'; text-transform: uppercase; letter-spacing: 0.16em; font-size: 21px; color: var(--graphite); }
+  #hud2 .gauge { display: flex; align-items: center; gap: 7px; }
+  #hud2 .gauge .lab { margin-right: 12px; }
+  #hud2 .sg { width: 44px; height: 14px; border-radius: 2px; background: rgba(232,229,219,0.13); }
+  #hud2 .sg.on { background: #E8E5DB; }
+  #hud2 .sg.hot { background: #FF4B2B; box-shadow: 0 0 12px rgba(255,75,43,0.65); }
+  #hud2 .sg.mint { background: #5EF5B4; box-shadow: 0 0 12px rgba(94,245,180,0.55); }
+  #hud2 #state { font-weight: 700; color: var(--papier); }
+  svg.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+  #fadeT { position: absolute; left: 0; right: 0; top: 0; height: 350px; background: linear-gradient(180deg, #0F1013 0px, #0F1013 300px, rgba(15,16,19,0) 350px); pointer-events: none; }
+  #fadeB { position: absolute; left: 0; right: 0; top: 1300px; height: 620px; background: linear-gradient(180deg, rgba(15,16,19,0) 0px, #0F1013 120px, #0F1013 620px); pointer-events: none; }
+  #cap { position: absolute; left: 40px; right: 40px; top: 1330px; text-align: center; font-family: 'Barlow C'; font-weight: 800; font-size: 112px; line-height: 1;
+    color: var(--papier); text-transform: uppercase; letter-spacing: 0.01em; white-space: nowrap;
+    text-shadow: 0 5px 0 rgba(0,0,0,0.55), 0 0 28px rgba(0,0,0,0.75); transform-origin: 50% 60%; }
+  #cap .r { color: #FF4B2B; } #cap .g { color: #5EF5B4; }
+  #cap span.w { display: inline-block; }
+  .card { position: absolute; left: 90px; right: 90px; opacity: 0; transform-origin: 50% 50%; }
+  .sc { top: 380px; border: 2px solid rgba(232,229,219,0.5); background: #0F1013; }
+  .sc .hd { display: flex; justify-content: space-between; font-family: 'JB Mono'; font-weight: 700; font-size: 26px; letter-spacing: 0.16em; color: var(--graphite); padding: 16px 24px 10px; border-bottom: 1.5px solid rgba(232,229,219,0.18); }
+  .sc .hd b { color: var(--papier); }
+  .sc svg { display: block; width: 100%; height: 640px; }
+  #anti { top: 400px; display: flex; justify-content: center; }
+  #anti .in { background: rgba(15,17,20,0.92); border: 3px solid rgba(94,245,180,0.85); color: #5EF5B4; padding: 16px 30px 14px; font-family: 'JB Mono'; font-weight: 700; font-size: 40px; letter-spacing: 0.14em; }
+</style></head>
+<body>
+<div class="frame">
+  <div class="band"></div>
+  <svg class="full" viewBox="0 0 1080 1920">
+    <defs>
+      <clipPath id="clipA"><circle cx="0" cy="0" r="58"/></clipPath>
+      <linearGradient id="coneG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8E5DB" stop-opacity="0.13"/><stop offset="100%" stop-color="#E8E5DB" stop-opacity="0.01"/></linearGradient>
+    </defs>
+    <g id="cam">
+      <line x1="-700" y1="1240" x2="1800" y2="1240" stroke="#E8E5DB" stroke-opacity="0.18" stroke-width="3"/>
+      <!-- réverbère -->
+      <g opacity="0.8">
+        <line x1="540" y1="430" x2="540" y2="520" stroke="#E8E5DB" stroke-opacity="0.35" stroke-width="4"/>
+        <path d="M505 560 L575 560 L560 520 L520 520 Z" fill="#2A2C31" stroke="#E8E5DB" stroke-width="4"/>
+        <polygon points="510,562 570,562 760,1240 320,1240" fill="url(#coneG)"/>
+      </g>
+      <!-- immeubles au fond -->
+      <g opacity="0.55" fill="#1B1C20" stroke="#E8E5DB" stroke-opacity="0.45" stroke-width="3">
+        <rect x="-40" y="560" width="200" height="680"/><rect x="20" y="620" width="40" height="50"/><rect x="90" y="620" width="40" height="50"/><rect x="20" y="720" width="40" height="50"/><rect x="90" y="720" width="40" height="50"/>
+        <rect x="920" y="600" width="200" height="640"/><rect x="950" y="650" width="40" height="50"/><rect x="1020" y="650" width="40" height="50"/><rect x="950" y="750" width="40" height="50"/><rect x="1020" y="750" width="40" height="50"/>
+      </g>
+      <g id="people"></g>
+      <!-- victime au sol -->
+      <g id="victim">
+        <rect x="455" y="1176" width="270" height="62" rx="30" fill="#3E4147" stroke="#E8E5DB" stroke-width="5"/>
+        <g transform="translate(415 1196)">
+          <circle r="42" fill="#2E3035" stroke="#E8E5DB" stroke-width="5"/>
+          <path d="M-16 -6 l12 0 M6 -6 l12 0" stroke="#E8E5DB" stroke-width="4" stroke-linecap="round"/>
+          <path d="M-8 16 q8 -4 16 0" fill="none" stroke="#E8E5DB" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <circle id="vPulse" cx="585" cy="1205" r="80" fill="none" stroke="#FF4B2B" stroke-width="5" opacity="0"/>
+      </g>
+      <g id="bubbles"></g>
+      <g id="resp" opacity="0"></g>
+      <!-- anneau + téléphone de l'homme à la veste rouge -->
+      <circle id="ring" cx="295" cy="885" r="96" fill="none" stroke="#5EF5B4" stroke-width="6" opacity="0"/>
+      <g id="phone" opacity="0">
+        <rect x="-30" y="-52" width="60" height="104" rx="10" fill="#10201A" stroke="#5EF5B4" stroke-width="5"/>
+        <text y="14" text-anchor="middle" font-family="Anton" font-size="40" fill="#5EF5B4">15</text>
+        <path d="M40 -40 q14 14 0 28 M52 -52 q26 26 0 52" fill="none" stroke="#5EF5B4" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g id="sparks"></g>
+    </g>
+    <!-- main qui pointe (plan écran) -->
+    <g id="finger" opacity="0">
+      <rect x="90" y="8" width="700" height="78" rx="20" fill="#2E3035" stroke="#E8E5DB" stroke-width="6" transform="rotate(-4)"/>
+      <path d="M0 0 L-150 -60 Q-176 -70 -168 -46 Q-162 -32 -140 -26 L-40 12 L-60 40 Q-70 70 -30 78 L80 92 L130 40 L90 -10 Z" fill="#2E3035" stroke="#E8E5DB" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M-40 12 L20 20 M-48 44 L30 50" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </svg>
+  <div id="fadeT"></div><div id="fadeB"></div><div class="vig"></div>
+  <div class="mini mono"><div class="l"><span class="dot"></span>LE SAVIEZ-VOUS ?</div><div class="rt">PSYCHO · N°04</div></div>
+  <div class="filet2"></div>
+  <div id="hud2"><div class="gauge"><span class="lab">RÉACTION</span><span class="sg" id="g1"></span><span class="sg" id="g2"></span><span class="sg" id="g3"></span><span class="sg" id="g4"></span><span class="sg" id="g5"></span></div><div id="state">1 TÉMOIN</div></div>
+  <div id="study" class="card sc">
+    <div class="hd"><span><b>DARLEY &amp; LATANÉ</b> · EXPÉRIENCE</span><span>1968</span></div>
+    <svg viewBox="0 0 900 640">
+      <g transform="translate(330 330)">
+        <rect x="-110" y="-150" width="220" height="300" rx="22" fill="#1A1B1F" stroke="#E8E5DB" stroke-width="6"/>
+        <g stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="5" stroke-linecap="round">
+          <line x1="-60" y1="-90" x2="60" y2="-90"/><line x1="-60" y1="-60" x2="60" y2="-60"/><line x1="-60" y1="-30" x2="60" y2="-30"/><line x1="-60" y1="0" x2="60" y2="0"/>
+        </g>
+        <circle cx="0" cy="80" r="26" fill="none" stroke="#E8E5DB" stroke-width="5"/>
+        <circle id="led" cx="70" cy="-125" r="9" fill="#FF4B2B"/>
+      </g>
+      <g id="waves" fill="none" stroke="#FF4B2B" stroke-width="7" stroke-linecap="round"></g>
+      <text x="450" y="590" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="28" letter-spacing="3" fill="#E8E5DB">UNE CRISE… À L'INTERPHONE</text>
+    </svg>
+  </div>
+  <div id="study2" class="card sc">
+    <div class="hd"><span><b>DARLEY &amp; LATANÉ</b> · RÉSULTAT</span><span>1968</span></div>
+    <svg viewBox="0 0 900 640">
+      <text x="450" y="66" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="24" letter-spacing="2" fill="#E8E5DB">ALERTE DONNÉE AVANT LA FIN</text>
+      <line x1="60" y1="500" x2="840" y2="500" stroke="#E8E5DB" stroke-opacity="0.5" stroke-width="3"/>
+      <rect id="barA" x="150" y="500" width="200" height="0" fill="#E8E5DB" opacity="0.9"/>
+      <text id="valA" x="250" y="480" text-anchor="middle" font-family="Anton" font-size="64" fill="#E8E5DB">0 %</text>
+      <rect id="barB" x="550" y="500" width="200" height="0" fill="#FF4B2B"/>
+      <text id="valB" x="650" y="480" text-anchor="middle" font-family="Anton" font-size="64" fill="#FF4B2B" opacity="0">0 %</text>
+      <g id="icA" transform="translate(250 560)"></g>
+      <g id="icB" transform="translate(650 560)" opacity="0"></g>
+      <text x="250" y="625" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="22" letter-spacing="3" fill="#9A9890">SEUL TÉMOIN</text>
+      <text id="labB" x="650" y="625" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="22" letter-spacing="3" fill="#9A9890" opacity="0">+ 4 TÉMOINS</text>
+    </svg>
+  </div>
+  <div id="anti" class="card"><div class="in">→ L'ANTIDOTE</div></div>
+  <div id="cap"></div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const eOut = x => 1 - Math.pow(1 - x, 3), eIO = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const spring = x => x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.exp(-6 * x) * Math.cos(10 * x);
+const lerp = (a, b, x) => a + (b - a) * x;
+const win = (t, a, b, fi = 0.1, fo = 0.1) => clamp(seg(t, a, a + fi)) * (1 - seg(t, b - fo, b));
+const pop = (t, a, d = 0.12) => 0.84 + 0.16 * spring(seg(t, a, a + d * 3));
+const DUR = 27.8;
+const S = [
+ [0.03, 2.64, "plus il y a|de témoins,|moins chacun|*réagit*."],
+ [3.52, 7.08, "en *1968*,|des chercheurs|simulent une crise|à l'interphone."],
+ [7.80, 8.36, "seul témoin ?"],
+ [8.86, 11.13, "*85 %*|donnent l'alerte|avant la fin."],
+ [12.05, 13.25, "avec 4 autres|témoins ?"],
+ [13.61, 14.41, "*31 %*."],
+ [15.46, 17.22, "chacun pense|qu'un autre|*s'en occupe*."],
+ [17.50, 19.32, "c'est la *dilution*|de responsabilité."],
+ [20.22, 20.82, "l'antidote :"],
+ [21.24, 22.09, "_pointe_|une personne."],
+ [22.39, 24.46, "« toi,|en veste rouge,|_appelle le 15_ ! »"],
+ [25.41, 27.16, "alors|dans une foule,|souviens-toi :"]];
+const CAPS = [];
+for (const [a, b, txt] of S) {
+  const parts = txt.split('|'), tot = parts.reduce((s, p) => s + p.length, 0); let acc = 0;
+  for (const p of parts) { CAPS.push({ t: Math.max(0, a + (b - a) * acc / tot - 0.04), txt: p }); acc += p.length; }
+}
+// témoins : x, échelle, veste, entrée, sortie (relance)
+const P = [
+  { x: 790, s: 1.0, red: false, tin: -1, tout: 99 },      // le témoin seul : toujours là
+  { x: 295, s: 1.0, red: true, tin: 0.75, tout: 26.6 },
+  { x: 935, s: 1.0, red: false, tin: 1.15, tout: 26.3 },
+  { x: 150, s: 1.0, red: false, tin: 1.55, tout: 26.0 },
+  { x: 600, s: 0.78, red: false, tin: 1.95, tout: 25.7 }];
+function personSVG(p, i) {
+  const dir = p.x < 540 ? 1 : -1, by = p.s < 1 ? 1040 : 960, hy = p.s < 1 ? 905 : 885;
+  const body = p.red ? 'fill="#3A1C18" stroke="#FF4B2B"' : 'fill="#3E4147" stroke="#E8E5DB"';
+  const gy = p.s < 1 ? 1180 : 1240;
+  return `<g id="pp${i}"><g transform="translate(${p.x} ${gy}) scale(${p.s}) translate(${-p.x} -1240)">
+    <rect x="${p.x - 62}" y="${by}" width="124" height="${1240 - by}" rx="50" ${body} stroke-width="5"/>
+    <g id="ph${i}" transform="translate(${p.x} ${hy})">
+      <circle r="58" fill="#2E3035"/><circle cx="${20 * dir}" cy="-14" r="58" fill="#3F4248" clip-path="url(#clipA)"/>
+      <circle r="58" fill="none" stroke="#E8E5DB" stroke-width="5"/>
+      <path d="M-58 -10 C -58 -62, 52 -72, 58 -12 C 34 -40, -22 -44, -58 -10 Z" fill="#26282D" stroke="#E8E5DB" stroke-width="4"/>
+      <ellipse cx="${10 * dir}" cy="2" rx="6" ry="6" fill="#E8E5DB"/><ellipse cx="${36 * dir}" cy="2" rx="6" ry="6" fill="#E8E5DB"/>
+      <path d="M${12 * dir} 32 L ${36 * dir} 32" stroke="#E8E5DB" stroke-width="4.5" stroke-linecap="round"/>
+    </g></g></g>`;
+}
+$('people').innerHTML = P.map(personSVG).join('');
+// icônes de témoins pour la carte résultat
+const mini = (x, c) => `<g transform="translate(${x} 0)"><circle cy="-14" r="12" fill="#2E3035" stroke="${c}" stroke-width="3.5"/><path d="M-16 20 Q-16 2 0 2 Q16 2 16 20 Z" fill="#2E3035" stroke="${c}" stroke-width="3.5"/></g>`;
+$('icA').innerHTML = mini(0, '#E8E5DB');
+$('icB').innerHTML = [-72, -36, 0, 36, 72].map((x, i) => mini(x, i === 2 ? '#E8E5DB' : '#FF4B2B')).join('');
+const EV = { study: [3.52, 7.62], study2: [7.80, 14.95], barA: 8.86, barB: 13.61, bub: 15.46, resp: [17.50, 19.7], anti: [20.22, 20.95],
+  point: 21.24, call: 22.39, back: 25.41 };
+const SH = [
+ [0, 540, 1000, 1.08, 540, 990, 1.14],
+ [15.0, 540, 980, 1.12, 540, 960, 1.18],
+ [21.0, 400, 960, 1.45, 380, 950, 1.55],
+ [25.2, 380, 950, 1.55, 540, 1000, 1.08]];
+function camAt(t) {
+  let si = 0; for (let i = 0; i < SH.length; i++) if (t >= SH[i][0]) si = i;
+  const s0 = SH[si], s1t = si + 1 < SH.length ? SH[si + 1][0] : DUR - 0.3;
+  const dur = si === SH.length - 1 ? 1.8 : (s1t - s0[0]);
+  const x = seg(t, s0[0], s0[0] + dur), u = si === SH.length - 1 ? eIO(x) : eIO(x) * 0.85 + x * 0.15;
+  return [lerp(s0[1], s0[4], u), lerp(s0[2], s0[5], u), lerp(s0[3], s0[6], u)];
+}
+function shake(t) {
+  let x = 0, y = 0;
+  for (const [ti, amp] of [[EV.barB + 0.6, 6], [EV.call, 5]]) {
+    if (t >= ti && t < ti + 0.5) { const k = Math.exp(-(t - ti) * 9) * amp; x += k * Math.sin((t - ti) * 71); y += k * Math.cos((t - ti) * 57); }
+  }
+  return [x, y];
+}
+function presence(p, t) { return p.tin < 0 ? 1 : eOut(seg(t, p.tin, p.tin + 0.3)) * (1 - eIO(seg(t, p.tout, p.tout + 0.35))); }
+let curCap = -1;
+function render(t) {
+  const [fx, fy, s] = camAt(t), [kx, ky] = shake(t);
+  $('cam').setAttribute('transform', `translate(${(540 + kx).toFixed(2)} ${(900 + ky).toFixed(2)}) scale(${s.toFixed(4)}) translate(${(-fx).toFixed(2)} ${(-fy).toFixed(2)})`);
+  let count = 0;
+  P.forEach((p, i) => {
+    const pr = presence(p, t); if (pr > 0.5) count++;
+    const sc = 0.85 + 0.15 * (p.tin < 0 ? 1 : spring(seg(t, p.tin, p.tin + 0.4)));
+    const g = $('pp' + i); g.setAttribute('opacity', pr.toFixed(3));
+    g.setAttribute('transform', `translate(${p.x} 1240) scale(${(pr > 0 ? sc : 1).toFixed(3)}) translate(${-p.x} -1240)`);
+    const br = Math.sin(t * 2.2 + i * 1.3) * 2.2;
+    const hy = p.s < 1 ? 905 : 885;
+    // l'homme à la veste rouge lève la tête quand on le désigne
+    const look = p.red ? -8 * eOut(seg(t, EV.point + 0.3, EV.point + 0.6)) * (1 - seg(t, EV.back, EV.back + 0.4)) : 0;
+    $('ph' + i).setAttribute('transform', `translate(${p.x} ${(hy + br + look).toFixed(2)})`);
+  });
+  // pouls rouge autour de la victime
+  const pk = (t * 1.1) % 1;
+  $('vPulse').setAttribute('opacity', ((1 - pk) * 0.7 * (1 - win(t, EV.call, EV.back + 0.3, 0.2, 0.3))).toFixed(3));
+  $('vPulse').setAttribute('r', (70 + 70 * pk).toFixed(1));
+  // bulles « c'est un autre qui va appeler » : flèche vers le voisin
+  let bb = '';
+  const bo = win(t, EV.bub, 17.45, 0.1, 0.25);
+  if (bo > 0) P.forEach((p, i) => {
+    const k = eOut(seg(t, EV.bub + i * 0.15, EV.bub + i * 0.15 + 0.25)); if (k <= 0) return;
+    const hy = (p.s < 1 ? 905 : 885) - 1240; const y = 1240 + hy * p.s - 120 * p.s, dir = i % 2 ? 1 : -1;
+    bb += `<g opacity="${(k * bo).toFixed(3)}" transform="translate(${p.x} ${(y + (p.s < 1 ? -60 : 0)).toFixed(1)}) scale(${(0.7 + 0.3 * spring(k)).toFixed(3)})">
+      <rect x="-56" y="-44" width="112" height="72" rx="20" fill="rgba(10,12,14,0.92)" stroke="#E8E5DB" stroke-width="4"/>
+      <path d="M-10 28 L0 44 L10 28" fill="rgba(10,12,14,0.92)" stroke="#E8E5DB" stroke-width="4"/>
+      <path d="M${-26 * dir} -8 L${26 * dir} -8 M${12 * dir} -22 L${26 * dir} -8 L${12 * dir} 6" fill="none" stroke="#FF4B2B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+  });
+  $('bubbles').innerHTML = bb;
+  // responsabilité : une barre rouge qui se coupe en 5 et s'éparpille
+  const ro = win(t, EV.resp[0], EV.resp[1], 0.12, 0.3);
+  $('resp').setAttribute('opacity', ro.toFixed(3));
+  if (ro > 0) {
+    const sp = eIO(seg(t, EV.resp[0] + 0.6, EV.resp[0] + 1.3)), fade = 1 - 0.65 * seg(t, EV.resp[0] + 1.2, EV.resp[0] + 1.7);
+    let r = `<text x="540" y="${(668).toFixed(0)}" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="26" letter-spacing="4" fill="#E8E5DB" opacity="${(1 - sp).toFixed(2)}">RESPONSABILITÉ</text>`;
+    const order = [3, 1, 4, 0, 2];
+    order.forEach((pi, j) => {
+      const p = P[pi], x0 = 340 + j * 80, x1 = p.x - 30, y1 = (p.s < 1 ? 760 : 760);
+      const x = lerp(x0, x1, sp), y = lerp(690, y1, sp), w = lerp(80, 60, sp);
+      r += `<rect x="${(x).toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="22" fill="#FF4B2B" opacity="${fade.toFixed(2)}"/>`;
+    });
+    $('resp').innerHTML = r;
+  }
+  // désigner l'homme à la veste rouge
+  const ringO = win(t, EV.point + 0.2, EV.back + 0.2, 0.2, 0.3);
+  $('ring').setAttribute('opacity', ringO.toFixed(3));
+  $('ring').setAttribute('r', (90 + 8 * Math.sin(t * 7)).toFixed(1));
+  const fo = win(t, EV.point, EV.call + 0.5, 0.2, 0.3), fk = eOut(seg(t, EV.point, EV.point + 0.45));
+  $('finger').setAttribute('opacity', fo.toFixed(3));
+  $('finger').setAttribute('transform', `translate(${lerp(1250, 700, fk).toFixed(1)} ${lerp(1150, 1010, fk).toFixed(1)}) rotate(10)`);
+  const phO = win(t, EV.call, EV.back + 0.3, 0.15, 0.35), phk = eOut(seg(t, EV.call, EV.call + 0.4));
+  $('phone').setAttribute('opacity', phO.toFixed(3));
+  $('phone').setAttribute('transform', `translate(400 ${lerp(1000, 900, phk).toFixed(1)}) scale(${pop(t, EV.call).toFixed(3)})`);
+  let spk = '';
+  if (t > EV.call + 0.2 && t < EV.call + 1.7) for (let i = 0; i < 10; i++) {
+    const k = clamp((t - EV.call - 0.2) / 1.5), a = i / 10 * Math.PI * 2 + 0.3, r = 70 + 110 * eOut(k);
+    spk += `<circle cx="${(400 + Math.cos(a) * r).toFixed(1)}" cy="${(900 + Math.sin(a) * r * 0.8 - 30 * k).toFixed(1)}" r="${(6 * (1 - k)).toFixed(2)}" fill="#5EF5B4"/>`;
+  }
+  $('sparks').innerHTML = spk;
+  // cartes
+  const card = (id, a, b, fi = 0.08, fo = 0.15) => { $(id).style.opacity = win(t, a, b, fi, fo).toFixed(3); $(id).style.transform = `scale(${pop(t, a).toFixed(3)})`; };
+  card('study', EV.study[0], EV.study[1]);
+  let wv = '';
+  for (let i = 0; i < 3; i++) {
+    const k = ((t - EV.study[0]) * 1.4 + i / 3) % 1;
+    const r = 60 + i * 60 + 20 * k;
+    wv += `<path d="M${470 + r * 0.35} ${330 - r} A ${r} ${r} 0 0 1 ${470 + r * 0.35} ${330 + r}" opacity="${(0.9 - 0.25 * i - 0.3 * k).toFixed(2)}"/>`;
+  }
+  $('waves').innerHTML = wv;
+  $('led').setAttribute('opacity', (0.4 + 0.6 * Math.abs(Math.sin(t * 5))).toFixed(2));
+  card('study2', EV.study2[0], EV.study2[1]);
+  const H = 330 / 85, hA = eOut(seg(t, EV.barA, EV.barA + 1.0)), hB = eOut(seg(t, EV.barB, EV.barB + 0.7));
+  $('barA').setAttribute('y', (500 - 85 * H * hA).toFixed(1)); $('barA').setAttribute('height', (85 * H * hA).toFixed(1));
+  $('valA').setAttribute('y', (480 - 85 * H * hA).toFixed(1)); $('valA').textContent = Math.round(85 * hA) + ' %';
+  $('barB').setAttribute('y', (500 - 31 * H * hB).toFixed(1)); $('barB').setAttribute('height', (31 * H * hB).toFixed(1));
+  $('valB').setAttribute('y', (480 - 31 * H * hB).toFixed(1)); $('valB').textContent = Math.round(31 * hB) + ' %';
+  const bIn = eOut(seg(t, 12.05, 12.4));
+  $('valB').setAttribute('opacity', seg(t, EV.barB, EV.barB + 0.1).toFixed(2));
+  $('icB').setAttribute('opacity', bIn.toFixed(2)); $('labB').setAttribute('opacity', bIn.toFixed(2));
+  card('anti', EV.anti[0], EV.anti[1]);
+  // HUD : réaction selon le nombre de témoins
+  const mint = t >= EV.call && t < EV.back;
+  const gv = mint ? 5 : Math.max(1, 6 - count);
+  for (let i = 1; i <= 5; i++) { const el = $('g' + i); el.className = 'sg' + (i <= gv ? (mint ? ' mint' : gv <= 2 ? ' hot' : ' on') : ''); el.style.opacity = gv <= 1 && i <= gv ? (0.55 + 0.45 * Math.abs(Math.sin(t * 6))).toFixed(2) : 1; }
+  $('state').textContent = mint ? 'ALERTE DONNÉE' : count <= 1 ? '1 TÉMOIN' : count + ' TÉMOINS';
+  $('state').style.color = mint ? '#5EF5B4' : gv <= 2 ? '#FF4B2B' : '#E8E5DB';
+  let ci = 0; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].t) ci = i;
+  const cap = $('cap');
+  if (ci !== curCap) {
+    curCap = ci;
+    cap.innerHTML = '<span class="w" id="capIn">' + CAPS[ci].txt.replace(/\*([^*]+)\*/g, '<span class="r">$1</span>').replace(/_([^_]+)_/g, '<span class="g">$1</span>') + '</span>';
+    const w = $('capIn').offsetWidth; cap.dataset.fit = Math.min(1, 900 / Math.max(1, w)).toFixed(4);
+  }
+  const c = CAPS[ci], t0 = Math.max(0, c.t);
+  cap.style.opacity = 1; cap.style.transform = `scale(${(pop(t, t0, 0.08) * parseFloat(cap.dataset.fit || 1)).toFixed(4)})`;
+}
+window.render = render;
+document.fonts.ready.then(() => { render(0); window.__ready = true; });
+</script>
+</body></html>
