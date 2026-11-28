@@ -30,3 +30,4 @@ Jauge HUD (« RISQUE… ») qui revient à l'état du début avant la fin.
 | 02 | 24/11/2026 | Moins de 6 h de sommeil = 4,2× plus de risques d'attraper un rhume (Prather, Sleep 2015) | cmu.edu/news/stories/archives/2015/august/sleep-and-sickness.html |
 | 03 | 25/11/2026 | Liquide déjà retiré = compté comme déjà dépensé ; 6/10 ne savent pas où est passé leur retrait (Barclays) ; effet de dénomination 63 % vs 26 % (Raghubir & Srivastava 2009) | atmmarketplace.com (Barclays ATMnesia) ; doi 10.1086/599222 |
 | 04 | 26/11/2026 | Effet du témoin : seul, 85 % donnent l'alerte avant la fin de la crise ; avec 4 autres témoins, 31 % ; antidote = désigner quelqu'un (Darley & Latané 1968) | doi.org/10.1037/h0025589 |
+| 05 | 28/11/2026 | Ne pas se rincer la bouche après le brossage (l'eau emporte le fluor concentré) ; pas de bain de bouche juste après ; 2 min 2×/jour, recracher (NHS) | nhs.uk/live-well/healthy-teeth-and-gums/how-to-keep-your-teeth-clean |

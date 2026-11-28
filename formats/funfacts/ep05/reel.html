@@ -1,0 +1,324 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Fun fact 05 — ne rince pas après le brossage</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .frame { background: #0F1013; }
+  .band { position: absolute; left: 0; right: 0; top: 430px; height: 1000px;
+    background:
+      repeating-linear-gradient(0deg, rgba(232,229,219,0.045) 0 2px, transparent 2px 96px),
+      repeating-linear-gradient(90deg, rgba(232,229,219,0.045) 0 2px, transparent 2px 96px),
+      linear-gradient(180deg, rgba(35,36,40,0) 0%, #25262A 14%, #232428 78%, rgba(35,36,40,0) 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 80%, transparent 100%); }
+  .vig { position: absolute; inset: 0; background: radial-gradient(ellipse 760px 1100px at 50% 46%, transparent 55%, rgba(0,0,0,0.62) 100%); pointer-events: none; }
+  .mini { position: absolute; left: 76px; right: 76px; top: 192px; display: flex; justify-content: space-between; align-items: center; font-size: 24px; }
+  .mini .l { color: var(--graphite); display: flex; align-items: center; gap: 12px; }
+  .mini .rt { color: var(--papier); font-weight: 700; }
+  .filet2 { position: absolute; left: 76px; right: 76px; top: 244px; height: 1.5px; background: rgba(232,229,219,0.14); }
+  #hud2 { position: absolute; left: 76px; right: 76px; top: 266px; display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JB Mono'; text-transform: uppercase; letter-spacing: 0.16em; font-size: 21px; color: var(--graphite); }
+  #hud2 .gauge { display: flex; align-items: center; gap: 7px; }
+  #hud2 .gauge .lab { margin-right: 12px; }
+  #hud2 .sg { width: 44px; height: 14px; border-radius: 2px; background: rgba(232,229,219,0.13); }
+  #hud2 .sg.on { background: #E8E5DB; }
+  #hud2 .sg.hot { background: #FF4B2B; box-shadow: 0 0 12px rgba(255,75,43,0.65); }
+  #hud2 .sg.mint { background: #5EF5B4; box-shadow: 0 0 12px rgba(94,245,180,0.55); }
+  #hud2 #state { font-weight: 700; color: var(--papier); }
+  svg.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+  #fadeT { position: absolute; left: 0; right: 0; top: 0; height: 350px; background: linear-gradient(180deg, #0F1013 0px, #0F1013 300px, rgba(15,16,19,0) 350px); pointer-events: none; }
+  #fadeB { position: absolute; left: 0; right: 0; top: 1300px; height: 620px; background: linear-gradient(180deg, rgba(15,16,19,0) 0px, #0F1013 120px, #0F1013 620px); pointer-events: none; }
+  #cap { position: absolute; left: 40px; right: 40px; top: 1330px; text-align: center; font-family: 'Barlow C'; font-weight: 800; font-size: 112px; line-height: 1;
+    color: var(--papier); text-transform: uppercase; letter-spacing: 0.01em; white-space: nowrap;
+    text-shadow: 0 5px 0 rgba(0,0,0,0.55), 0 0 28px rgba(0,0,0,0.75); transform-origin: 50% 60%; }
+  #cap .r { color: #FF4B2B; } #cap .g { color: #5EF5B4; }
+  #cap span.w { display: inline-block; }
+  .card { position: absolute; left: 90px; right: 90px; opacity: 0; transform-origin: 50% 50%; }
+  .sc { top: 380px; border: 2px solid rgba(232,229,219,0.5); background: #0F1013; }
+  .sc .hd { display: flex; justify-content: space-between; font-family: 'JB Mono'; font-weight: 700; font-size: 26px; letter-spacing: 0.16em; color: var(--graphite); padding: 16px 24px 10px; border-bottom: 1.5px solid rgba(232,229,219,0.18); }
+  .sc .hd b { color: var(--papier); }
+  .sc svg { display: block; width: 100%; height: 520px; }
+  .chip { top: 400px; display: flex; justify-content: center; }
+  .chip .in { background: rgba(15,17,20,0.92); border: 3px solid rgba(94,245,180,0.85); color: #5EF5B4; padding: 16px 30px 14px; font-family: 'JB Mono'; font-weight: 700; font-size: 40px; letter-spacing: 0.14em; white-space: nowrap; }
+  .chip .in b { color: #E8E5DB; }
+  #sub { top: 470px; left: 150px; right: 150px; border: 2px solid rgba(232,229,219,0.5); background: #0F1013; padding: 46px 40px 50px; text-align: center; }
+  #sub .av { width: 150px; height: 150px; margin: 0 auto; border-radius: 50%; border: 5px solid #E8E5DB; background: #1A1B1F; display: flex; align-items: center; justify-content: center; }
+  #sub .nm { font-family: 'JB Mono'; font-weight: 700; font-size: 36px; letter-spacing: 0.04em; color: #E8E5DB; margin-top: 26px; text-transform: none; }
+  #sub .ds { font-family: 'JB Mono'; font-size: 22px; letter-spacing: 0.16em; color: var(--graphite); margin-top: 10px; }
+  #btn { margin: 36px auto 0; width: 520px; height: 112px; border-radius: 56px; background: #FF4B2B; color: #fff; font-family: 'Barlow C'; font-weight: 800; font-size: 62px; letter-spacing: 0.04em;
+    display: flex; align-items: center; justify-content: center; transform-origin: 50% 50%; }
+  #btn.done { background: transparent; border: 5px solid #5EF5B4; color: #5EF5B4; }
+  #cursor { position: absolute; left: 0; top: 0; opacity: 0; }
+</style></head>
+<body>
+<div class="frame">
+  <div class="band"></div>
+  <svg class="full" viewBox="0 0 1080 1920">
+    <defs>
+      <clipPath id="crownClip"><rect x="-200" y="-260" width="400" height="320"/></clipPath>
+    </defs>
+    <g id="cam">
+      <line x1="-700" y1="1240" x2="1800" y2="1240" stroke="#E8E5DB" stroke-opacity="0.18" stroke-width="3"/>
+      <!-- lavabo (bord + bonde) -->
+      <g opacity="0.7">
+        <path d="M150 1150 L930 1150 Q920 1236 840 1240 L240 1240 Q160 1236 150 1150 Z" fill="#1B1C20" stroke="#E8E5DB" stroke-opacity="0.55" stroke-width="4"/>
+        <ellipse cx="540" cy="1206" rx="34" ry="9" fill="#0F1013" stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="3"/>
+      </g>
+      <ellipse cx="540" cy="1150" rx="190" ry="16" fill="#000" opacity="0.35"/>
+      <!-- la dent -->
+      <g id="tooth" transform="translate(540 930)">
+        <path id="coat" d="M -150 -120 C -150 -200, -80 -210, -40 -185 C -15 -170, 15 -170, 40 -185 C 80 -210, 150 -200, 150 -120 C 150 -60, 138 -20, 128 20"
+          fill="none" stroke="#5EF5B4" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" opacity="0.25" transform="scale(1.06)"/>
+        <path d="M -128 20 C -138 -20, -150 -60, -150 -120" fill="none" stroke="#5EF5B4" stroke-width="30" stroke-linecap="round" opacity="0.25" transform="scale(1.06)" id="coat2"/>
+        <path d="M -150 -120 C -150 -200, -80 -210, -40 -185 C -15 -170, 15 -170, 40 -185 C 80 -210, 150 -200, 150 -120 C 150 -40, 120 0, 110 60 C 100 140, 80 190, 50 190 C 20 190, 20 80, 0 80 C -20 80, -20 190, -50 190 C -80 190, -100 140, -110 60 C -120 0, -150 -40, -150 -120 Z"
+          fill="#2E3035" stroke="#E8E5DB" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M -96 -128 C -96 -160, -70 -168, -50 -160" fill="none" stroke="#E8E5DB" stroke-opacity="0.55" stroke-width="6" stroke-linecap="round"/>
+        <g id="dots"></g>
+      </g>
+      <g id="foam"></g>
+      <!-- verre d'eau -->
+      <g id="glass" opacity="0">
+        <path d="M-58 -80 L58 -80 L46 80 L-46 80 Z" fill="rgba(232,229,219,0.06)" stroke="#E8E5DB" stroke-width="6" stroke-linejoin="round"/>
+        <path id="water" d="M-52 -10 L52 -10 L46 80 L-46 80 Z" fill="rgba(232,229,219,0.22)"/>
+        <g id="xGlass" opacity="0"><path d="M-80 -100 L80 100 M80 -100 L-80 100" stroke="#FF4B2B" stroke-width="14" stroke-linecap="round"/></g>
+      </g>
+      <!-- bain de bouche -->
+      <g id="bottle" opacity="0">
+        <rect x="-26" y="-140" width="52" height="40" rx="6" fill="#2E3035" stroke="#E8E5DB" stroke-width="5"/>
+        <path d="M-18 -100 L18 -100 L18 -84 Q66 -70 66 -20 L66 100 Q66 116 50 116 L-50 116 Q-66 116 -66 100 L-66 -20 Q-66 -70 -18 -84 Z" fill="#2E3035" stroke="#E8E5DB" stroke-width="6" stroke-linejoin="round"/>
+        <rect x="-46" y="-6" width="92" height="70" rx="6" fill="none" stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="4"/>
+        <path d="M-28 18 L28 18 M-28 40 L14 40" stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="4" stroke-linecap="round"/>
+        <g id="xBottle" opacity="0"><path d="M-90 -130 L90 130 M90 -130 L-90 130" stroke="#FF4B2B" stroke-width="14" stroke-linecap="round"/></g>
+      </g>
+      <path id="stream" d="" fill="none" stroke="#E8E5DB" stroke-opacity="0.75" stroke-width="14" stroke-linecap="round" stroke-dasharray="26 18"/>
+      <!-- brosse à dents -->
+      <g id="brush" opacity="0">
+        <rect x="0" y="-16" width="420" height="32" rx="16" fill="#2E3035" stroke="#E8E5DB" stroke-width="6"/>
+        <rect x="-110" y="-22" width="120" height="44" rx="10" fill="#2E3035" stroke="#E8E5DB" stroke-width="6"/>
+        <g stroke="#E8E5DB" stroke-width="5" stroke-linecap="round">
+          <line x1="-96" y1="22" x2="-96" y2="62"/><line x1="-76" y1="22" x2="-76" y2="62"/><line x1="-56" y1="22" x2="-56" y2="62"/><line x1="-36" y1="22" x2="-36" y2="62"/><line x1="-16" y1="22" x2="-16" y2="62"/><line x1="4" y1="22" x2="4" y2="62"/>
+        </g>
+        <path d="M-104 70 Q-80 56 -56 70 Q-32 84 -8 70 Q6 62 14 70" fill="none" stroke="#5EF5B4" stroke-width="10" stroke-linecap="round"/>
+      </g>
+      <g id="sparks"></g>
+    </g>
+  </svg>
+  <div id="fadeT"></div><div id="fadeB"></div><div class="vig"></div>
+  <div class="mini mono"><div class="l"><span class="dot"></span>LE SAVIEZ-VOUS ?</div><div class="rt">SANTÉ · N°05</div></div>
+  <div class="filet2"></div>
+  <div id="hud2"><div class="gauge"><span class="lab">FLUOR</span><span class="sg" id="g1"></span><span class="sg" id="g2"></span><span class="sg" id="g3"></span><span class="sg" id="g4"></span><span class="sg" id="g5"></span></div><div id="state">PROTÉGÉ</div></div>
+  <div id="study" class="card sc">
+    <div class="hd"><span><b>NHS</b> · SANTÉ PUBLIQUE</span><span>R-U</span></div>
+    <svg viewBox="0 0 900 520">
+      <g transform="translate(450 250)">
+        <rect x="-150" y="-190" width="300" height="380" rx="14" fill="#1A1B1F" stroke="#E8E5DB" stroke-width="6"/>
+        <g stroke="#E8E5DB" stroke-opacity="0.6" stroke-width="6" stroke-linecap="round">
+          <line x1="-100" y1="-120" x2="100" y2="-120"/><line x1="-100" y1="-80" x2="100" y2="-80"/><line x1="-100" y1="-40" x2="60" y2="-40"/>
+          <line x1="-100" y1="0" x2="100" y2="0"/><line x1="-100" y1="40" x2="30" y2="40"/>
+        </g>
+        <g id="stamp" transform="translate(70 120) rotate(-12)">
+          <rect x="-110" y="-36" width="220" height="72" fill="none" stroke="#FF4B2B" stroke-width="6"/>
+          <text y="16" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="34" letter-spacing="4" fill="#FF4B2B">OFFICIEL</text>
+        </g>
+      </g>
+      <text x="450" y="500" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="26" letter-spacing="3" fill="#E8E5DB">CONSEIL D'HYGIÈNE DENTAIRE</text>
+    </svg>
+  </div>
+  <div id="clock" class="card sc">
+    <div class="hd"><span><b>BAIN DE BOUCHE</b> · QUAND ?</span><span>≠ BROSSAGE</span></div>
+    <svg viewBox="0 0 900 520">
+      <g transform="translate(450 235)">
+        <circle r="170" fill="#10201A" stroke="#5EF5B4" stroke-width="8"/>
+        <g stroke="#5EF5B4" stroke-width="6" stroke-linecap="round" id="ticks"></g>
+        <line id="hh" x1="0" y1="0" x2="0" y2="-90" stroke="#E8E5DB" stroke-width="12" stroke-linecap="round"/>
+        <line id="mh" x1="0" y1="0" x2="0" y2="-140" stroke="#E8E5DB" stroke-width="8" stroke-linecap="round"/>
+        <circle r="12" fill="#E8E5DB"/>
+      </g>
+      <text x="450" y="495" text-anchor="middle" font-family="JB Mono" font-weight="700" font-size="30" letter-spacing="3" fill="#5EF5B4">APRÈS LE DÉJEUNER</text>
+    </svg>
+  </div>
+  <div id="anti" class="card chip"><div class="in">→ LE BON GESTE</div></div>
+  <div id="timer" class="card chip"><div class="in"><span id="tm">0:00</span> <b>·</b> ×2 / JOUR</div></div>
+  <div id="sub" class="card">
+    <div class="av"><svg width="96" height="96" viewBox="-110 -110 220 220"><path d="M -75 -60 C -75 -100, -40 -105, -20 -92 C -8 -85, 8 -85, 20 -92 C 40 -105, 75 -100, 75 -60 C 75 -20, 60 0, 55 30 C 50 70, 40 95, 25 95 C 10 95, 10 40, 0 40 C -10 40, -10 95, -25 95 C -40 95, -50 70, -55 30 C -60 0, -75 -20, -75 -60 Z" fill="none" stroke="#E8E5DB" stroke-width="9" stroke-linejoin="round"/></svg></div>
+    <div class="nm">@situation.douteuse</div>
+    <div class="ds">1 TIP UTILE · TOUS LES 2 JOURS</div>
+    <div id="btn">S'ABONNER</div>
+  </div>
+  <svg id="cursor" width="140" height="170" viewBox="-10 -10 140 170">
+    <path d="M30 0 Q44 0 44 14 L44 62 L52 60 Q64 58 66 70 L74 68 Q86 66 88 78 L94 77 Q108 76 108 92 L108 118 Q108 150 76 150 L50 150 Q30 150 20 132 L2 98 Q-4 86 8 82 Q18 78 26 90 L16 76 L16 14 Q16 0 30 0 Z" fill="#2E3035" stroke="#E8E5DB" stroke-width="6" stroke-linejoin="round"/>
+  </svg>
+  <div id="cap"></div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const eOut = x => 1 - Math.pow(1 - x, 3), eIO = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const spring = x => x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.exp(-6 * x) * Math.cos(10 * x);
+const lerp = (a, b, x) => a + (b - a) * x;
+const win = (t, a, b, fi = 0.1, fo = 0.1) => clamp(seg(t, a, a + fi)) * (1 - seg(t, b - fo, b));
+const pop = (t, a, d = 0.12) => 0.84 + 0.16 * spring(seg(t, a, a + d * 3));
+const DUR = 28.5;
+const S = [
+ [0.03, 2.77, "te rincer la bouche|après le brossage,|c'est une *erreur*."],
+ [3.44, 5.48, "le service de santé|britannique|est formel :"],
+ [5.85, 8.66, "l'eau *emporte*|le fluor concentré|resté sur tes dents."],
+ [9.34, 11.82, "elle le *dilue*,|et réduit son effet|protecteur."],
+ [12.50, 13.59, "le bain de bouche|juste après ?"],
+ [13.98, 14.39, "*pareil*."],
+ [14.69, 16.18, "garde-le pour|_après le déjeuner_."],
+ [16.96, 17.69, "le bon geste :"],
+ [18.00, 20.22, "_2 minutes_|de brossage,|_2 fois_ par jour."],
+ [20.61, 21.70, "tu _craches_|le surplus."],
+ [22.04, 22.91, "et tu _ne rinces pas_."],
+ [23.61, 24.91, "abonne-toi|pour plus de tips."],
+ [25.53, 27.92, "et la prochaine fois|que tu poses ta brosse,|souviens-toi :"]];
+const CAPS = [];
+for (const [a, b, txt] of S) {
+  const parts = txt.split('|'), tot = parts.reduce((s, p) => s + p.length, 0); let acc = 0;
+  for (const p of parts) { CAPS.push({ t: Math.max(0, a + (b - a) * acc / tot - 0.04), txt: p }); acc += p.length; }
+}
+const EV = { study: [3.44, 5.75], water: [5.85, 11.9], bottle: [12.50, 14.6], xb: 13.98, clock: [14.69, 16.75], anti: [16.96, 17.85],
+  brush: [18.0, 20.4], spit: 20.61, nox: [22.04, 23.5], sub: [23.61, 25.45], click: 24.4, back: 25.53 };
+// grains de fluor sur la couronne (positions locales à la dent)
+const DOTS = [];
+for (let i = 0; i < 22; i++) {
+  const u = i / 21, x = lerp(-140, 140, u), top = -150 - 40 * Math.sin(Math.PI * u) * (Math.abs(u - 0.5) > 0.12 ? 1 : 0.4);
+  DOTS.push({ x: x + Math.sin(i * 7.3) * 8, y: top - 16 - (i % 3) * 14, ph: i * 0.37, fall: 0.15 * (i % 7) });
+}
+// protection : 1 au début, chute sous l'eau, remonte au brossage, 1 à la fin (boucle)
+function prot(t) {
+  if (t < EV.water[0] + 0.4) return 1;
+  if (t < EV.brush[0]) return lerp(1, 0.2, eIO(seg(t, EV.water[0] + 0.4, EV.water[0] + 2.4)));
+  return lerp(0.2, 1, eIO(seg(t, EV.brush[0] + 0.3, EV.brush[1] - 0.2)));
+}
+const SH = [
+ [0, 540, 930, 1.0, 540, 915, 1.05],
+ [5.6, 600, 800, 1.22, 610, 790, 1.26],
+ [12.3, 620, 820, 1.18, 600, 830, 1.2],
+ [17.9, 540, 860, 1.18, 540, 870, 1.22],
+ [25.3, 540, 870, 1.22, 540, 930, 1.0]];
+function camAt(t) {
+  let si = 0; for (let i = 0; i < SH.length; i++) if (t >= SH[i][0]) si = i;
+  const s0 = SH[si], s1t = si + 1 < SH.length ? SH[si + 1][0] : DUR - 0.3;
+  const dur = si === SH.length - 1 ? 1.8 : (s1t - s0[0]);
+  const x = seg(t, s0[0], s0[0] + dur), u = si === SH.length - 1 ? eIO(x) : eIO(x) * 0.85 + x * 0.15;
+  return [lerp(s0[1], s0[4], u), lerp(s0[2], s0[5], u), lerp(s0[3], s0[6], u)];
+}
+// passage de plan : petit glissement quand la caméra change de cible
+function shake(t) {
+  let x = 0, y = 0;
+  for (const [ti, amp] of [[EV.xb, 6], [EV.click, 4]]) {
+    if (t >= ti && t < ti + 0.5) { const k = Math.exp(-(t - ti) * 9) * amp; x += k * Math.sin((t - ti) * 71); y += k * Math.cos((t - ti) * 57); }
+  }
+  return [x, y];
+}
+let tk = ''; for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2; tk += `<line x1="${(Math.sin(a) * 140).toFixed(1)}" y1="${(-Math.cos(a) * 140).toFixed(1)}" x2="${(Math.sin(a) * 156).toFixed(1)}" y2="${(-Math.cos(a) * 156).toFixed(1)}"/>`; }
+$('ticks').innerHTML = tk;
+let curCap = -1;
+function render(t) {
+  const [fx, fy, s] = camAt(t), [kx, ky] = shake(t);
+  $('cam').setAttribute('transform', `translate(${(540 + kx).toFixed(2)} ${(900 + ky).toFixed(2)}) scale(${s.toFixed(4)}) translate(${(-fx).toFixed(2)} ${(-fy).toFixed(2)})`);
+  const P = prot(t);
+  // la dent respire un peu
+  const by = Math.sin(t * 2 * Math.PI * 9 / DUR) * 4;
+  $('tooth').setAttribute('transform', `translate(540 ${(930 + by).toFixed(2)})`);
+  const glow = (0.12 + 0.5 * P) * (0.85 + 0.15 * Math.sin(t * 2 * Math.PI * 18 / DUR));
+  $('coat').setAttribute('opacity', glow.toFixed(3)); $('coat2').setAttribute('opacity', glow.toFixed(3));
+  // grains de fluor : emportés par l'eau (rouges), reviennent au brossage (menthe)
+  let d = '';
+  const washing = t >= EV.water[0] + 0.3 && t < EV.brush[0];
+  DOTS.forEach((p, i) => {
+    let x = p.x, y = p.y + Math.sin(t * 2 * Math.PI * 14 / DUR + p.ph) * 3, o = 1, c = '#5EF5B4', r = 9;
+    if (t >= EV.water[0] + 0.3 && t < EV.brush[0] + 0.3) {
+      const k = eIO(seg(t, EV.water[0] + 0.4 + p.fall, EV.water[0] + 1.9 + p.fall));
+      x = p.x * (1 + 0.35 * k); y = lerp(p.y, 240, k); o = 1 - k; c = k > 0.05 ? '#FF4B2B' : '#5EF5B4';
+    }
+    if (t >= EV.brush[0] + 0.3) {
+      const k = eOut(seg(t, EV.brush[0] + 0.3 + p.fall * 1.2, EV.brush[0] + 1.0 + p.fall * 1.2));
+      o = k; r = 9 * (0.6 + 0.4 * spring(k));
+    }
+    if (o > 0.01) d += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" fill="${c}" opacity="${o.toFixed(3)}"/>`;
+  });
+  $('dots').innerHTML = d;
+  // verre d'eau qui se verse
+  const gO = Math.max(win(t, EV.water[0] - 0.1, EV.water[1], 0.25, 0.4), win(t, EV.nox[0], EV.nox[1], 0.15, 0.3));
+  const pour = win(t, EV.water[0] + 0.3, EV.water[0] + 3.2, 0.35, 0.4);
+  $('glass').setAttribute('opacity', gO.toFixed(3));
+  const gx = t < EV.nox[0] ? 800 : 820, gy = t < EV.nox[0] ? 600 : 760;
+  $('glass').setAttribute('transform', `translate(${gx} ${gy}) rotate(${(-62 * pour).toFixed(1)}) scale(${(t < EV.nox[0] ? pop(t, EV.water[0] - 0.1) : pop(t, EV.nox[0])).toFixed(3)})`);
+  $('water').setAttribute('opacity', (t < EV.nox[0] ? 1 - 0.7 * seg(t, EV.water[0] + 0.6, EV.water[0] + 3.0) : 1).toFixed(2));
+  $('xGlass').setAttribute('opacity', (t >= EV.nox[0] ? eOut(seg(t, EV.nox[0] + 0.15, EV.nox[0] + 0.35)) : 0).toFixed(2));
+  $('xGlass').setAttribute('transform', `scale(${pop(t, EV.nox[0] + 0.15).toFixed(3)})`);
+  // bain de bouche
+  const bO = win(t, EV.bottle[0], EV.bottle[1], 0.2, 0.35), bp = win(t, EV.bottle[0] + 0.25, EV.xb, 0.3, 0.2);
+  $('bottle').setAttribute('opacity', bO.toFixed(3));
+  $('bottle').setAttribute('transform', `translate(810 600) rotate(${(-70 * bp).toFixed(1)}) scale(${pop(t, EV.bottle[0]).toFixed(3)})`);
+  $('xBottle').setAttribute('opacity', eOut(seg(t, EV.xb, EV.xb + 0.15)).toFixed(2));
+  $('xBottle').setAttribute('transform', `rotate(${(70 * bp).toFixed(1)}) scale(${pop(t, EV.xb).toFixed(3)})`);
+  // filet de liquide
+  const so = Math.max(pour * (t < EV.nox[0] ? 1 : 0), bp);
+  if (so > 0.02) {
+    const ox = bp > 0.02 ? 700 : 720, oy = bp > 0.02 ? 560 : 560;
+    $('stream').setAttribute('d', `M${ox} ${oy} Q ${ox - 60} ${oy + 20}, 600 ${(760 + by).toFixed(1)}`);
+    $('stream').setAttribute('opacity', so.toFixed(3)); $('stream').setAttribute('stroke-dashoffset', (-t * 220).toFixed(1));
+  } else $('stream').setAttribute('opacity', 0);
+  // brosse qui frotte
+  const brO = win(t, EV.brush[0], EV.brush[1], 0.25, 0.35), bk = eOut(seg(t, EV.brush[0], EV.brush[0] + 0.45));
+  $('brush').setAttribute('opacity', brO.toFixed(3));
+  const scrub = Math.sin(t * 22) * 40 * seg(t, EV.brush[0] + 0.4, EV.brush[0] + 0.6) * (1 - seg(t, EV.brush[1] - 0.6, EV.brush[1] - 0.3));
+  $('brush').setAttribute('transform', `translate(${(lerp(1250, 560, bk) + scrub).toFixed(1)} 690) rotate(-4)`);
+  // mousse qui tombe dans le lavabo (on crache)
+  let fm = '';
+  if (t > EV.spit && t < EV.spit + 1.4) {
+    const k = seg(t, EV.spit + 0.15, EV.spit + 0.85), o = 1 - seg(t, EV.spit + 0.9, EV.spit + 1.3);
+    const y = lerp(1130, 1200, eIO(k));
+    for (let i = 0; i < 5; i++) fm += `<circle cx="${(540 + (i - 2) * 22 + Math.sin(i * 2.1) * 6).toFixed(1)}" cy="${(y - Math.abs(i - 2) * 10 + 0).toFixed(1)}" r="${(18 - Math.abs(i - 2) * 3).toFixed(1)}" fill="#E8E5DB" opacity="${(0.85 * o).toFixed(2)}"/>`;
+  }
+  $('foam').innerHTML = fm;
+  // étincelles menthe quand le fluor revient et au clic
+  let spk = '';
+  for (const [t0, cx, cy] of [[EV.brush[1] - 0.6, 540, 760]]) if (t > t0 && t < t0 + 1.4) for (let i = 0; i < 10; i++) {
+    const k = clamp((t - t0) / 1.4), a = i / 10 * Math.PI * 2 + 0.3, r = 120 + 140 * eOut(k);
+    spk += `<circle cx="${(cx + Math.cos(a) * r).toFixed(1)}" cy="${(cy + Math.sin(a) * r * 0.7 - 30 * k).toFixed(1)}" r="${(7 * (1 - k)).toFixed(2)}" fill="#5EF5B4"/>`;
+  }
+  $('sparks').innerHTML = spk;
+  // cartes (une seule à la fois)
+  const card = (id, a, b, fi = 0.08, fo = 0.15) => { $(id).style.opacity = win(t, a, b, fi, fo).toFixed(3); $(id).style.transform = `scale(${pop(t, a).toFixed(3)})`; };
+  card('study', EV.study[0], EV.study[1]);
+  $('stamp').setAttribute('opacity', eOut(seg(t, 4.3, 4.45)).toFixed(2));
+  $('stamp').setAttribute('transform', `translate(70 120) rotate(-12) scale(${(1.5 - 0.5 * eOut(seg(t, 4.3, 4.45))).toFixed(3)})`);
+  card('clock', EV.clock[0], EV.clock[1]);
+  const ck = eIO(seg(t, EV.clock[0], EV.clock[0] + 1.0)), hours = lerp(8.0, 13.0, ck);
+  $('mh').setAttribute('transform', `rotate(${(hours * 360).toFixed(1)})`); $('hh').setAttribute('transform', `rotate(${(hours * 30).toFixed(1)})`);
+  card('anti', EV.anti[0], EV.anti[1]);
+  card('timer', EV.brush[0], EV.brush[1]);
+  const sec = Math.round(120 * eIO(seg(t, EV.brush[0] + 0.1, EV.brush[0] + 1.8)));
+  $('tm').textContent = Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+  card('sub', EV.sub[0], EV.sub[1], 0.1, 0.25);
+  const done = t >= EV.click + 0.08;
+  $('btn').className = done ? 'done' : ''; $('btn').textContent = done ? 'ABONNÉ ✓' : "S'ABONNER";
+  const press = t >= EV.click && t < EV.click + 0.08 ? 0.92 : (done ? pop(t, EV.click + 0.08, 0.1) : 1);
+  $('btn').style.transform = `scale(${press.toFixed(3)})`;
+  const cuO = win(t, EV.sub[0] + 0.2, EV.sub[1] - 0.05, 0.15, 0.25), ck2 = eOut(seg(t, EV.sub[0] + 0.2, EV.click - 0.05));
+  const tap = t >= EV.click - 0.05 && t < EV.click + 0.15 ? 10 : 0;
+  $('cursor').style.opacity = cuO.toFixed(3);
+  $('cursor').style.transform = `translate(${lerp(980, 520, ck2).toFixed(1)}px, ${(lerp(1300, 875, ck2) + tap).toFixed(1)}px) scale(${tap ? 0.94 : 1})`;
+  // HUD : niveau de fluor
+  const gv = Math.max(1, Math.round(P * 5));
+  for (let i = 1; i <= 5; i++) { const el = $('g' + i); el.className = 'sg' + (i <= gv ? (gv >= 4 ? ' mint' : gv <= 2 ? ' hot' : ' on') : ''); el.style.opacity = gv <= 1 && i <= gv ? (0.55 + 0.45 * Math.abs(Math.sin(t * 6))).toFixed(2) : 1; }
+  $('state').textContent = gv >= 4 ? 'PROTÉGÉ' : gv <= 2 ? 'DILUÉ' : '…';
+  $('state').style.color = gv >= 4 ? '#5EF5B4' : gv <= 2 ? '#FF4B2B' : '#E8E5DB';
+  let ci = 0; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].t) ci = i;
+  const cap = $('cap');
+  if (ci !== curCap) {
+    curCap = ci;
+    cap.innerHTML = '<span class="w" id="capIn">' + CAPS[ci].txt.replace(/\*([^*]+)\*/g, '<span class="r">$1</span>').replace(/_([^_]+)_/g, '<span class="g">$1</span>') + '</span>';
+    const w = $('capIn').offsetWidth; cap.dataset.fit = Math.min(1, 900 / Math.max(1, w)).toFixed(4);
+  }
+  const c = CAPS[ci], t0 = Math.max(0, c.t);
+  cap.style.opacity = 1; cap.style.transform = `scale(${(pop(t, t0, 0.08) * parseFloat(cap.dataset.fit || 1)).toFixed(4)})`;
+}
+window.render = render;
+document.fonts.ready.then(() => { render(0); window.__ready = true; });
+</script>
+</body></html>
