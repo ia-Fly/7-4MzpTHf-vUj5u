@@ -1,4 +1,4 @@
-# Fun fact 05 — ne rince pas après le brossage (28/11/2026, programmé 18:59 Paris après tirage aléatoire 18:00-20:00, Metricool post 445415249)
+# Fun fact 05 — ne rince pas après le brossage (28/11/2026, programmé 18:42 Paris, heure choisie par Matis, Metricool post 445426136)
 - Source : NHS, « How to keep your teeth clean » (nhs.uk/live-well/healthy-teeth-and-gums/how-to-keep-your-teeth-clean/, revue 30/06/2025) :
   ne pas rincer juste après le brossage (lave le fluor concentré, réduit l'effet préventif) ; pas de bain de bouche juste après (« after lunch ») ;
   2 fois par jour, environ 2 minutes ; recracher le surplus. Aucun autre chiffre utilisé.
