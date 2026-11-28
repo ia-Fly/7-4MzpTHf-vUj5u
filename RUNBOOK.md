@@ -8,7 +8,7 @@ Procédure suivie par la tâche planifiée « Épisode BLACK-OUT tous les 2 jour
 | Quoi | Valeur |
 |---|---|
 | Objectif | 10 000 abonnés (Instagram + TikTok) |
-| Publication | **1 épisode neuf tous les 2 jours** (jours impairs du mois), Instagram et TikTok, à **19:00 heure de Paris** (`Europe/Paris`). Consigne de Matis du 09/11/2026 : viser le public français (les vues Instagram ont chuté pendant l'essai en anglais publié la nuit, heure de Paris). `python3 tools/post_time.py` donne l'heure exacte (lue dans `state.json > schedule`) |
+| Publication | **1 épisode neuf tous les 2 jours** (jours impairs du mois), Instagram et TikTok, à une **heure aléatoire entre 18:00 et 20:00, heure de Paris** (`Europe/Paris`, consigne de Matis du 28/11/2026 ; 19:00 pile auparavant). Consigne de Matis du 09/11/2026 : viser le public français (les vues Instagram ont chuté pendant l'essai en anglais publié la nuit, heure de Paris). `python3 tools/post_time.py` donne l'heure exacte (lue dans `state.json > schedule`) |
 | Série | **BLACK-OUT**, une seule série suivie (consigne du 09/11/2026) : fiction à choix « survie chez toi », à la 2e personne (« tu »). Chaque épisode = une nuit ; il commence par la suite du choix le plus voté et finit sur un nouveau choix 1 / 2. Bible, images et continuité : `formats/cine/series/README.md` |
 | Instagram | @situation.douteuse (compte Créateur), publié en Reel |
 | TikTok | @situation.douteus, connecté à Metricool |
@@ -74,7 +74,7 @@ python3 tools/asr_check.py OUT/video.mp4 "toutes les répliques" --lang fr    # 
 Si `asr_check` répond « contrôle des voix indisponible » (code 2) : note-le dans le journal, ce n'est pas bloquant. Un score sous 0,85 est un vrai défaut.
 Puis **regarde** `planche.jpg` et `cover.jpg` avec Read : pas d'écran noir, sous-titres lisibles et pas sur l'objet du plan, mains et visages sans défaut, aucun texte déformé, rien d'interdit (voir les limites de `formats/cine/README.md`). Vérifie aussi que `timeline.json` dit une durée de 45 à 70 s et que le choix 1 / 2 est posé. Un défaut = corriger et remonter, pas publier ; si une image ou un plan généré est raté, en regénérer un seul.
 
-## 7. Publier (Metricool, 19:00 à Paris)
+## 7. Publier (Metricool, heure aléatoire entre 18:00 et 20:00 à Paris)
 1. Renommer en noms uniques : `<date>-<id>.mp4`, `<date>-<id>-cover.jpg`.
 2. `python3 tools/media.py add FICHIER.mp4 FICHIER-cover.jpg` → affiche les liens `https://raw.githubusercontent.com/ia-Fly/7-4MzpTHf-vUj5u/media/...` (vérifiés 200). Exporte `MEDIA_COMMIT_TRAILER` si ta session impose des lignes d'attribution dans les commits.
 3. `createScheduledPost`, `blogId` 7631727, `date` et `publicationDate` = les valeurs données par `python3 tools/post_time.py`, `autoPublish` true.
@@ -95,7 +95,7 @@ Puis **regarde** `planche.jpg` et `cover.jpg` avec Read : pas d'écran noir, sou
 - `formats/cine/series/README.md` : continuité de la série (heure et batterie de fin, ce que le personnage sait, images ajoutées) ; `scripts.md` : les suites de la nuit qui vient d'être publiée (une par choix + « hésitation »).
 - `STRATEGY.md` : tableau de stats + une leçon datée (ce qui marche / ne marche pas, chiffres à l'appui) + la prochaine expérience.
 - `journal/AAAA-MM-JJ.md` : stats lues, décision et raison, production (flow, modèles, crédits, contrôle), liens Metricool, amélioration faite.
-- **Une amélioration concrète par jour** (code, son, accroche, légende, règle), testée avant commit. Ne jamais changer l'heure (19:00, Paris), la langue (français) ni la série sans demande de Matis.
+- **Une amélioration concrète par jour** (code, son, accroche, légende, règle), testée avant commit. Ne jamais changer la fenêtre de publication (18:00-20:00, Paris, heure tirée au hasard), la langue (français) ni la série sans demande de Matis.
 - `git add -A && git commit && git push origin studio` (branche `studio` uniquement ; jamais de suppression de branche, jamais de réécriture d'historique).
 
 ## 9. Rapport final (français, moins de 150 mots)

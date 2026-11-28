@@ -20,7 +20,12 @@
   "post_timezone": "Europe/Paris",
   "post_time_note": "Matis, 09/11/2026 : retour au français et à 19:00 (Paris) pour viser le public français ; l'heure de Washington (05/11) est abandonnée. tools/post_time.py lit cette heure.",
   "decision_0911": "Matis, 09/11/2026 : tout en français, une seule série suivie (BLACK-OUT, fiction à choix « survie chez toi »), 1 épisode tous les 2 jours à 19:00. THE OFFER (anglais) ne part pas.",
-  "decision_1111": "Matis, 11/11/2026 : BLACK-OUT abandonné (nuit 1 jamais publiée). Série unique FROMAGISTAN (format toon, formats/toon/README.md), un épisode tous les 2 jours à 19:00 (Paris), en français. Pas de validation préalable demandée."
+  "decision_1111": "Matis, 11/11/2026 : BLACK-OUT abandonné (nuit 1 jamais publiée). Série unique FROMAGISTAN (format toon, formats/toon/README.md), un épisode tous les 2 jours à 19:00 (Paris), en français. Pas de validation préalable demandée.",
+  "post_window": [
+   "18:00",
+   "20:00"
+  ],
+  "post_window_note": "Matis, 28/11/2026 : ne plus publier à 19:00 pile mais à une heure aléatoire entre 18:00 et 20:00 (Paris). tools/post_time.py tire la minute ; post_time reste la valeur de repli."
  },
  "counters": {
   "day": 0

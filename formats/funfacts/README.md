@@ -1,4 +1,4 @@
-# Format FUN FACTS (depuis le 22/11/2026) — format principal, 1 vidéo tous les 2 jours à 19:00 Paris
+# Format FUN FACTS (depuis le 22/11/2026) — format principal, 1 vidéo tous les 2 jours à une heure aléatoire entre 18:00 et 20:00 (Paris)
 
 Demande de Matis : vidéos style graphique « Omertà » (fond sombre quadrillé, pictos line-art blancs, HUD mono en haut,
 gros sous-titres Barlow Condensed avec mot-clé rouge #FF4B2B, menthe #5EF5B4 pour le positif), sur des fun facts qui
@@ -8,6 +8,7 @@ ElevenLabs pour voix, musique de fond, bruitages. **La voix doit dominer et êtr
 FROMAGISTAN reste un bonus occasionnel.
 
 ## Choix figés
+- Heure de publication (Matis, 28/11/2026) : **aléatoire entre 18:00 et 20:00 à Paris**, plus jamais 19:00 pile. `python3 tools/post_time.py` tire l'heure (minute au hasard) ; utilise ses champs `date` et `publicationDate` tels quels.
 - Voix : **Lucas Doré — Casual Narrator** `ULDw9NhSQODAHXxn70tR`, modèle `eleven_v4`, 1 prise. (Matis l'a choisie le 22/11.)
 - Compte ElevenLabs du connecteur = **gratuit** (10 000 caractères/mois). Script ≤ 480 caractères. Si « Free generations are busy » :
   ne pas relancer en boucle ; musique de repli = `ep01/score` (dans la banque : score.mp3, drone sombre) — à stocker dans assets.
